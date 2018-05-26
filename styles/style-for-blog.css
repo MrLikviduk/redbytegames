@@ -20,7 +20,7 @@ article h1 {
     color: white;
 }
 .tag:hover {
-    background: hsl(0, 60%, 40%);
+    background: hsl(0, 80%, 40%);
     transition: .5s;
     cursor: pointer;
 }
