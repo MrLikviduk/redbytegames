@@ -1,7 +1,13 @@
 <?php
+    $host = 'srv-pleskdb16.ps.kz:3306';
+    $login = 'redby_proger';
+    $password = 'imgnida1234';
+    $database = 'redbyteg_users';
+    $mysqli = new mysqli($host, $login, $password, $database) or die("Error");
+    $mysqli->close();
     //----------------------------------------------------------
     $page_name = 'Блог';
-    include('header.php'); 
+    //include('header.php'); 
 ?>
 <article>
     <div class="date-and-tags">
