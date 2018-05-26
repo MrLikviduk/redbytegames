@@ -1,0 +1,10 @@
+body {
+    background: fixed url('/img/about-us-bg.jpg') 43%/200% no-repeat;
+    background-color: #d0d0d0;
+}
+@media (min-width: 800px) {
+    body {
+        background-size: 100%;
+        background-position: 50%;
+    }
+}

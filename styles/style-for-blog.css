@@ -1,0 +1,47 @@
+article {
+    width: 90vw;
+    margin: 50px auto;
+    position: relative;
+}
+article .date {
+    color: gray;
+}
+article h1 {
+    font-size: 1.6rem;
+    margin: 5px auto;
+}
+.tag {
+    display: inline-block;
+    padding: 3px 5px;
+    border-radius: 5px;
+    margin: 0 3px;
+    font-size: 0.8rem;
+    background: hsl(0, 50%, 40%);
+    color: white;
+}
+.tag:hover {
+    background: hsl(0, 60%, 40%);
+    transition: .5s;
+    cursor: pointer;
+}
+.tags {
+    margin-left: 10px;
+    display: inline-block;
+}
+.line-after-header {
+    display: block;
+    width: 30%;
+    height: 2px;
+    float: left;
+    border: none;
+    background: hsl(0, 60%, 50%);
+}
+article p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+@media (min-width: 800px) {
+    article {
+        width: 50%;
+    }
+}
