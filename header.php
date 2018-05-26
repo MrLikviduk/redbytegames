@@ -61,24 +61,40 @@
             </div>
         </div>
         <div class="nav-menu-for-computers">
-            <a href="index.php">
-                <div class="nav-element">Главная</div>
-            </a>
-            <a href="about-us.php">
-                <div class="nav-element">О нас</div>
-            </a>
-            <a href="blog.php">
-                <div class="nav-element">Блог</div>
-            </a>
-            <a href="">
-                <div class="nav-element">Проекты</div>
-            </a>
-            <a href="">
-                <div class="nav-element">Вакансии</div>
-            </a>
-            <a href="">
-                <div class="nav-element">Тех. поддержка</div>
-            </a>
+            <div class="contacts">
+                <div class="contact">
+                    <img class="contact-icon" src="/img/mail_icon.png">
+                    <div class="text">
+                        info@redbytegames.ru
+                    </div>
+                </div>
+                <div class="contact">
+                    <img class="contact-icon" src="/img/phone_icon.png">
+                    <div class="text">
+                        +7 (777) 176-03-73
+                    </div>
+                </div>
+            </div>
+            <div class="nav-elements">
+                <a href="index.php">
+                    <div class="nav-element">Главная</div>
+                </a>
+                <a href="about-us.php">
+                    <div class="nav-element">О нас</div>
+                </a>
+                <a href="blog.php">
+                    <div class="nav-element">Блог</div>
+                </a>
+                <a href="">
+                    <div class="nav-element">Проекты</div>
+                </a>
+                <a href="">
+                    <div class="nav-element">Вакансии</div>
+                </a>
+                <a href="">
+                    <div class="nav-element">Тех. поддержка</div>
+                </a>
+            </div>
         </div>
     </header>
     <script>
