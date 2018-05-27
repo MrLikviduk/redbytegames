@@ -10,9 +10,10 @@
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
         $result = $mysqli->query("SELECT * FROM users") or die("Error to open database");
         $v = FALSE;
-        while (($row = $result->fetch_assoc()) && !$v) {
-            if ($row['username'] == $_POST['lgn'] && $row['pswd'] == $_POST['passwd'])
-                $v = TRUE;
+        while ($row = $result->fetch_assoc()) {
+            // if ($row['username'] == $_POST['lgn'] && $row['pswd'] == $_POST['passwd'])
+            //     $v = TRUE;
+            echo $row['username'].' '.$row['passwd'].'<br>';
         }
         if ($v == TRUE)
             $_SESSION['logged_in'] == TRUE;
