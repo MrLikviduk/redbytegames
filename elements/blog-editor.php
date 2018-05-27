@@ -1,6 +1,8 @@
 <?php
     if(isset($_POST['header'])) {
         $date = date('Y-m-d');
+        if (isset($mysqli)) echo "YES";
+        else echo "NO";
         $header = $_POST['header'];
         $content = $_POST['content'];
         $tags = $_POST['tags'];
