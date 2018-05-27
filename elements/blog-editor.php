@@ -1,11 +1,12 @@
 <?php
+    $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
     if(isset($_POST['header'])) {
         $date = date('Y-m-d');
         $header = $_POST['header'];
         $content = $_POST['content'];
         $tags = $_POST['tags'];
         echo "<script>console.log('check')</script>";
-        $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, $header, $content, $date, $tags)");
+        $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, $header, $content, $date, $tags)") or die("Error");
         unset($_POST['header']);
     }
 ?>
