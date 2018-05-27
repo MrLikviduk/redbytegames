@@ -1,12 +1,19 @@
 <?php
-    if (!isset($_POST['header'])) $header = '';
-    if(isset($_POST['header']) && $header != $_POST['header']) {
-        $date = date('Y-m-d');
-        $header = $_POST['header'];
-        $content = $_POST['content'];
-        $tags = $_POST['tags'];
-        $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, '$header', '$content', '$date', '$tags')") or die("Error");
-        unset($_POST['header']);
+    if(isset($_POST['header'])) {
+        $result = $mysqli->query("SELECT * FROM blog");
+        $v == FALSE;
+        while ($row = $result->fetch_assoc()) {
+            if ($row['header'] == $_POST['header'])
+                $v = TRUE;
+        }
+        if (!$v) {
+            $date = date('Y-m-d');
+            $header = $_POST['header'];
+            $content = $_POST['content'];
+            $tags = $_POST['tags'];
+            $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, '$header', '$content', '$date', '$tags')") or die("Error");
+            unset($_POST['header']);
+        }
     }
 ?>
 <form action="" method="POST" style="margin-left: 25vw;">
