@@ -7,7 +7,7 @@
         $content = $_POST['content'];
         $tags = $_POST['tags'];
         echo "<script>console.log('check')</script>";
-        $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, $header, $content, $date, $tags)") or die("Error");
+        $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, '$header', '$content', '$date', '$tags')") or die("Error");
         unset($_POST['header']);
     }
 ?>
