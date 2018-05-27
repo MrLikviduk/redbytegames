@@ -11,7 +11,7 @@
     }
     $result = $mysqli->query("SELECT * FROM blog ORDER BY creation_date");
     while($row = $result->fetch_assoc()) {
-        echo show_blog($row['name'], $row['content'], $row['creation_date'], $row['tags']);
+        echo show_blog($row['header'], $row['content'], $row['creation_date'], $row['tags']);
     }
 ?>
 <?php include('footer.php'); $mysqli->close(); ?>
