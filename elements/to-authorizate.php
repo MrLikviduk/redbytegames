@@ -3,10 +3,7 @@
     if (!isset($_SESSION['logged_in']))
         $_SESSION['logged_in'] = FALSE;
     if (isset($_POST['lgn']) && isset($_POST['pswd'])) {
-        $host_name = 'srv-pleskdb16.ps.kz:3306';
-        $db_name = 'redbyteg_users';
-        $db_username = 'redby_proger';
-        $db_password = 'imgnida1234';
+        include('connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
         $result = $mysqli->query("SELECT * FROM users") or die("Error to open database");
         $v = FALSE;
