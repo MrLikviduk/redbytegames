@@ -9,7 +9,7 @@
     if ($_SESSION['logged_in'] == TRUE) {
         include('elements/blog-editor.php');
     }
-    $result = $mysqli->query("SELECT * FROM blogs ORDER BY creation_date");
+    $result = $mysqli->query("SELECT * FROM blog ORDER BY creation_date");
     while($row = $result->fetch_assoc) {
         echo show_blog($row['name'], $row['content'], $row['creation_date'], $row['tags']);
     }
