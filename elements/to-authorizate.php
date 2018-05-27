@@ -4,7 +4,7 @@
         $_SESSION['logged_in'] = FALSE;
     if (isset($_POST['lgn']) && isset($_POST['pswd'])) {
         include('connection-info.php');
-        $result = $mysqli->query("SELECT * FROM users") or die("Error to open database");
+        $result = $mysqli->query("SELECT * FROM users");
         $v = FALSE;
         while ($row = $result->fetch_assoc()) {
             if ($row['username'] == $_POST['lgn'] && $row['pswd'] == $_POST['passwd'])
