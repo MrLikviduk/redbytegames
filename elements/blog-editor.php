@@ -4,7 +4,7 @@
         $header = $_POST['header'];
         $content = $_POST['content'];
         $tags = $_POST['tags'];
-        $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, $header, $content, $date, $tags)");
+        $mysqli->query("INSERT INTO blog (id, ".'name'.", content, creation_date, tags) VALUES (NULL, $header, $content, $date, $tags)");
         unset($_POST['header']);
     }
 ?>
