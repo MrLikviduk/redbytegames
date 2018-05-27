@@ -7,7 +7,7 @@
     include('elements/to-authorizate.php');
     include('elements/blog-template.php');
     if ($_SESSION['logged_in'] == TRUE) {
-        include('blog-editor.php');
+        include('elements/blog-editor.php');
     }
     $result = $mysqli->query("SELECT * FROM blogs ORDER BY creation_date");
     while($row = $result->fetch_assoc) {
