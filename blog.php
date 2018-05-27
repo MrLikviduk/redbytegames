@@ -9,8 +9,8 @@
     $page_name = 'Блог';
     include('header.php');
     include('elements/to-authorizate.php');
-    // if (isset($_SESSION['logged_in']))
-    //     if ($_SESSION['logged_in'] == FALSE)
+    if (isset($_SESSION['logged_in']))
+        if ($_SESSION['logged_in'] == FALSE)
             show_login_form();
 ?>
 <article>
