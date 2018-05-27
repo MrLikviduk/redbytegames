@@ -1,23 +1,23 @@
 <?php
-    session_start();
-    if (!isset($_SESSION['logged_in']))
-        $_SESSION['logged_in'] = FALSE;
-    if (isset($_POST['lgn']) && isset($_POST['pswd'])) {
-        $host_name = 'srv-pleskdb16.ps.kz:3306';
-        $db_name = 'redbyteg_users';
-        $db_username = 'redby_proger';
-        $db_password = 'imgnida1234';
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM users") or die("Error to open database");
-        $v = FALSE;
-        while (($row = $result->fetch_assoc()) && !$v) {
-            if ($row['username'] == $_POST['lgn'] && $row['pswd'] == $_POST['passwd'])
-                $v = TRUE;
-        }
-        if ($v == TRUE)
-            $_SESSION['logged_in'] == TRUE;
-        $mysqli->close();
-    }
+    // session_start();
+    // if (!isset($_SESSION['logged_in']))
+    //     $_SESSION['logged_in'] = FALSE;
+    // if (isset($_POST['lgn']) && isset($_POST['pswd'])) {
+    //     $host_name = 'srv-pleskdb16.ps.kz:3306';
+    //     $db_name = 'redbyteg_users';
+    //     $db_username = 'redby_proger';
+    //     $db_password = 'imgnida1234';
+    //     $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    //     $result = $mysqli->query("SELECT * FROM users") or die("Error to open database");
+    //     $v = FALSE;
+    //     while (($row = $result->fetch_assoc()) && !$v) {
+    //         if ($row['username'] == $_POST['lgn'] && $row['pswd'] == $_POST['passwd'])
+    //             $v = TRUE;
+    //     }
+    //     if ($v == TRUE)
+    //         $_SESSION['logged_in'] == TRUE;
+    //     $mysqli->close();
+    // }
     function show_login_form() {
         echo '
         <div class="to-authorizate">
