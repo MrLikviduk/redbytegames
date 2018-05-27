@@ -1,5 +1,4 @@
 <?php
-    $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
     if(isset($_POST['header'])) {
         $date = date('Y-m-d');
         $header = $_POST['header'];
