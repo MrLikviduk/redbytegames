@@ -1,5 +1,4 @@
 <?php
-    session_start();
     if (!isset($_SESSION['logged_in']))
         $_SESSION['logged_in'] = FALSE;
     if (isset($_POST['lgn']) && isset($_POST['pswd'])) {
