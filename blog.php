@@ -1,13 +1,17 @@
 <?php
-    $host = 'srv-pleskdb16.ps.kz:3306';
-    $login = 'redby_proger';
-    $password = 'imgnida1234';
-    $database = 'redbyteg_users';
-    $mysqli = new mysqli($host, $login, $password, $database) or die("Error");
-    $mysqli->close();
+    // $host = 'srv-pleskdb16.ps.kz:3306';
+    // $login = 'redby_proger';
+    // $password = 'imgnida1234';
+    // $database = 'redbyteg_users';
+    // $mysqli = new mysqli($host, $login, $password, $database) or die("Error");
+    // $mysqli->close();
     //----------------------------------------------------------
     $page_name = 'Блог';
-    //include('header.php'); 
+    include('header.php');
+    include('elements/to-authorizate.php');
+    if (isset($_SESSION['logged_in']))
+        if ($_SESSION['logged_in'] == FALSE)
+            show_login_form();
 ?>
 <article>
     <div class="date-and-tags">

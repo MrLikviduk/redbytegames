@@ -1,6 +1,7 @@
 article {
     width: 90vw;
     margin: 50px auto;
+    margin-top: 40px;
     position: relative;
 }
 article .date {
@@ -40,8 +41,15 @@ article p {
     font-size: 1.1rem;
     margin: 0;
 }
+#to-authorizate {
+    margin-left: 5vw;
+    margin-top: 20px;
+}
 @media (min-width: 800px) {
     article {
         width: 50%;
+    }
+    #to-authorizate {
+        margin-left: 25vw;
     }
 }

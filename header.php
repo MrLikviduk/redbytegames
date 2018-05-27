@@ -24,7 +24,6 @@
                 <div class="burger-element el3" id="el3"></div>
             </div>
             <div class="nav-label"><?php echo $page_name ?></div>
-            <!-- <div class="login-btn" id="login-btn-id">вход</div> -->
         </nav>
         <div class="nav-menu menu_is-open" id="menu">
             <div style="height: 20px;"></div>
