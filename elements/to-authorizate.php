@@ -11,12 +11,12 @@
         $result = $mysqli->query("SELECT * FROM users") or die("Error to open database");
         $v = FALSE;
         while ($row = $result->fetch_assoc()) {
-            // if ($row['username'] == $_POST['lgn'] && $row['pswd'] == $_POST['passwd'])
-            //     $v = TRUE;
+            if ($row['username'] == $_POST['lgn'] && $row['pswd'] == $_POST['passwd'])
+                $v = TRUE;
             echo $row['username'].' '.$row['passwd'].'<br>';
         }
         if ($v == TRUE)
-            $_SESSION['logged_in'] == TRUE;
+            $_SESSION['logged_in'] = TRUE;
         $mysqli->close();
     }
     if (isset($_SESSION['logged_in']))
