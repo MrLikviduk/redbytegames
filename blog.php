@@ -1,29 +1,16 @@
 <?php
-    // $host = 'srv-pleskdb16.ps.kz:3306';
-    // $login = 'redby_proger';
-    // $password = 'imgnida1234';
-    // $database = 'redbyteg_users';
-    // $mysqli = new mysqli($host, $login, $password, $database) or die("Error");
-    // $mysqli->close();
-    //----------------------------------------------------------
     $page_name = 'Блог';
     include('header.php');
     include('elements/to-authorizate.php');
+    include('elements/connection-info.php');
+    include('elements/blog-template.php');
+    $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    if ($_SESSION['logged_in'] == TRUE) {
+        include('blog-editor.php');
+    }
+    $result = $mysqli->query("SELECT * FROM blogs ORDER BY creation_date") or die("Невозможно загрузить блог");
+    while($row = $result->fetch_assoc) {
+        echo show_blog($row['name'], $row['content'], $row['creation_date'], $row['tags']);
+    }
 ?>
-<article>
-    <div class="date-and-tags">
-        <span class="date">26.05.2018</span>
-        <div class="tags">
-            <div class="tag">Skater</div>
-            <div class="tag">Какой-то тег</div>
-        </div>
-    </div>
-    <h1>Нововведения GitHub</h1>
-    <div class="line-after-header"></div>
-    <br>
-    <p>
-        О спикере: Александр Хаёров (@allexx) руководит отделом разработки в компании Ingram Micro Cloud. Ребята в команде Александра считают себя не просто отличными инженерами, а называют себя великой командой voxel джедаями, мастерами оптимизации, гуру 3D и повелителями больших данных! [примечание: по аналогии с названиями должностей в LinkedIn и Medium
-        Эта классная команда, готовясь к выступлению на Highload++ 2017, решила развлечь аудиторию и сделать что-то новое и интересное для стенда. Поэтому они запилили игру, о создании которой и пойдет дальше речь.
-    </p>
-</article>
-<?php include('footer.php') ?>
+<?php include('footer.php'); $mysqli->close(); ?>
