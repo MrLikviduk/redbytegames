@@ -13,7 +13,6 @@
         while ($row = $result->fetch_assoc()) {
             if ($row['username'] == $_POST['lgn'] && $row['pswd'] == $_POST['passwd'])
                 $v = TRUE;
-            echo $row['username'].' '.$row['passwd'].'<br>';
         }
         if ($v == TRUE)
             $_SESSION['logged_in'] = TRUE;
@@ -22,10 +21,6 @@
     if (isset($_SESSION['logged_in']))
         if ($_SESSION['logged_in'] == FALSE)
             show_login_form();
-    if ($_SESSION['logged_in'])
-        echo '1<br>';
-    else
-        echo '2<br>';
     function show_login_form() {
         echo '
         <div class="to-authorizate">
