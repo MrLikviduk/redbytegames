@@ -7,7 +7,7 @@
                 <div class="tags">
                     ';
         foreach (explode(',', $tags) as $value) {
-            echo '<div class="tag">'.$value.'</div>';
+            echo '<div class="tag">'.trim($value).'</div>';
         }
         echo '
                 </div>
