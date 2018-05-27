@@ -1,7 +1,7 @@
 <?php
     if(isset($_POST['header'])) {
         $result = $mysqli->query("SELECT * FROM blog");
-        $v == FALSE;
+        $v = FALSE;
         while ($row = $result->fetch_assoc()) {
             if ($row['header'] == $_POST['header'])
                 $v = TRUE;
