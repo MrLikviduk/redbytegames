@@ -11,8 +11,8 @@
     }
     $result = $mysqli->query("SELECT * FROM blog ORDER BY id DESC");
     while($row = $result->fetch_assoc()) {
-        $date = $row['creation_date'];
-        $date = substr($date, 8).'.'.substr($date, 5, 2).'.'.substr($date, 0, 2);
+        $date = explode('-' ,$row['creation_date']);
+        $date = $date[2].'.'.$date[1].'.'.$date[0];
         echo show_blog($row['header'], $row['content'], $date, $row['tags']);
     }
 ?>
