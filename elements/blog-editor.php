@@ -5,7 +5,7 @@
         $content = $_POST['content'];
         $tags = $_POST['tags'];
         $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, '$header', '$content', '$date', '$tags')") or die("Error");
-        header("Location: blog.php");
+        header("Location: http://redbytegames.ru/blog.php"); exit;
     }
 ?>
 <form action="" method="POST" style="margin-left: 25vw;">
