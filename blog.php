@@ -1,9 +1,9 @@
 <?php
     $page_name = 'Блог';
     session_start();
+    include('header.php');
     include('elements/connection-info.php');
     $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name) or die("Error to connect to db");
-    include('header.php');
     include('elements/to-authorizate.php');
     include('elements/blog-template.php');
     if ($_SESSION['logged_in'] == TRUE) {
