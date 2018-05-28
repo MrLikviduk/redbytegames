@@ -5,7 +5,7 @@
         $content = $_POST['content'];
         $tags = $_POST['tags'];
         $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, '$header', '$content', '$date', '$tags')") or die("Error");
-        header('Location: '.$_SERVER['REQUEST_URI']);
+        echo '<meta http-equiv="refresh" content="SECONDS;URL='.$_SERVER['REQUEST_URI'].'">';
     }
 ?>
 <form action="" method="POST" style="margin-left: 25vw;">
