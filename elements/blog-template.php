@@ -9,7 +9,7 @@
         <article>
             ';
         if (TRUE) {
-            echo '<img src="/img/del_blog.png" class="delete_blog" id="dlt_blog'.$id.'">';
+            echo '<img src="/img/del_blog.png" class="delete-blog" id="dlt_blog'.$id.'">';
         }
         echo '
             <div class="date-and-tags">
