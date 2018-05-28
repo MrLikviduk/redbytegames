@@ -16,7 +16,7 @@
                 <span class="date">'.$date.'</span>
                 <div class="tags">
                     ';
-        foreach (explode(',', $tags) as $value) {
+        foreach (explode(' ', $tags) as $value) {
             echo '<div class="tag">'.trim($value).'</div>';
         }
         echo '
