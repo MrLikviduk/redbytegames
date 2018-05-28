@@ -1,4 +1,5 @@
 <?php
+    session_start();
     function setRandomSessid() {
 	    $_SESSION['sessid'] = md5(date('d.m.Y H:i:s').rand(1, 1000000));
     }
