@@ -12,9 +12,6 @@
         if ($v == TRUE)
             $_SESSION['logged_in'] = TRUE;
     }
-    if (isset($_SESSION['logged_in']))
-        if ($_SESSION['logged_in'] == FALSE)
-            show_login_form();
     function show_login_form() {
         echo '
         <div class="to-authorizate">
