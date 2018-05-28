@@ -5,10 +5,9 @@
         $content = $_POST['content'];
         $tags = $_POST['tags'];
         $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, '$header', '$content', '$date', '$tags')") or die("Error");
-        echo '<meta http-equiv="refresh" content="SECONDS;URL='.$_SERVER['REQUEST_URI'].'">';
     }
 ?>
-<form action="" method="POST" style="margin-left: 25vw;">
+<form action="" method="POST" style="margin-left: 25vw;" id="edit_form">
     <input type="text" name="header" placeholder="Введите название">
     <input type="text" name="tags" placeholder="Введите теги" style="width: 25vw">
     <br>
