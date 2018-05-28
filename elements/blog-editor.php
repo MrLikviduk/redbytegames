@@ -1,10 +1,11 @@
 <?php
-    if(isset($_POST['header'])) {
+    if(isset($_POST['header']) ) {
         $date = date('Y-m-d');
         $header = $_POST['header'];
         $content = $_POST['content'];
         $tags = $_POST['tags'];
         $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, '$header', '$content', '$date', '$tags')") or die("Error");
+        header("Refresh: 0");
     }
 ?>
 <form action="" method="POST" style="margin-left: 25vw;" id="edit_form">
