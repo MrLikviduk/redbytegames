@@ -8,7 +8,7 @@
         echo '
         <article>
             ';
-        if (TRUE) {
+        if ($_SESSION['logged_in'] == TRUE) {
             echo '<img src="/img/del_blog.png" class="delete-blog" id="dlt_blog'.$id.'">';
         }
         echo '
