@@ -7,16 +7,6 @@ article {
 article .date {
     color: gray;
 }
-.delete_blog {
-    height: 20px;
-    width: 20px;
-    border: none;
-    background-color: none;
-    background: fixed url('/img/del_blog.svg') 50%/cover no-repeat;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
 article h1 {
     font-size: 1.6rem;
     margin: 5px auto;
