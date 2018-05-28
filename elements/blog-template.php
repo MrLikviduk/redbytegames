@@ -1,4 +1,9 @@
 <?php
+    // function delete_blog($id) {
+    //     $result = $mysqli->query("SELECT * FROM blog WHERE `id` LIKE $id");
+    //     $row = $result->fetch_assoc();
+
+    // }
     function show_blog($header, $content, $date, $tags, $id) {
         echo '
         <article>
