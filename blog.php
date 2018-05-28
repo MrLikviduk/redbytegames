@@ -3,7 +3,7 @@
     session_start();
     include('elements/connection-info.php');
     $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name) or die("Error to connect to db");
-    include('elements/to-authorizate.php')
+    include('elements/to-authorizate.php');
     if ($_SESSION['logged_in'] == TRUE) {
         include('elements/blog-editor.php');
     };
