@@ -13,7 +13,7 @@
     while($row = $result->fetch_assoc()) {
         $date = explode('-' ,$row['creation_date']);
         $date = $date[2].'.'.$date[1].'.'.$date[0];
-        echo show_blog($row['header'], $row['content'], $date, $row['tags']);
+        echo show_blog($row['header'], $row['content'], $date, $row['tags'], $id);
     }
 ?>
 <?php include('footer.php'); $mysqli->close(); ?>

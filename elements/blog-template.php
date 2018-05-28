@@ -1,7 +1,12 @@
 <?php
-    function show_blog($header, $content, $date, $tags) {
+    function show_blog($header, $content, $date, $tags, $id) {
         echo '
         <article>
+            ';
+        if (TRUE) {
+            echo '<button class="delete_blog" name="dlt_blog'.$id.'"></button>'
+        }
+        echo '
             <div class="date-and-tags">
                 <span class="date">'.$date.'</span>
                 <div class="tags">
