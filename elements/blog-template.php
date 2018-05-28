@@ -4,7 +4,7 @@
         <article>
             ';
         if (TRUE) {
-            echo '<button class="delete_blog" name="dlt_blog'.$id.'"></button>'
+            echo '<button class="delete_blog" name="dlt_blog'.$id.'"></button>';
         }
         echo '
             <div class="date-and-tags">
