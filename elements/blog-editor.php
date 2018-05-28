@@ -19,6 +19,6 @@
     <br>
     <textarea name="content" style="width: 40vw; height: 200px;">Контент</textarea>
     <br>
-    <input type='hidden' name='sessid' value='<?=$_SESSION['sessid']?>'>
+    <input type='hidden' name='sessid' value='<?php $_SESSION['sessid'] ?>'>
     <input type="submit" name="submit">
 </form>
