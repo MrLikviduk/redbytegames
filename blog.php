@@ -9,6 +9,8 @@
     include('header.php');
     if ($_SESSION['logged_in'] == TRUE)
         show_blog_editor();
+    else
+        show_login_form();
 ?>
 <?php
     $result = $mysqli->query("SELECT * FROM blog ORDER BY id DESC");
