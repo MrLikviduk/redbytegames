@@ -17,6 +17,7 @@ article h1 {
     position: absolute;
     top: 0;
     right: 0;
+    cursor: pointer;
 }
 .tag {
     display: inline-block;
