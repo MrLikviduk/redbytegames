@@ -15,7 +15,7 @@
     <title>Red Byte Games - больше, чем игры</title>
 </head>
 
-<body>
+<body onload="document.getElementById('edit_form').reset();">
     <header>
         <nav>
             <div class="menu-button" id="btn">
