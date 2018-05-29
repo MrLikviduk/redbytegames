@@ -14,7 +14,7 @@
     }
     function show_login_form() {
         echo '
-        <div class="to-authorizate">
+        <div class="to-authorizate" name="login_form">
             Для редактирования необходимо <div class="login-button" id="login_btn">авторизироваться</div>
             <form action="" method="POST" class="login-form" id="lgn_form">
                 <input type="text" name="lgn" placeholder="Введите логин">
@@ -25,7 +25,7 @@
         <script>
             login_btn.addEventListener("click", function () {
                 lgn_form.classList.toggle("login-form-is-open");
-            })
+            });
         </script>
         ';
     }

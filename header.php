@@ -52,12 +52,6 @@
                     info@redbytegames.ru
                 </div>
             </div>
-            <div class="contact">
-                <img class="contact-icon" src="/img/phone_icon.png">
-                <div class="text">
-                    +7 (777) 176-03-73
-                </div>
-            </div>
         </div>
         <div class="nav-menu-for-computers">
             <div class="contacts">
@@ -65,12 +59,6 @@
                     <img class="contact-icon" src="/img/mail_icon.png">
                     <div class="text">
                         info@redbytegames.ru
-                    </div>
-                </div>
-                <div class="contact">
-                    <img class="contact-icon" src="/img/phone_icon.png">
-                    <div class="text">
-                        +7 (777) 176-03-73
                     </div>
                 </div>
             </div>

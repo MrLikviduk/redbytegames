@@ -319,7 +319,7 @@ body > footer {
         position: absolute;
         left: 0;
         width: calc(100vw - 700px);
-        text-align: center;
+        padding-left: 10vw;
     }
     .nav-elements {
         width: 600px;
