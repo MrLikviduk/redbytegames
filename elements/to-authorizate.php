@@ -6,7 +6,7 @@
         $result = $mysqli->query("SELECT * FROM users");
         $v = FALSE;
         while ($row = $result->fetch_assoc()) {
-            if ($row['username'] == $_POST['lgn'] && $row['pswd'] == $_POST['passwd'])
+            if ($row['username'] == $_POST['lgn'] && $row['passwd'] == $_POST['passwd'])
                 $v = TRUE;
         }
         if ($v == TRUE) // Соответствуют ли введенные данные одному из аккаунтов
