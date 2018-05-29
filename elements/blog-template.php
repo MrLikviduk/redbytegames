@@ -17,7 +17,8 @@
                 <div class="tags">
                     ';
         foreach (explode(' ', $tags) as $value) {
-            echo '<div class="tag">'.trim($value).'</div>';
+            if (trim($value) != '')
+                echo '<div class="tag">'.trim($value).'</div>';
         }
         echo '
                 </div>
