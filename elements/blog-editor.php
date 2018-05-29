@@ -1,5 +1,5 @@
 <?php
-    if(isset($_POST['header']) ) {
+    if(isset($_POST['header']) && $_POST['header'] != '' && $_POST['content'] != '') {
         $date = date('Y-m-d');
         $header = $_POST['header'];
         $content = $_POST['content'];
