@@ -3,7 +3,7 @@
     session_start();
     if ($_SESSION['logged_in'] != TRUE || !isset($_SESSION['logged_in'])) {
         include($_SERVER['DOCUMENT_ROOT'].'/header.php');
-        echo '<div style="margin: 30px; auto;"У вас нет прав для просмотра данной страницы';
+        echo '<div style="margin: 30px auto;"У вас нет прав для просмотра данной страницы';
         include($_SERVER['DOCUMENT_ROOT'].'/footer.php');
         exit();
     }
