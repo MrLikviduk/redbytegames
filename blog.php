@@ -7,7 +7,7 @@
     include('elements/blog-template.php');
     include('header.php');
     if ($_SESSION['logged_in'] == TRUE)
-        echo '<a href="elements/blog-editor.php" style="margin-left: 25vw; margin-top: 20px;">Добавить запись</a>';
+        echo '<a href="elements/blog-editor.php" style="margin-left: 25vw; margin-top: 20px; display: inline-block;">Добавить запись</a>';
     else
         show_login_form();
 ?>
