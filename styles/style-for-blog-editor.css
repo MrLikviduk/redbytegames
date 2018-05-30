@@ -15,3 +15,22 @@ input, textarea {
     width: 90px;
     height: 30px;
 }
+.text-box {
+    width: 20vw;
+}
+textarea {
+    width: 40vw; 
+    height: 200px;
+}
+@media (max-width: 960px) {
+    main {
+        padding-left: 5vw;
+    }
+    .text-box {
+        width: 90vw;
+    }
+    textarea {
+        display: block;
+        width: 90vw;
+    }
+}

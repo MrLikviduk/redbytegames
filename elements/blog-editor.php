@@ -23,13 +23,13 @@
 <a href="/blog.php" style="margin: 20px auto; display: block;">Назад</a>
 <form action="" method="POST" id="edit_form">
     <label for="header">Заголовок: </label>
-    <input type="text" name="header" placeholder="Введите название" style="width: 20vw;">
+    <input type="text" name="header" placeholder="Введите название" class="text-box">
     <br>
     <label for="tags">Теги: </label>
-    <input type="text" name="tags" placeholder="Введите теги (через пробел)" style="width: 20vw;">
+    <input type="text" name="tags" placeholder="Введите теги (через пробел)" class="text-box">
     <br>
     <label for="content">Контент: </label>
-    <textarea name="content" style="width: 40vw; height: 200px;" placeholder="Введите содержимое блога"></textarea>
+    <textarea name="content" placeholder="Введите содержимое блога"></textarea>
     <br>
     <input type="submit" name="submit" value="Добавить" class="submit-button">
 </form>
