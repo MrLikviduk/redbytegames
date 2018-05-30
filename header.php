@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/styles/style.css?v=<?=time()?>">
+    <link rel="stylesheet" href="/styles/style.css">
     <?php
         if ($page_name == 'О нас')
-            echo '<link rel="stylesheet" href="/styles/style-for-about-us.css?v=<?=time()?>">';
+            echo '<link rel="stylesheet" href="/styles/style-for-about-us.css">';
         else if ($page_name == 'Блог')
-            echo '<link rel="stylesheet" href="/styles/style-for-blog.css?v=<?=time()?>">';
+            echo '<link rel="stylesheet" href="/styles/style-for-blog.css">';
         else if ($page_name == 'Редактор блога')
-            echo '<link rel="stylesheet" href="/styles/style-for-blog-editor.css?v=<?=time()?>">';
+            echo '<link rel="stylesheet" href="/styles/style-for-blog-editor.css">';
     ?>
+    <meta http-equiv="Cache-Control" content="no-cache">
     <title>Red Byte Games - больше, чем игры</title>
 </head>
 
