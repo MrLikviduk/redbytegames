@@ -1,5 +1,7 @@
 <?php
     $page_name = 'Редактор блога';
+    include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+    $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name) or die("Error to connect to db");
     if(isset($_POST['header']) && $_POST['header'] != '' && $_POST['content'] != '') {
         $date = date('Y-m-d');
         $header = $_POST['header'];
@@ -8,6 +10,7 @@
         $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, '$header', '$content', '$date', '$tags')") or die("Error");
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
+    $mysqli->close();
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
 <a href="/blog.php" style="margin: 20px auto; display: block;">Назад</a>
