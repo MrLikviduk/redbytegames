@@ -4,7 +4,7 @@
 label {
     margin-top: 3px;
     display:inline-block;
-    float:left;
+    float: left;
     padding:3px;
 }
 article {
@@ -20,13 +20,18 @@ article h1 {
     font-size: 1.6rem;
     margin: 5px auto;
 }
-.delete-blog {
+.icon-blog {
     width: 20px;
     height: 20px;
     position: absolute;
     top: 0;
-    right: 0;
     cursor: pointer;
+}
+.icon-blog.delete {
+    right: 0;
+}
+.icon-blog.edit {
+    right: 35px;
 }
 .tag {
     display: inline-block;
