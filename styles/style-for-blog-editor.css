@@ -1,0 +1,17 @@
+main {
+    padding-left: 25vw;
+}
+label {
+    width: 8vw;
+    display: inline-block;
+    margin: 10px auto;
+}
+input, textarea {
+    vertical-align: text-top;
+}
+.submit-button {
+    box-sizing: border-box;
+    margin: 20px 8vw;
+    width: 90px;
+    height: 30px;
+}

@@ -11,6 +11,8 @@
             echo '<link rel="stylesheet" href="/styles/style-for-about-us.css">';
         else if ($page_name == 'Блог')
             echo '<link rel="stylesheet" href="/styles/style-for-blog.css">';
+        else if ($page_name == 'Редактор блога')
+            echo '<link rel="stylesheet" href="/styles/style-for-blog-editor.css">';
     ?>
     <title>Red Byte Games - больше, чем игры</title>
 </head>
