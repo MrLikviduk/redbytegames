@@ -15,14 +15,13 @@
         echo '
             <div class="date-and-tags">
                 <span class="date">'.$date.'</span>
-                <div class="tags">
-                    ';
+                <div class="between-date-and-tags"></div>
+                <span class="date">Теги: </span>    ';
         foreach (explode(' ', $tags) as $value) {
             if (trim($value) != '')
                 echo '<div class="tag">'.trim($value).'</div>';
         }
         echo '
-                </div>
             </div>
             <h1>'.$header.'</h1>
             <div class="line-after-header"></div>

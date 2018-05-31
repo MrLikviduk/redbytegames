@@ -42,14 +42,15 @@ article h1 {
     background: hsl(0, 50%, 40%);
     color: white;
 }
+.between-date-and-tags {
+    width: 5px;
+    height: 3px; 
+    display: block;
+}
 .tag:hover {
     background: hsl(0, 80%, 40%);
     transition: .5s;
     cursor: pointer;
-}
-.tags {
-    margin-left: 10px;
-    display: inline-block;
 }
 .line-after-header {
     display: block;
