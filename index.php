@@ -1,8 +1,10 @@
 ﻿<?php
     $page_name = 'Главная';
-    // include('elements/connection-info.php');
+    include('elements/connection-info.php');
     // $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name) or die("Error to connect to db");
-    // $mysqli->query("TRUNCATE TABLE blog") or die("Не получилось(");
+    // for ($i = 1; $i <= 30; $i++) {
+    //     $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, 'Название$i', 'Контент$i', '2018-06-01', 'tags tags andtags')") or die('Не получилось, блин :(');
+    // }
     // $mysqli->close();
     include('header.php');
 ?>

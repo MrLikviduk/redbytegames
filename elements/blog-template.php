@@ -9,8 +9,12 @@
         <article>
             ';
         if ($_SESSION['logged_in'] == TRUE) {
-            echo '<img src="/img/edit_blog.png" class="icon-blog edit" id="edit_blog'.$id.'">';
-            echo '<img src="/img/del_blog.png" class="icon-blog delete" id="dlt_blog'.$id.'">';
+            echo '<form action="" method="post">
+                    <button class="icon-blog edit" name="edit_blog" value="'.$id.'"></button>
+                    <button class="icon-blog delete" name="delete_blog" value="'.$id.'"></button>
+                </form>
+                ';
+            
         }
         echo '
             <div class="date-and-tags">

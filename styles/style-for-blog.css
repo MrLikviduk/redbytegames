@@ -26,12 +26,17 @@ article h1 {
     position: absolute;
     top: 0;
     cursor: pointer;
+    border: none;
+    background-color: none;
+    background: 50%/contain no-repeat;
 }
 .icon-blog.delete {
     right: 0;
+    background-image: url('/img/del_blog.png');
 }
 .icon-blog.edit {
     right: 35px;
+    background-image: url('/img/edit_blog.png');
 }
 .tag {
     display: inline-block;
@@ -67,6 +72,14 @@ article p {
 #to-authorizate {
     margin-left: 5vw;
     margin-top: 20px;
+}
+.show-blogs-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    color: blue;
+    margin: 20px auto;
 }
 @media (min-width: 800px) {
     article {
