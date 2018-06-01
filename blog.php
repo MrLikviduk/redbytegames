@@ -8,7 +8,7 @@
     if (!isset($_SESSION['num_of_rows'])) {
         $_SESSION['num_of_rows'] = 0;
     }
-    if (isset($_POST['delete_blog'])) {
+    if (isset($_POST['delete_blog']) && $_SESSION['logged_in'] == TRUE) {
         $to_delete = $mysqli->query("DELETE FROM blog WHERE id LIKE ".$_POST['delete_blog']) or die("Error");
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
