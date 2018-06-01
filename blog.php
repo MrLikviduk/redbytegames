@@ -19,7 +19,7 @@
             array_push($array_temp, $row);
         }
         foreach ($array_temp as $key => $value) {
-            $blog_notices[intdiv($key, 10)][$key % 10] = $value;
+            $blog_notices[($key - ($key % 10)) / 10][$key % 10] = $value;
         }
     }
     if (isset($blog_notices)) {
