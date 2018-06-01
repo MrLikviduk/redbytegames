@@ -9,7 +9,7 @@
     }
     include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
     $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name) or die("Error to connect to db");
-    if(isset($_POST['header']) && $_POST['header'] != '' && $_POST['content'] != '') {
+    if(isset($_POST['header']) && $_POST['header'] != '' && $_POST['content'] != '' && $_SESSION['logged_in'] == TRUE) {
         $date = date('Y-m-d');
         $header = $_POST['header'];
         $content = $_POST['content'];
