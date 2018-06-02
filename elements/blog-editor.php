@@ -1,12 +1,14 @@
 <?php
     $page_name = 'Редактор блога';
     session_start();
+
     if ($_SESSION['logged_in'] != TRUE || !isset($_SESSION['logged_in'])) {
         include($_SERVER['DOCUMENT_ROOT'].'/header.php');
         echo '<div style="margin: 30px auto;">У вас нет прав для просмотра данной страницы</div>';
         include($_SERVER['DOCUMENT_ROOT'].'/footer.php');
         exit();
     }
+
     if (!isset($date))
         $date = date('Y-m-d');
     if (!isset($_SESSION['id_to_edit_blog']))
@@ -43,6 +45,8 @@
     <br>
     <label for="content">Контент: </label>
     <textarea name="content" id="content_id" placeholder="Введите содержимое блога"></textarea>
+    <br>
+    <a href="/elements/choose-image-for-blog.php"><div class="insert-image-button">Вставить картинку</div></a>
     <br>
     <input type="submit" name="submit" value="Добавить" class="submit-button">
 </form>
