@@ -8,9 +8,15 @@
     if (!isset($_SESSION['num_of_rows'])) {
         $_SESSION['num_of_rows'] = 0;
     }
+    if (!isset($_SESSION['id_to_edit_blog']))
+        $_SESSION['id_to_edit_blog'] = -1;
     if (isset($_POST['delete_blog']) && $_SESSION['logged_in'] == TRUE) {
         $to_delete = $mysqli->query("DELETE FROM blog WHERE id LIKE ".$_POST['delete_blog']) or die("Error");
         header("Location: ".$_SERVER['REQUEST_URI']);
+    }
+    if (isset($_POST['edit_blog']) && $_SESSION['logged_in'] == TRUE) {
+        $_SESSION['id_to_edit_blog'] = $_POST['edit_blog'];
+        header('Location: /elements/blog-editor.php');
     }
     if (!isset($blog_notices)) {
         $result = $mysqli->query("SELECT * FROM blog ORDER BY id DESC");

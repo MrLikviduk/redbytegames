@@ -14,7 +14,6 @@
         else if ($page_name == 'Редактор блога')
             echo '<link rel="stylesheet" href="/styles/style-for-blog-editor.css">';
     ?>
-    <meta http-equiv="Cache-Control" content="no-cache">
     <title>Red Byte Games - больше, чем игры</title>
 </head>
 
