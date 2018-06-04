@@ -2,35 +2,6 @@
     $page_name = 'Выбор картинки';
     session_start();
 
-    function can_upload($file){
-        // если имя пустое, значит файл не выбран
-        if($file['name'] == '')
-            return 'Вы не выбрали файл.';
-        
-        /* если размер файла 0, значит его не пропустили настройки 
-        сервера из-за того, что он слишком большой */
-        if($file['size'] == 0)
-            return 'Файл слишком большой.';
-        
-        // разбиваем имя файла по точке и получаем массив
-        $getMime = explode('.', $file['name']);
-        // нас интересует последний элемент массива - расширение
-        $mime = strtolower(end($getMime));
-        // объявим массив допустимых расширений
-        $types = array('jpg', 'png', 'gif', 'bmp', 'jpeg');
-        
-        // если расширение не входит в список допустимых - return
-        if(!in_array($mime, $types))
-            return 'Недопустимый тип файла.';
-        
-        return true;
-    }
-    
-    function make_upload($file){	
-        // формируем уникальное имя картинки: случайное число и name
-        $name = mt_rand(0, 10000) . $file['name'];
-        copy($file['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/blog_img/' . $name);
-    }
 
     if (!isset($_SESSION['num_of_rows_pictures'])) {
         $_SESSION['num_of_rows_pictures'] = 0;
@@ -44,23 +15,24 @@
     }
     $dir = $_SERVER['DOCUMENT_ROOT'].'/blog_img';
     $files = [];
-    foreach (scandir($dir) as $key => $value) {
-        if ($value != '.' && $value != '..')
-            array_push($files, $value);
+    if (!isset($max_id)) { // Чтобы создать новую картинку с уникальным id
+        $max_id = 1;
     }
-    if (isset($_FILES['filename'])) {
-        $check = can_upload($_FILES['filename']);
-        if ($check === TRUE) {
-            make_upload($_FILES['filename']);
+    foreach (scandir($dir) as $key => $value) {
+        if ($value != '.' && $value != '..') {
+            array_push($files, $value);
+            $tmp = explode('.', $value);
+            if ($tmp[0] >= $max_id)
+                $max_id = $tmp[0] + 1;
         }
-        header("Location: ".$_SERVER['REQUEST_URI']);
     }
     
+
     if (!isset($pictures)) {
         $pictures = [];
         $result = $files;
         foreach ($files as $key => $value) {
-            $pictures[($key - ($key % 9)) / 9][$key % 9] = $value;
+            $pictures[($key - ($key % 12)) / 12][$key % 12] = $value;
         }
     }
 
@@ -94,7 +66,9 @@
         }
         foreach ($pictures[$_SESSION['num_of_rows_pictures']] as $key => $value) {
             echo '
-                <img src="'.'/blog_img/'.$value.'" class="picture">
+                <a href="/elements/blog-editor.php?image='.$value.'?content='.$_GET['content'].'">
+                    <img src="'.'/blog_img/'.$value.'" class="picture">
+                </a>
             ';
         }
         if ($_SESSION['num_of_rows_pictures'] < count($pictures) - 1) {
@@ -107,6 +81,6 @@
     }
 ?>
 </div>
-<?php 
+<?php   
     include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); 
 ?>

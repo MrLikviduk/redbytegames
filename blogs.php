@@ -3,7 +3,6 @@
     session_start();
     include('elements/connection-info.php');
     $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name) or die("Error to connect to db");
-    include('elements/to-authorizate.php');
     include('elements/blog-template.php');
     if (!isset($_SESSION['num_of_rows'])) {
         $_SESSION['num_of_rows'] = 0;
@@ -41,8 +40,6 @@
     include('header.php');
     if ($_SESSION['logged_in'] == TRUE)
         echo '<a href="elements/blog-editor.php" style="margin-left: 25vw; margin-top: 20px; display: inline-block;">Добавить запись</a>';
-    else
-        show_login_form();
 ?>
 <?php
     if (isset($blog_notices)) {

@@ -2,7 +2,7 @@
     $page_name = 'Редактор блога';
     session_start();
 
-    if ($_SESSION['logged_in'] != TRUE || !isset($_SESSION['logged_in'])) {
+    if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != TRUE) {
         include($_SERVER['DOCUMENT_ROOT'].'/header.php');
         echo '<div style="margin: 30px auto;">У вас нет прав для просмотра данной страницы</div>';
         include($_SERVER['DOCUMENT_ROOT'].'/footer.php');
@@ -32,10 +32,33 @@
         $_SESSION['id_to_edit_blog'] = -1;
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
+    // if (!isset($max_id)) { // Чтобы создать новую картинку с уникальным id
+    //     $max_id = 1;
+    // }
+    // $dir = $_SERVER['DOCUMENT_ROOT'].'/blog_img';
+    // $files = [];
+    // foreach (scandir($dir) as $key => $value) {
+    //     if ($value != '.' && $value != '..') {
+    //         array_push($files, $value);
+    //         $tmp = explode('.', $value);
+    //         if ($tmp[0] >= $max_id)
+    //             $max_id = $tmp[0] + 1;
+    //     }
+    // }
+    // if (!isset($file_to_insert))
+    //     $file_to_insert = -1;
+    // if (isset($_FILES['filename']) && isset($_POST['insert_image'])) {
+    //     $check = can_upload($_FILES['filename']);
+    //     if ($check === TRUE) {
+    //         make_upload($_FILES['filename'], $max_id);s
+    //         $file_to_insert = $_FILES['filename'];
+    //         echo "<script>alert('CHECK')</script>";
+    //     }
+    // }
     $mysqli->close();
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
-<a href="/blog.php" style="margin: 20px auto; display: block;">Назад</a>
+<a href="/blogs.php" style="margin: 20px auto; display: block;">Назад</a>
 <form action="" method="POST" id="edit_form">
     <label for="header">Заголовок: </label>
     <input type="text" name="header" id="header_id" placeholder="Введите название" class="text-box">
@@ -44,13 +67,23 @@
     <input type="text" name="tags" id="tags_id" placeholder="Введите теги (через пробел)" class="text-box">
     <br>
     <label for="content">Контент: </label>
-    <textarea name="content" id="content_id" placeholder="Введите содержимое блога"></textarea>
+    <textarea onchange="Update(this)" onkeydown="Update(this)" onkeypress="Update(this)" onkeyup="Update(this)" onmousedown="Update(this)" name="content" id="content_id" placeholder="Введите содержимое блога"></textarea>
     <br>
-    <a href="/elements/choose-image-for-blog.php"><div class="insert-image-button">Вставить картинку</div></a>
+    <a href="/elements/choose-image-for-blog.php" target="_blank"><div class="insert-image-button">Вставить картинку</div></a>
     <br>
     <input type="submit" name="submit" value="Добавить" class="submit-button">
 </form>
-<?php 
+<!-- <form action="" method="post" enctype="multipart/form-data">
+    <input type="file" name="filename">
+    <button name="insert_image">Добавить картинку</button>
+</form> -->
+<script>
+    var element = document.getElementById('content_id');
+    function Update(input) {
+        element.innerHTML = input.value;
+    }
+</script>
+<?php
     if ($_SESSION['id_to_edit_blog'] != -1) {
         echo "
             <script>

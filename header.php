@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <?php
         if ($page_name == 'О нас')
             echo '<link rel="stylesheet" href="/styles/style-for-about-us.css">';
@@ -71,7 +72,7 @@
                 <a href="/about-us.php">
                     <div class="nav-element">О нас</div>
                 </a>
-                <a href="/blog.php">
+                <a href="/blogs.php">
                     <div class="nav-element">Блог</div>
                 </a>
                 <a href="">
