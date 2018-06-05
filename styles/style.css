@@ -264,7 +264,6 @@ body > footer {
     top: auto;
     left: auto;
     display: block;
-    text-align: center;
     box-sizing: border-box;
 }
 .registration-form > select {
