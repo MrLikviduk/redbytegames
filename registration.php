@@ -1,7 +1,7 @@
 <?php
     $page_name = 'Регистрация';
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
-    define('LOGIN_MIN', 8);
+    define('LOGIN_MIN', 6);
     define('PASSWORD_MIN', 4);
     define('EMAIL_MIN', 3);
     if (isset($_POST['submit'])) {
