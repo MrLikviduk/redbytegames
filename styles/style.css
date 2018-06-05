@@ -93,6 +93,12 @@ body > header {
     position: absolute; 
     bottom: 18px;
 }
+.registration-form .error-text {
+    position: static;
+    font-size: .7rem;
+    margin: 3px auto;
+    margin-top: 0;
+}
 .contact-icon {
     width: 20px;
     height: 20px;

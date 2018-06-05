@@ -1,11 +1,14 @@
 <?php
     $page_name = 'Регистрация';
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
+    define('LOGIN_MIN', 8);
+    define('PASSWORD_MIN', 4);
+    define('EMAIL_MIN', 3);
     if (isset($_POST['submit'])) {
         $min = [
-            [$_POST['login'], 8],
-            [$_POST['password'], 4],
-            [$_POST['email'], 3],
+            [$_POST['login'], LOGIN_MIN],
+            [$_POST['password'], PASSWORD_MIN],
+            [$_POST['email'], EMAIL_MIN]
         ];
         $v = true;
         foreach($min as $value)
@@ -31,12 +34,32 @@
     <div id="form0" style="display: block;">
         <label for="login">Имя пользователя: </label>
         <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="login">
+        <?php 
+            if (isset($_POST['login']))
+                if ($_POST['login'] < LOGIN_MIN)
+                    echo '<p class="error-text">Количество символов не может быть меньше '.LOGIN_MIN.'</p>';
+        ?>
         <label for="email">Электронный адрес</label>
         <input type="email" class="text" name="email" placeholder="Введите электронный адрес">
+        <?php 
+            if (isset($_POST['email']))
+                if ($_POST['email'] < EMAIL_MIN)
+                    echo '<p class="error-text">Количество символов не может быть меньше '.EMAIL_MIN.'</p>';
+        ?>
         <label for="password">Пароль: </label>
         <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="password">
+        <?php 
+            if (isset($_POST['password']))
+                if ($_POST['password'] < EMAIL_MIN)
+                    echo '<p class="error-text">Количество символов не может быть меньше '.PASSWORD_MIN.'</p>';
+        ?>
         <label for="confirm_password">Подтвердите пароль: </label>
         <input type="password" maxlength="32" class="text" placeholder="Подтвердите пароль" name="confirm_password">
+        <?php 
+            if (isset($_POST['password']) && isset($_POST['confirm_password']))
+                if ($_POST['password'] != $_POST['confirm_password'])
+                    echo '<p class="error-text">Пароли не совпадают</p>';
+        ?>
         <br>
         <div style=" margin: 8px auto; margin-left: 11px;">
             <input type="checkbox" name="policy" value="Yes">
