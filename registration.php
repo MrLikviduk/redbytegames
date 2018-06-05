@@ -5,7 +5,7 @@
         $min = [
             [$_POST['login'], 8],
             [$_POST['password'], 4],
-            [$_POST['email'], 255],
+            [$_POST['email'], 3],
         ];
         $v = true;
         foreach($min as $value)
