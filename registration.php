@@ -39,7 +39,7 @@
                 if (strlen($_POST['login']) < LOGIN_MIN)
                     echo '<p class="error-text">Количество символов не может быть меньше '.LOGIN_MIN.'</p>';
                 else
-                    echo "<script>document.getElementById('login').value=".$_POST['login']."</script>";
+                    echo "<script>document.getElementById('login').value='".$_POST['login']."'</script>";
             }
                 
         ?>
@@ -50,7 +50,7 @@
                 if (strlen($_POST['email']) < EMAIL_MIN)
                     echo '<p class="error-text">Количество символов не может быть меньше '.EMAIL_MIN.'</p>';
                 else
-                    echo "<script>document.getElementById('email').value=".$_POST['email']."</script>";
+                    echo "<script>document.getElementById('email').value='".$_POST['email']."'</script>";
             } 
         ?>
         <label for="password">Пароль: </label>
