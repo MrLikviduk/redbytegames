@@ -87,7 +87,7 @@
         $row = $result->fetch_row();
         $role_id = $row['id'];
         echo $role_id;
-        $result = $mysqli->query("INSERT INTO users (id, username, email, passwd, role_id) VALUES (NULL, '$username', '$email', '$password', $role_id)");
+        $result = $mysqli->query("INSERT INTO users (id, username, email, passwd, role_id) VALUES (NULL, '$username', '$email', '$password', $role_id)") or die("ERROR 2");
         $mysqli->close();
     }
 ?>
