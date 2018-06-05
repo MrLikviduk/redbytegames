@@ -71,24 +71,28 @@
             <input type="checkbox" name="policy" value="Yes">
             <label for="policy" style="display: inline;">Я согласен(на) на хранение и обработку личных данных</label>
         </div>
+        <?php
+            if (isset($_POST['login']))
+                echo strlen($_POST['login']).'<br>'.strlen($_POST['password']).'<br>';
+        ?>
     </div>
     <div id="form1" style="display: none;">
         <label for="name">Имя: </label>
-        <input type="text" class="text" name="name" placeholder="Введите имя" maxlength="60">
+        <input type="text" class="text" name="employee_name" placeholder="Введите имя" maxlength="60">
         <label for="surname">Фамилия: </label>
-        <input type="text" class="text" name="surname" placeholder="Введите фамилию" maxlength="60">
+        <input type="text" class="text" name="employee_surname" placeholder="Введите фамилию" maxlength="60">
         <label for="login">Имя пользователя: </label>
-        <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="login" id="login">
+        <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="employee_login" id="login">
         <label for="password">Пароль: </label>
-        <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="password">
+        <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="employee_password">
         <label for="email">Электронный адрес</label>
-        <input type="email" class="text" name="email" placeholder="Введите электронный адрес" id="email">
+        <input type="email" class="text" name="employee_email" placeholder="Введите электронный адрес" id="email">
         <div style="margin: 8px auto; margin-left: 11px;">
             <input type="checkbox" name="passed_interview" value="Yes">
             <label for="policy" style="display: inline;">Я прошел(ла) собеседование</label>
         </div>
         <div style="margin: 8px auto; margin-left: 11px;">
-            <input type="checkbox" name="policy" value="Yes">
+            <input type="checkbox" name="employee_policy" value="Yes">
             <label for="policy" style="display: inline;">Я согласен(на) на хранение и обработку личных данных</label>
         </div>
     </div>
