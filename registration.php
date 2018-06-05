@@ -9,9 +9,8 @@
         ];
         $v = true;
         foreach($min as $value)
-             {
-                 echo $value[0].": ".$value[1].'<br>';
-             }
+            if ($strlen($value[0]) < $value[1])
+                $v = false;
         if ($v == TRUE) {
             if (username_is_set($_POST['login']) == FALSE && email_is_set($_POST['email']) == FALSE && $_POST['password'] == $_POST['confirm_password'] && $_POST['policy'] == 'Yes') {
                 create_user($_POST['login'], $_POST['email'], $_POST['password'], 'user');
