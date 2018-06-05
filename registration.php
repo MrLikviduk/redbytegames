@@ -14,7 +14,7 @@
         if ($v == TRUE) {
             if (username_is_set($_POST['login']) == FALSE && email_is_set($_POST['email']) == FALSE && $_POST['password'] == $_POST['confirm_password'] && $_POST['policy'] == 'Yes') {
                 create_user($_POST['login'], $_POST['email'], $_POST['password'], 'user');
-                header("Location: ".$_SERVER['SERVER_NAME'].'/index.php');
+                header("Location: /index.php");
             }
         }
     }
