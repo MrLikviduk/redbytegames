@@ -61,7 +61,7 @@
     function username_is_set($username) { // Проверяет, есть ли пользователь в базе данных с таким логином
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM users WHERE `username` LIKE '$username'") or die("ASHIPKA");
+        $result = $mysqli->query("SELECT * FROM users WHERE `username` LIKE '".md5($username)."'") or die("ASHIPKA");
         $mysqli->close();
         if (($result->num_rows) > 0)
             return TRUE;
@@ -72,7 +72,7 @@
     function email_is_set($email) { // Проверяет, есть ли пользователь в базе данных с таким электронным адресом
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM users WHERE `email` LIKE 'email'") or die("ASHIPKA");
+        $result = $mysqli->query("SELECT * FROM users WHERE `email` LIKE '".md5($email)."'") or die("ASHIPKA");
         $mysqli->close();
         if (($result->num_rows) > 0)
             return TRUE;
@@ -86,7 +86,7 @@
         $result = $mysqli->query("SELECT * FROM roles WHERE `role` LIKE '$role'") or die("ERROR 1");
         $row = $result->fetch_assoc();
 		$role_id = $row['id'];
-        $result2 = $mysqli->query("INSERT INTO users (id, username, email, passwd, role_id) VALUES (NULL, '$username', '$email', '$password', $role_id)") or die(
+        $result2 = $mysqli->query("INSERT INTO users (id, username, email, passwd, role_id) VALUES (NULL, '".md5($username)."', '".md5($email)."', '".md5($password)."', $role_id)") or die(
 			$username.'<br>'.$email.'<br>'.$password.'<br>'
 		);
         $mysqli->close();
