@@ -85,8 +85,7 @@
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
         $result = $mysqli->query("SELECT * FROM roles WHERE `role` LIKE '$role'") or die("ERROR 1");
         $role_id = $result->fetch_row()['id'];
-        echo $role_id;
-        $result = $mysqli->query("INSERT INTO users (id, username, email, passwd, role_id) VALUES (NULL, '$username', '$email', '$password', $role_id)") or die("ERROR 2");
+        $result = $mysqli->query("INSERT INTO users (id, username, email, passwd, role_id) VALUES (NULL, '$username', '$email', '$password', $role_id)") or echo $role_id;
         $mysqli->close();
     }
 ?>
