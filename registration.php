@@ -36,21 +36,21 @@
         <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="login">
         <?php 
             if (isset($_POST['login']))
-                if ($_POST['login'] < LOGIN_MIN)
+                if (strlen($_POST['login']) < LOGIN_MIN)
                     echo '<p class="error-text">Количество символов не может быть меньше '.LOGIN_MIN.'</p>';
         ?>
         <label for="email">Электронный адрес</label>
         <input type="email" class="text" name="email" placeholder="Введите электронный адрес">
         <?php 
             if (isset($_POST['email']))
-                if ($_POST['email'] < EMAIL_MIN)
+                if (strlen($_POST['email']) < EMAIL_MIN)
                     echo '<p class="error-text">Количество символов не может быть меньше '.EMAIL_MIN.'</p>';
         ?>
         <label for="password">Пароль: </label>
         <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="password">
         <?php 
             if (isset($_POST['password']))
-                if ($_POST['password'] < EMAIL_MIN)
+                if (strlen($_POST['password']) < EMAIL_MIN)
                     echo '<p class="error-text">Количество символов не может быть меньше '.PASSWORD_MIN.'</p>';
         ?>
         <label for="confirm_password">Подтвердите пароль: </label>
