@@ -18,7 +18,12 @@
     <title>Red Byte Games - больше, чем игры</title>
 </head>
 
-<body>
+<?php
+    if ($page_name == 'Главная' || $page_name == 'Регистрация')
+        echo '<body style="background: hsl(0, 100%, 30%);">';
+    else
+        echo '<body>';
+?>
     <header>
         <nav>
             <div class="menu-button" id="btn">

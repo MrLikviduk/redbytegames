@@ -1,22 +1,36 @@
 ﻿<?php
     $page_name = 'Главная';
-    include('elements/connection-info.php');
-    // $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name) or die("Error to connect to db");
-    // for ($i = 1; $i <= 30; $i++) {
-    //     $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, 'Название$i', 'Контент$i', '2018-06-01', 'tags tags andtags')") or die('Не получилось, блин :(');
-    // }
-    // $mysqli->close();
+    session_start();
+    require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
+    if (isset($_POST['login']) && isset($_POST['password'])) {
+        if (username_is_set($_POST['login']) == TRUE) {
+            $_SESSION['login'] = $_POST['login'];
+            $_SESSION['password'] = $_POST['password'];
+            header("Location: ".$_SERVER['REQUEST_URI']);
+        }
+    }
     include('header.php');
 ?>
-    <section class="main-section">
-        <div class="pictures">
-            <div style="width: 100vw; height: 100vh; background: hsla(0, 20%, 20%, 0.8); position: relative">
-                <div style="position: absolute; top: 30%;">
-                    <h1 class="main-header">Red Byte Games</h1>
-                    <hr style="border: none; background: white; width: 250px; height: 2px;">
-                    <p class="main-paragraph">Мы создаем больше, чем игры</p>
-                </div>
-            </div>
-        </div>
+    <section class="authorization">
+        <form action="" method="post" class="authorization-form">
+            <label for="login">Логин: </label>
+            <input type="text" placeholder="Введите логин" name="login" class="text">
+            <br>
+            <label for="password">Пароль: </label>
+            <input type="password" placeholder="Введите пароль" name="password" class="text">
+            <br>
+            <?php 
+                if (isset($_POST['login']) && isset($_POST['password'])) {
+                    if (username_is_set($_POST['login']) == FALSE) {
+                        echo '
+                            <p class="error-text">Неверное имя пользователя или<br> пароль</p>
+                        ';
+                    }
+                }
+            ?>
+            <input type="submit" value="Войти" class="login-btn">
+            <br>
+            <p class="to-registrate">Впервые на нашем сайте? <a href="/registration.php">Зарегистрируйтесь!</a></p>
+        </form>
     </section>
 <?php include('footer.php') ?>

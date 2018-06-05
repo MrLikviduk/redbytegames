@@ -50,7 +50,7 @@
     // if (isset($_FILES['filename']) && isset($_POST['insert_image'])) {
     //     $check = can_upload($_FILES['filename']);
     //     if ($check === TRUE) {
-    //         make_upload($_FILES['filename'], $max_id);s
+    //         make_upload($_FILES['filename'], $max_id);
     //         $file_to_insert = $_FILES['filename'];
     //         echo "<script>alert('CHECK')</script>";
     //     }
