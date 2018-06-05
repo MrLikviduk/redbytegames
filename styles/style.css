@@ -259,8 +259,13 @@ body > footer {
     left: calc(50vw - 140px);
 }
 .registration-form {
+    position: relative;
     height: 600px;
-    top: calc(50vh - 350px);
+    top: auto;
+    left: auto;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
 }
 .registration-form > select {
     padding: 5px;
