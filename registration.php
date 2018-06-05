@@ -33,18 +33,25 @@
     </select>
     <div id="form0" style="display: block;">
         <label for="login">Имя пользователя: </label>
-        <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="login">
+        <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="login" id="login">
         <?php 
-            if (isset($_POST['login']))
+            if (isset($_POST['login'])) {
                 if (strlen($_POST['login']) < LOGIN_MIN)
                     echo '<p class="error-text">Количество символов не может быть меньше '.LOGIN_MIN.'</p>';
+                else
+                    echo "<script>document.getElementById('login').value=".$_POST['login']."</script>";
+            }
+                
         ?>
         <label for="email">Электронный адрес</label>
-        <input type="email" class="text" name="email" placeholder="Введите электронный адрес">
+        <input type="email" class="text" name="email" placeholder="Введите электронный адрес" id="email">
         <?php 
-            if (isset($_POST['email']))
+            if (isset($_POST['email'])) {
                 if (strlen($_POST['email']) < EMAIL_MIN)
                     echo '<p class="error-text">Количество символов не может быть меньше '.EMAIL_MIN.'</p>';
+                else
+                    echo "<script>document.getElementById('email').value=".$_POST['email']."</script>";
+            } 
         ?>
         <label for="password">Пароль: </label>
         <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="password">
