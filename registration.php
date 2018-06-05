@@ -34,18 +34,17 @@
     <div id="form0" style="display: block;">
         <label for="login">Имя пользователя: </label>
         <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="login" id="login">
-        <?php 
+        <?php
             if (isset($_POST['login'])) {
                 if (strlen($_POST['login']) < LOGIN_MIN)
                     echo '<p class="error-text">Количество символов не может быть меньше '.LOGIN_MIN.'</p>';
                 else
                     echo "<script>document.getElementById('login').value='".$_POST['login']."'</script>";
             }
-                
         ?>
         <label for="email">Электронный адрес</label>
         <input type="email" class="text" name="email" placeholder="Введите электронный адрес" id="email">
-        <?php 
+        <?php
             if (isset($_POST['email'])) {
                 if (strlen($_POST['email']) < EMAIL_MIN)
                     echo '<p class="error-text">Количество символов не может быть меньше '.EMAIL_MIN.'</p>';
@@ -55,32 +54,43 @@
         ?>
         <label for="password">Пароль: </label>
         <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="password">
-        <?php 
+        <?php
             if (isset($_POST['password']))
                 if (strlen($_POST['password']) < EMAIL_MIN)
                     echo '<p class="error-text">Количество символов не может быть меньше '.PASSWORD_MIN.'</p>';
         ?>
         <label for="confirm_password">Подтвердите пароль: </label>
         <input type="password" maxlength="32" class="text" placeholder="Подтвердите пароль" name="confirm_password">
-        <?php 
+        <?php
             if (isset($_POST['password']) && isset($_POST['confirm_password']))
                 if ($_POST['password'] != $_POST['confirm_password'])
                     echo '<p class="error-text">Пароли не совпадают</p>';
         ?>
         <br>
-        <div style=" margin: 8px auto; margin-left: 11px;">
+        <div style="margin: 8px auto; margin-left: 11px;">
             <input type="checkbox" name="policy" value="Yes">
-            <label for="policy" style="display: inline;">Я согласен на хранение и обработку личных данных</label>
+            <label for="policy" style="display: inline;">Я согласен(на) на хранение и обработку личных данных</label>
         </div>
     </div>
     <div id="form1" style="display: none;">
-        Это для прессы!
-    </div>
-    <div id="form2" style="display: none;">
-        Это для модера!
-    </div>
-    <div id="form3" style="display: none;">
-        Это для владельца!
+        <label for="name">Имя: </label>
+        <input type="text" class="text" name="name" placeholder="Введите имя" maxlength="60">
+        <label for="surname">Фамилия: </label>
+        <input type="text" class="text" name="surname" placeholder="Введите фамилию" maxlength="60">
+        <label for="login">Имя пользователя: </label>
+        <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="login" id="login">
+        <label for="password">Пароль: </label>
+        <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="password">
+        <label for="email">Электронный адрес</label>
+        <input type="email" class="text" name="email" placeholder="Введите электронный адрес" id="email">
+        <div style="margin: 8px auto; margin-left: 11px;">
+            <input type="checkbox" name="passed_interview" value="Yes">
+            <label for="policy" style="display: inline;">Я прошел(ла) собеседование</label>
+        </div>
+        <div style="margin: 8px auto; margin-left: 11px;">
+            <input type="checkbox" name="policy" value="Yes">
+            <label for="policy" style="display: inline;">Я согласен(на) на хранение и обработку личных данных</label>
+        </div>
     </div>
     <div class="btn-wrapper">
         <input type="submit" value="Зарегистрироваться" class="submit-btn" name="submit">
@@ -91,6 +101,7 @@
     function Changed() {
         document.getElementById('form' + s).style.display = 'none';
         s = document.getElementById('select-form').selectedIndex;
+        if (s > 0) s = 1;
         document.getElementById('form' + s).style.display = 'block';
     }
 </script>

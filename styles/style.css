@@ -260,7 +260,7 @@ body > footer {
 }
 .registration-form {
     position: relative;
-    height: 600px;
+    min-height: 600px;
     top: auto;
     left: auto;
     display: block;
