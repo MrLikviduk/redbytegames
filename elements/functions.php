@@ -100,4 +100,13 @@
         $mysqli->close();
         return (($result->num_rows) > 0 ? TRUE : FALSE);
     }
+
+    function get_role($username) { // Возвращает роль пользователя
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("SELECT roles.role FROM users LEFT JOIN roles ON roles.id = users.role_id WHERE users.username LIKE '$username' ");
+        $mysqli->close();
+        $row = $result->fetch_assoc();
+        return $row['role'];
+    }
 ?>
