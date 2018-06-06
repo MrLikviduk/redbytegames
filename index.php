@@ -8,7 +8,7 @@
             $_SESSION['password'] = $_POST['password'];
             mail("v@086.kz", "Confirm", "Confirm, blin :(") or die("Error to send an email");
             echo "<script>alert('Письмо, может быть, отправлено')</script>";
-            header("Location: ".$_SERVER['REQUEST_URI']);
+            // header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
     include('header.php');
