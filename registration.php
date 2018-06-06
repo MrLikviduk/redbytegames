@@ -23,83 +23,87 @@
     }
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
-<form action="" method="POST" class="registration-form">
-    <label for="type">Выберите тип учетной записи: </label>
-    <select name="type" onchange="Changed()" id="select-form">
-        <option value="user">Пользователь</option>
-        <option value="media">Пресса</option>
-        <option value="moderator">Модератор</option>
-        <option value="owner">Владелец</option>
-    </select>
-    <div id="form0" style="display: block;">
-        <label for="login">Имя пользователя: </label>
-        <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="login" id="login">
-        <?php
-            if (isset($_POST['login'])) {
-                if (strlen($_POST['login']) < LOGIN_MIN)
-                    echo '<p class="error-text">Количество символов не может быть меньше '.LOGIN_MIN.'</p>';
-                else
-                    echo "<script>document.getElementById('login').value='".$_POST['login']."'</script>";
-            }
-        ?>
-        <label for="email">Электронный адрес</label>
-        <input type="email" class="text" name="email" placeholder="Введите электронный адрес" id="email">
-        <?php
-            if (isset($_POST['email'])) {
-                if (strlen($_POST['email']) < EMAIL_MIN)
-                    echo '<p class="error-text">Количество символов не может быть меньше '.EMAIL_MIN.'</p>';
-                else
-                    echo "<script>document.getElementById('email').value='".$_POST['email']."'</script>";
-            } 
-        ?>
-        <label for="password">Пароль: </label>
-        <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="password">
-        <?php
-            if (isset($_POST['password']))
-                if (strlen($_POST['password']) < EMAIL_MIN)
-                    echo '<p class="error-text">Количество символов не может быть меньше '.PASSWORD_MIN.'</p>';
-        ?>
-        <label for="confirm_password">Подтвердите пароль: </label>
-        <input type="password" maxlength="32" class="text" placeholder="Подтвердите пароль" name="confirm_password">
-        <?php
-            if (isset($_POST['password']) && isset($_POST['confirm_password']))
-                if ($_POST['password'] != $_POST['confirm_password'])
-                    echo '<p class="error-text">Пароли не совпадают</p>';
-        ?>
-        <br>
-        <div style="margin: 8px auto; margin-left: 11px;">
-            <input type="checkbox" name="policy" value="Yes">
-            <label for="policy" style="display: inline;">Я согласен(на) на хранение и обработку личных данных</label>
+<div class="reg-wrapper">
+    <form action="" method="POST" class="registration-form">
+        <label for="type">Выберите тип учетной записи: </label>
+        <select name="type" onchange="Changed()" id="select-form">
+            <option value="user">Пользователь</option>
+            <option value="media">Пресса</option>
+            <option value="moderator">Модератор</option>
+            <option value="owner">Владелец</option>
+        </select>
+        <div id="form0" style="display: block;">
+            <div class="data-wrapper">
+                <label for="login">Имя пользователя: </label>
+                <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="login" id="login">
+                <?php
+                    if (isset($_POST['login'])) {
+                        if (strlen($_POST['login']) < LOGIN_MIN)
+                            echo '<p class="error-text">Количество символов не может быть меньше '.LOGIN_MIN.'</p>';
+                        else
+                            echo "<script>document.getElementById('login').value='".$_POST['login']."'</script>";
+                    }
+                ?>
+                <label for="email">Электронный адрес</label>
+                <input type="email" class="text" name="email" placeholder="Введите электронный адрес" id="email">
+                <?php
+                    if (isset($_POST['email'])) {
+                        if (strlen($_POST['email']) < EMAIL_MIN)
+                            echo '<p class="error-text">Количество символов не может быть меньше '.EMAIL_MIN.'</p>';
+                        else
+                            echo "<script>document.getElementById('email').value='".$_POST['email']."'</script>";
+                    } 
+                ?>
+                <label for="password">Пароль: </label>
+                <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="password">
+                <?php
+                    if (isset($_POST['password']))
+                        if (strlen($_POST['password']) < EMAIL_MIN)
+                            echo '<p class="error-text">Количество символов не может быть меньше '.PASSWORD_MIN.'</p>';
+                ?>
+                <label for="confirm_password">Подтвердите пароль: </label>
+                <input type="password" maxlength="32" class="text" placeholder="Подтвердите пароль" name="confirm_password">
+                <?php
+                    if (isset($_POST['password']) && isset($_POST['confirm_password']))
+                        if ($_POST['password'] != $_POST['confirm_password'])
+                            echo '<p class="error-text">Пароли не совпадают</p>';
+                ?>
+                <br>
+                <div style="margin: 8px auto; margin-left: 11px;">
+                    <input type="checkbox" name="policy" value="Yes">
+                    <label for="policy" style="display: inline;">Я согласен(на) на хранение и обработку личных данных</label>
+                </div>
+            </div>
         </div>
-        <?php
-            if (isset($_POST['login']))
-                echo strlen($_POST['login']).'<br>'.strlen($_POST['password']).'<br>';
-        ?>
-    </div>
-    <div id="form1" style="display: none;">
-        <label for="name">Имя: </label>
-        <input type="text" class="text" name="employee_name" placeholder="Введите имя" maxlength="60">
-        <label for="surname">Фамилия: </label>
-        <input type="text" class="text" name="employee_surname" placeholder="Введите фамилию" maxlength="60">
-        <label for="login">Имя пользователя: </label>
-        <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="employee_login" id="login">
-        <label for="password">Пароль: </label>
-        <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="employee_password">
-        <label for="email">Электронный адрес</label>
-        <input type="email" class="text" name="employee_email" placeholder="Введите электронный адрес" id="email">
-        <div style="margin: 8px auto; margin-left: 11px;">
-            <input type="checkbox" name="passed_interview" value="Yes">
-            <label for="policy" style="display: inline;">Я прошел(ла) собеседование</label>
+        <div id="form1" style="display: none;">
+            <div class="data-wrapper">
+                <label for="name">Имя: </label>
+                <input type="text" class="text" name="employee_name" placeholder="Введите имя" maxlength="60">
+                <label for="surname">Фамилия: </label>
+                <input type="text" class="text" name="employee_surname" placeholder="Введите фамилию" maxlength="60">
+                <label for="employee_position">Должность: </label>
+                <input type="text" class="text" name="employee_position" placeholder="Введите должность" maxlength="60">
+                <label for="login">Имя пользователя: </label>
+                <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="employee_login" id="employee_login">
+                <label for="password">Пароль: </label>
+                <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="employee_password">
+                <label for="email">Электронный адрес: </label>
+                <input type="email" class="text" name="employee_email" placeholder="Введите электронный адрес" id="employee_email">
+                <div style="margin: 8px auto; margin-left: 11px;">
+                    <input type="checkbox" name="passed_interview" value="Yes">
+                    <label for="policy" style="display: inline;">Я прошел(ла) собеседование</label>
+                </div>
+                <div style="margin: 8px auto; margin-left: 11px;">
+                    <input type="checkbox" name="employee_policy" value="Yes">
+                    <label for="policy" style="display: inline;">Я согласен(на) на хранение и обработку личных данных</label>
+                </div>
+            </div>
         </div>
-        <div style="margin: 8px auto; margin-left: 11px;">
-            <input type="checkbox" name="employee_policy" value="Yes">
-            <label for="policy" style="display: inline;">Я согласен(на) на хранение и обработку личных данных</label>
+        <div class="btn-wrapper">
+            <input type="submit" value="Зарегистрироваться" class="submit-btn" name="submit">
         </div>
-    </div>
-    <div class="btn-wrapper">
-        <input type="submit" value="Зарегистрироваться" class="submit-btn" name="submit">
-    </div>
-</form>
+    </form>
+</div>
 <script>
     var s = 0;
     function Changed() {

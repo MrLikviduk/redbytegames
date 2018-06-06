@@ -3,7 +3,8 @@ body, html {
     background: whitesmoke;
 }
 main {
-    min-height: calc(100vh - 120px);
+    min-height: calc(100vh - 110px);
+    height: auto;
 }
 a {
     text-decoration: none;
@@ -145,44 +146,18 @@ body > header {
 }
 .btn-wrapper {
     width: 100%;
-    position: absolute;
     bottom: 15px;
-    left: 0;
+    height: 20px;
+    margin: 10px auto;
     text-align: center;
+}
+.data-wrapper {
+    min-height: 490px;
 }
 .submit-btn {
     position: static;
     box-sizing: border-box;
     display: inline-block;
-}
-@keyframes change-pictures {
-    0% {
-        background-image: url('/img/s1_bg1.jpg');
-    }
-    20% {
-        background-image: url('/img/s1_bg1.jpg');
-    }
-    25% {
-        background-image: url('/img/s1_bg2.jpg');
-    }
-    45% {
-        background-image: url('/img/s1_bg2.jpg');
-    }
-    50% {
-        background-image: url('/img/s1_bg3.jpg');
-    }
-    70% {
-        background-image: url('/img/s1_bg3.jpg');
-    }
-    75% {
-        background-image: url('/img/s1_bg4.jpg');
-    }
-    95% {
-        background-image: url('/img/s1_bg4.jpg');
-    }
-    100% {
-        background-image: url('/img/s1_bg1.jpg');
-    }
 }
 .pictures {
     width: 100vw;
@@ -259,12 +234,18 @@ body > footer {
     left: calc(50vw - 140px);
 }
 .registration-form {
-    position: relative;
-    min-height: 600px;
+    min-height: 620px;
+    height: auto;
+    position: static;
     top: auto;
     left: auto;
-    display: block;
+    text-align: left;
+    display: inline-block;
     box-sizing: border-box;
+}
+.reg-wrapper {
+    width: 100%;
+    text-align: center;
 }
 .registration-form > select {
     padding: 5px;
