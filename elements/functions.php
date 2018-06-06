@@ -119,4 +119,13 @@
         return $row['email'];
     }
 
+    function add_email_key($username, $key) { // Добавляет ключ для подтверждения почты
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("SELECT id FROM users WHERE username LIKE '$username'") or die("ERROR");
+        $row = $result->fetch_assoc();
+        $id = $row['id'];
+        $result = $mysqli->query("INSERT INTO email_keys (id, `user_id`, `key`) VALUES (NULL, $id, '$key')") or die("ERROR2");
+        $mysqli->close();
+    }
 ?>
