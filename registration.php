@@ -19,7 +19,7 @@
                 create_user($_POST['login'], $_POST['email'], $_POST['password'], 'non_activated');
                 $key = md5(rand(-2147483647, 2147483647));
                 add_email_key($_POST['login'], $key);
-                mail($_POST['email'], 'Подтверждение', 'Чтобы подтвердить ваш электронный адрес, перейдите по ссылке: https://redbytegames.ru/index.php?key='.$key, 'From: confirm@redbytegames.ru') or die("Error to send an email");
+                send_confirm_letter($_POST['email'])
                 header("Location: /index.php");
             }
         }
