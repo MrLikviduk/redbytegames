@@ -80,7 +80,7 @@
             return FALSE;
     }
 
-    function create_user($username, $email, $password, $role) {
+    function create_user($username, $email, $password, $role) { // Заносит нового пользователя в базу данных
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
         $result = $mysqli->query("SELECT * FROM roles WHERE `role` LIKE '$role'") or die("ERROR 1");
@@ -90,5 +90,13 @@
 			$username.'<br>'.$email.'<br>'.$password.'<br>'
 		);
         $mysqli->close();
+    }
+
+    function user_is_set($username, $password) { // Проверяет, соответствуют ли логин и пароль одному из пользователей в базе данных
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("SELECT * FROM users WHERE `username` LIKE '$username' AND `passwd` LIKE '$password'");
+        $mysqli->close();
+        return (($result->num_rows) > 0 ? TRUE : FALSE);
     }
 ?>
