@@ -35,22 +35,23 @@
     function can_do($action) { // Может ли юзер делать то, что передано в качестве аргумента
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        
-        if(!isset($_SESSION['username']) || !isset($_SESSION['password']))
+        if(!isset($_SESSION['login']) || !isset($_SESSION['password'])) {
             $role = 'guest';
+        }
         else {
-            $result = $mysqli->query("SELECT * FROM users WHERE username LIKE '".$_SESSION['username']."' AND passwd LIKE '".$_SESSION['password']."'");
-            if ($result->num_rows < 1)
+            $result = $mysqli->query("SELECT * FROM users WHERE username LIKE '".$_SESSION['login']."' AND passwd LIKE '".$_SESSION['password']."'");
+            if ($result->num_rows < 1) {
                 $role = 'guest';
+            }
             else {
-                $row = $result->fetch_row();
+                $row = $result->fetch_assoc();
                 $result2 = $mysqli->query("SELECT * FROM roles WHERE `id` LIKE '".$row['role_id']."'");
-                $row2 = $result2->fetch_row();
+                $row2 = $result2->fetch_assoc();
                 $role = $row2['role']; 
             }
         }
-        $result = $mysqli->query("SELECT * FROM roles WHERE `role` LIKE $role");
-        $row = $result->fetch_row();
+        $result = $mysqli->query("SELECT * FROM roles WHERE `role` LIKE '$role'");
+        $row = $result->fetch_assoc();
         $mysqli->close();
         if ($row[$action] == 0)
             return FALSE;

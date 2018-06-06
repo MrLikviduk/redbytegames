@@ -5,10 +5,11 @@
 
     // }
     function show_blog($header, $content, $date, $tags, $id) {
+        require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
         echo '
         <article>
             ';
-        if ($_SESSION['logged_in'] == TRUE) {
+        if (can_do('edit_blog')) {
             echo '<form action="" method="post">
                     <button class="icon-blog edit" name="edit_blog" value="'.$id.'"></button>
                     <button class="icon-blog delete" name="delete_blog" value="'.$id.'"></button>

@@ -1,7 +1,8 @@
 <?php
     $page_name = 'Блог';
     session_start();
-    include('elements/connection-info.php');
+    include('elements/functions.php');
+    include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
     $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name) or die("Error to connect to db");
     include('elements/blog-template.php');
     if (!isset($_SESSION['num_of_rows'])) {
@@ -9,11 +10,11 @@
     }
     if (!isset($_SESSION['id_to_edit_blog']))
         $_SESSION['id_to_edit_blog'] = -1;
-    if (isset($_POST['delete_blog']) && $_SESSION['logged_in'] == TRUE) {
+    if (isset($_POST['delete_blog']) && can_do('edit_blog')) {
         $to_delete = $mysqli->query("DELETE FROM blog WHERE id LIKE ".$_POST['delete_blog']) or die("Error");
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
-    if (isset($_POST['edit_blog']) && $_SESSION['logged_in'] == TRUE) {
+    if (isset($_POST['edit_blog']) && can_do('edit_blog')) {
         $_SESSION['id_to_edit_blog'] = $_POST['edit_blog'];
         header('Location: /elements/blog-editor.php');
     }
@@ -38,7 +39,7 @@
         }
     }
     include('header.php');
-    if ($_SESSION['logged_in'] == TRUE)
+    if (can_do('edit_blog'))
         echo '<a href="elements/blog-editor.php" style="margin-left: 25vw; margin-top: 20px; display: inline-block;">Добавить запись</a>';
 ?>
 <?php

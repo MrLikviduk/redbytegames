@@ -1,8 +1,8 @@
 <?php
     $page_name = 'Редактор блога';
     session_start();
-
-    if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] != TRUE) {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
+    if (!can_do('edit_blog')) {
         include($_SERVER['DOCUMENT_ROOT'].'/header.php');
         echo '<div style="margin: 30px auto;">У вас нет прав для просмотра данной страницы</div>';
         include($_SERVER['DOCUMENT_ROOT'].'/footer.php');
@@ -17,7 +17,7 @@
     $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name) or die("Error to connect to db");
     $query = $mysqli->query("SELECT * FROM blog WHERE id LIKE ".$_SESSION['id_to_edit_blog']);
     $to_edit = $query->fetch_assoc();
-    if(isset($_POST['header']) && $_POST['header'] != '' && $_POST['content'] != '' && isset($_POST['submit']) && $_SESSION['logged_in'] == TRUE) {
+    if(isset($_POST['header']) && $_POST['header'] != '' && $_POST['content'] != '' && isset($_POST['submit']) && can_do('edit_blog')) {
         $header = $_POST['header'];
         $content = $_POST['content'];
         $tags = $_POST['tags'];
