@@ -21,6 +21,11 @@ nav {
 body > header {
     height: 60px;
 }
+.confirm-email {
+    color: white;
+    margin-top: 50px; 
+    text-align: center;
+}
 .menu-button {
     width: 50px;
     height: 50px;

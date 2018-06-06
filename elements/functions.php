@@ -109,4 +109,14 @@
         $row = $result->fetch_assoc();
         return $row['role'];
     }
+
+    function get_email($username) { // Возвращает электронный адрес пользователя
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("SELECT users.email FROM users WHERE username LIKE '$username'");
+        $mysqli->close();
+        $row = $result->fetch_assoc();
+        return $row['email'];
+    }
+
 ?>
