@@ -10,7 +10,8 @@
         }
     }
     if (isset($_GET['key'])) {
-        activate_user($_GET['key']) or die("Error");
+        activate_user($_GET['key']);
+        header("Location: ".explode('?', $_SERVER['REQUEST_URI'])[0]);
     }
     include('header.php');
 ?>
