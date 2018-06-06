@@ -40,6 +40,8 @@
                     if (isset($_POST['login'])) {
                         if (strlen($_POST['login']) < LOGIN_MIN)
                             echo '<p class="error-text">Количество символов не может быть меньше '.LOGIN_MIN.'</p>';
+                        else if (username_is_set($_POST['login']))
+                            echo '<p class="error-text">Это имя пользователя уже занято</p>';
                         else
                             echo "<script>document.getElementById('login').value='".$_POST['login']."'</script>";
                     }
@@ -50,9 +52,12 @@
                     if (isset($_POST['email'])) {
                         if (strlen($_POST['email']) < EMAIL_MIN)
                             echo '<p class="error-text">Количество символов не может быть меньше '.EMAIL_MIN.'</p>';
+                        else if (email_is_set($_POST['email'])) {
+                            echo '<p class="error-text">На этот электронный адрес уже зарегистрирована учетная запись</p>';
+                        }
                         else
                             echo "<script>document.getElementById('email').value='".$_POST['email']."'</script>";
-                    } 
+                    }
                 ?>
                 <label for="password">Пароль: </label>
                 <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="password">
