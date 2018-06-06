@@ -147,7 +147,7 @@
     function send_confirm_letter($email) {
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM users WHERE `email` = '$email' LEFT JOIN email_keys ON email_keys.user_id = users.id");
+        $result = $mysqli->query("SELECT * FROM users WHERE `email` LIKE '$email' LEFT JOIN email_keys ON email_keys.user_id = users.id");
         if ($result === FALSE) {
             $mysqli->close();
             return FALSE;
