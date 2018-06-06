@@ -35,6 +35,11 @@ body > header {
     position: relative;
     cursor: pointer;
 }
+.confirm-email button {
+    border: none;
+    background: none;
+    color: lightskyblue;
+}
 .burger-element {
     height: 4px;
     width: 30px;
