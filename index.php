@@ -13,11 +13,8 @@
 ?>
 <section class="authorization">
     <?php 
-        if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
-            if (user_is_set($_SESSION['login'], $_SESSION['password'])) {
-                echo '<div class="main-header">Добро пожаловать, '.$_SESSION['login'].'</div>';
-            }
-        }
+        if (isset($_SESSION['login']) && isset($_SESSION['password']) && user_is_set($_SESSION['login'], $_SESSION['password']))
+            echo '<div class="main-header">Добро пожаловать, '.$_SESSION['login'].'</div>';
         else
             include($_SERVER['DOCUMENT_ROOT'].'/elements/to-authorizate.php');
     ?>
