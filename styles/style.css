@@ -2,6 +2,9 @@ body, html {
     margin: 0;
     background: whitesmoke;
 }
+button {
+    cursor: pointer;
+}
 main {
     min-height: calc(100vh - 110px);
     height: auto;
