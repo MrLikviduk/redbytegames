@@ -128,4 +128,19 @@
         $result = $mysqli->query("INSERT INTO email_keys (id, `user_id`, `key`) VALUES (NULL, $id, '$key')") or die("ERROR2");
         $mysqli->close();
     }
+
+    function activate_user($key) {
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("SELECT * FROM email_keys WHERE `key` LIKE '$key'") or die("ERROR 1");
+        if ($result->num_rows == 0) {
+            $mysqli->close();
+            return FALSE;
+        }
+        $row = $result->fetch_assoc();
+        $user_id = $row['user_id'];
+        $result = $mysqli->query("UPDATE users SET role_id = 2 WHERE id LIKE $user_id") or die("ERROR 2");
+        $result = $mysqli->query("DELETE FROM email_keys WHERE `key` LIKE '$key'") or die("ERROR 3");
+        $mysqli->close();
+    }
 ?>

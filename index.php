@@ -9,6 +9,9 @@
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
+    if (isset($_GET['key'])) {
+        activate_user($_GET['key']) or die("Error");
+    }
     include('header.php');
 ?>
 <section class="authorization">
@@ -25,7 +28,14 @@
                 ';
             }
             else
-                echo "Ваша роль ".get_role($_SESSION['login']);
+                echo '
+                    <div class="confirm-email">
+                        <h1>Поздравляем! Ваш почтовый ящик прошел проверку!</h1>
+                        <p>
+                            Теперь вы можете пользоваться вашей учетной записью.
+                        </p>
+                    </div>
+                ';
         }
         else
             include($_SERVER['DOCUMENT_ROOT'].'/elements/to-authorizate.php');
