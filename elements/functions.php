@@ -152,8 +152,11 @@
             $mysqli->close();
             return FALSE;
         }
+        $mysqli->close();
         $row = $result->fetch_assoc();
         $key = $row['key'];
-        mail($email, 'Подтверждение', 'Чтобы подтвердить ваш электронный адрес, перейдите по ссылке: https://redbytegames.ru/index.php?key='.$key, 'From: confirm@redbytegames.ru') or return FALSE;
+        $result = mail($email, 'Подтверждение', 'Чтобы подтвердить ваш электронный адрес, перейдите по ссылке: https://redbytegames.ru/index.php?key='.$key, 'From: confirm@redbytegames.ru');
+        if ($result === FALSE)
+            return FALSE;
     }
 ?>

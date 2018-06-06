@@ -15,7 +15,7 @@
     }
     if (isset($_POST['resend']) && isset($_SESSION['login']) && username_is_set($_SESSION['login'])) {
         $s = get_email($_SESSION['login']);
-        send_confirm_letter($s);
+        send_confirm_letter($s) or die("ERROR TO RESEND");
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
     include('header.php');
