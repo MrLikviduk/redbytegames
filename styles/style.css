@@ -271,13 +271,13 @@ body > footer {
     min-width: 80px;
     color: white;
 }
-.authorization-form input.text, .registration-form input.text {
+.authorization-form input.text, .registration-form input.text, .registration-form textarea.text {
     border: none;
     padding: 5px;
     border-radius: 2px;
     background: hsl(0, 50%, 70%)
 }
-.registration-form input.text {
+.registration-form input.text, .registration-form textarea.text {
     background: white;
     margin: 5px 11px;
     width: 200px;

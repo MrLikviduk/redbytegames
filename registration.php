@@ -85,18 +85,30 @@
         </div>
         <div id="form1" style="display: none;">
             <div class="data-wrapper">
-                <label for="name">Имя: </label>
-                <input type="text" class="text" name="employee_name" placeholder="Введите имя" maxlength="60">
-                <label for="surname">Фамилия: </label>
-                <input type="text" class="text" name="employee_surname" placeholder="Введите фамилию" maxlength="60">
-                <label for="employee_position">Должность: </label>
-                <input type="text" class="text" name="employee_position" placeholder="Введите должность" maxlength="60">
-                <label for="login">Имя пользователя: </label>
+                <label for="employee_login">Имя пользователя: </label>
                 <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="employee_login" id="employee_login">
-                <label for="password">Пароль: </label>
+                <label for="employee_password">Пароль: </label>
                 <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="employee_password">
-                <label for="email">Электронный адрес: </label>
+                <label for="employee_email">Электронный адрес: </label>
                 <input type="email" class="text" name="employee_email" placeholder="Введите электронный адрес" id="employee_email">
+                <label for="employee_name">Имя: </label>
+                <input type="text" class="text" name="employee_name" placeholder="Введите имя">
+                <label for="employee_surname">Фамилия: </label>
+                <input type="text" class="text" name="employee_surname" placeholder="Введите фамилию">
+                <label for="employee_otchestvo">Отчество: </label>
+                <input type="text" class="text" name="employee_otchestvo" placeholder="Введите отчество">
+                <label for="employee_position">Должность: </label>
+                <input type="text" class="text" name="employee_position" placeholder="Введите должность">
+                <label for="employee_channel">Блог/издание/канал: </label>
+                <input type="text" class="text" name="employee_channel" placeholder="Введите блог/издание/канал">
+                <label for="employee_link">Ссылка на ресурс: </label>
+                <input type="url" class="text" name="employee_link" placeholder="Введите ссылку на ресурс">
+                <label for="employee_socnet">Связь в социальных сетях: </label>
+                <textarea class="text" rows="4" name="employee_socnet"></textarea>
+                <label for="employee_num">Номер телефона: </label>
+                <input type="tel" class="text" name="employee_num" placeholder="Введите номер телефона">
+                <label for="employee_address">Адрес: </label>
+                <textarea class="text" rows="4" name="employee_address"></textarea>
                 <div style="margin: 8px auto; margin-left: 11px;">
                     <input type="checkbox" name="passed_interview" value="Yes">
                     <label for="policy" style="display: inline;">Я прошел(ла) собеседование</label>
@@ -106,7 +118,7 @@
                     <label for="policy" style="display: inline;">Я согласен(на) на хранение и обработку личных данных</label>
                 </div>
             </div>
-        </div>
+       </div>
         <div class="btn-wrapper">
             <input type="submit" value="Зарегистрироваться" class="submit-btn" name="submit">
         </div>
