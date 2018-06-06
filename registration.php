@@ -19,7 +19,7 @@
                 create_user($_POST['login'], $_POST['email'], $_POST['password'], 'non_activated');
                 $key = md5(rand(-2147483647, 2147483647));
                 add_email_key($_POST['login'], $key);
-                send_confirm_letter($_POST['email'])
+                send_confirm_letter($_POST['email']);
                 header("Location: /index.php");
             }
         }
