@@ -143,4 +143,17 @@
         $result = $mysqli->query("DELETE FROM email_keys WHERE `key` LIKE '$key'") or die("ERROR 3");
         $mysqli->close();
     }
+
+    function send_confirm_letter($email) {
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("SELECT * FROM users WHERE `email` = '$email' LEFT JOIN email_keys ON email_keys.user_id = users.id");
+        if ($result === FALSE) {
+            $mysqli->close();
+            return FALSE;
+        }
+        $row = $result->fetch_assoc();
+        $key = $row['key'];
+        mail($email, 'Подтверждение', 'Чтобы подтвердить ваш электронный адрес, перейдите по ссылке: https://redbytegames.ru/index.php?key='.$key, 'From: confirm@redbytegames.ru') or return FALSE;
+    }
 ?>

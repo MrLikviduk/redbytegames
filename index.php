@@ -13,6 +13,11 @@
         activate_user($_GET['key']);
         header("Location: ".explode('?', $_SERVER['REQUEST_URI'])[0]);
     }
+    if (isset($_POST['resend']) && isset($_SESSION['login']) && username_is_set($_SESSION['login'])) {
+        $s = get_email($_SESSION['login']);
+        send_confirm_letter($s);
+        header("Location: ".$_SERVER['REQUEST_URI']);
+    }
     include('header.php');
 ?>
 <section class="authorization">
@@ -24,7 +29,9 @@
                     <h1>Нужно подтвердить свой электронный адрес</h1>
                     <p>
                         На Ваш почтовый ящик <span style="color: lightblue">'.get_email($_SESSION['login']).'</span> было выслано письмо, в котором вам нужно перейти по ссылке для подтверждения Вашего электронного адреса. <br>
-                        <button>Отправить письмо еще раз</button>
+                        <form action="" method="POST">
+                            <button name="resend">Отправить письмо еще раз</button>
+                        </form>
                     </p>
                 </div>
                 ';
