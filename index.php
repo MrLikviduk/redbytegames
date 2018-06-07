@@ -29,10 +29,11 @@
                     <h1>Нужно подтвердить свой электронный адрес</h1>
                     <p>
                         На Ваш почтовый ящик <span style="color: lightblue">'.get_email($_SESSION['login']).'</span> было выслано письмо, в котором вам нужно перейти по ссылке для подтверждения Вашего электронного адреса. <br>
-                        <form action="" method="POST">
-                            <button name="resend">Отправить письмо еще раз</button>
-                        </form>
+                        Если письмо не пришло, проверьте папку "Спам".
                     </p>
+                    <form action="" method="POST">
+                        <button name="resend">Отправить письмо еще раз</button>
+                    </form>
                 </div>
                 ';
             }
