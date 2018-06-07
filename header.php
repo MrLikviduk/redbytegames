@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/styles/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/js_scripts/jquery.cookie.js"></script>
     <?php
         if ($page_name == 'О нас')
             echo '<link rel="stylesheet" href="/styles/style-for-about-us.css">';

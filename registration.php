@@ -1,28 +1,76 @@
 <?php
     $page_name = 'Регистрация';
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
-    define('LOGIN_MIN', 6);
-    define('PASSWORD_MIN', 4);
-    define('EMAIL_MIN', 3);
-    if (isset($_POST['submit'])) {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/elements/constants.php');
+    $db['login'] = 'surname';
+    $db['password'] = 'passwd';
+    $db['email'] = 'email';
+    $db['fullname'] = 'fullname';
+    $db['position'] = 'position';
+    $db['channel'] = 'channel';
+    $db['link'] = 'link_to_resource';
+    $db['socnet'] = 'socnet';
+    $db['telnum'] = 'telephone_number';
+    $db['address'] = 'address';
+    $db['fraction'] = 'fraction';
+
+    function input_text($type, $name, $label, $min, $max, $num_of_rows = 1, $type_of_input = 'text') {
+        $type_name = $type.'_'.$name;
+        if ($num_of_rows < 1)
+            return FALSE;
+        echo '<label for="'.$type_name.'">'.$label.'</label>';
+        if ($num_of_rows > 1) {
+            echo '
+                <textarea class="text" maxlength="'.$max.'" rows="'.$num_of_rows.'" name="'.$type_name.'" id="'.$type_name.'"></textarea>
+            ';
+        }
+        else {
+            echo '
+                <input type="'.$type_of_input.'" maxlength="'.$max.'" class="text" name="'.$type_name.'" id="'.$type_name.'">
+            ';
+        }
+        if (isset($_POST[$type_name])) {
+            if (strlen($_POST[$type_name]) < $min)
+                echo '<p class="error-text">Количество символов не может быть меньше '.$min.'</p>';
+        }
+    }
+    function input_checkbox($type, $name, $label) {
+        echo '
+            <div style="margin: 8px auto; margin-left: 11px;">
+                <input type="checkbox" name="'.$type.'_'.$name.'" value="Yes">
+                <label for="'.$type.'_'.$name.'" style="display: inline;">'.$label.'</label>
+            </div>
+        ';
+    }
+
+    if (isset($_POST['submit']) && $_POST['type'] == 'user') {
         $min = [
-            [$_POST['login'], LOGIN_MIN],
-            [$_POST['password'], PASSWORD_MIN],
-            [$_POST['email'], EMAIL_MIN]
+            [$_POST['user_login'], LOGIN_MIN],
+            [$_POST['user_password'], PASSWORD_MIN],
+            [$_POST['user_email'], EMAIL_MIN]
         ];
         $v = true;
         foreach($min as $value)
             if (strlen($value[0]) < $value[1])
                 $v = false;
         if ($v == TRUE) {
-            if (username_is_set($_POST['login']) == FALSE && email_is_set($_POST['email']) == FALSE && $_POST['password'] == $_POST['confirm_password'] && $_POST['policy'] == 'Yes') {
-                create_user($_POST['login'], $_POST['email'], $_POST['password'], 'user');
+            if (username_is_set($_POST['user_login']) == FALSE && email_is_set($_POST['user_email']) == FALSE && $_POST['user_password'] == $_POST['user_confirm_password'] && $_POST['user_policy'] == 'Yes') {
+                create_user($_POST['user_login'], $_POST['user_email'], $_POST['user_password'], 'user');
                 $key = md5(rand(-2147483647, 2147483647));
-                add_email_key($_POST['login'], $key);
-                send_confirm_letter($_POST['email']);
+                add_email_key($_POST['user_login'], $key);
+                send_confirm_letter($_POST['user_email']);
                 header("Location: /index.php");
             }
         }
+    }
+    else if (isset($_POST['submit'])) {
+        foreach ($_POST as $key => $value) {
+            if (explode('_', $key)[0] == $_POST['type'])
+                $lst[$key] = $value;
+        }
+        // foreach ($lst as $key => $value) {
+        //     echo $key.': '.$value.'<br>';
+        // }
     }
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
@@ -37,86 +85,56 @@
         </select>
         <div id="form0" style="display: block;">
             <div class="data-wrapper">
-                <label for="login">Имя пользователя: </label>
-                <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="login" id="login">
-                <?php
-                    if (isset($_POST['login'])) {
-                        if (strlen($_POST['login']) < LOGIN_MIN)
-                            echo '<p class="error-text">Количество символов не может быть меньше '.LOGIN_MIN.'</p>';
-                        else if (username_is_set($_POST['login']))
-                            echo '<p class="error-text">Это имя пользователя уже занято</p>';
-                        else
-                            echo "<script>document.getElementById('login').value='".$_POST['login']."'</script>";
-                    }
+                <?php 
+                    input_text('user', 'login', 'Логин: ', LOGIN_MIN, LOGIN_MAX);
+                    input_text('user', 'email', 'Электронный адрес: ', EMAIL_MIN, EMAIL_MAX, 1, 'email');
+                    input_text('user', 'password', 'Пароль: ', PASSWORD_MIN, PASSWORD_MAX, 1, 'password');
+                    input_text('user', 'confirm_password', 'Подтвердите пароль: ', PASSWORD_MIN, PASSWORD_MAX, 1, 'password');
+                    input_checkbox('user', 'policy', 'Я согласен(на) на хранение и обработку личных данных');
                 ?>
-                <label for="email">Электронный адрес</label>
-                <input type="email" class="text" name="email" placeholder="Введите электронный адрес" id="email">
-                <?php
-                    if (isset($_POST['email'])) {
-                        if (strlen($_POST['email']) < EMAIL_MIN)
-                            echo '<p class="error-text">Количество символов не может быть меньше '.EMAIL_MIN.'</p>';
-                        else if (email_is_set($_POST['email'])) {
-                            echo '<p class="error-text">На этот электронный адрес уже зарегистрирована учетная запись</p>';
-                        }
-                        else
-                            echo "<script>document.getElementById('email').value='".$_POST['email']."'</script>";
-                    }
-                ?>
-                <label for="password">Пароль: </label>
-                <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="password">
-                <?php
-                    if (isset($_POST['password']))
-                        if (strlen($_POST['password']) < EMAIL_MIN)
-                            echo '<p class="error-text">Количество символов не может быть меньше '.PASSWORD_MIN.'</p>';
-                ?>
-                <label for="confirm_password">Подтвердите пароль: </label>
-                <input type="password" maxlength="32" class="text" placeholder="Подтвердите пароль" name="confirm_password">
-                <?php
-                    if (isset($_POST['password']) && isset($_POST['confirm_password']))
-                        if ($_POST['password'] != $_POST['confirm_password'])
-                            echo '<p class="error-text">Пароли не совпадают</p>';
-                ?>
-                <br>
-                <div style="margin: 8px auto; margin-left: 11px;">
-                    <input type="checkbox" name="policy" value="Yes">
-                    <label for="policy" style="display: inline;">Я согласен(на) на хранение и обработку личных данных</label>
-                </div>
             </div>
         </div>
         <div id="form1" style="display: none;">
             <div class="data-wrapper">
-                <label for="employee_login">Имя пользователя: </label>
-                <input type="text" maxlength="32" class="text" placeholder="Введите логин" name="employee_login" id="employee_login">
-                <label for="employee_password">Пароль: </label>
-                <input type="password" maxlength="32" class="text" placeholder="Введите пароль" name="employee_password">
-                <label for="employee_email">Электронный адрес: </label>
-                <input type="email" class="text" name="employee_email" placeholder="Введите электронный адрес" id="employee_email">
-                <label for="employee_name">Имя: </label>
-                <input type="text" class="text" name="employee_name" placeholder="Введите имя">
-                <label for="employee_surname">Фамилия: </label>
-                <input type="text" class="text" name="employee_surname" placeholder="Введите фамилию">
-                <label for="employee_otchestvo">Отчество: </label>
-                <input type="text" class="text" name="employee_otchestvo" placeholder="Введите отчество">
-                <label for="employee_position">Должность: </label>
-                <input type="text" class="text" name="employee_position" placeholder="Введите должность">
-                <label for="employee_channel">Блог/издание/канал: </label>
-                <input type="text" class="text" name="employee_channel" placeholder="Введите блог/издание/канал">
-                <label for="employee_link">Ссылка на ресурс: </label>
-                <input type="url" class="text" name="employee_link" placeholder="Введите ссылку на ресурс">
-                <label for="employee_socnet">Связь в социальных сетях: </label>
-                <textarea class="text" rows="4" name="employee_socnet"></textarea>
-                <label for="employee_num">Номер телефона: </label>
-                <input type="tel" class="text" name="employee_num" placeholder="Введите номер телефона">
-                <label for="employee_address">Адрес: </label>
-                <textarea class="text" rows="4" name="employee_address"></textarea>
-                <div style="margin: 8px auto; margin-left: 11px;">
-                    <input type="checkbox" name="passed_interview" value="Yes">
-                    <label for="policy" style="display: inline;">Я прошел(ла) собеседование</label>
-                </div>
-                <div style="margin: 8px auto; margin-left: 11px;">
-                    <input type="checkbox" name="employee_policy" value="Yes">
-                    <label for="policy" style="display: inline;">Я согласен(на) на хранение и обработку личных данных</label>
-                </div>
+                <?php 
+                    input_text('media', 'login', 'Логин: ', LOGIN_MIN, LOGIN_MAX);
+                    input_text('media', 'password', 'Пароль: ', PASSWORD_MIN, PASSWORD_MAX, 1, 'password');
+                    input_text('media', 'email', 'Электронная почта: ', EMAIL_MIN, EMAIL_MAX, 1, 'email');
+                    input_text('media', 'fullname', 'ФИО: ', FULLNAME_MIN, FULLNAME_MAX);
+                    input_text('media', 'position', 'Должность: ', POSITION_MIN, POSITION_MAX);
+                    input_text('media', 'channel', 'Блог/издание/канал: ', CHANNEL_MIN, CHANNEL_MAX);
+                    input_text('media', 'link', 'Ссылка на ресурс: ', LINK_MIN, LINK_MAX, 1, 'url');
+                    input_text('media', 'socnet', 'Связь в социальных сетях: ', SOCNET_MIN, SOCNET_MAX, 4);
+                    input_text('media', 'telnum', 'Номер телефона: ', TELNUM_MIN, TELNUM_MAX, 1, 'tel');
+                    input_text('media', 'address', 'Адрес: ', ADDRESS_MIN, ADDRESS_MAX, 4);
+                    input_checkbox('media', 'policy', 'Я согласен(на) на хранение и обработку личных данных');
+                ?>
+            </div>
+       </div>
+       <div id="form2" style="display: none;">
+            <div class="data-wrapper">
+                <?php 
+                    input_text('moderator', 'login', 'Логин: ', LOGIN_MIN, LOGIN_MAX, 1);
+                    input_text('moderator', 'password', 'Пароль: ', PASSWORD_MIN, PASSWORD_MAX, 1, 'password');
+                    input_text('moderator', 'email', 'Электронная почта: ', EMAIL_MIN, EMAIL_MAX, 1);
+                    input_text('moderator', 'fullname', 'ФИО: ', FULLNAME_MIN, FULLNAME_MAX);
+                    input_text('moderator', 'position', 'Должность: ', POSITION_MIN, POSITION_MAX);
+                    input_checkbox('moderator', 'passedinterview', 'Я прошел(ла) собеседование');
+                    input_checkbox('moderator', 'policy', 'Я согласен(на) на хранение и обработку личных данных');
+                ?>
+            </div>
+       </div>
+       <div id="form3" style="display: none;">
+            <div class="data-wrapper">
+                <?php 
+                    input_text('owner', 'login', 'Логин: ', LOGIN_MIN, LOGIN_MAX, 1);
+                    input_text('owner', 'password', 'Пароль: ', PASSWORD_MIN, PASSWORD_MAX, 1, 'password');
+                    input_text('owner', 'email', 'Электронная почта: ', EMAIL_MIN, EMAIL_MAX, 1);
+                    input_text('owner', 'fullname', 'ФИО: ', FULLNAME_MIN, FULLNAME_MAX);
+                    input_text('owner', 'position', 'Должность: ', POSITION_MIN, POSITION_MAX);
+                    input_text('owner', 'fraction', 'Доля акций: ', FRACTION_MIN, FRACTION_MAX);
+                    input_checkbox('owner', 'policy', 'Я согласен(на) на хранение и обработку личных данных');
+                ?>
             </div>
        </div>
         <div class="btn-wrapper">
@@ -125,12 +143,11 @@
     </form>
 </div>
 <script>
-    var s = 0;
+    $.cookie('s', 0);
     function Changed() {
-        document.getElementById('form' + s).style.display = 'none';
-        s = document.getElementById('select-form').selectedIndex;
-        if (s > 0) s = 1;
-        document.getElementById('form' + s).style.display = 'block';
+        document.getElementById('form' + $.cookie('s')).style.display = 'none';
+        $.cookie('s', document.getElementById('select-form').selectedIndex);
+        document.getElementById('form' + $.cookie('s')).style.display = 'block';
     }
 </script>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php') ?>
