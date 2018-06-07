@@ -52,11 +52,14 @@
         }
         $result = $mysqli->query("SELECT * FROM roles WHERE `role` LIKE '$role'");
         $row = $result->fetch_assoc();
+        $result = $mysqli->query("SELECT activated FROM users WHERE `username` LIKE'".$_SESSION['login']."'");
         $mysqli->close();
         if ($row[$action] == 0)
             return FALSE;
-        else
-            return TRUE;
+        $row = $result->fetch_assoc();
+        if ($row['activated'] == 0)
+            return FALSE;
+        return TRUE;
     }
 
     function username_is_set($username) { // Проверяет, есть ли пользователь в базе данных с таким логином
@@ -129,7 +132,7 @@
         $mysqli->close();
     }
 
-    function activate_user($key) {
+    function activate_user($key) { // Активирует аккаунт пользователя по ключу
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
         $result = $mysqli->query("SELECT * FROM email_keys WHERE `key` LIKE '$key'") or die("ERROR 1");
@@ -139,12 +142,12 @@
         }
         $row = $result->fetch_assoc();
         $user_id = $row['user_id'];
-        $result = $mysqli->query("UPDATE users SET role_id = 2 WHERE id LIKE $user_id") or die("ERROR 2");
+        $result = $mysqli->query("UPDATE users SET `activated` = 1 WHERE id LIKE $user_id") or die("ERROR 2");
         $result = $mysqli->query("DELETE FROM email_keys WHERE `key` LIKE '$key'") or die("ERROR 3");
         $mysqli->close();
     }
 
-    function send_confirm_letter($email) {
+    function send_confirm_letter($email) { // Отправляет письмо с кодом подтверждения
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
         $result = $mysqli->query("SELECT * FROM users LEFT JOIN email_keys ON email_keys.user_id = users.id WHERE `email` LIKE '$email' ");
@@ -160,4 +163,18 @@
             return FALSE;
         return TRUE;
     }
+
+    function get_field($username, $name) { // Возвращает значение поля, которое находит по логину
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("SELECT * FROM users WHERE username LIKE '$username'");
+        $mysqli->close();
+        if ($result === FALSE)
+            return FALSE;
+        $row = $result->fetch_assoc();
+        if (!isset($row[$name]))
+            return FALSE;
+        return $row[$name]
+    }
+    
 ?>

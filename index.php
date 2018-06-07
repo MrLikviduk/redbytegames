@@ -13,7 +13,7 @@
         activate_user($_GET['key']);
         header("Location: ".explode('?', $_SERVER['REQUEST_URI'])[0]);
     }
-    if (isset($_POST['resend']) && isset($_SESSION['login']) && username_is_set($_SESSION['login'])) {
+    if (isset($_POST['resend']) && isset($_SESSION['login']) && username_is_set($_SESSION['login']) && get_field($_SESSION['login'], 'activated') === 0) {
         $s = get_email($_SESSION['login']);
         send_confirm_letter($s) or die("ERROR TO RESEND");
         header("Location: ".$_SERVER['REQUEST_URI']);
@@ -23,7 +23,7 @@
 <section class="authorization">
     <?php 
         if (isset($_SESSION['login']) && isset($_SESSION['password']) && user_is_set($_SESSION['login'], $_SESSION['password'])) {
-            if (get_role($_SESSION['login']) == 'non_activated') {
+            if (get_field($_SESSION['login'], 'activated') === 0) {
                 echo '
                 <div class="confirm-email">
                     <h1>Нужно подтвердить свой электронный адрес</h1>

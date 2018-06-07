@@ -16,7 +16,7 @@
                 $v = false;
         if ($v == TRUE) {
             if (username_is_set($_POST['login']) == FALSE && email_is_set($_POST['email']) == FALSE && $_POST['password'] == $_POST['confirm_password'] && $_POST['policy'] == 'Yes') {
-                create_user($_POST['login'], $_POST['email'], $_POST['password'], 'non_activated');
+                create_user($_POST['login'], $_POST['email'], $_POST['password'], 'user');
                 $key = md5(rand(-2147483647, 2147483647));
                 add_email_key($_POST['login'], $key);
                 send_confirm_letter($_POST['email']);
