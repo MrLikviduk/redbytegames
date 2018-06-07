@@ -174,7 +174,7 @@
         $row = $result->fetch_assoc();
         if (!isset($row[$name]))
             return FALSE;
-        return $row[$name]
+        return $row[$name];
     }
-    
+
 ?>
