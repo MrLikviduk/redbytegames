@@ -68,7 +68,7 @@
             if (explode('_', $key)[0] == $type)
                 $lst[$key] = $value;
         }
-        echo "<script>console.log('CHECK')</script>;
+        echo "<script>console.log('CHECK')</script>";
         if (!email_is_set($lst[$type.'_email']) && data_is_set('non_activated_employees', 'username', $lst[$type.'_login']) && data_is_set('non_activated_employees', 'passwd', $lst[$type.'_password']) && get_role($lst[$type.'_login']) == $type) {
             $role = $type;
             delete_data('non_activated_employees', 'username', $lst[$type.'_login']);
