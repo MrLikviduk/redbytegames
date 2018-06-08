@@ -2,7 +2,7 @@
     $page_name = 'Регистрация';
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/constants.php');
-    $db['login'] = 'surname';
+    $db['login'] = 'username';
     $db['password'] = 'passwd';
     $db['email'] = 'email';
     $db['fullname'] = 'fullname';

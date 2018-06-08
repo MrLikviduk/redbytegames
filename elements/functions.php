@@ -204,6 +204,7 @@
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
         $result = $mysqli->query("UPDATE $table SET $column = '$data' WHERE $unique_column LIKE '$unique_data'");
+        $mysqli->close();
         if ($result === FALSE)
             return FALSE;
         return TRUE;
