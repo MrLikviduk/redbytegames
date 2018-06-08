@@ -42,7 +42,7 @@
         $user_id = get_id_by_username($_SESSION['login']);
         $blog_id = $_POST['blog_id'];
         add_comment($blog_id, $user_id, date('d.m.Y'), date('H:i'), $_POST['comment_content']);
-        header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#comment_label'.$_POST['comment_label']);
+        header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$_POST['blog_id']);
     }
     include('header.php');
     if (can_do('edit_blog'))
@@ -65,7 +65,8 @@
             if (can_do('add_comments')) {
                 echo '
                     <form action="" method="POST" class="comment-editor">
-                        <label for="comment_content" id="comment_label'.$row['id'].'"  value="'.$row['id'].'" class="label" name="comment_label">Комментарий: </label>
+                        <div id="fcn'.$row['id'].'" style="position: relative; top: -70px;"></div>
+                        <label for="comment_content" class="label">Комментарий: </label>
                         <textarea name="comment_content" maxlength="1023" class="content" rows="5"></textarea>
                         <input type="submit" name="comment_submit" value="Добавить комментарий" class="submit">
                         <input type="hidden" name="blog_id" value="'.$row['id'].'">
