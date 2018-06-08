@@ -68,11 +68,10 @@
             if (explode('_', $key)[0] == $type)
                 $lst[$key] = $value;
         }
-        echo "<script>console.log('CHECK')</script>";
-        if (!email_is_set($lst[$type.'_email']) && data_is_set('non_activated_employees', 'username', $lst[$type.'_login']) && data_is_set('non_activated_employees', 'passwd', $lst[$type.'_password']) && get_role($lst[$type.'_login']) == $type) {
+        if (!email_is_set($lst[$type.'_email']) && data_is_set('non_activated_employees', 'username', $lst[$type.'_login']) && data_is_set('non_activated_employees', 'passwd', $lst[$type.'_password']) && get_role($lst[$type.'_login'], 'non_activated_employees') == $type) {
             $role = $type;
             delete_data('non_activated_employees', 'username', $lst[$type.'_login']);
-            create_user($lst[$type.'_login'], $lst[$type.'_email'], $lst[$type.'_password'], $role);
+            create_user($lst[$type.'_login'], $lst[$type.'_email'], $lst[$type.'_password'], $role) or die("ERROR1");
             foreach ($lst as $key => $value) {
                 set_data('users', 'username', $lst[$type.'_login'], $db[explode('_', $key)[1]], $value) or die("ERROR7777777777777777777");
                 add_email_key($lst[$type.'_login']);
