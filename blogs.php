@@ -40,7 +40,7 @@
     }
     if (isset($_POST['comment_submit']) && strlen($_POST['comment_content']) > 0 && strlen($_POST['comment_content']) < 1024 && can_do('add_comments')) {
         $user_id = get_id_by_username($_SESSION['login']);
-        $blog_id = $_POST['comment_submit'];
+        $blog_id = $_POST['blog_id'];
         add_comment($blog_id, $user_id, date('d.m.Y'), date('H:i'), $_POST['comment_content']);
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
@@ -67,7 +67,8 @@
                     <form action="" method="POST" class="comment-editor">
                         <label for="comment_content" class="label">Комментарий: </label>
                         <textarea name="comment_content" maxlength="1023" class="content" rows="5"></textarea>
-                        <input type="submit" name="comment_submit" value="Добавить комментарий" class="submit" value="'.$row['id'].'">
+                        <input type="submit" name="comment_submit" value="Добавить комментарий" class="submit">
+                        <input type="hidden" name="blog_id" value="'.$row['id'].'">
                     </form>
                 ';
             }
