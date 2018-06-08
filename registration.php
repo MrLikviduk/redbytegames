@@ -13,6 +13,7 @@
     $db['telnum'] = 'telephone_number';
     $db['address'] = 'address';
     $db['fraction'] = 'fraction';
+    $db['passedinterview'] = 'passed_interview';
 
     function input_text($type, $name, $label, $min, $max, $num_of_rows = 1, $type_of_input = 'text') {
         $type_name = $type.'_'.$name;
@@ -37,7 +38,7 @@
     function input_checkbox($type, $name, $label) {
         echo '
             <div style="margin: 8px auto; margin-left: 11px;">
-                <input type="checkbox" name="'.$type.'_'.$name.'" value="Yes">
+                <input type="checkbox" name="'.$type.'_'.$name.'" value="1">
                 <label for="'.$type.'_'.$name.'" style="display: inline;">'.$label.'</label>
             </div>
         ';
