@@ -50,14 +50,18 @@
                 $role = $row2['role']; 
             }
         }
+        if ($role != 'guest') {
+            $result = $mysqli->query("SELECT activated FROM users WHERE `username` LIKE'".$_SESSION['login']."'");
+            $row = $result->fetch_assoc();
+            if ($row['activated'] == 0) {
+                $mysqli->close();
+                return FALSE;
+            }
+        }
         $result = $mysqli->query("SELECT * FROM roles WHERE `role` LIKE '$role'");
         $row = $result->fetch_assoc();
-        $result = $mysqli->query("SELECT activated FROM users WHERE `username` LIKE'".$_SESSION['login']."'");
         $mysqli->close();
         if ($row[$action] == 0)
-            return FALSE;
-        $row = $result->fetch_assoc();
-        if ($row['activated'] == 0)
             return FALSE;
         return TRUE;
     }

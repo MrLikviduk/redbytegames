@@ -1,9 +1,4 @@
 <?php
-    // function delete_blog($id) {
-    //     $result = $mysqli->query("SELECT * FROM blog WHERE `id` LIKE $id");
-    //     $row = $result->fetch_assoc();
-
-    // }
     function show_blog($header, $content, $date, $tags, $id) {
         require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
         echo '
@@ -35,6 +30,20 @@
                 '.$content.'
             </p>
         </article>
+        ';
+    }
+
+    function show_comment($name, $date, $time, $content) {
+        echo '
+        <div class="comment">
+            <div class="top">
+                <div class="name">'.$name.'</div>
+                <div class="date-and-time">'.$date.' в '.$time.'</div>
+            </div>
+            <div class="content">
+                '.$content.'
+            </div>
+        </div>
         ';
     }
 ?>
