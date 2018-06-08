@@ -42,7 +42,7 @@
         $user_id = get_id_by_username($_SESSION['login']);
         $blog_id = $_POST['comment_submit'];
         add_comment($blog_id, $user_id, date('d.m.Y'), date('H:i'), $_POST['comment_content']);
-        header("Location: ".$_SERVER['DOCUMENT_ROOT']);
+        header("Location: ".$_SERVER['REQUEST_URI']);
     }
     include('header.php');
     if (can_do('edit_blog'))
