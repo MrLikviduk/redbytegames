@@ -74,10 +74,10 @@
             create_user($lst[$type.'_login'], $lst[$type.'_email'], $lst[$type.'_password'], $role) or die("ERROR1");
             foreach ($lst as $key => $value) {
                 set_data('users', 'username', $lst[$type.'_login'], $db[explode('_', $key)[1]], $value) or die("ERROR7777777777777777777");
-                add_email_key($lst[$type.'_login']);
-                send_confirm_letter($lst[$type.'_email']);
-                header("Location: /index.php");
             }
+            add_email_key($lst[$type.'_login']);
+            send_confirm_letter($lst[$type.'_email']);
+            header("Location: /index.php");
         }
     }
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
