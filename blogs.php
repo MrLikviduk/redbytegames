@@ -56,6 +56,15 @@
             $date = explode('-' ,$row['creation_date']);
             $date = $date[2].'.'.$date[1].'.'.$date[0];
             echo show_blog($row['header'], $row['content'], $date, $row['tags'], $row['id']);
+            if (can_do('add_comments')) {
+                echo '
+                    <form action="" method="POST" class="comment-editor">
+                        <label for="comment_content" class="label">Комментарий: </label>
+                        <textarea name="comment_content" class="content" rows="5"></textarea>
+                        <input type="submit" name="comment_submit" value="Добавить комментарий" class="submit">
+                    </form>
+                ';
+            }
         }
         if ($_SESSION['num_of_rows'] < count($blog_notices) - 1) {
             echo '
@@ -66,7 +75,5 @@
         }
     }
 ?>
-<?php 
-    show_comment('Gladiator228', '06.06.2018', '15:09', 'Ураа, это же комментарий через функцию! Ура, я так счастлив!');
-?>
+
 <?php include('footer.php'); $mysqli->close(); ?>
