@@ -56,21 +56,29 @@
         if ($v == TRUE) {
             if (username_is_set($_POST['user_login']) == FALSE && email_is_set($_POST['user_email']) == FALSE && $_POST['user_password'] == $_POST['user_confirm_password'] && $_POST['user_policy'] == 'Yes') {
                 create_user($_POST['user_login'], $_POST['user_email'], $_POST['user_password'], 'user');
-                $key = md5(rand(-2147483647, 2147483647));
-                add_email_key($_POST['user_login'], $key);
+                add_email_key($_POST['user_login']);
                 send_confirm_letter($_POST['user_email']);
                 header("Location: /index.php");
             }
         }
     }
     else if (isset($_POST['submit'])) {
+        $type = $_POST['type']
         foreach ($_POST as $key => $value) {
-            if (explode('_', $key)[0] == $_POST['type'])
+            if (explode('_', $key)[0] == $type)
                 $lst[$key] = $value;
         }
-        // foreach ($lst as $key => $value) {
-        //     echo $key.': '.$value.'<br>';
-        // }
+        if (!email_is_set($lst[$type.'_email']) && data_is_set('non_activated_employees', 'username', $lst[$type.'_login']) && data_is_set('non_activated_employees', 'passwd', $lst[$type.'_password']) && get_role($lst[$type.'_login']) == $type) {
+            $role = $type;
+            delete_data('non_activated_employees', 'username', $lst[$type.'_login']);
+            create_user($lst[$type.'_login'], $lst[$type.'_email'], $lst[$type.'_password'], $role);
+            foreach ($lst as $key => $value) {
+                set_data('users', 'username', $lst[$type.'_login'], $db[explode('_', $key])[1]], $value) or die("ERROR7777777777777777777");
+                add_email_key($lst[$type.'_login']);
+                send_confirm_letter($lst[$type.'_email']);
+                header("Location: /index.php");
+            }
+        }
     }
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>

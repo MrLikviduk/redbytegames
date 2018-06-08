@@ -104,10 +104,10 @@
         return (($result->num_rows) > 0 ? TRUE : FALSE);
     }
 
-    function get_role($username) { // Возвращает роль пользователя
+    function get_role($username, $table) { // Возвращает роль пользователя
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT roles.role FROM users LEFT JOIN roles ON roles.id = users.role_id WHERE users.username LIKE '$username' ");
+        $result = $mysqli->query("SELECT roles.role FROM $table LEFT JOIN roles ON roles.id = $table.role_id WHERE $table.username LIKE '$username' ");
         $mysqli->close();
         $row = $result->fetch_assoc();
         return $row['role'];
@@ -122,12 +122,13 @@
         return $row['email'];
     }
 
-    function add_email_key($username, $key) { // Добавляет ключ для подтверждения почты
+    function add_email_key($username) { // Добавляет ключ для подтверждения почты
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
         $result = $mysqli->query("SELECT id FROM users WHERE username LIKE '$username'") or die("ERROR");
         $row = $result->fetch_assoc();
         $id = $row['id'];
+        $key = md5(rand(-2147483647, 2147483647));
         $result = $mysqli->query("INSERT INTO email_keys (id, `user_id`, `key`) VALUES (NULL, $id, '$key')") or die("ERROR2");
         $mysqli->close();
     }
@@ -164,10 +165,10 @@
         return TRUE;
     }
 
-    function get_field($username, $name) { // Возвращает значение поля, которое находит по логину
+    function get_field($username, $name, $table = 'users') { // Возвращает значение поля, которое находит по логину
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM users WHERE username LIKE '$username'");
+        $result = $mysqli->query("SELECT * FROM $table WHERE username LIKE '$username'");
         $mysqli->close();
         if ($result === FALSE)
             return FALSE;
@@ -177,4 +178,34 @@
         return $row[$name];
     }
 
+    function data_is_set($table, $column, $data) {
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("SELECT $column FROM $table WHERE $column LIKE '$data'");
+        $mysqli->close();
+        if ($result === FALSE || $result->num_rows == 0)
+            return FALSE;
+        return TRUE;
+    }
+
+    function delete_date($table, $column, $data) {
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("DELETE FROM $table WHERE $column LIKE '$data'");
+        $mysqli->close();
+        if ($result === FALSE) {
+            return FALSE;
+        }
+        else
+            return TRUE;
+    }
+
+    function set_data($table, $unique_column, $unique_data, $column, $data) {
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("UPDATE $table SET $column = '$data' WHERE $unique_column LIKE '$unique_data'");
+        if ($result === FALSE)
+            return FALSE;
+        return TRUE;
+    }
 ?>
