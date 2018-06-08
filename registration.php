@@ -63,7 +63,7 @@
         }
     }
     else if (isset($_POST['submit'])) {
-        $type = $_POST['type']
+        $type = $_POST['type'];
         foreach ($_POST as $key => $value) {
             if (explode('_', $key)[0] == $type)
                 $lst[$key] = $value;
