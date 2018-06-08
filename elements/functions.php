@@ -188,7 +188,7 @@
         return TRUE;
     }
 
-    function delete_date($table, $column, $data) {
+    function delete_data($table, $column, $data) {
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
         $result = $mysqli->query("DELETE FROM $table WHERE $column LIKE '$data'");
