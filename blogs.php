@@ -38,6 +38,12 @@
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
+    if (isset($_POST['comment_submit']) && strlen($_POST['comment_content']) > 0 && strlen($_POST['comment_content']) < 1024 && can_do('add_comments')) {
+        $user_id = get_id_by_username($_SESSION['login']);
+        $blog_id = $_POST['comment_submit'];
+        add_comment($blog_id, $user_id, date('d.m.Y'), date('H:i'), $_POST['comment_content']);
+        header("Location: ".$_SERVER['DOCUMENT_ROOT']);
+    }
     include('header.php');
     if (can_do('edit_blog'))
         echo '<a href="elements/blog-editor.php" style="margin-left: 25vw; margin-top: 20px; display: inline-block;">Добавить запись</a>';
@@ -60,10 +66,14 @@
                 echo '
                     <form action="" method="POST" class="comment-editor">
                         <label for="comment_content" class="label">Комментарий: </label>
-                        <textarea name="comment_content" class="content" rows="5"></textarea>
-                        <input type="submit" name="comment_submit" value="Добавить комментарий" class="submit">
+                        <textarea name="comment_content" maxlength="1023" class="content" rows="5"></textarea>
+                        <input type="submit" name="comment_submit" value="Добавить комментарий" class="submit" value="'.$row['id'].'">
                     </form>
                 ';
+            }
+            $result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']);
+            while ($comments = $result->fetch_assoc()) {
+                show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content']);
             }
         }
         if ($_SESSION['num_of_rows'] < count($blog_notices) - 1) {

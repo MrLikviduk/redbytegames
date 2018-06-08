@@ -214,4 +214,36 @@
             return FALSE;
         return TRUE;
     }
+
+    function add_comment($blog_id, $user_id, $date, $time, $content) {
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("INSERT INTO comments (id, blog_id, `user_id`, creation_date, creation_time, content) VALUES (NULL, $blog_id, $user_id, '$date', '$time', '$content')");
+        $mysqli->close();
+        if ($result === FALSE)
+            return FALSE;
+        return TRUE;
+    }
+
+    function get_id_by_username($username, $table = 'users') { // Возвращает ид юзера
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("SELECT id FROM $table WHERE username LIKE '$username'");
+        $mysqli->close();
+        if ($result === FALSE || $result->num_rows == 0)
+            return FALSE;
+        $row = $result->fetch_assoc();
+        return $row['id'];
+    }
+
+    function get_username_by_id($id, $table = 'users') {
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("SELECT username FROM $table WHERE id LIKE '$id'");
+        $mysqli->close();
+        if ($result === FALSE || $result->num_rows == 0)
+            return FALSE;
+        $row = $result->fetch_assoc();
+        return $row['username'];
+    }
 ?>
