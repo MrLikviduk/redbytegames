@@ -72,7 +72,7 @@
                     </form>
                 ';
             }
-            $result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']);
+            $result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC");
             while ($comments = $result->fetch_assoc()) {
                 show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content']);
             }
