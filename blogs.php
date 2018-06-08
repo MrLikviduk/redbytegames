@@ -65,7 +65,7 @@
             if (can_do('add_comments')) {
                 echo '
                     <form action="" method="POST" class="comment-editor">
-                        <div id="fcn'.$row['id'].'" style="position: relative; top: -70px;"></div>
+						<div id="fcn'.$row['id'].'" style="position: relative; top: -70px;"></div>
                         <label for="comment_content" class="label">Комментарий: </label>
                         <textarea name="comment_content" maxlength="1023" class="content" rows="5"></textarea>
                         <input type="submit" name="comment_submit" value="Добавить комментарий" class="submit">
