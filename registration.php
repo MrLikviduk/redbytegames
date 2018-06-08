@@ -73,7 +73,7 @@
             delete_data('non_activated_employees', 'username', $lst[$type.'_login']);
             create_user($lst[$type.'_login'], $lst[$type.'_email'], $lst[$type.'_password'], $role) or die("ERROR1");
             foreach ($lst as $key => $value) {
-                set_data('users', 'username', $lst[$type.'_login'], $db[explode('_', $key)[1]], $value) or die("ERROR7777777777777777777");
+                set_data('users', 'username', $lst[$type.'_login'], $db[explode('_', $key)[1]], $value);
             }
             add_email_key($lst[$type.'_login']);
             send_confirm_letter($lst[$type.'_email']);
