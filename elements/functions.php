@@ -94,6 +94,7 @@
 			$username.'<br>'.$email.'<br>'.$password.'<br>'
 		);
         $mysqli->close();
+        return TRUE;
     }
 
     function user_is_set($username, $password) { // Проверяет, соответствуют ли логин и пароль одному из пользователей в базе данных
