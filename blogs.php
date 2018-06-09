@@ -48,7 +48,7 @@
     }
     if (isset($_POST['edit_comment'])) {
         if (user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_POST['edit_comment'], 'comments')['user_id']) {
-            $comment = get_by_id($_POST['dedit_comment'], 'comments');
+            $comment = get_by_id($_POST['edit_comment'], 'comments');
             $_SESSION['id_to_edit_comment'] = $comment['id'];
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
         }
