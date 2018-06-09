@@ -49,6 +49,15 @@
         echo '<a href="elements/blog-editor.php" style="margin-top: 20px; display: inline-block;">Добавить запись</a>';
 ?>
 <?php
+    echo "
+        <script>
+            function showOrHideComments (element_id) {
+                alert('CHECK');
+                document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? 'Скрыть комментарии' : 'Показать комментарии');
+                document.getElementById('comments' + element_id).style.display = (document.getElementById('comments' + element_id).style.display == 'block' ? 'none' : 'block');
+            })
+        </script>
+    ";
     if (isset($blog_notices)) {
         if ($_SESSION['num_of_rows'] > 0) {
             echo '
@@ -94,15 +103,6 @@
             ';
         }
     }
-    echo "
-    <script>
-        function showOrHideComments (element_id) {
-            alert('CHECK');
-            document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? 'Скрыть комментарии' : 'Показать комментарии');
-            document.getElementById('comments' + element_id).style.display = (document.getElementById('comments' + element_id).style.display == 'block' ? 'none' : 'block');
-        })
-    </script>
-";
 ?>
 
 <?php include('footer.php'); $mysqli->close(); ?>
