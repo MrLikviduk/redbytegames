@@ -80,11 +80,13 @@
                     </form>
                 ';
             }
-            echo '
-                <form action="" method="POST">
-                    <button name="show_or_hide_comments" class="show-comments-btn" value="'.$row['id'].'">Показать комментарии</button>
-                </form>
-            ';
+            if (($mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC"))->num_rows > 0) {
+                echo '
+                    <form action="" method="POST">
+                        <button name="show_or_hide_comments" class="show-comments-btn" value="'.$row['id'].'">Показать комментарии</button>
+                    </form>
+                ';
+            }
             if ($_SESSION['show_or_hide_comments'][$row['id']] === TRUE) {
                 $result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC");
                 while ($comments = $result->fetch_assoc()) {
