@@ -2,6 +2,10 @@ body, html {
     margin: 0;
     background: whitesmoke;
 }
+html {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
 button {
     cursor: pointer;
 }
