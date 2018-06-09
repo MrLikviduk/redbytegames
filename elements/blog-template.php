@@ -40,7 +40,7 @@
                     <div class="name">'.$name.'</div>
                     <div class="date-and-time">'.$date.' в '.$time.'</div>
                 </div>
-                <div class="content">
+                <div class="content" id="comment_content'.$id.'">
                     '.$content.'
                 </div>
                 ';
@@ -61,9 +61,9 @@
                     echo '</form>';
                 }
             echo '</div>';
-            if ($_SESSION['id_to_edit_comment'])
+            if ($_SESSION['id_to_edit_comment'] == $id)
                 echo "<script>
-                    document.getElementById('".$_SESSION['id_to_edit_comment']."').innerHTML = '".get_by_id($_SESSION['id_to_edit_comment'], 'comments')['content']."';
+                    document.getElementById('comment_content".$_SESSION['id_to_edit_comment']."').innerHTML = '".get_by_id($_SESSION['id_to_edit_comment'], 'comments')['content']."';
                 </script>";
     }
 ?>
