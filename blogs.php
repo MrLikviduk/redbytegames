@@ -87,7 +87,7 @@
             echo "
                 <script>
                     show_or_hide_comments".$row['id'].".addEventListener('click', function () {
-                        getElementById('comments".$row['id']."').style.display = (getElementById('comments".$row['id']."').style.display == 'block' ? 'none' : 'block');
+                        document.getElementById('comments".$row['id']."').style.display = (document.getElementById('comments".$row['id']."').style.display == 'block' ? 'none' : 'block');
                     })
                 </script>
             ";
