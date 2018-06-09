@@ -44,7 +44,7 @@
                     '.$content.'
                 </div>
                 ';
-                $v = user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($id, 'comments')['user_id']''
+                $v = user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($id, 'comments')['user_id'];
                 if ($v) {
                     echo '
                         <form action="" method="POST" class="panel">
