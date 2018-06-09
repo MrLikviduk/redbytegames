@@ -52,7 +52,7 @@
                     </div>
                 ';
             echo '
-                <form action="" method="POST">
+                <form action="" method="POST" style="text-align: center;">
                     <button name="quit_btn" class="btn">Выйти из учетной записи</button>
                 </form>
             ';
