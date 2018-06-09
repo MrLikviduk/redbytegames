@@ -40,7 +40,7 @@
                     <div class="name">'.$name.'</div>
                     <div class="date-and-time">'.$date.' в '.$time.'</div>
                 </div>
-                <div class="content" id="comment_content'.$id.'">
+                <div class="content">
                     '.$content.'
                 </div>
                 ';
