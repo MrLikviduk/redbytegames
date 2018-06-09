@@ -96,7 +96,7 @@
                 echo '
                     <form action="" method="POST" class="comment-editor">
                         <label for="comment_content" class="label">Комментарий: </label>
-                        <textarea name="comment_content" maxlength="1023" class="content" rows="5" id="comment_content'.$id.'"></textarea>
+                        <textarea name="comment_content" maxlength="1023" class="content" rows="5" id="comment_content'.$row['id'].'"></textarea>
                         <input type="submit" name="comment_submit" value="Добавить комментарий" class="submit">
                         <input type="hidden" name="blog_id" value="'.$row['id'].'">
                     </form>
