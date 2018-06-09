@@ -57,6 +57,14 @@
                 </form>
             ';
         }
+        echo "
+            <script>
+                function showOrHideComments (element_id) {
+                    document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? 'Скрыть комментарии' : 'Показать комментарии');
+                    document.getElementById('comments' + element_id).style.display = (document.getElementById('comments' + element_id).style.display == 'block' ? 'none' : 'block');
+                })
+            </script>
+        ";
         for ($j = 0; $j < count($blog_notices[$_SESSION['num_of_rows']]); $j++) {
             $row = $blog_notices[$_SESSION['num_of_rows']][$j];
             $date = explode('-' ,$row['creation_date']);
@@ -74,24 +82,17 @@
                 ';
             }
             $comments_result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC");
-            if ($comments_result->num_rows > 0) {
+            $comments_are_set = $comments_result->num_rows > 0;
+            if ($comments_are_set) {
                 echo '
-                    <div id="show_or_hide_comments'.$row['id'].'" class="show-comments-btn">Показать комментарии</div>
+                    <div id="show_or_hide_comments'.$row['id'].'" class="show-comments-btn" onclicked="showOrHideComments('.$row['id'].')">Показать комментарии</div>
                 ';
+                echo '<div style="display: none;" id="comments'.$row['id'].'">';
+                while ($comments = $comments_result->fetch_assoc()) {
+                    show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content']);
+                }
+                echo '</div>';
             }
-            echo '<div style="display: none;" id="comments'.$row['id'].'">';
-            while ($comments = $comments_result->fetch_assoc()) {
-                show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content']);
-            }
-            echo '</div>';
-            echo "
-                <script>
-                    document.getElementById('show_or_hide_comments".$row['id']."').addEventListener('click', function () {
-                        document.getElementById('show_or_hide_comments".$row['id']."').innerHTML = (document.getElementById('comments".$row['id']."').style.display == 'none' ? 'Скрыть комментарии' : 'Показать комментарии');
-                        document.getElementById('comments".$row['id']."').style.display = (document.getElementById('comments".$row['id']."').style.display == 'block' ? 'none' : 'block');
-                    })
-                </script>
-            ";
         }
         if ($_SESSION['num_of_rows'] < count($blog_notices) - 1) {
             echo '
