@@ -36,6 +36,16 @@ article h1 {
     right: 0;
     background-image: url('/img/del_blog.png');
 }
+.show-comments-btn {
+    width: 100%;
+    border: hsl(0, 80%, 40%) solid 1px;
+    background: hsl(0, 60%, 50%);
+    color: white;
+    text-align: center;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    padding: 10px;
+}
 .icon-blog.edit {
     right: 35px;
     background-image: url('/img/edit_blog.png');
