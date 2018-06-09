@@ -18,6 +18,11 @@
         send_confirm_letter($s) or die("ERROR TO RESEND");
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
+    if (isset($_POST['quit_btn'])) {
+        unset($_SESSION['login']);
+        unset($_SESSION['password']);
+        header("Location: ".$_SERVER['REQUEST_URI']);
+    }
     include('header.php');
 ?>
 <section class="authorization">
@@ -46,6 +51,11 @@
                         </p>
                     </div>
                 ';
+            echo '
+                <form action="" method="POST">
+                    <button name="quit_btn" class="btn">Выйти из учетной записи</button>
+                </form>
+            ';
         }
         else
             include($_SERVER['DOCUMENT_ROOT'].'/elements/to-authorizate.php');
