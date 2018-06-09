@@ -97,6 +97,7 @@
     echo "
     <script>
         function showOrHideComments (element_id) {
+            alert('CHECK');
             document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? 'Скрыть комментарии' : 'Показать комментарии');
             document.getElementById('comments' + element_id).style.display = (document.getElementById('comments' + element_id).style.display == 'block' ? 'none' : 'block');
         })
