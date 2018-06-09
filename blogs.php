@@ -59,7 +59,7 @@
         $blog_id = $_POST['blog_id'];
         if (isset($_SESSION['id_to_edit_comment']) && get_by_id($_SESSION['id_to_edit_comment'], 'comments')['blog_id'] == $_POST['blog_id']) {
             $mysqli->query("UPDATE comments SET content = '".$_POST['comment_content']."' WHERE id LIKE ".$_SESSION['id_to_edit_comment']);
-            unset($_SESSION['id_to_edit_blog']);
+            unset($_SESSION['id_to_edit_comment']);
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$_POST['blog_id']);
         }
         else {
