@@ -86,7 +86,7 @@
             echo '</div>';
             echo "
                 <script>
-                    document.getElementById(show_or_hide_comments".$row['id'].").addEventListener('click', function () {
+                    document.getElementById('show_or_hide_comments".$row['id']."').addEventListener('click', function () {
                         document.getElementById('comments".$row['id']."').style.display = (document.getElementById('comments".$row['id']."').style.display == 'block' ? 'none' : 'block');
                     })
                 </script>
