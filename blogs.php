@@ -57,14 +57,6 @@
                 </form>
             ';
         }
-        echo "
-            <script>
-                function showOrHideComments (element_id) {
-                    document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? 'Скрыть комментарии' : 'Показать комментарии');
-                    document.getElementById('comments' + element_id).style.display = (document.getElementById('comments' + element_id).style.display == 'block' ? 'none' : 'block');
-                })
-            </script>
-        ";
         for ($j = 0; $j < count($blog_notices[$_SESSION['num_of_rows']]); $j++) {
             $row = $blog_notices[$_SESSION['num_of_rows']][$j];
             $date = explode('-' ,$row['creation_date']);
@@ -102,6 +94,14 @@
             ';
         }
     }
+    echo "
+    <script>
+        function showOrHideComments (element_id) {
+            document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? 'Скрыть комментарии' : 'Показать комментарии');
+            document.getElementById('comments' + element_id).style.display = (document.getElementById('comments' + element_id).style.display == 'block' ? 'none' : 'block');
+        })
+    </script>
+";
 ?>
 
 <?php include('footer.php'); $mysqli->close(); ?>
