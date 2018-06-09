@@ -77,7 +77,7 @@
             $comments_are_set = $comments_result->num_rows > 0;
             if ($comments_are_set) {
                 echo '
-                    <div id="show_or_hide_comments'.$row['id'].'" class="show-comments-btn" onclicked="showOrHideComments('.$row['id'].')">Показать комментарии</div>
+                    <div id="show_or_hide_comments'.$row['id'].'" class="show-comments-btn" onclick="showOrHideComments('.$row['id'].')">Показать комментарии</div>
                 ';
                 echo '<div style="display: none;" id="comments'.$row['id'].'">';
                 while ($comments = $comments_result->fetch_assoc()) {
