@@ -46,7 +46,7 @@
     }
     include('header.php');
     if (can_do('edit_blog'))
-        echo '<a href="elements/blog-editor.php" style="margin-left: 25vw; margin-top: 20px; display: inline-block;">Добавить запись</a>';
+        echo '<a href="elements/blog-editor.php" style="margin-top: 20px; display: inline-block;">Добавить запись</a>';
 ?>
 <?php
     if (isset($blog_notices)) {
