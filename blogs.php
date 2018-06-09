@@ -38,6 +38,13 @@
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
+    if (isset($_POST['show_or_hide_comments'])) {
+        $t_id = $_POST['show_or_hide_comments'];
+        if (!isset($_SESSION['show_or_hide_comments'][$t_id])) $_SESSION['show_or_hide_comments'][$t_id] = FALSE;
+        $_SESSION['show_or_hide_comments'][$t_id] = !$_SESSION['show_or_hide_comments'][$t_id];
+        header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$t_id);
+
+    }
     if (isset($_POST['comment_submit']) && strlen($_POST['comment_content']) > 0 && strlen($_POST['comment_content']) < 1024 && can_do('add_comments')) {
         $user_id = get_id_by_username($_SESSION['login']);
         $blog_id = $_POST['blog_id'];
@@ -62,10 +69,10 @@
             $date = explode('-' ,$row['creation_date']);
             $date = $date[2].'.'.$date[1].'.'.$date[0];
             echo show_blog($row['header'], $row['content'], $date, $row['tags'], $row['id']);
+            echo '<div id="fcn'.$row['id'].'" style="position: relative; top: -70px;"></div>';
             if (can_do('add_comments')) {
                 echo '
                     <form action="" method="POST" class="comment-editor">
-						<div id="fcn'.$row['id'].'" style="position: relative; top: -70px;"></div>
                         <label for="comment_content" class="label">Комментарий: </label>
                         <textarea name="comment_content" maxlength="1023" class="content" rows="5"></textarea>
                         <input type="submit" name="comment_submit" value="Добавить комментарий" class="submit">
@@ -75,12 +82,14 @@
             }
             echo '
                 <form action="" method="POST">
-                    <button name="show_or_hide_comments" class="show-comments-btn">Показать комментарии</button>
+                    <button name="show_or_hide_comments" class="show-comments-btn" value="'.$row['id'].'">Показать комментарии</button>
                 </form>
             ';
-            $result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC");
-            while ($comments = $result->fetch_assoc()) {
-                show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content']);
+            if ($_SESSION['show_or_hide_comments'][$row['id']] === TRUE) {
+                $result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC");
+                while ($comments = $result->fetch_assoc()) {
+                    show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content']);
+                }
             }
         }
         if ($_SESSION['num_of_rows'] < count($blog_notices) - 1) {
