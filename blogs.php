@@ -75,7 +75,7 @@
             }
             echo '
                 <form action="" method="POST">
-                    <button name="show_or_hide_comments" class="show-comments-btn"></button>
+                    <button name="show_or_hide_comments" class="show-comments-btn">Показать комментарии</button>
                 </form>
             ';
             $result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC");
