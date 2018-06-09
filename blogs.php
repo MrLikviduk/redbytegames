@@ -84,15 +84,22 @@
             if ($comments_result->num_rows > 0) {
                 echo '
                     <form action="" method="POST">
-                        <button name="show_or_hide_comments" class="show-comments-btn" value="'.$row['id'].'">Показать комментарии</button>
+                        <button name="show_or_hide_comments'.$row['id'].'" class="show-comments-btn" value="'.$row['id'].'">Показать комментарии</button>
                     </form>
                 ';
             }
-            if ($_SESSION['show_or_hide_comments'][$row['id']] === TRUE) {
-                while ($comments = $comments_result->fetch_assoc()) {
-                    show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content']);
-                }
+            echo '<div style="display: none;" id="comments'.$row['id'].'"'>
+            while ($comments = $comments_result->fetch_assoc()) {
+                show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content']);
             }
+            echo '</div>';
+            echo "
+                <script>
+                    show_or_hide_comments".$row['id'].".addEventListener('click', function () {
+                        getElementById('comments".$row['id']."').style.display = (getElementById('comments".$row['id']."').style.display == 'block' ? 'none' : 'block');
+                    })
+                </script>
+            ";
         }
         if ($_SESSION['num_of_rows'] < count($blog_notices) - 1) {
             echo '
