@@ -76,9 +76,7 @@
             $comments_result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC");
             if ($comments_result->num_rows > 0) {
                 echo '
-                    <form action="" method="POST">
-                        <button name="show_or_hide_comments'.$row['id'].'" class="show-comments-btn" value="'.$row['id'].'">Показать комментарии</button>
-                    </form>
+                    <div id="show_or_hide_comments'.$row['id'].'" class="show-comments-btn">Показать комментарии</div>
                 ';
             }
             echo '<div style="display: none;" id="comments'.$row['id'].'">';

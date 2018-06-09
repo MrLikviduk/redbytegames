@@ -45,6 +45,7 @@ article h1 {
     letter-spacing: 2px;
     border-radius: 5px;
     padding: 10px;
+    cursor: pointer;
 }
 .icon-blog.edit {
     right: 35px;
