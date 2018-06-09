@@ -42,9 +42,10 @@ article h1 {
     background: hsl(0, 60%, 50%);
     color: white;
     text-align: center;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
     border-radius: 5px;
     padding: 10px;
+    font-size: 1.1rem;
 }
 .icon-blog.edit {
     right: 35px;
