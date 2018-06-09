@@ -89,7 +89,7 @@
                 ';
             }
             if ($_SESSION['show_or_hide_comments'][$row['id']] === TRUE) {
-                while ($comments_result = $result->fetch_assoc()) {
+                while ($comments = $comments_result->fetch_assoc()) {
                     show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content']);
                 }
             }
