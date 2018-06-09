@@ -76,7 +76,7 @@
             $comments_result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC");
             if ($comments_result->num_rows > 0) {
                 echo '
-                    <div id="show_or_hide_comments'.$row['id'].'" class="show-comments-btn">Показать комментарии</div>
+                    <div id="show_or_hide_comments'.$row['id'].'n" class="show-comments-btn">Показать комментарии</div>
                 ';
             }
             echo '<div style="display: none;" id="comments'.$row['id'].'">';
@@ -86,7 +86,7 @@
             echo '</div>';
             echo "
                 <script>
-                    show_or_hide_comments".$row['id'].".addEventListener('click', function () {
+                    show_or_hide_comments".$row['id']."n.addEventListener('click', function () {
                         document.getElementById('comments".$row['id']."').style.display = (document.getElementById('comments".$row['id']."').style.display == 'block' ? 'none' : 'block');
                     })
                 </script>
