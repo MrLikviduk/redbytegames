@@ -61,5 +61,9 @@
                     echo '</form>';
                 }
             echo '</div>';
+            if ($_SESSION['id_to_edit_comment'])
+                echo "<script>
+                    document.getElementById('".$_SESSION['id_to_edit_comment']."').innerHTML = '".get_by_id($_SESSION['id_to_edit_comment'], 'comments')['content']."';
+                </script>";
     }
 ?>
