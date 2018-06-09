@@ -46,6 +46,7 @@ article h1 {
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
+    user-select: none;
 }
 .icon-blog.edit {
     right: 35px;
