@@ -80,7 +80,8 @@
                     </form>
                 ';
             }
-            if (($mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC"))->num_rows > 0) {
+            $comments_result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC");
+            if ($comment_result->num_rows > 0) {
                 echo '
                     <form action="" method="POST">
                         <button name="show_or_hide_comments" class="show-comments-btn" value="'.$row['id'].'">Показать комментарии</button>
@@ -88,8 +89,7 @@
                 ';
             }
             if ($_SESSION['show_or_hide_comments'][$row['id']] === TRUE) {
-                $result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC");
-                while ($comments = $result->fetch_assoc()) {
+                while ($comments_result = $result->fetch_assoc()) {
                     show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content']);
                 }
             }
