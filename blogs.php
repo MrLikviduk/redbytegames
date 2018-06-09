@@ -38,13 +38,6 @@
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
-    if (isset($_POST['show_or_hide_comments'])) {
-        $t_id = $_POST['show_or_hide_comments'];
-        if (!isset($_SESSION['show_or_hide_comments'][$t_id])) $_SESSION['show_or_hide_comments'][$t_id] = FALSE;
-        $_SESSION['show_or_hide_comments'][$t_id] = !$_SESSION['show_or_hide_comments'][$t_id];
-        header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$t_id);
-
-    }
     if (isset($_POST['comment_submit']) && strlen($_POST['comment_content']) > 0 && strlen($_POST['comment_content']) < 1024 && can_do('add_comments')) {
         $user_id = get_id_by_username($_SESSION['login']);
         $blog_id = $_POST['blog_id'];
