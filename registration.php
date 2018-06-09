@@ -55,7 +55,7 @@
             if (strlen($value[0]) < $value[1])
                 $v = false;
         if ($v == TRUE) {
-            if (username_is_set($_POST['user_login']) == FALSE && email_is_set($_POST['user_email']) == FALSE && $_POST['user_password'] == $_POST['user_confirm_password'] && $_POST['user_policy'] == 'Yes') {
+            if (username_is_set($_POST['user_login']) == FALSE && email_is_set($_POST['user_email']) == FALSE && $_POST['user_password'] == $_POST['user_confirm_password'] && $_POST['user_policy'] == '1') {
                 create_user($_POST['user_login'], $_POST['user_email'], $_POST['user_password'], 'user');
                 add_email_key($_POST['user_login']);
                 send_confirm_letter($_POST['user_email']);
@@ -69,7 +69,7 @@
             if (explode('_', $key)[0] == $type)
                 $lst[$key] = $value;
         }
-        if (!email_is_set($lst[$type.'_email']) && data_is_set('non_activated_employees', 'username', $lst[$type.'_login']) && data_is_set('non_activated_employees', 'passwd', $lst[$type.'_password']) && get_role($lst[$type.'_login'], 'non_activated_employees') == $type) {
+        if (!email_is_set($lst[$type.'_email']) && data_is_set('non_activated_employees', 'username', $lst[$type.'_login']) && data_is_set('non_activated_employees', 'passwd', $lst[$type.'_password']) && get_role($lst[$type.'_login'], 'non_activated_employees') == $type && $_POST[$type.'_policy'] == '1') {
             $role = $type;
             delete_data('non_activated_employees', 'username', $lst[$type.'_login']);
             create_user($lst[$type.'_login'], $lst[$type.'_email'], $lst[$type.'_password'], $role) or die("ERROR1");
