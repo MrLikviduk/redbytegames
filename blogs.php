@@ -38,6 +38,14 @@
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
+    if (isset($_POST['delete_comment'])) {
+        if ((user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_comment_owner($_POST['delete_comment'])) || can_do('delete_comments')) {
+            $comment = get_by_id($_POST['delete_comment'], 'comments');
+            $blog_id = $comment['blog_id'];
+            $mysqli->query("DELETE FROM comments WHERE id LIKE ".$_POST['delete_comment']);
+            header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
+        }
+    }
     if (isset($_POST['comment_submit']) && strlen($_POST['comment_content']) > 0 && strlen($_POST['comment_content']) < 1024 && can_do('add_comments')) {
         $user_id = get_id_by_username($_SESSION['login']);
         $blog_id = $_POST['blog_id'];
@@ -89,7 +97,7 @@
                 ';
                 echo '<div style="display: none;" id="comments'.$row['id'].'">';
                 while ($comments = $comments_result->fetch_assoc()) {
-                    show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content']);
+                    show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content'], $comments['id']);
                 }
                 echo '</div>';
             }

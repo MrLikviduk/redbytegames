@@ -102,6 +102,8 @@
     }
 
     function user_is_set($username, $password) { // Проверяет, соответствуют ли логин и пароль одному из пользователей в базе данных
+        if (!isset($username) || !isset($password))
+            return FALSE;
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
         $result = $mysqli->query("SELECT * FROM users WHERE `username` LIKE '$username' AND `passwd` LIKE '$password'");
@@ -245,5 +247,26 @@
             return FALSE;
         $row = $result->fetch_assoc();
         return $row['username'];
+    }
+
+    function get_comment_author($id) {
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("SELECT users.username FROM comments INNER JOIN users ON users.id = comments.user_id WHERE comments.id LIKE $id");
+        $mysqli->close();
+        if ($result === FALSE)
+            return FALSE;
+        $row = $result->fetch_assoc();
+        return $row['username'];
+    }
+
+    function get_by_id($id, $table) {
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $result = $mysqli->query("SELECT * FROM `$table` WHERE id LIKE $id");
+        if ($result === FALSE)
+            return FALSE;
+        $row = $result->fetch_assoc();
+        return $row;
     }
 ?>

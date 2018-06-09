@@ -84,6 +84,17 @@ article h1 {
     margin: 20px 10px;
     position: relative;
 }
+.comment .panel .btn {
+    background: none;
+    border: none;
+    color: hsl(240, 100%, 30%);
+    display: inline-block;
+    margin: auto 10px;
+    margin-top: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    user-select: none;
+}
 .comment::after {
     content: "";
     display: block;

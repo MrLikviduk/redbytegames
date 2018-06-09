@@ -33,17 +33,21 @@
         ';
     }
 
-    function show_comment($name, $date, $time, $content) {
+    function show_comment($name, $date, $time, $content, $id) {
         echo '
-        <div class="comment">
-            <div class="top">
-                <div class="name">'.$name.'</div>
-                <div class="date-and-time">'.$date.' в '.$time.'</div>
+            <div class="comment">
+                <div class="top">
+                    <div class="name">'.$name.'</div>
+                    <div class="date-and-time">'.$date.' в '.$time.'</div>
+                </div>
+                <div class="content">
+                    '.$content.'
+                </div>
+                <form action="" method="POST" class="panel">
+                    <button class="btn" name="edit_comment" value="'.$id.'">Редактировать</button>
+                    <button class="btn" name="delete_comment" value="'.$id.'">Удалить</button>
+                </form>
             </div>
-            <div class="content">
-                '.$content.'
-            </div>
-        </div>
         ';
     }
 ?>
