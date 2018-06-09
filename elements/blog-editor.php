@@ -25,9 +25,8 @@
             $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, '$header', '$content', '$date', '$tags')") or die("Error");
         else {
             $t_id = $_SESSION['id_to_edit_blog'];
-            $mysqli->query("DELETE FROM blog WHERE id LIKE $t_id") or die("Blin(");
             $date = $to_edit['creation_date'];
-            $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES ($t_id, '$header', '$content', '$date', '$tags')") or die("Error");
+            $mysqli->query("UPDATE blog SET header = '$header', content = '$content', creation_date = '$date', tags = '$tags' WHERE id LIKE $t_id") or die("Error to edit");
         }
         $_SESSION['id_to_edit_blog'] = -1;
         header("Location: ".$_SERVER['REQUEST_URI']);
