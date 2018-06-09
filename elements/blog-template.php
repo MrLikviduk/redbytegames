@@ -57,7 +57,7 @@
                     ';
                 }
                 if ($v) {
-                    echo '</form>'
+                    echo '</form>';
                 }
             echo '</div>';
     }
