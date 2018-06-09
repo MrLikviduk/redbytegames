@@ -43,11 +43,16 @@
                 <div class="content">
                     '.$content.'
                 </div>
-                <form action="" method="POST" class="panel">
-                    <button class="btn" name="edit_comment" value="'.$id.'">Редактировать</button>
-                    <button class="btn" name="delete_comment" value="'.$id.'">Удалить</button>
-                </form>
-            </div>
-        ';
+                ';
+                if ((user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_comment_author($_POST['delete_comment'])) || can_do('delete_comments')) {
+                    echo '
+                        <form action="" method="POST" class="panel">
+                            <button class="btn" name="edit_comment" value="'.$id.'">Редактировать</button>
+                            <button class="btn" name="delete_comment" value="'.$id.'">Удалить</button>
+                        </form>
+                    ';
+                }
+                
+            echo '</div>';
     }
 ?>
