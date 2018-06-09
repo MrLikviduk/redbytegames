@@ -44,15 +44,21 @@
                     '.$content.'
                 </div>
                 ';
-                if ((user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($id, 'comments')['user_id']) || can_do('delete_comments')) {
+                $v = user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($id, 'comments')['user_id']''
+                if ($v) {
                     echo '
                         <form action="" method="POST" class="panel">
                             <button class="btn" name="edit_comment" value="'.$id.'">Редактировать</button>
-                            <button class="btn" name="delete_comment" value="'.$id.'">Удалить</button>
-                        </form>
                     ';
                 }
-                
+                if ($v || can_do('delete_comments')) {
+                    echo '
+                        <button class="btn" name="delete_comment" value="'.$id.'">Удалить</button>
+                    ';
+                }
+                if ($v) {
+                    echo '</form>'
+                }
             echo '</div>';
     }
 ?>
