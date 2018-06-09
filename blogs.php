@@ -88,7 +88,7 @@
                     </form>
                 ';
             }
-            echo '<div style="display: none;" id="comments'.$row['id'].'"'>
+            echo '<div style="display: none;" id="comments'.$row['id'].'">';
             while ($comments = $comments_result->fetch_assoc()) {
                 show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content']);
             }
