@@ -50,6 +50,7 @@
         if (user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_POST['edit_comment'], 'comments')['user_id']) {
             $comment = get_by_id($_POST['edit_comment'], 'comments');
             $_SESSION['id_to_edit_comment'] = $comment['id'];
+            $blog_id = $comment['blog_id'];
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
         }
     }
@@ -58,6 +59,7 @@
         $blog_id = $_POST['blog_id'];
         if (isset($_SESSION['id_to_edit_comment']) && get_by_id($_SESSION['id_to_edit_comment'], 'comments')['blog_id'] == $_POST['blog_id']) {
             $mysqli->query("UPDATE comments SET content = '".$_POST['comment_content']."' WHERE id LIKE ".$_SESSION['id_to_edit_comment']);
+            unset($_SESSION['is_to_edit_blog']);
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$_POST['blog_id']);
         }
         else {
