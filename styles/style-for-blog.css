@@ -37,7 +37,7 @@ article h1 {
     background-image: url('/img/del_blog.png');
 }
 .show-comments-btn {
-    width: 100%;
+    width: auto;
     border: hsl(0, 80%, 40%) solid 1px;
     background: hsl(0, 60%, 50%);
     color: white;
