@@ -33,8 +33,8 @@
         echo '<p class="error-text" style="display: none;" id="'.$type_name.'_error_text">Количество символов не должно быть меньше '.$min.'</p>';
         echo "
             <script>
-                function changed_input() {
-                    var value = $(this).val();
+                function changed_input(obj) {
+                    var value = $(obj).val();
                     var error = $('#".$type_name."_error_text');
                     if ('".$name."' == 'confirm_password') {
                         if ($('#".$type.'_'.'password'."').val() != value) {
@@ -56,8 +56,8 @@
                     else
                         error.css('display', 'none');
                 }
-                $('#".$type_name."').keyup(changed_input());
-                $('#".$type_name."').changed(changed_input());
+                $('#".$type_name."').keyup(changed_input(this));
+                $('#".$type_name."').changed(changed_input(this));
             </script>
         ";
     }
