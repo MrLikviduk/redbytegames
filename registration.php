@@ -35,6 +35,7 @@
             <script>
                 $('#".$type_name."').keyup(function () {
                     var value = $(this).val();
+                    console.log(value);
                     if (value < ".$min.") {
                         $('#".$type_name."_error_text').css('display', 'block');
                     }
