@@ -41,6 +41,9 @@
                             error.html('Пароли не совпадают');
                             error.css('display', 'block');
                         }
+                        else {
+                            error.css('display', 'none');
+                        }
                     }
                     else if (value.length == 0 && ".$min." > 0) {
                         error.html('Поле не должно быть пустым');
