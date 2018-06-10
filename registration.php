@@ -36,7 +36,7 @@
                 $('#".$type_name."').keyup(function () {
                     var value = $(this).val();
                     var error = $('#".$type_name."_error_text');
-                    if ('".$name."' == 'confirm_password' && $('#".$type.'_'.'password'"').val() != value) {
+                    if ('".$name."' == 'confirm_password' && $('#".$type.'_'.'password'."').val() != value) {
                         error.html('Пароли не совпадают');
                         error.css('display', 'block');
                     }
