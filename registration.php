@@ -30,13 +30,16 @@
                 <input type="'.$type_of_input.'" maxlength="'.$max.'" class="text" name="'.$type_name.'" id="'.$type_name.'">
             ';
         }
+        echo '<p class="error-text" style="display: none;" id="'.$type_name.'_error_text">Количество символов не должно быть меньше '.$min.'</p>';
         echo "
             <script>
                 $('#".$type_name."').keyup(function () {
                     var value = $(this).val();
                     if (value < ".$min.") {
-                        document.write('<p class=\"error-text\">Количество символов не должно быть меньше ".$min."</p>');
+                        $('#".$type_name."_error_text').css('display', 'block');
                     }
+                    else
+                    $('#".$type_name."_error_text').css('display', 'none');
                 });
             </script>
         ";
