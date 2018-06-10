@@ -30,10 +30,12 @@
                 <input type="'.$type_of_input.'" maxlength="'.$max.'" class="text" name="'.$type_name.'" id="'.$type_name.'">
             ';
         }
-        if (isset($_POST[$type_name])) {
-            if (strlen($_POST[$type_name]) < $min)
-                echo '<p class="error-text">Количество символов не может быть меньше '.$min.'</p>';
-        }
+        echo "
+            <script>
+                var obj = $.('#".$type_name."');
+                documetn.write(obj.val());
+            </script>
+        ";
     }
     function input_checkbox($type, $name, $label) {
         echo '
