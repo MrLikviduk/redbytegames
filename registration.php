@@ -185,4 +185,4 @@
         document.getElementById('form' + $.cookie('s')).style.display = 'block';
     }
 </script>
-<?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php') ?> <!-- comment -->
