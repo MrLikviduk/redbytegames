@@ -32,7 +32,7 @@
         }
         echo "
             <script>
-                var obj = $.('#".$type_name."');
+                var obj = $('#".$type_name."');
                 document.write(obj.val());
             </script>
         ";
