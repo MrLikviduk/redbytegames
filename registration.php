@@ -33,7 +33,7 @@
         echo "
             <script>
                 var obj = $.('#".$type_name."');
-                documetn.write(obj.val());
+                document.write(obj.val());
             </script>
         ";
     }
