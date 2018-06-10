@@ -56,8 +56,8 @@
                     else
                         error.css('display', 'none');
                 }
-                $('#".$type_name."').keyup(changed_input(this));
-                $('#".$type_name."').change(changed_input(this));
+                $('#".$type_name."').keyup(changed_input('#".$type_name."'));
+                $('#".$type_name."').change(changed_input('#".$type_name."'));
             </script>
         ";
     }
