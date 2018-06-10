@@ -36,9 +36,11 @@
                 $('#".$type_name."').keyup(function () {
                     var value = $(this).val();
                     var error = $('#".$type_name."_error_text');
-                    if ('".$name."' == 'confirm_password' && $('#".$type.'_'.'password'."').val() != value) {
-                        error.html('Пароли не совпадают');
-                        error.css('display', 'block');
+                    if ('".$name."' == 'confirm_password') {
+                        if ($('#".$type.'_'.'password'."').val() != value) {
+                            error.html('Пароли не совпадают');
+                            error.css('display', 'block');
+                        }
                     }
                     else if (value.length == 0 && ".$min." > 0) {
                         error.html('Поле не должно быть пустым');
