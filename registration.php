@@ -33,6 +33,8 @@
         echo '<p class="error-text" style="display: none;" id="'.$type_name.'_error_text">Количество символов не должно быть меньше '.$min.'</p>';
         echo "
             <script>
+                $('#".$type_name."').keyup(changed_input());
+                $('#".$type_name."').change(changed_input());
                 function changed_input () {
                     var value = $('#".$type_name."').val();
                     var error = $('#".$type_name."_error_text');
@@ -56,8 +58,6 @@
                     else
                         error.css('display', 'none');
                 }
-                $('#".$type_name."').keyup(changed_input());
-                $('#".$type_name."').change(changed_input());
             </script>
         ";
     }
