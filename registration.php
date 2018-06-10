@@ -33,7 +33,7 @@
         echo '<p class="error-text" style="display: none;" id="'.$type_name.'_error_text">Количество символов не должно быть меньше '.$min.'</p>';
         echo "
             <script>
-                $('#".$type_name."').keyup(function () {
+                function Changed() {
                     var value = $(this).val();
                     var error = $('#".$type_name."_error_text');
                     if ('".$name."' == 'confirm_password') {
@@ -55,7 +55,9 @@
                     }
                     else
                         error.css('display', 'none');
-                });
+                }
+                $('#".$type_name."').keyup(Changed());
+                $('#".$type_name."').changed(Changed());
             </script>
         ";
     }
