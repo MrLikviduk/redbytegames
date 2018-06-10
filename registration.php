@@ -32,8 +32,12 @@
         }
         echo "
             <script>
-                var obj = $('#".$type_name."');
-                document.write(obj.val());
+                $('#".$type_name."').keyup(function () {
+                    var value = $(this).val();
+                    if (value < ".$min.") {
+                        document.write('<p class=\"error-text\">Количество символов не должно быть меньше ".$min."</p>');
+                    }
+                });
             </script>
         ";
     }
