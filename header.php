@@ -45,7 +45,7 @@
             <a href="/blogs" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element">Блог</div>
             </a>
-            <a href="" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+            <a href="/projects" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element">Проекты</div>
             </a>
             <a href="" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
@@ -81,7 +81,7 @@
                 <a href="/blogs">
                     <div class="nav-element">Блог</div>
                 </a>
-                <a href="">
+                <a href="/projects">
                     <div class="nav-element">Проекты</div>
                 </a>
                 <a href="">
