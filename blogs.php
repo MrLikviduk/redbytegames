@@ -66,6 +66,10 @@
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
         }
     }
+    if (user_is_set($_SESSION['login'], $_SESSION['password']) && get_field($_SESSION['login'], 'banned', 'users') == '1' && intval(date('U')) > intval(get_field($_SESSION['login'], 'unban_time', 'users'))) {
+        set_data('users', 'username', $_SESSION['login'], 'banned', 0);
+        set_data('users', 'username', $_SESSION['login'], 'unban_time', NULL);
+    }
     if (isset($_POST['comment_submit']) && strlen($_POST['comment_content']) > 0 && strlen($_POST['comment_content']) < 1024 && can_do('add_comments') && get_field($_SESSION['login'], 'banned') == '0') {
         $user_id = get_id_by_username($_SESSION['login']);
         $blog_id = $_POST['blog_id'];
