@@ -7,7 +7,7 @@
         if (can_do('edit_blog')) {
             echo '<form action="" method="post">
                     <button class="icon-blog edit" name="edit_blog" value="'.$id.'"></button>
-                    <button class="icon-blog delete" name="delete_blog" value="'.$id.'"></button>
+                    <button class="icon-blog delete" name="delete_blog" value="'.$id.'" onclick="return confirm(\'Вы уверены, что хотите удалить запись из блога?\')"></button>
                 </form>
                 ';
             
