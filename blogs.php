@@ -62,7 +62,7 @@
             $user_id = get_by_id($_POST['ban_user'], 'comments')['user_id'];
             $mysqli->query("DELETE FROM comments WHERE `user_id` LIKE $user_id");
             set_data('users', 'id', $user_id, 'banned', 1);
-            header("Location ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
+            header("Location ".$_SERVER['REQUEST_URI']);
         }
     }
     if (isset($_POST['comment_submit']) && strlen($_POST['comment_content']) > 0 && strlen($_POST['comment_content']) < 1024 && can_do('add_comments')) {
