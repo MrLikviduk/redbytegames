@@ -275,4 +275,21 @@
             $user_id = get_id_by_username($_SESSION['login']);
         return user_is_set($_SESSION['login'], $_SESSION['password']) && $user_id == get_by_id($id, 'comments')['user_id'];
     }
+
+    function seconds_to_time($s) { // Распределяет секунды по большим величинам
+        if ($s <= 60)
+            return '1 мин';
+        $ans = '';
+        if ($s >= 86400) {
+            $ans = $ans.(($s - $s % 86400) / 86400).' дн';
+            $s = $s % 86400;
+        }
+        if ($s >= 3600) {
+            $ans = $ans.(($s - $s % 3600) / 3600).' ч';
+        }
+        if ($s >= 60) {
+            $ans = $ans.(($s - $s % 3600) / 3600).' мин';
+        }
+        return $ans;
+    }
 ?>
