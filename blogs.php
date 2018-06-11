@@ -110,7 +110,7 @@
                 echo '
                     <form action="" method="POST" class="comment-editor">
                         <label for="comment_content" class="label">Комментарий: </label>
-                        <textarea name="comment_content" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' maxlength="1023" class="content" rows="5" id="comment_content'.$row['id'].'"></textarea>
+                        <textarea name="comment_content" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' maxlength="1023" class="content" rows="5" id="comment_content'.$row['id'].'">'.(get_field($_SESSION['login'], 'banned') == '1' ? 'Вы не можете оставлять комментарии, так как были заблокированы модератором.' : '').'</textarea>
                         <input type="submit" name="comment_submit" value="Добавить комментарий" class="submit">
                         <input type="hidden" name="blog_id" value="'.$row['id'].'">
                     </form>
