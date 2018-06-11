@@ -58,7 +58,10 @@
         if (can_do('ban_users')) {
             $comment = get_by_id($_POST['ban_user'], 'comments');
             $blog_id = $comment['blog_id'];
-            $ban_time = 100000;
+            if ($_POST['days'] >= 0 && $_POST['hours'] >= 0)
+                $ban_time = $_POST['days'] * 86400 + $_POST['hours'] * 3600;
+            else
+                $ban_time = 0;
             $user_id = get_by_id($_POST['ban_user'], 'comments')['user_id'];
             $mysqli->query("DELETE FROM comments WHERE `user_id` LIKE $user_id");
             set_data('users', 'id', $user_id, 'banned', 1);
