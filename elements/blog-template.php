@@ -53,12 +53,12 @@
                 }
                 if (is_own_comment($id) || can_do('delete_comments')) {
                     echo '
-                        <button class="btn" name="delete_comment" value="'.$id.'">Удалить</button>
+                        <button class="btn" name="delete_comment" value="'.$id.'" onclick="return confirm(\'Вы действительно хотите удалить комментарий?\')">Удалить</button>
                     ';
                 }
                 if (can_do('ban_users')) {
                     echo '
-                        <button class="btn" name="ban_user" value="'.$id.'">Заблокировать</button>
+                        <button class="btn" name="ban_user" value="'.$id.'" onclick="return confirm(\'Вы действительно хотите заблокировать пользователя?\')">Заблокировать</button>
                     ';
                 }
                 if (is_own_comment($id) || can_do('delete_comments')) {
