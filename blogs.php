@@ -58,13 +58,15 @@
         if (can_do('ban_users')) {
             $comment = get_by_id($_POST['ban_user'], 'comments');
             $blog_id = $comment['blog_id'];
+            $ban_time = 30;
             $user_id = get_by_id($_POST['ban_user'], 'comments')['user_id'];
             $mysqli->query("DELETE FROM comments WHERE `user_id` LIKE $user_id");
             set_data('users', 'id', $user_id, 'banned', 1);
+            set_data('users', 'id', $user_id, 'unban_time', intval(date('U')) + $ban_time);
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
         }
     }
-    if (isset($_POST['comment_submit']) && strlen($_POST['comment_content']) > 0 && strlen($_POST['comment_content']) < 1024 && can_do('add_comments')) {
+    if (isset($_POST['comment_submit']) && strlen($_POST['comment_content']) > 0 && strlen($_POST['comment_content']) < 1024 && can_do('add_comments') && get_field($_SESSION['username'], 'banned') == 0) {
         $user_id = get_id_by_username($_SESSION['login']);
         $blog_id = $_POST['blog_id'];
         if (isset($_SESSION['id_to_edit_comment']) && get_by_id($_SESSION['id_to_edit_comment'], 'comments')['blog_id'] == $_POST['blog_id'] && user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_SESSION['id_to_edit_comment'], 'comments')['user_id']) {
@@ -108,7 +110,7 @@
                 echo '
                     <form action="" method="POST" class="comment-editor">
                         <label for="comment_content" class="label">Комментарий: </label>
-                        <textarea name="comment_content" maxlength="1023" class="content" rows="5" id="comment_content'.$row['id'].'"></textarea>
+                        <textarea name="comment_content" '.(get_field($_SESSION['username'], 'banned') == 1 ? 'disabled' : '').' maxlength="1023" class="content" rows="5" id="comment_content'.$row['id'].'"></textarea>
                         <input type="submit" name="comment_submit" value="Добавить комментарий" class="submit">
                         <input type="hidden" name="blog_id" value="'.$row['id'].'">
                     </form>
