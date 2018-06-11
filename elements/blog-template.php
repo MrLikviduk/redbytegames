@@ -56,7 +56,7 @@
                         <button class="btn" name="delete_comment" value="'.$id.'" onclick="return confirm(\'Вы действительно хотите удалить комментарий?\')">Удалить</button>
                     ';
                 }
-                if (can_do('ban_users')) {
+                if (can_do('ban_users') && !is_own_comment($id)) {
                     echo '
                         <button class="btn" name="ban_user" value="'.$id.'" onclick="return confirm(\'Вы действительно хотите заблокировать пользователя?\')">Заблокировать</button> на <input type="number" name="days" style="width: 50px" value="0" min="0" max="10000"> дней <input type="number" name="hours" style="width: 50px" value="0" min="0" max="23"> часов
                     ';
