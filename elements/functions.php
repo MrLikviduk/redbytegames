@@ -269,4 +269,10 @@
         $row = $result->fetch_assoc();
         return $row;
     }
+
+    function is_own_comment($id, $user_id = NULL) { // Проверяет, принадлежит ли коммент юзеру
+        if (!isset($user_id))
+            $user_id = get_id_by_username($_SESSION['login']);
+        return user_is_set($_SESSION['login'], $_SESSION['password']) && $user_id == get_by_id($id, 'comments')['user_id'];
+    }
 ?>
