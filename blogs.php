@@ -55,7 +55,7 @@
         }
     }
     if (isset($_POST['ban_user'])) {
-        if (can_do('ban_user')) {
+        if (can_do('ban_users')) {
             $comment = get_by_id($_POST['edit_comment'], 'comments');
             $_SESSION['id_to_edit_comment'] = $comment['id'];
             $blog_id = $comment['blog_id'];
