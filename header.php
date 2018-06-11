@@ -36,13 +36,13 @@
         </nav>
         <div class="nav-menu menu_is-open" id="menu">
             <div style="height: 20px;"></div>
-            <a href="/index.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+            <a href="/index" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element">Главная</div>
             </a>
-            <a href="/about-us.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+            <a href="/about-us" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element">О нас</div>
             </a>
-            <a href="/blogs.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+            <a href="/blogs" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element">Блог</div>
             </a>
             <a href="#contacts" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
@@ -72,13 +72,13 @@
                 </div>
             </div>
             <div class="nav-elements">
-                <a href="/index.php">
+                <a href="/index">
                     <div class="nav-element">Главная</div>
                 </a>
-                <a href="/about-us.php">
+                <a href="/about-us">
                     <div class="nav-element">О нас</div>
                 </a>
-                <a href="/blogs.php">
+                <a href="/blogs">
                     <div class="nav-element">Блог</div>
                 </a>
                 <a href="">
