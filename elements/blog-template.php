@@ -58,7 +58,7 @@
                 }
                 if (can_do('ban_users')) {
                     echo '
-                        <button class="btn" name="ban_user" value="'.$id.'" onclick="return confirm(\'Вы действительно хотите заблокировать пользователя?\')">Заблокировать</button> на <input type="number" name="days" style="width: 40px"> дней <input type="number" name="hours" style="width: 40px"> часов
+                        <button class="btn" name="ban_user" value="'.$id.'" onclick="return confirm(\'Вы действительно хотите заблокировать пользователя?\')">Заблокировать</button> на <input type="number" name="days" style="width: 50px" value="0" max="10000"> дней <input type="number" name="hours" style="width: 50px" value="23"> часов
                     ';
                 }
                 if (is_own_comment($id) || can_do('delete_comments')) {
