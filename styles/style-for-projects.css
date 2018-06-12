@@ -1,0 +1,51 @@
+main {
+    padding: 10px 5vw;
+    text-align: center;
+}
+.pct-cover {
+    width: 250px;
+    height: 350px;
+    background: hsla(0, 60%, 50%, 0.9);
+    opacity: 0;
+    cursor: pointer;
+    transition: .5s;
+}
+.project {
+    width: 250px;
+    height: 350px;
+    background: 50%/cover no-repeat;
+    position: relative;
+    transition: .5s;
+    margin: 10px;
+    display: inline-block;
+    box-shadow: 0 2px 1px hsl(0, 60%, 50%);
+}
+.project h2 {
+    color: white;
+    text-align: center;
+    font-weight: 900;
+    font-size: 2rem;
+    user-select: none;
+    opacity: 0;
+    line-height: 320px;
+    transition: .5s;
+    width: 100%;
+    margin: 0;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+.project:hover {
+    transform: translateY(-15px);
+    box-shadow: 5px 10px 13px hsl(0, 60%, 50%);
+}
+.pct-cover:hover {
+    opacity: 1;
+}
+.pct-cover:hover h2 {
+    opacity: 1;
+}
+@media (min-width: 1210px) {
+    main {
+        padding: 10px 15vw;
+    }
+}

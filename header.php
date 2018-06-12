@@ -5,16 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css?v<?=time()?>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="/js_scripts/jquery.cookie.js"></script>
     <?php
         if ($page_name == 'О нас')
-            echo '<link rel="stylesheet" href="/styles/style-for-about-us.css">';
+            echo '<link rel="stylesheet" href="/styles/style-for-about-us.css?v'.time().'">';
         else if ($page_name == 'Блог')
-            echo '<link rel="stylesheet" href="/styles/style-for-blog.css">';
+            echo '<link rel="stylesheet" href="/styles/style-for-blog.css?v'.time().'">';
         else if ($page_name == 'Редактор блога' || $page_name == 'Выбор картинки')
-            echo '<link rel="stylesheet" href="/styles/style-for-blog-editor.css">';
+            echo '<link rel="stylesheet" href="/styles/style-for-blog-editor.css?v'.time().'">';
+        else if ($page_name == 'Проекты')
+            echo '<link rel="stylesheet" href="/styles/style-for-projects.css?v'.time().'">';
     ?>
     <title>Red Byte Games - больше, чем игры</title>
 </head>
@@ -45,7 +47,7 @@
             <a href="/blogs" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element">Блог</div>
             </a>
-            <a href="/projects" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+            <a href="/projects.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element">Проекты</div>
             </a>
             <a href="" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
@@ -81,7 +83,7 @@
                 <a href="/blogs">
                     <div class="nav-element">Блог</div>
                 </a>
-                <a href="/projects">
+                <a href="/projects.php">
                     <div class="nav-element">Проекты</div>
                 </a>
                 <a href="">
