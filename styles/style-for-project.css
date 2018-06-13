@@ -1,0 +1,47 @@
+main {
+    padding: 10px 5vw;
+}
+.box-art {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+}
+.tech-params {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 30px;
+    margin-top: 50px;
+}
+.paragraph-name {
+    margin-bottom: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+.show-paragraph {
+    height: 20px;
+    width: 20px;
+    background: url('/img/down_arrow.png') 50%/cover no-repeat;
+    display: inline-block;
+    margin: 0 10px;
+    margin-top: 5px;
+}
+.tech-params .property-key {
+    font-weight: bold;
+    min-width: 120px;
+    display: inline-block;
+}
+.tech-params .property-value {
+    display: inline-block;
+}
+.description {
+    margin: 0;
+    margin-top: 20px;
+}
+.description strong {
+    font-size: 1.1rem;
+}
+@media (min-width: 1210px) {
+    main {
+        padding: 10px 20vw;
+    }
+}

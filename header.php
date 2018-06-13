@@ -17,6 +17,9 @@
             echo '<link rel="stylesheet" href="/styles/style-for-blog-editor.css?v'.time().'">';
         else if ($page_name == 'Проекты')
             echo '<link rel="stylesheet" href="/styles/style-for-projects.css?v'.time().'">';
+        else if (isset($is_project) && $is_project === TRUE) {
+            echo '<link rel="stylesheet" href="/styles/style-for-project.css?v'.time().'">';
+        }
     ?>
     <title>Red Byte Games - больше, чем игры</title>
 </head>

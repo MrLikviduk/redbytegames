@@ -24,6 +24,12 @@
         return true;
     }
 
+    function connect_to_database() { // Подключение к базе данных
+        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
+        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        return $mysqli;
+    }
+
     function make_upload($file, $id){	
         // формируем уникальное имя картинки: случайное число и name
         $name = $file['name'];
@@ -264,7 +270,7 @@
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
         $result = $mysqli->query("SELECT * FROM `$table` WHERE id LIKE $id");
-        if ($result === FALSE)
+        if ($result === FALSE || $result->num_rows == 0)
             return FALSE;
         $row = $result->fetch_assoc();
         return $row;
@@ -293,5 +299,20 @@
             $s = $s % 60;
         }
         return $ans;
+    }
+
+    function return_404() { // Возвращает ошибку 404
+        $error_404_text = "
+            <h1>Not Found</h1>
+                The requested document was not found on this server.
+            <p>
+            </p><hr>
+            <address>
+                Web Server at redbytegames.ru
+            </address>
+            ";  
+        http_response_code(404);
+        echo $error_404_text;
+        exit;
     }
 ?>
