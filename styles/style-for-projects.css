@@ -19,16 +19,19 @@ main {
     margin: 10px;
     display: inline-block;
     box-shadow: 0 2px 1px hsl(0, 60%, 50%);
+    vertical-align: top;
 }
 .project h2 {
     color: white;
     text-align: center;
     font-weight: 900;
+    position: absolute;
+    bottom: 0;
     font-size: 2rem;
     user-select: none;
     opacity: 0;
-    line-height: 320px;
     transition: .5s;
+    height: 230px;
     width: 100%;
     margin: 0;
     padding: 0 5px;
@@ -37,6 +40,16 @@ main {
 .project:hover {
     transform: translateY(-15px);
     box-shadow: 5px 10px 13px hsl(0, 60%, 50%);
+}
+.add-project {
+    text-align: left;
+}
+.add-project label {
+    min-width: 170px;
+    display: inline-block;
+}
+.add-project .text {
+    width: 200px;
 }
 .pct-cover:hover {
     opacity: 1;

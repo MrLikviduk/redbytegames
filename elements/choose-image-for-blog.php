@@ -27,7 +27,6 @@
         }
     }
     
-
     if (!isset($pictures)) {
         $pictures = [];
         $result = $files;

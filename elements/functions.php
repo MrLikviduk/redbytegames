@@ -30,12 +30,11 @@
         return $mysqli;
     }
 
-    function make_upload($file, $id){	
-        // формируем уникальное имя картинки: случайное число и name
+    function make_upload($file, $id, $dir_name){	
         $name = $file['name'];
         $tmp = explode('.', $name);
         $name = $id.'.'.$tmp[count($tmp) - 1];
-        copy($file['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/blog_img/'.$name);
+        copy($file['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/'.$dir_name.'/'.$name);
     }
 
     function can_do($action) { // Может ли юзер делать то, что передано в качестве аргумента
@@ -57,7 +56,7 @@
             }
         }
         if ($role != 'guest') {
-            $result = $mysqli->query("SELECT activated FROM users WHERE `username` LIKE'".$_SESSION['login']."'");
+            $result = $mysqli->query("SELECT activated FROM users WHERE `username` LIKE '".$_SESSION['login']."'");
             $row = $result->fetch_assoc();
             if ($row['activated'] == 0) {
                 $mysqli->close();
@@ -117,7 +116,7 @@
         return (($result->num_rows) > 0 ? TRUE : FALSE);
     }
 
-    function get_role($username, $table) { // Возвращает роль пользователя
+    function get_role($username, $table = 'users') { // Возвращает роль пользователя
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
         $result = $mysqli->query("SELECT roles.role FROM $table LEFT JOIN roles ON roles.id = $table.role_id WHERE $table.username LIKE '$username' ");

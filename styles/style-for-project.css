@@ -12,6 +12,56 @@ main {
     margin: 0 30px;
     margin-top: 50px;
 }
+.comment {
+    width: 80vw;
+    margin: 20px 10px;
+    position: relative;
+}
+
+.comment::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -17px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #666;
+}
+.comment .rating {
+    color: #666;
+}
+.comment-editor .label {
+    display: block;
+}
+.comment-editor .content {
+    display: block;
+    width: 80vw;
+}
+.comment-editor .submit {
+    display: block;
+    margin: 10px 0;
+    padding: 5px;
+}
+.comment .name {
+    display: inline-block;
+    margin: auto 5px;
+    font-weight: bold;
+}
+.comment .date-and-time {
+    display: inline-block;
+    color: gray;
+    font-size: 90%;
+}
+.comment .rating-stars {
+    display: inline-block;
+}
+.rating-star {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin: 0 2px;
+}
 .paragraph-name {
     margin-bottom: 5px;
     cursor: pointer;
@@ -39,6 +89,26 @@ main {
 }
 .description strong {
     font-size: 1.1rem;
+}
+@media (min-width: 800px) {
+    .comment {
+        width: 60vw;
+        margin-left: 15px;
+    }
+    .comment-editor .content {
+        display: block;
+        width: 60vw;
+    }
+}
+@media (min-width: 1200px) {
+    .comment {
+        width: 40vw;
+        margin-left: 15px;
+    }
+    .comment-editor .content {
+        display: block;
+        width: 40vw;
+    }
 }
 @media (min-width: 1210px) {
     main {
