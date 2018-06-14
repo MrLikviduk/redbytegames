@@ -53,7 +53,7 @@
         $row = $result->fetch_assoc();
         $rating = $row['avg(rating)'];
         $rating = round($rating, 1);
-        echo '('.$rating.')';
+        echo '('.number_format($rating, 1).')';
     ?>
 </div>
 <script>
