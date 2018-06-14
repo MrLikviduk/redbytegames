@@ -129,7 +129,7 @@
 ?>
 <div class="average-rating-stat">
     <div class="average-number">
-        <?php echo $rating; ?>
+        <?php echo number_format($rating, 1); ?>
     </div>
     <div class="rating-stars">
         <?php
