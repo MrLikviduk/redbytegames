@@ -50,7 +50,8 @@
     </div>
     <?php
         $result = $mysqli->query("SELECT project_id, avg(rating) FROM `projects_comments` WHERE project_id LIKE '".$_GET['id']."' GROUP BY project_id");
-        $rating = $result['avg(rating)'];
+        $row = $result->fetch_assoc();
+        $rating = $row['avg(rating)'];
         echo '('.$rating.')';
     ?>
 </div>
