@@ -30,43 +30,45 @@
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
 <img src="/projects_img/<?=$result['box_art_name']?>" alt="<?=$result['name']?>" class="box-art">
-<div class="tech-params">
-    <?php
-        show_tech_param('Название: ', $result['name']);
-        $lst = unserialize(base64_decode($result['tech_params']));
-        if (!($lst == NULL))
-            foreach ($lst as $key => $value) {
-                show_tech_param($key, $value);
-            }
-    ?>
-</div>
-<div class="average-rating">
-    <?php
-        $result2 = $mysqli->query("SELECT project_id, avg(rating) FROM `projects_comments` WHERE project_id LIKE '".$_GET['id']."' GROUP BY project_id");
-        $row = $result2->fetch_assoc();
-        $rating = $row['avg(rating)'];
-        $rating = round($rating, 1);
-        $rating_for_stars = intval($rating * 10);
-        $kol = floor($rating_for_stars / 10);
-        $ost = $rating_for_stars % 10;
-        if ($ost >= 0 && $ost <= 2) $ost = 0;
-        else if ($ost >= 3 && $ost <= 7) $ost = 5;
-        else if ($ost >= 8 && $ost <= 9) {
-            $ost = 0;
-            $kol++;
-        }
-
-    ?>
-    <div class="rating-stars">
+<div class="right-menu">
+    <h1 class="project-name">Skater</h1>
+    <div class="average-rating">
         <?php
-            for ($i = 1; $i <= 5; $i++) {
-                echo '<img src="/img/'.($i <= $kol ? 'starfull.png' : ($ost == 5 && $i == $kol + 1 ? 'starhalffull.png' : 'starempty.png')).'" class="rating-star" style="width: 22px; height: 22px;" id="average_star'.($i - 1).'">';
+            $result2 = $mysqli->query("SELECT project_id, avg(rating) FROM `projects_comments` WHERE project_id LIKE '".$_GET['id']."' GROUP BY project_id");
+            $row = $result2->fetch_assoc();
+            $rating = $row['avg(rating)'];
+            $rating = round($rating, 1);
+            $rating_for_stars = intval($rating * 10);
+            $kol = floor($rating_for_stars / 10);
+            $ost = $rating_for_stars % 10;
+            if ($ost >= 0 && $ost <= 2) $ost = 0;
+            else if ($ost >= 3 && $ost <= 7) $ost = 5;
+            else if ($ost >= 8 && $ost <= 9) {
+                $ost = 0;
+                $kol++;
             }
+
+        ?>
+        <div class="rating-stars">
+            <?php
+                for ($i = 1; $i <= 5; $i++) {
+                    echo '<img src="/img/'.($i <= $kol ? 'starfull.png' : ($ost == 5 && $i == $kol + 1 ? 'starhalffull.png' : 'starempty.png')).'" class="rating-star" style="width: 22px; height: 22px;" id="average_star'.($i - 1).'">';
+                }
+            ?>
+        </div>
+        <?php
+            // echo '('.number_format($rating, 1).')';
         ?>
     </div>
-    <?php
-        echo '('.number_format($rating, 1).')';
-    ?>
+    <div class="tech-params">
+        <?php
+            $lst = unserialize(base64_decode($result['tech_params']));
+            if (!($lst == NULL))
+                foreach ($lst as $key => $value) {
+                    show_tech_param($key, $value);
+                }
+        ?>
+    </div>
 </div>
 <script>
     function show_paragraph (value) {
@@ -123,7 +125,27 @@
             show_paragraph($counter, $key, $value);
             $counter++;
         }
-    echo '<h1>Отзывы</h1>';
+    echo '<h1 style="margin-bottom: 10px;">Отзывы</h1>';
+?>
+<div class="average-rating-stat">
+    <div class="average-number">
+        <?php echo $rating; ?>
+    </div>
+    <div class="rating-stars">
+        <?php
+            for ($i = 1; $i <= 5; $i++) {
+                echo '<img src="/img/'.($i <= $kol ? 'starfull.png' : ($ost == 5 && $i == $kol + 1 ? 'starhalffull.png' : 'starempty.png')).'" class="rating-star" style="width: 22px; height: 22px; margin: 0 2px;" id="stat_average_star'.($i - 1).'">';
+            }
+        ?>
+    </div>
+    <div class="users-count">
+        <img src="/img/users.png" style="display: inline-block; width: 16px; height: 16px;"> <?php 
+            $result = $mysqli->query("SELECT * FROM projects_comments WHERE `project_id` LIKE ".$_GET['id']);
+            echo number_format($result->num_rows, 0, ".", " ");
+        ?>
+    </div>
+</div>
+<?php
     if (can_do('add_comments')) {
         echo '
             <form action="" method="POST" class="comment-editor">
