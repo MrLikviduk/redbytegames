@@ -40,6 +40,20 @@
             }
     ?>
 </div>
+<div class="average-rating">
+    <div class="rating-stars">
+        <img src="/img/starempty.png" class="rating-star" style="width: 22px; height: 22px;">
+        <img src="/img/starempty.png" class="rating-star" style="width: 22px; height: 22px;">
+        <img src="/img/starempty.png" class="rating-star" style="width: 22px; height: 22px;">
+        <img src="/img/starempty.png" class="rating-star" style="width: 22px; height: 22px;">
+        <img src="/img/starempty.png" class="rating-star" style="width: 22px; height: 22px;">
+    </div>
+    <?php
+        $result = $mysqli->query("SELECT project_id, avg(rating) FROM `projects_comments` WHERE project_id LIKE '".$_GET['id']."' GROUP BY project_id");
+        $rating = $result['avg(rating)'];
+        echo '('.$rating.')';
+    ?>
+</div>
 <script>
     function show_paragraph (value) {
         var par = $('#par' + value);
@@ -52,7 +66,6 @@
             par.css('display', 'none');
             arrow.css('transform', '');
         }
-            
     }
 </script>
 <p class="description"><strong>Skater</strong> - казалось бы что игрушка довольно простенькая и ее хватает на пару вечеров, 
@@ -111,7 +124,7 @@
                 </div>
                 <label for="comment_content" class="label">Комментарий: </label>
                 <textarea name="comment_content" maxlength="1023" class="content" rows="5" id="comment_content'.$result['id'].'"></textarea>
-                <input type="submit" name="comment_submit" value="Добавить комментарий" class="submit">
+                <input type="submit" name="comment_submit" value="Добавить отзыв" class="submit">
                 <input type="hidden" name="project_id" value="'.$result['id'].'">
             </form>
         ';
