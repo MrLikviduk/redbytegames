@@ -115,7 +115,7 @@
             </form>
         ';
     }
-    $result = $mysqli->query("SELECT * FROM projects_comments ORDER BY id DESC");
+    $result = $mysqli->query("SELECT * FROM projects_comments WHERE `project_id` LIKE '".$_GET['id']."' ORDER BY id DESC");
     while ($row = $result->fetch_assoc()) {
         show_comment(get_username_by_id($row['user_id']), $row['creation_date'], $row['creation_time'],  $row['content'], $row['rating'], $row['id']);
     }
