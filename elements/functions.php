@@ -227,7 +227,8 @@
         $result = $mysqli->query("SELECT * FROM `$table` WHERE `$unique_column` LIKE '$unique_data'");
         $mysqli->close();
         if ($result === FALSE || $result->num_rows == 0) return FALSE;
-        return $result->fetch_assoc();
+        $row = $result->fetch_assoc();
+        return $row;
     }
 
     function add_comment($blog_id, $user_id, $date, $time, $content) {
