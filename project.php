@@ -95,6 +95,7 @@
             show_paragraph($counter, $key, $value);
             $counter++;
         }
+    echo '<h1>Отзывы</h1>';
     if (can_do('add_comments')) {
         echo '
             <form action="" method="POST" class="comment-editor">
