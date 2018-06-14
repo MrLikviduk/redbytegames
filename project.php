@@ -164,6 +164,8 @@
                 <input type="hidden" name="project_id" value="'.$result['id'].'">
             </form>
         ';
+    else {
+        echo '<p>Чтобы оставить отзыв, вам необходимо <a href="/index">авторизоваться</a></p>';
     }
     $result = $mysqli->query("SELECT * FROM projects_comments WHERE `project_id` LIKE '".$_GET['id']."' ORDER BY id DESC");
     while ($row = $result->fetch_assoc()) {
