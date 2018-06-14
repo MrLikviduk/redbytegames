@@ -14,7 +14,8 @@
                 $content = $_POST['comment_content'];
                 $rating = $_POST['rating'];
                 $project_id = $_GET['id'];
-                if (!data_is_set('projects_comments', 'user_id', get_id_by_username($_SESSION['login']))) {
+                $result = $mysqli->query("SELECT * FROM projects_comments WHERE `user_id` LIKE '".get_id_by_username($_SESSION['login'])."' AND `project_id` LIKE '".$_GET['id']."'");
+                if ($result->num_rows == 0) {
                     $mysqli->query("INSERT INTO projects_comments (id, project_id, `user_id`, `creation_date`, `creation_time`, `content`, `rating`) VALUES (NULL, $project_id, ".get_id_by_username($_SESSION['login']).", '$date', '$time', '$content', '$rating')") or die("ERROR");
                 }
                 else {
