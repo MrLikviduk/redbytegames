@@ -222,6 +222,14 @@
         return TRUE;
     }
 
+    function get_data($table, $unique_column, $unique_data) {
+        $mysqli = connect_to_database();
+        $result = $mysqli->query("SELECT * FROM `$table` WHERE `$unique_column` LIKE '$unique_data'");
+        $mysqli->close();
+        if ($result === FALSE || $result->num_rows == 0) return FALSE;
+        return $result->fetch_assoc();
+    }
+
     function add_comment($blog_id, $user_id, $date, $time, $content) {
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
