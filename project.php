@@ -164,6 +164,7 @@
                 <input type="hidden" name="project_id" value="'.$result['id'].'">
             </form>
         ';
+    }
     else {
         echo '<p>Чтобы оставить отзыв, вам необходимо <a href="/index">авторизоваться</a></p>';
     }
