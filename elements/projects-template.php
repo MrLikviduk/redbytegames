@@ -41,7 +41,7 @@
                 }    
                 echo '</div></div>
                 </div>';
-                if ($content != NULL && content != '')
+                if ($content != NULL && $content != '')
                 echo '
                     <div class="content">
                         '.$content.'

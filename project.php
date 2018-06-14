@@ -41,18 +41,30 @@
     ?>
 </div>
 <div class="average-rating">
-    <div class="rating-stars">
-        <img src="/img/starempty.png" class="rating-star" style="width: 22px; height: 22px;">
-        <img src="/img/starempty.png" class="rating-star" style="width: 22px; height: 22px;">
-        <img src="/img/starempty.png" class="rating-star" style="width: 22px; height: 22px;">
-        <img src="/img/starempty.png" class="rating-star" style="width: 22px; height: 22px;">
-        <img src="/img/starempty.png" class="rating-star" style="width: 22px; height: 22px;">
-    </div>
     <?php
         $result2 = $mysqli->query("SELECT project_id, avg(rating) FROM `projects_comments` WHERE project_id LIKE '".$_GET['id']."' GROUP BY project_id");
         $row = $result2->fetch_assoc();
         $rating = $row['avg(rating)'];
         $rating = round($rating, 1);
+        $rating_for_stars = intval($rating * 10);
+        $kol = floor($rating_for_stars / 10);
+        $ost = $rating_for_stars % 10;
+        if ($ost >= 0 && $ost <= 2) $ost = 0;
+        else if ($ost >= 3 && $ost <= 7) $ost = 5;
+        else if ($ost >= 8 && $ost <= 9) {
+            $ost = 0;
+            $kol++;
+        }
+
+    ?>
+    <div class="rating-stars">
+        <?php
+            for ($i = 1; $i <= 5; $i++) {
+                echo '<img src="/img/'.($i <= $kol ? 'starfull.png' : ($ost == 5 && $i == $kol + 1 ? 'starhalffull.png' : 'starempty.png')).'" class="rating-star" style="width: 22px; height: 22px;" id="average_star'.($i - 1).'">';
+            }
+        ?>
+    </div>
+    <?php
         echo '('.number_format($rating, 1).')';
     ?>
 </div>
