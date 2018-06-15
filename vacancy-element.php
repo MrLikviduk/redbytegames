@@ -25,7 +25,7 @@
             }
             echo '<script>alert("Заявка успешно отправлена на рассмотрение!")</script>';
         }
-
+        header("Location: ".$_SERVER['REQUEST_URI']);
     }
     $page_name = 'Вакансия';
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
