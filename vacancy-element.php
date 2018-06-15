@@ -23,6 +23,7 @@
             else {
                 $mysqli->query("INSERT INTO vacancy_requests (id, vacancy_id, `name`, email, `resume`) VALUES (NULL, $vacancy_id, '$name', '$email', '$resume')") or die("ERROR2");
             }
+            echo '<script>alert("Заявка успешно отправлена на рассмотрение!")</script>';
         }
 
     }
