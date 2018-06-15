@@ -22,7 +22,7 @@
 ?>
 <a href="/vacancy.php" style="margin: 20px auto; display: block;">Назад</a>
 <form action="" method="POST" id="edit_form">
-    <label for="name">Заголовок: </label>
+    <label for="name">Название: </label>
     <input type="text" name="name" id="name_id" placeholder="Введите название" class="text-box">
     <br>
     <label for="type">Направление: </label>
