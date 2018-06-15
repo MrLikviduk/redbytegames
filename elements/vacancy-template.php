@@ -17,7 +17,8 @@
                     <button class="btn" name="delete_vacancy" value="'.$id.'">Удалить</button>
                     <button class="btn" name="edit_vacancy" value="'.$id.'">Редактировать</button>
                 </form>
-            </div>
+                ';
+            echo '</div>';
         ';
     }
 ?>
