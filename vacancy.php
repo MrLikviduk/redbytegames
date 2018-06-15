@@ -23,4 +23,4 @@
         show_vacancy($row['name'], get_data('vacancy_types', 'id', $row['type_id'])['name'], $row['creation_date'], $row['id']);
     }
 ?>
-<?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); $mysqli->close(); ?>

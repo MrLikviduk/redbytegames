@@ -21,6 +21,8 @@
             echo '<link rel="stylesheet" href="/styles/style-for-project.css?v'.time().'">';
         else if ($page_name == 'Вакансии')
             echo '<link rel="stylesheet" href="/styles/style-for-vacancy.css?v'.time().'">';
+        else if ($page_name == 'Вакансия')
+            echo '<link rel="stylesheet" href="/styles/style-for-vacancy-element.css?v'.time().'">';
     ?>
     <title>Red Byte Games - больше, чем игры</title>
 </head>

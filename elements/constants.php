@@ -21,4 +21,6 @@
     define('POSITION_MAX', 255);
     define('FRACTION_MIN', 1);
     define('FRACTION_MAX', 255);
+    define('NAME_MIN', 1);
+    define('NAME_MAX', 60);
 ?>

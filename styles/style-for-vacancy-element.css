@@ -1,0 +1,40 @@
+main {
+    padding: 10px 5vw;
+}
+.vacancy-name {
+    font-size: 1.5rem;
+    margin: 30px 0;
+    font-weight: bold;
+    color: hsl(0, 50%, 40%);
+}
+.list-header {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 50px;
+}
+.list li {
+    margin: 10px;
+}
+.application-form {
+    max-width: 500px;
+    border: 3px dashed hsl(0, 50%, 40%);
+    padding: 20px;
+    margin-bottom: 40px;
+}
+.application-form label {
+    display: inline-block;
+    min-width: 230px;
+    margin-bottom: 10px;
+}
+.application-form .submit-btn {
+    padding: 10px;
+}
+.application-form .text {
+    width: 180px;
+    padding: 5px;
+}
+@media (min-width: 1210px) {
+    main {
+        padding: 10px 16vw;
+    }
+}

@@ -30,6 +30,9 @@ main {
     user-select: none;
     width: 50px;
 }
+.vacancy a {
+    color: inherit;
+}
 .vacancy .type {
     font-size: 0.9rem;
 }
@@ -38,6 +41,10 @@ main {
     font-family: fantasy;
     margin-bottom: 25px;
     min-height: 100px;
+    transition: .5s;
+}
+.vacancy .name:hover {
+    color: #999;
 }
 .vacancy:hover {
     transform: translateY(-10px);
