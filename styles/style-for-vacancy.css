@@ -2,9 +2,6 @@ main {
     text-align: center;
     margin: 20px 5vw;
 }
-.vacancy-wrapper {
-    text-align: center;
-}
 .vacancy {
     width: 240px;
     box-sizing: border-box;
