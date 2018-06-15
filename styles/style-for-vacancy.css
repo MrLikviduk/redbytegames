@@ -3,12 +3,7 @@ main {
     margin: 20px 5vw;
 }
 .vacancy-wrapper {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webit-align-items: center;
-    align-items: center;
+    text-align: center;
 }
 .vacancy {
     width: 240px;
