@@ -31,7 +31,6 @@ main {
     position: relative;
     vertical-align: top;
     width: calc(100% - 260px);
-    height: 350px;
 }
 .comment::after {
     content: "";
