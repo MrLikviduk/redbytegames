@@ -25,7 +25,7 @@
     <label for="name">Заголовок: </label>
     <input type="text" name="name" id="name_id" placeholder="Введите название" class="text-box">
     <br>
-    <label for="type">Теги: </label>
+    <label for="type">Направление: </label>
     <input type="text" name="type" id="type_id" placeholder="Введите направление" class="text-box">
     <br>
     <input type="submit" name="submit" value="Добавить" class="submit-button">
