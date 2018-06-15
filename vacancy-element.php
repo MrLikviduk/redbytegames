@@ -21,7 +21,7 @@
                 $mysqli->query("UPDATE vacancy_requests SET `name` = '$name', `resume` = '$resume', `vacancy_id` = '$vacancy_id' WHERE `email` LIKE '$email'") or die("ERROR1");
             }
             else {
-                $mysqli->query("INSERT INTO vacancy_requests (id, vacancy_id, `name`, email, requests) VALUES (NULL, $vacancy_id, '$name', '$email', '$resume')") or die("ERROR2");
+                $mysqli->query("INSERT INTO vacancy_requests (id, vacancy_id, `name`, email, `resume`) VALUES (NULL, $vacancy_id, '$name', '$email', '$resume')") or die("ERROR2");
             }
         }
 
