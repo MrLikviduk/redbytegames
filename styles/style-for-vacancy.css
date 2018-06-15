@@ -7,8 +7,6 @@ main {
     display: flex;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
-    -webkit-justify-content: center;
-    justify-content: center;
 }
 .vacancy {
     width: 240px;
