@@ -26,6 +26,9 @@
     <input type="text" name="name" id="name_id" placeholder="Введите название" class="text-box">
     <br>
     <label for="type">Направление: </label>
+    <select name="type" class="text-box">
+        <option value="Арт">Арт</option>
+    </select>
     <input type="text" name="type" id="type_id" placeholder="Введите направление" class="text-box">
     <br>
     <input type="submit" name="submit" value="Добавить" class="submit-button">
