@@ -16,6 +16,7 @@ main {
     margin: 20px;
     margin-left: 0;
     margin-bottom: 0;
+    vertical-align: top;
 }
 .vacancy .type {
     font-size: 0.9rem;
