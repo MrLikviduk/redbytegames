@@ -4,7 +4,9 @@ main {
 }
 .vacancy-wrapper {
     display: -webkit-flex;
+    display: flex;
     -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 .vacancy {
     width: 240px;
