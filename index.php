@@ -3,7 +3,7 @@
     session_start();
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
     if (isset($_POST['login']) && isset($_POST['password'])) {
-        if (username_is_set($_POST['login']) == TRUE) {
+        if (user_is_set($_POST['login'], $_POST['password']) == TRUE) {
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['password'] = $_POST['password'];
             header("Location: ".$_SERVER['REQUEST_URI']);
