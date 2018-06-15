@@ -26,10 +26,17 @@
     <input type="text" name="name" id="name_id" placeholder="Введите название" class="text-box">
     <br>
     <label for="type">Направление: </label>
-    <select name="type" class="text-box">
+    <select name="type" class="text-box" id="type_id">
         <option value="Арт">Арт</option>
+        <option value="Код">Код</option>
+        <option value="Дизайн">Дизайн</option>
+        <option value="Звук">Звук</option>
+        <option value="Менеджмент">Менеджмент</option>
+        <option value="Маркетинг">Маркетинг</option>
+        <option value="Финансовая часть">Финансовая часть</option>
+        <option value="Отдел кадров">Отдел кадров</option>
+        <option value="Нарратив">Нарратив</option>
     </select>
-    <input type="text" name="type" id="type_id" placeholder="Введите направление" class="text-box">
     <br>
     <input type="submit" name="submit" value="Добавить" class="submit-button">
 </form>
