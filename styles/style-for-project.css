@@ -90,6 +90,11 @@ main {
     width: 280px;
     margin: 0 20px;
 }
+.box-art-wrapper {
+    width: 250px;
+    height: 350px;
+    display: inline-block;
+}
 .average-rating .rating-stars {
     display: inline-block;
 }
@@ -123,6 +128,18 @@ main {
 }
 .description strong {
     font-size: 1.1rem;
+}
+@media (max-width: 460px) {
+    .box-art {
+        margin: auto;
+    }
+    .right-menu {
+        display: block;
+    }
+    .box-art-wrapper {
+        width: 100%;
+        text-align: center;
+    }
 }
 @media (min-width: 700px) {
     .average-rating {

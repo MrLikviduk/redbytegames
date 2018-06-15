@@ -29,7 +29,9 @@
     $is_project = TRUE;
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
-<img src="/projects_img/<?=$result['box_art_name']?>" alt="<?=$result['name']?>" class="box-art">
+<div class="box-art-wrapper">
+    <img src="/projects_img/<?=$result['box_art_name']?>" alt="<?=$result['name']?>" class="box-art">
+</div>
 <div class="right-menu">
     <h1 class="project-name">Skater</h1>
     <div class="average-rating">

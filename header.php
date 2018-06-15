@@ -31,6 +31,11 @@
         echo '<body>';
 ?>
     <header>
+        <script>
+            $(document).ready(function() {
+                $(".skitter-large").skitter();
+            });
+        </script>
         <nav>
             <div class="menu-button" id="btn">
                 <div class="burger-element el1" id="el1"></div>
@@ -53,7 +58,7 @@
             <a href="/projects.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element">Проекты</div>
             </a>
-            <a href="" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+            <a href="/vacancy.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element">Вакансии</div>
             </a>
             <a href="" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
@@ -89,7 +94,7 @@
                 <a href="/projects.php">
                     <div class="nav-element">Проекты</div>
                 </a>
-                <a href="">
+                <a href="/vacancy.php">
                     <div class="nav-element">Вакансии</div>
                 </a>
                 <a href="">
