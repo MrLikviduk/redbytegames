@@ -12,10 +12,16 @@
     if (can_do('edit_vacancy')) {
         if (isset($_POST['submit']) && strlen($_POST['name']) != 0 && strlen($_POST['type']) != 0) {
             $name = $_POST['name'];
-            $type = $_POST['type'];
-            $date = date('d.m.Y');
-            $mysqli->query("INSERT INTO vacancy (id, `name`, `type`, `creation_date`) VALUES (NULL, '$name', '$type', '$date')") or die("ERROR");
-            header("Location: ".$_SERVER['REQUEST_URI']);
+            $type_id = $_POST['type'];
+            if (!isset($_SESSION['id_to_edit_vacancy'])) {
+                $date = date('d.m.Y');
+                $mysqli->query("INSERT INTO vacancy (id, `name`, `type_id`, `creation_date`) VALUES (NULL, '$name', '$type_id', '$date')") or die("ERROR");
+                header("Location: ".$_SERVER['REQUEST_URI']);
+            }
+            else {
+                $mysqli->query("UPDATE vacancy SET `name` = '$name', `type_id` = '$type_id' WHERE `id` LIKE ".$_SESSION['id_to_edit_vacancy']) or die("ERROR");
+                header("Location: ".$_SERVER['REQUEST_URI']);
+            }
         }
     }
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
@@ -27,17 +33,21 @@
     <br>
     <label for="type">Направление: </label>
     <select name="type" class="text-box" id="type_id">
-        <option value="Арт">Арт</option>
-        <option value="Код">Код</option>
-        <option value="Дизайн">Дизайн</option>
-        <option value="Звук">Звук</option>
-        <option value="Менеджмент">Менеджмент</option>
-        <option value="Маркетинг">Маркетинг</option>
-        <option value="Финансовая часть">Финансовая часть</option>
-        <option value="Отдел кадров">Отдел кадров</option>
-        <option value="Нарратив">Нарратив</option>
+        <?php
+            $result = $mysqli->query("SELECT * FROM vacancy_types ORDER BY `id`");
+            while ($row = $result->fetch_assoc()) {
+                echo '<option '.(isset($_SESSION['id_to_edit_vacancy']) && get_data('vacancy', 'id', $_SESSION['id_to_edit_vacancy'])['type_id'] == $row['id'] ? 'selected' : '').' value="'.$row['id'].'">'.$row['name'].'</option>';
+            }
+        ?>
     </select>
     <br>
     <input type="submit" name="submit" value="Добавить" class="submit-button">
 </form>
+<script>
+    <?php
+        if (isset($_SESSION['id_to_edit_vacancy'])) {
+            echo "document.getElementById('name_id').value = '".get_data('vacancy', 'id', $_SESSION['id_to_edit_vacancy'])['name']."'";
+        }
+    ?>
+</script>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php') ?>
