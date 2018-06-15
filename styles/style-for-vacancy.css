@@ -11,7 +11,7 @@ main {
     color: #444;
     padding: 20px;
     box-shadow: 1px 1px 2px;
-    min-height: 190px;
+    min-height: 215px;
     position: relative;
     transition: .5s;
     display: inline-block;
@@ -21,6 +21,18 @@ main {
     margin-bottom: 0;
     vertical-align: top;
 }
+.btn {
+    background: none;
+    border: none;
+    color: hsl(240, 100%, 30%);
+    display: inline-block;
+    margin: auto 10px;
+    margin-top: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    user-select: none;
+    width: 50px;
+}
 .vacancy .type {
     font-size: 0.9rem;
 }
@@ -28,10 +40,7 @@ main {
     font-size: 1.6rem;
     font-family: fantasy;
     margin-bottom: 25px;
-}
-.vacancy .date {
-    position: absolute;
-    bottom: 20px;
+    min-height: 100px;
 }
 .vacancy:hover {
     transform: translateY(-10px);
