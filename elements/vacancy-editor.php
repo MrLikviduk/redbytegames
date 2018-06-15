@@ -20,6 +20,7 @@
             }
             else {
                 $mysqli->query("UPDATE vacancy SET `name` = '$name', `type_id` = '$type_id' WHERE `id` LIKE ".$_SESSION['id_to_edit_vacancy']) or die("ERROR");
+                unset($_SESSION['id_to_edit_vacancy']);
                 header("Location: ".$_SERVER['REQUEST_URI']);
             }
         }
