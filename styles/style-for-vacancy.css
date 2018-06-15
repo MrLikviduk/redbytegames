@@ -1,9 +1,6 @@
 main {
     text-align: center;
     margin: 20px 5vw;
-    display: -webkit-flex;
-    display: flex;
-    justify-content: center;
 }
 .vacancy {
     width: 240px;
