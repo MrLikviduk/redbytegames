@@ -13,13 +13,14 @@
             echo '<link rel="stylesheet" href="/styles/style-for-about-us.css?v'.time().'">';
         else if ($page_name == 'Блог')
             echo '<link rel="stylesheet" href="/styles/style-for-blog.css?v'.time().'">';
-        else if ($page_name == 'Редактор блога' || $page_name == 'Выбор картинки')
-            echo '<link rel="stylesheet" href="/styles/style-for-blog-editor.css?v'.time().'">';
+        else if ($page_name == 'Редактор блога' || $page_name == 'Выбор картинки' || $page_name == 'Редактор вакансий')
+            echo '<link rel="stylesheet" href="/styles/style-for-editor.css?v'.time().'">';
         else if ($page_name == 'Проекты')
             echo '<link rel="stylesheet" href="/styles/style-for-projects.css?v'.time().'">';
-        else if (isset($is_project) && $is_project === TRUE) {
+        else if (isset($is_project) && $is_project === TRUE)
             echo '<link rel="stylesheet" href="/styles/style-for-project.css?v'.time().'">';
-        }
+        else if ($page_name == 'Вакансии')
+            echo '<link rel="stylesheet" href="/styles/style-for-vacancy.css?v'.time().'">';
     ?>
     <title>Red Byte Games - больше, чем игры</title>
 </head>

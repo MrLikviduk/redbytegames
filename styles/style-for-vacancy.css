@@ -1,0 +1,39 @@
+main {
+    text-align: center;
+    margin: 20px 5vw;
+}
+.vacancy {
+    width: 240px;
+    box-sizing: border-box;
+    color: #444;
+    padding: 20px;
+    box-shadow: 1px 1px 2px;
+    min-height: 190px;
+    position: relative;
+    transition: .5s;
+    display: inline-block;
+    text-align: left;
+    margin: 20px;
+    margin-left: 0;
+    margin-bottom: 0;
+}
+.vacancy .type {
+    font-size: 0.9rem;
+}
+.vacancy .name {
+    font-size: 1.6rem;
+    font-family: fantasy;
+    margin-bottom: 25px;
+}
+.vacancy .date {
+    position: absolute;
+    bottom: 20px;
+}
+.vacancy:hover {
+    transform: translateY(-10px);
+}
+@media (min-width: 1130px) {
+    main {
+        margin: 20px 15vw;
+    }
+}

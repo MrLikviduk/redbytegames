@@ -13,8 +13,7 @@
         $date = date('Y-m-d');
     if (!isset($_SESSION['id_to_edit_blog']))
         $_SESSION['id_to_edit_blog'] = -1;
-    include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-    $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name) or die("Error to connect to db");
+    $mysqli = connect_to_database();
     $query = $mysqli->query("SELECT * FROM blog WHERE id LIKE ".$_SESSION['id_to_edit_blog']);
     $to_edit = $query->fetch_assoc();
     if(isset($_POST['header']) && $_POST['header'] != '' && $_POST['content'] != '' && isset($_POST['submit']) && can_do('edit_blog')) {
