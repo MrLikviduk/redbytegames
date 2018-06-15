@@ -7,7 +7,7 @@
     <br>
     <?php 
         if (isset($_POST['login']) && isset($_POST['password'])) {
-            if (username_is_set($_POST['login']) == FALSE) {
+            if (user_is_set($_POST['login'], $_POST['password']) == FALSE) {
                 echo '
                     <p class="error-text">Неверное имя пользователя или<br> пароль</p>
                 ';
