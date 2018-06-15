@@ -8,8 +8,10 @@
     if (can_do('edit_vacancy'))
         echo '<a href="elements/vacancy-editor.php" style="margin-top: 20px; display: block; text-align: left;">Добавить запись</a>';
     $result = $mysqli->query("SELECT * FROM vacancy");
+    echo '<div class="vacancy-wrapper">';
     while($row = $result->fetch_assoc()) {
         show_vacancy($row['name'], $row['type'], $row['creation_date']);
     }
+    echo '<div>';
 ?>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); ?>
