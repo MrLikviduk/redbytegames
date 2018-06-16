@@ -34,6 +34,7 @@
     }
 
     function show_comment($name, $date, $time, $content, $id) {
+        require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
         echo '
             <div class="comment">
                 <div class="top">
