@@ -37,7 +37,7 @@
         copy($file['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/'.$dir_name.'/'.$name);
     }
 
-    function can_do($action) { // Может ли юзер делать то, что передано в качестве аргумента
+    function can_do($action) { // (CHECKED) Может ли юзер делать то, что передано в качестве аргумента
         $mysqli = connect_to_database();
         $username = $mysqli->real_escape_string($_SESSION['login']);
         $password = $mysqli->real_escape_string($_SESSION['password']);
@@ -131,44 +131,44 @@
         return $row['role'];
     }
 
-    function get_email($username) { // Возвращает электронный адрес пользователя
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function get_email($username) { // (CHECKED) Возвращает электронный адрес пользователя
+        $mysqli = connect_to_database();
+        $username = $mysqli->real_escape_string($username);
         $result = $mysqli->query("SELECT users.email FROM users WHERE username = '$username'");
         $mysqli->close();
         $row = $result->fetch_assoc();
         return $row['email'];
     }
 
-    function add_email_key($username) { // Добавляет ключ для подтверждения почты
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function add_email_key($username) { // (CHECKED) Добавляет ключ для подтверждения почты
+        $mysqli = connect_to_database();
+        $username = $mysqli->real_escape_string($username);
         $result = $mysqli->query("SELECT id FROM users WHERE username = '$username'") or die("ERROR");
         $row = $result->fetch_assoc();
-        $id = $row['id'];
+        $id = (int)$row['id'];
         $key = md5(rand(-2147483647, 2147483647));
         $result = $mysqli->query("INSERT INTO email_keys (id, `user_id`, `key`) VALUES (NULL, $id, '$key')") or die("ERROR2");
         $mysqli->close();
     }
 
-    function activate_user($key) { // Активирует аккаунт пользователя по ключу
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function activate_user($key) { // (CHECKED) Активирует аккаунт пользователя по ключу
+        $mysqli = connect_to_database();
+        $key = $mysqli->real_escape_string($key);
         $result = $mysqli->query("SELECT * FROM email_keys WHERE `key` = '$key'") or die("ERROR 1");
         if ($result->num_rows == 0) {
             $mysqli->close();
             return FALSE;
         }
         $row = $result->fetch_assoc();
-        $user_id = $row['user_id'];
+        $user_id = (int)$row['user_id'];
         $result = $mysqli->query("UPDATE users SET `activated` = 1 WHERE id = $user_id") or die("ERROR 2");
         $result = $mysqli->query("DELETE FROM email_keys WHERE `key` = '$key'") or die("ERROR 3");
         $mysqli->close();
     }
 
-    function send_confirm_letter($email) { // Отправляет письмо с кодом подтверждения
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function send_confirm_letter($email) { // (CHECKED) Отправляет письмо с кодом подтверждения
+        $mysqli = connect_to_database();
+        $email = $mysqli->real_escape_string($email);
         $result = $mysqli->query("SELECT * FROM users LEFT JOIN email_keys ON email_keys.user_id = users.id WHERE `email` = '$email' ");
         if ($result === FALSE) {
             $mysqli->close();
@@ -176,16 +176,16 @@
         }
         $mysqli->close();
         $row = $result->fetch_assoc();
-        $key = $row['key'];
+        $key = $mysqli->real_escape_string($row['key']);
         $result = mail($email, 'Подтверждение', 'Чтобы подтвердить ваш электронный адрес, перейдите по ссылке: https://redbytegames.ru/index.php?key='.$key, 'From: confirm@redbytegames.ru');
         if ($result === FALSE)
             return FALSE;
         return TRUE;
     }
 
-    function get_field($username, $name, $table = 'users') { // Возвращает значение поля, которое находит по логину
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function get_field($username, $name, $table = 'users') { // (CHECKED) Возвращает значение поля, которое находит по логину
+        $mysqli = connect_to_database();
+        $username = $mysqli->real_escape_string($username);
         $result = $mysqli->query("SELECT * FROM $table WHERE username = '$username'");
         $mysqli->close();
         if ($result === FALSE)
