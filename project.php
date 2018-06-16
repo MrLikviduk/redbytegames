@@ -148,8 +148,9 @@
         ?>
     </div>
     <div class="users-count">
-        <img src="/img/users.png" style="display: inline-block; width: 16px; height: 16px;"> <?php 
-            $result3 = $mysqli->query("SELECT * FROM projects_comments WHERE `project_id` LIKE ".((int)$_GET['id']);
+        <img src="/img/users.png" style="display: inline-block; width: 16px; height: 16px;"> 
+        <?php 
+            $result3 = $mysqli->query("SELECT * FROM projects_comments WHERE `project_id` LIKE ".((int)$_GET['id']));
             echo number_format($result3->num_rows, 0, ".", " ");
         ?>
     </div>
