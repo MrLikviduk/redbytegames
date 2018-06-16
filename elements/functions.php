@@ -38,25 +38,27 @@
     }
 
     function can_do($action) { // Может ли юзер делать то, что передано в качестве аргумента
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        if(!isset($_SESSION['login']) || !isset($_SESSION['password'])) {
+        $mysqli = connect_to_database();
+        $username = $mysqli->real_escape_string($_SESSION['login']);
+        $password = $mysqli->real_escape_string($_SESSION['password']);
+        if(!isset($username) || !isset($username)) {
             $role = 'guest';
         }
         else {
-            $result = $mysqli->query("SELECT * FROM users WHERE username = '".$_SESSION['login']."' AND passwd = '".$_SESSION['password']."'");
-            if ($result->num_rows < 1) {
+            $result = $mysqli->query("SELECT * FROM users WHERE username = '".$username."' AND passwd = '".$password."'");
+            if ($result->num_rows == 0) {
                 $role = 'guest';
             }
             else {
                 $row = $result->fetch_assoc();
-                $result2 = $mysqli->query("SELECT * FROM roles WHERE `id` = '".$row['role_id']."'");
+                $role_id = (int)$row['role_id'];
+                $result2 = $mysqli->query("SELECT * FROM roles WHERE `id` = '".$role_id."'");
                 $row2 = $result2->fetch_assoc();
                 $role = $row2['role']; 
             }
         }
         if ($role != 'guest') {
-            $result = $mysqli->query("SELECT activated FROM users WHERE `username` = '".$_SESSION['login']."'");
+            $result = $mysqli->query("SELECT activated FROM users WHERE `username` = '".$username."'");
             $row = $result->fetch_assoc();
             if ($row['activated'] == 0) {
                 $mysqli->close();
@@ -71,9 +73,9 @@
         return TRUE;
     }
 
-    function username_is_set($username) { // Проверяет, есть ли пользователь в базе данных с таким логином
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function username_is_set($username) { // (CHECKED) Проверяет, есть ли пользователь в базе данных с таким логином
+        $mysqli = connect_to_database();
+        $username = $mysqli->real_escape_string($username);
         $result = $mysqli->query("SELECT * FROM users WHERE `username` = '$username'") or die("ASHIPKA");
         $mysqli->close();
         if (($result->num_rows) > 0)
@@ -82,9 +84,9 @@
             return FALSE;
     }
 
-    function email_is_set($email) { // Проверяет, есть ли пользователь в базе данных с таким электронным адресом
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function email_is_set($email) { // (CHECKED) Проверяет, есть ли пользователь в базе данных с таким электронным адресом
+        $mysqli = connect_to_database();
+        $email = $mysqli->real_escape_string($email);
         $result = $mysqli->query("SELECT * FROM users WHERE `email` = '$email'") or die("ASHIPKA");
         $mysqli->close();
         if (($result->num_rows) > 0)
@@ -93,12 +95,15 @@
             return FALSE;
     }
 
-    function create_user($username, $email, $password, $role) { // Заносит нового пользователя в базу данных
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function create_user($username, $email, $password, $role) { // (CHECKED) Заносит нового пользователя в базу данных
+        $mysqli = connect_to_database();
+        $role = $mysqli->real_escape_string();
         $result = $mysqli->query("SELECT * FROM roles WHERE `role` = '$role'") or die("ERROR 1");
         $row = $result->fetch_assoc();
-		$role_id = $row['id'];
+        $role_id = (int)$row['id'];
+        $username = $mysqli->real_escape_string($username);
+        $email = $mysqli->real_escape_string($email);
+        $password = $mysqli->real_escape_string($password);
         $result2 = $mysqli->query("INSERT INTO users (id, username, email, passwd, role_id) VALUES (NULL, '$username', '$email', '$password', $role_id)") or die(
 			$username.'<br>'.$email.'<br>'.$password.'<br>'
 		);
@@ -106,21 +111,20 @@
         return TRUE;
     }
 
-    function user_is_set($username, $password) { // Проверяет, соответствуют ли логин и пароль одному из пользователей в базе данных
+    function user_is_set($username, $password) { // (CHECKED) Проверяет, соответствуют ли логин и пароль одному из пользователей в базе данных
         if (!isset($username) || !isset($password))
             return FALSE;
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $mysqli = connect_to_database();
         $username = $mysqli->real_escape_string($username);
         $password = $mysqli->real_escape_string($password);
         $result = $mysqli->query("SELECT * FROM users WHERE `username` = '$username' AND `passwd` = '$password'");
         $mysqli->close();
-        return (($result->num_rows) > 0 ? TRUE : FALSE);
+        return (($result->num_rows) == 1 ? TRUE : FALSE);
     }
 
-    function get_role($username, $table = 'users') { // Возвращает роль пользователя
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function get_role($username, $table = 'users') { // (CHECKED) Возвращает роль пользователя
+        $mysqli = connect_to_database();
+        $username = $mysqli->real_escape_string($username);
         $result = $mysqli->query("SELECT roles.role FROM $table LEFT JOIN roles ON roles.id = $table.role_id WHERE $table.username = '$username' ");
         $mysqli->close();
         $row = $result->fetch_assoc();
