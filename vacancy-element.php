@@ -42,8 +42,8 @@
 <div class="vacancy-name">Программист C#</div>
 <?php
     show_vacancy_list('responsibilities', 'Обязанности:', $lists['responsibilities']);
-    show_vacancy_list('required', 'Обязанности:', $lists['required']);
-    show_vacancy_list('desired', 'Обязанности:', $lists['desired']);
+    show_vacancy_list('required', 'Квалификация:', $lists['required']);
+    show_vacancy_list('desired', 'Желательные навыки:', $lists['desired']);
 ?>
 <h3 style="max-width: 400px; margin: 40px 0;">Заинтересованы? Заполните анкету ниже, наши менеджеры вам ответят в ближайшее время!</h3>
 <form action="" method="POST" class="application-form">
