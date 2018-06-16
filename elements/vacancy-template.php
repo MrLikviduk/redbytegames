@@ -30,7 +30,7 @@
                 if ($lst !== NULL) foreach ($lst as $key => $value) {
                     echo '<li>'.$value.'</li>';
                 }
-                if (can_do('edit_vacancy') echo '
+                if (can_do('edit_vacancy')) echo '
                 <form action="" method="POST">
                     <input type="hidden" name="lst_name" value="'.$name.'">
                     <ul><input type="text" name="input_text" maxlength="1023"> <input type="submit" name="lst_submit" value="Добавить"></ul>
