@@ -24,9 +24,9 @@
         $email = $mysqli->real_escape_string($_POST['email']);
         $resume = $mysqli->real_escape_string($_POST['resume']);
         $vacancy_id = (int)$_GET['id'];
-        $result = $mysqli->query("SELECT * FROM vacancy_requests WHERE `email` LIKE '$email'");
+        $result2 = $mysqli->query("SELECT * FROM vacancy_requests WHERE `email` LIKE '$email'");
         if (strlen($name) >= NAME_MIN && strlen($name) <= NAME_MAX && strlen($email) >= EMAIL_MIN && strlen($email) <= EMAIL_MAX && strlen($resume) >= LINK_MIN && strlen($resume) <= LINK_MAX) {
-            $kol = $result->num_rows;
+            $kol = $result2->num_rows;
             if ($kol > 0) {
                 $mysqli->query("UPDATE vacancy_requests SET `name` = '$name', `resume` = '$resume', `vacancy_id` = '$vacancy_id' WHERE `email` LIKE '$email'") or die("ERROR1");
             }
@@ -39,7 +39,7 @@
     $page_name = 'Вакансия';
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
-<div class="vacancy-name">Программист C#</div>
+<div class="vacancy-name"><?=$result['name']?></div>
 <?php
     show_vacancy_list('responsibilities', 'Обязанности:', $lists['responsibilities']);
     show_vacancy_list('required', 'Квалификация:', $lists['required']);
