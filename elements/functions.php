@@ -297,8 +297,6 @@
     }
 
     function is_own_comment($id, $user_id = NULL) { // (CHECKED) Проверяет, принадлежит ли коммент юзеру
-        $id = (int)$id;
-        $user_id = (int)$user_id;
         if (!isset($user_id))
             $user_id = get_id_by_username($_SESSION['login']);
         return user_is_set($_SESSION['login'], $_SESSION['password']) && $user_id == get_by_id($id, 'comments')['user_id'];
