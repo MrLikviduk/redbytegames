@@ -7,6 +7,7 @@
         return_404();
     $mysqli = connect_to_database();
     $result = get_by_id($_GET['id'], 'vacancy') or return_404();
+    if (!isset($result['lists'])) $result['lists'] = 'YTozOntzOjE2OiJyZXNwb25zaWJpbGl0aWVzIjthOjA6e31zOjg6InJlcXVpcmVkIjthOjA6e31zOjc6ImRlc2lyZWQiO2E6MDp7fX0='; // По умолчания три пункта пустые
     $lists = unserialize(base64_decode($result['lists']));
     if (can_do('edit_vacancy')) {
         if (isset($_POST['lst_submit'])) {
