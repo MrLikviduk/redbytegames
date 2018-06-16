@@ -1,14 +1,24 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/elements/vacancy-template.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/constants.php');
     session_start();
     if (!isset($_GET['id']))
         return_404();
     $mysqli = connect_to_database();
+    $lists = unserialize(base64_decode($result['lists']));
     $result = get_by_id($_GET['id'], 'vacancy') or return_404();
-    // $responsibilities = unserialize(base64_decode($result['responsibilities']));
-    // $required = unserialize(base64_decode($result['required']));
-    // $desired = unserialize(base64_decode($result['desired']));
+    if (can_do('edit_vacancy')) {
+        if (isset($_POST['lst_submit'])) {
+            $content = $_POST['input_text'];
+            if (strlen($content) > 0 && strlen($content) < 1024) {
+                array_push($lists[$_POST['lst_name']], $content);
+                $id = (int)$_GET['id'];
+                $mysqli->query("UPDATE vacancy SET lists = '".base64_encode(serialize($lists))."' WHERE id = $id");
+                header("Location: ".$_SERVER['REQUEST_URI']);
+            }
+        }
+    }
     if (isset($_POST['request_submit'])) {
         $name = $mysqli->real_escape_string($_POST['name']);
         $email = $mysqli->real_escape_string($_POST['email']);
@@ -30,27 +40,11 @@
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
 <div class="vacancy-name">Программист C#</div>
-<div class="list">
-    <div class="list-header">Обязанности:</div>
-    <ul>
-        <li>Работать по 20 часов в сутки</li>
-        <li>Спать по 3-4 часа</li>
-    </ul>
-</div>
-<div class="list">
-    <div class="list-header">Квалификация:</div>
-    <ul>
-        <li>Работать по 20 часов в сутки</li>
-        <li>Спать по 3-4 часа</li>
-    </ul>
-</div>
-<div class="list">
-    <div class="list-header">Обязанности:</div>
-    <ul>
-        <li>Работать по 20 часов в сутки</li>
-        <li>Спать по 3-4 часа</li>
-    </ul>
-</div>
+<?php
+    show_vacancy_list('responsibilities', 'Обязанности:', $lists['responsibilities']);
+    show_vacancy_list('required', 'Обязанности:', $lists['required']);
+    show_vacancy_list('desired', 'Обязанности:', $lists['desired']);
+?>
 <h3 style="max-width: 400px; margin: 40px 0;">Заинтересованы? Заполните анкету ниже, наши менеджеры вам ответят в ближайшее время!</h3>
 <form action="" method="POST" class="application-form">
     <label for="name">Введите имя: </label>

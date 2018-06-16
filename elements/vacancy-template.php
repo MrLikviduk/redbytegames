@@ -22,4 +22,21 @@
                 ';
             echo '</div>';
     }
+    function show_vacancy_list($name, $label, $lst) {
+        echo '
+        <div class="list">
+            <div class="list-header">'.$label.'</div>
+            <ul>';
+                if ($lst !== NULL) foreach ($lst as $key => $value) {
+                    echo '<li>'.$value.'</li>';
+                }
+                echo '
+                <form action="" method="POST">
+                    <input type="hidden" name="lst_name" value="'.$name.'">
+                    <ul><input type="text" name="input_text" maxlength="1023"> <input type="submit" name="lst_submit" value="Добавить"></ul>
+                </form>
+            </ul>
+        </div>
+        ';
+    }
 ?>

@@ -39,12 +39,12 @@
 
     function can_do($action) { // (CHECKED) Может ли юзер делать то, что передано в качестве аргумента
         $mysqli = connect_to_database();
-        $username = $mysqli->real_escape_string($_SESSION['login']);
-        $password = $mysqli->real_escape_string($_SESSION['password']);
-        if(!isset($username) || !isset($username)) {
+        if(!isset($_SESSION['login']) || !isset($_SESSION['password'])) {
             $role = 'guest';
         }
         else {
+            $username = $mysqli->real_escape_string($_SESSION['login']);
+            $password = $mysqli->real_escape_string($_SESSION['password']);
             $result = $mysqli->query("SELECT * FROM users WHERE username = '".$username."' AND passwd = '".$password."'");
             if ($result->num_rows == 0) {
                 $role = 'guest';
