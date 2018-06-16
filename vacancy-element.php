@@ -19,6 +19,14 @@
                 header("Location: ".$_SERVER['REQUEST_URI']);
             }
         }
+        if (isset($_POST['delete_lst_element'])) {
+            $ind = (int)$_POST['delete_lst_element'];
+            $lst = $_POST['lst_name'];
+            unset($lists[$lst][$ind]);
+            $id = (int)$_GET['id'];
+            $mysqli->query("UPDATE vacancy SET lists = '".base64_encode(serialize($lists))."' WHERE id = $id");
+            header("Location: ".$_SERVER['REQUEST_URI']);
+        }
     }
     if (isset($_POST['request_submit'])) {
         $name = $mysqli->real_escape_string($_POST['name']);
