@@ -44,13 +44,13 @@
             $role = 'guest';
         }
         else {
-            $result = $mysqli->query("SELECT * FROM users WHERE username LIKE '".$_SESSION['login']."' AND passwd LIKE '".$_SESSION['password']."'");
+            $result = $mysqli->query("SELECT * FROM users WHERE username = '".$_SESSION['login']."' AND passwd = '".$_SESSION['password']."'");
             if ($result->num_rows < 1) {
                 $role = 'guest';
             }
             else {
                 $row = $result->fetch_assoc();
-                $result2 = $mysqli->query("SELECT * FROM roles WHERE `id` LIKE '".$row['role_id']."'");
+                $result2 = $mysqli->query("SELECT * FROM roles WHERE `id` = '".$row['role_id']."'");
                 $row2 = $result2->fetch_assoc();
                 $role = $row2['role']; 
             }
@@ -128,7 +128,7 @@
     function get_email($username) { // Возвращает электронный адрес пользователя
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT users.email FROM users WHERE username LIKE '$username'");
+        $result = $mysqli->query("SELECT users.email FROM users WHERE username = '$username'");
         $mysqli->close();
         $row = $result->fetch_assoc();
         return $row['email'];
@@ -137,7 +137,7 @@
     function add_email_key($username) { // Добавляет ключ для подтверждения почты
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT id FROM users WHERE username LIKE '$username'") or die("ERROR");
+        $result = $mysqli->query("SELECT id FROM users WHERE username = '$username'") or die("ERROR");
         $row = $result->fetch_assoc();
         $id = $row['id'];
         $key = md5(rand(-2147483647, 2147483647));
@@ -148,22 +148,22 @@
     function activate_user($key) { // Активирует аккаунт пользователя по ключу
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM email_keys WHERE `key` LIKE '$key'") or die("ERROR 1");
+        $result = $mysqli->query("SELECT * FROM email_keys WHERE `key` = '$key'") or die("ERROR 1");
         if ($result->num_rows == 0) {
             $mysqli->close();
             return FALSE;
         }
         $row = $result->fetch_assoc();
         $user_id = $row['user_id'];
-        $result = $mysqli->query("UPDATE users SET `activated` = 1 WHERE id LIKE $user_id") or die("ERROR 2");
-        $result = $mysqli->query("DELETE FROM email_keys WHERE `key` LIKE '$key'") or die("ERROR 3");
+        $result = $mysqli->query("UPDATE users SET `activated` = 1 WHERE id = $user_id") or die("ERROR 2");
+        $result = $mysqli->query("DELETE FROM email_keys WHERE `key` = '$key'") or die("ERROR 3");
         $mysqli->close();
     }
 
     function send_confirm_letter($email) { // Отправляет письмо с кодом подтверждения
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM users LEFT JOIN email_keys ON email_keys.user_id = users.id WHERE `email` LIKE '$email' ");
+        $result = $mysqli->query("SELECT * FROM users LEFT JOIN email_keys ON email_keys.user_id = users.id WHERE `email` = '$email' ");
         if ($result === FALSE) {
             $mysqli->close();
             return FALSE;
@@ -180,7 +180,7 @@
     function get_field($username, $name, $table = 'users') { // Возвращает значение поля, которое находит по логину
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM $table WHERE username LIKE '$username'");
+        $result = $mysqli->query("SELECT * FROM $table WHERE username = '$username'");
         $mysqli->close();
         if ($result === FALSE)
             return FALSE;
@@ -193,7 +193,7 @@
     function data_is_set($table, $column, $data) {
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT $column FROM $table WHERE $column LIKE '$data'");
+        $result = $mysqli->query("SELECT $column FROM $table WHERE $column = '$data'");
         $mysqli->close();
         if ($result === FALSE || $result->num_rows == 0)
             return FALSE;
@@ -203,7 +203,7 @@
     function delete_data($table, $column, $data) {
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("DELETE FROM $table WHERE $column LIKE '$data'");
+        $result = $mysqli->query("DELETE FROM $table WHERE $column = '$data'");
         $mysqli->close();
         if ($result === FALSE) {
             return FALSE;
@@ -215,7 +215,7 @@
     function set_data($table, $unique_column, $unique_data, $column, $data) {
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("UPDATE $table SET $column = '$data' WHERE $unique_column LIKE '$unique_data'");
+        $result = $mysqli->query("UPDATE $table SET $column = '$data' WHERE $unique_column = '$unique_data'");
         $mysqli->close();
         if ($result === FALSE)
             return FALSE;
@@ -224,7 +224,7 @@
 
     function get_data($table, $unique_column, $unique_data) {
         $mysqli = connect_to_database();
-        $result = $mysqli->query("SELECT * FROM `$table` WHERE `$unique_column` LIKE '$unique_data'");
+        $result = $mysqli->query("SELECT * FROM `$table` WHERE `$unique_column` = '$unique_data'");
         $mysqli->close();
         if ($result === FALSE || $result->num_rows == 0) return FALSE;
         $row = $result->fetch_assoc();
@@ -244,7 +244,7 @@
     function get_id_by_username($username, $table = 'users') { // Возвращает ид юзера
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT id FROM $table WHERE username LIKE '$username'");
+        $result = $mysqli->query("SELECT id FROM $table WHERE username = '$username'");
         $mysqli->close();
         if ($result === FALSE || $result->num_rows == 0)
             return FALSE;
@@ -255,7 +255,7 @@
     function get_username_by_id($id, $table = 'users') {
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT username FROM $table WHERE id LIKE '$id'");
+        $result = $mysqli->query("SELECT username FROM $table WHERE id = '$id'");
         $mysqli->close();
         if ($result === FALSE || $result->num_rows == 0)
             return FALSE;
@@ -266,7 +266,7 @@
     function get_comment_author($id) {
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT users.username FROM comments INNER JOIN users ON users.id = comments.user_id WHERE comments.id LIKE $id");
+        $result = $mysqli->query("SELECT users.username FROM comments INNER JOIN users ON users.id = comments.user_id WHERE comments.id = $id");
         $mysqli->close();
         if ($result === FALSE)
             return FALSE;
@@ -277,7 +277,7 @@
     function get_by_id($id, $table) {
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM `$table` WHERE id LIKE $id");
+        $result = $mysqli->query("SELECT * FROM `$table` WHERE id = $id");
         if ($result === FALSE || $result->num_rows == 0)
             return FALSE;
         $row = $result->fetch_assoc();
