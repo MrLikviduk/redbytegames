@@ -111,7 +111,9 @@
             return FALSE;
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM users WHERE `username` = FROM_BASE64('".base64_encode($username)."') AND `passwd` = FROM_BASE64('".base64_encode($password)."')") or die("ERROR3");
+        $username = $mysqli->real_escape_string($username);
+        $password = $mysqli->real_escape_string($password);
+        $result = $mysqli->query("SELECT * FROM users WHERE `username` = '$username' AND `passwd` = '$password'");
         $mysqli->close();
         return (($result->num_rows) > 0 ? TRUE : FALSE);
     }
