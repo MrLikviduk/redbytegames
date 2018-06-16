@@ -45,7 +45,7 @@
             </form>
         ';
     }
-    $result = $mysqli->query("SELECT * FROM projects");
+    $result = $mysqli->query("SELECT * FROM projects ORDER BY id DESC");
     while ($row = $result->fetch_assoc()) {
         show_project($row['name'], $row['box_art_name'], $row['id']);
     }

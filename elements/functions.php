@@ -241,9 +241,11 @@
 
     function add_comment($blog_id, $user_id, $date, $time, $content) { // (CHECKED)
         $mysqli = connect_to_database();
+        $date = $mysqli->real_escape_string($date);
+        $time = $mysqli->real_escape_string($time);
         $blog_id = (int)$blog_id;
         $user_id = (int)$user_id;
-        $content = $mysqli->real_escape_string();
+        $content = $mysqli->real_escape_string($content);
         $result = $mysqli->query("INSERT INTO comments (id, blog_id, `user_id`, creation_date, creation_time, content) VALUES (NULL, $blog_id, $user_id, '$date', '$time', '$content')");
         $mysqli->close();
         if ($result === FALSE)
