@@ -12,7 +12,7 @@
     if (!isset($_SESSION['id_to_edit_blog']))
         $_SESSION['id_to_edit_blog'] = -1;
     if (isset($_POST['delete_blog']) && can_do('edit_blog')) {
-        $to_delete = $mysqli->query("DELETE FROM blog WHERE id LIKE ".$_POST['delete_blog']) or die("Error");
+        $to_delete = $mysqli->query("DELETE FROM blog WHERE id = ".$_POST['delete_blog']) or die("Error");
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
     if (isset($_POST['edit_blog']) && can_do('edit_blog')) {
