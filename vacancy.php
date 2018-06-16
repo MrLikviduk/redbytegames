@@ -19,6 +19,9 @@
     if (can_do('edit_vacancy'))
         echo '<a href="elements/vacancy-editor.php" style="margin-top: 20px; display: block; text-align: left;">Добавить запись</a>';
     $result = $mysqli->query("SELECT * FROM vacancy ORDER BY id DESC");
+    if (($result->num_rows) == 0) {
+        echo '<h2 style="text-align: center; margin-top: 50px">К сожалению, сейчас нет доступных вакансий. Попробуйте зайти позже...</h2>';
+    }
     while($row = $result->fetch_assoc()) {
         show_vacancy($row['name'], get_data('vacancy_types', 'id', $row['type_id'])['name'], $row['creation_date'], $row['id']);
     }
