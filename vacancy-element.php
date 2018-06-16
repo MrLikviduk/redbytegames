@@ -6,8 +6,8 @@
     if (!isset($_GET['id']))
         return_404();
     $mysqli = connect_to_database();
-    $lists = unserialize(base64_decode($result['lists']));
     $result = get_by_id($_GET['id'], 'vacancy') or return_404();
+    $lists = unserialize(base64_decode($result['lists']));
     if (can_do('edit_vacancy')) {
         if (isset($_POST['lst_submit'])) {
             $content = $_POST['input_text'];
