@@ -56,14 +56,14 @@
             }
         }
         if ($role != 'guest') {
-            $result = $mysqli->query("SELECT activated FROM users WHERE `username` LIKE '".$_SESSION['login']."'");
+            $result = $mysqli->query("SELECT activated FROM users WHERE `username` = '".$_SESSION['login']."'");
             $row = $result->fetch_assoc();
             if ($row['activated'] == 0) {
                 $mysqli->close();
                 return FALSE;
             }
         }
-        $result = $mysqli->query("SELECT * FROM roles WHERE `role` LIKE '$role'");
+        $result = $mysqli->query("SELECT * FROM roles WHERE `role` = '$role'");
         $row = $result->fetch_assoc();
         $mysqli->close();
         if ($row[$action] == 0)
@@ -74,7 +74,7 @@
     function username_is_set($username) { // Проверяет, есть ли пользователь в базе данных с таким логином
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM users WHERE `username` LIKE '$username'") or die("ASHIPKA");
+        $result = $mysqli->query("SELECT * FROM users WHERE `username` = '$username'") or die("ASHIPKA");
         $mysqli->close();
         if (($result->num_rows) > 0)
             return TRUE;
@@ -85,7 +85,7 @@
     function email_is_set($email) { // Проверяет, есть ли пользователь в базе данных с таким электронным адресом
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM users WHERE `email` LIKE '$email'") or die("ASHIPKA");
+        $result = $mysqli->query("SELECT * FROM users WHERE `email` = '$email'") or die("ASHIPKA");
         $mysqli->close();
         if (($result->num_rows) > 0)
             return TRUE;
@@ -96,7 +96,7 @@
     function create_user($username, $email, $password, $role) { // Заносит нового пользователя в базу данных
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM roles WHERE `role` LIKE '$role'") or die("ERROR 1");
+        $result = $mysqli->query("SELECT * FROM roles WHERE `role` = '$role'") or die("ERROR 1");
         $row = $result->fetch_assoc();
 		$role_id = $row['id'];
         $result2 = $mysqli->query("INSERT INTO users (id, username, email, passwd, role_id) VALUES (NULL, '$username', '$email', '$password', $role_id)") or die(
@@ -111,7 +111,7 @@
             return FALSE;
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT * FROM users WHERE `username` LIKE '$username' AND `passwd` LIKE '$password'");
+        $result = $mysqli->query("SELECT * FROM users WHERE `username` = '$username' AND `passwd` = '$password'");
         $mysqli->close();
         return (($result->num_rows) > 0 ? TRUE : FALSE);
     }
@@ -119,7 +119,7 @@
     function get_role($username, $table = 'users') { // Возвращает роль пользователя
         include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
         $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-        $result = $mysqli->query("SELECT roles.role FROM $table LEFT JOIN roles ON roles.id = $table.role_id WHERE $table.username LIKE '$username' ");
+        $result = $mysqli->query("SELECT roles.role FROM $table LEFT JOIN roles ON roles.id = $table.role_id WHERE $table.username = '$username' ");
         $mysqli->close();
         $row = $result->fetch_assoc();
         return $row['role'];
