@@ -14,45 +14,22 @@
     if (!isset($_SESSION['id_to_edit_blog']))
         $_SESSION['id_to_edit_blog'] = -1;
     $mysqli = connect_to_database();
-    $query = $mysqli->query("SELECT * FROM blog WHERE id LIKE ".$_SESSION['id_to_edit_blog']);
+    $query = $mysqli->query("SELECT * FROM blog WHERE id = ".((int)$_SESSION['id_to_edit_blog']));
     $to_edit = $query->fetch_assoc();
     if(isset($_POST['header']) && $_POST['header'] != '' && $_POST['content'] != '' && isset($_POST['submit']) && can_do('edit_blog')) {
-        $header = $_POST['header'];
-        $content = $_POST['content'];
-        $tags = $_POST['tags'];
+        $header = $mysqli->real_escape_string($_POST['header']);
+        $content = $mysqli->real_escape_string($_POST['content']);
+        $tags = $mysqli->real_escape_string($_POST['tags']);
         if ($_SESSION['id_to_edit_blog'] == -1)
             $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, '$header', '$content', '$date', '$tags')") or die("Error");
         else {
-            $t_id = $_SESSION['id_to_edit_blog'];
-            $date = $to_edit['creation_date'];
-            $mysqli->query("UPDATE blog SET header = '$header', content = '$content', creation_date = '$date', tags = '$tags' WHERE id LIKE $t_id") or die("Error to edit");
+            $t_id = (int)$_SESSION['id_to_edit_blog'];
+            $date = $mysqli->real_escape_string($to_edit['creation_date']);
+            $mysqli->query("UPDATE blog SET header = '$header', content = '$content', creation_date = '$date', tags = '$tags' WHERE id = $t_id") or die("Error to edit");
         }
         $_SESSION['id_to_edit_blog'] = -1;
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
-    // if (!isset($max_id)) { // Чтобы создать новую картинку с уникальным id
-    //     $max_id = 1;
-    // }
-    // $dir = $_SERVER['DOCUMENT_ROOT'].'/blog_img';
-    // $files = [];
-    // foreach (scandir($dir) as $key => $value) {
-    //     if ($value != '.' && $value != '..') {
-    //         array_push($files, $value);
-    //         $tmp = explode('.', $value);
-    //         if ($tmp[0] >= $max_id)
-    //             $max_id = $tmp[0] + 1;
-    //     }
-    // }
-    // if (!isset($file_to_insert))
-    //     $file_to_insert = -1;
-    // if (isset($_FILES['filename']) && isset($_POST['insert_image'])) {
-    //     $check = can_upload($_FILES['filename']);
-    //     if ($check === TRUE) {
-    //         make_upload($_FILES['filename'], $max_id);
-    //         $file_to_insert = $_FILES['filename'];
-    //         echo "<script>alert('CHECK')</script>";
-    //     }
-    // }
     $mysqli->close();
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>

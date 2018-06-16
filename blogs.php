@@ -12,6 +12,7 @@
     if (!isset($_SESSION['id_to_edit_blog']))
         $_SESSION['id_to_edit_blog'] = -1;
     if (isset($_POST['delete_blog']) && can_do('edit_blog')) {
+        $id = (int)$_POST['delete_blog'];
         $to_delete = $mysqli->query("DELETE FROM blog WHERE id = ".$_POST['delete_blog']) or die("Error");
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
@@ -43,7 +44,8 @@
         if ((user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_POST['delete_comment'], 'comments')['user_id']) || can_do('delete_comments')) {
             $comment = get_by_id($_POST['delete_comment'], 'comments');
             $blog_id = $comment['blog_id'];
-            $mysqli->query("DELETE FROM comments WHERE id LIKE ".$_POST['delete_comment']);
+            $comment_id = (int)$_POST['delete_comment'];
+            $mysqli->query("DELETE FROM comments WHERE id = ".$comment_id);
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
         }
     }
@@ -63,8 +65,8 @@
                 $ban_time = $_POST['days'] * 86400 + $_POST['hours'] * 3600;
             else
                 $ban_time = 0;
-            $user_id = get_by_id($_POST['ban_user'], 'comments')['user_id'];
-            $mysqli->query("DELETE FROM comments WHERE `user_id` LIKE $user_id");
+            $user_id = (int)get_by_id($_POST['ban_user'], 'comments')['user_id'];
+            $mysqli->query("DELETE FROM comments WHERE `user_id` = $user_id");
             set_data('users', 'id', $user_id, 'banned', 1);
             set_data('users', 'id', $user_id, 'unban_time', intval(date('U')) + $ban_time);
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
@@ -78,7 +80,9 @@
         $user_id = get_id_by_username($_SESSION['login']);
         $blog_id = $_POST['blog_id'];
         if (isset($_SESSION['id_to_edit_comment']) && get_by_id($_SESSION['id_to_edit_comment'], 'comments')['blog_id'] == $_POST['blog_id'] && user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_SESSION['id_to_edit_comment'], 'comments')['user_id']) {
-            $mysqli->query("UPDATE comments SET content = '".$_POST['comment_content']."' WHERE id LIKE ".$_SESSION['id_to_edit_comment']);
+            $comment_content = $mysqli->real_escape_string($_POST['comment_content']);
+            $id_to_edit_comment = (int) $_SESSION['id_to_edit_comment'];
+            $mysqli->query("UPDATE comments SET content = '".$comment_content."' WHERE id = ".$id_to_edit_comment);
             unset($_SESSION['id_to_edit_comment']);
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$_POST['blog_id']);
         }
@@ -124,7 +128,7 @@
                     </form>
                 ';
             }
-            $comments_result = $mysqli->query("SELECT * FROM comments WHERE blog_id LIKE ".$row['id']." ORDER BY id DESC");
+            $comments_result = $mysqli->query("SELECT * FROM comments WHERE blog_id = ".((int)$row['id'])." ORDER BY id DESC");
             $comments_are_set = $comments_result->num_rows > 0;
             if ($comments_are_set) {
                 echo '

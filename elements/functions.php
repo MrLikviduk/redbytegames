@@ -196,9 +196,9 @@
         return $row[$name];
     }
 
-    function data_is_set($table, $column, $data) {
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function data_is_set($table, $column, $data) { // (CHECKED)
+        $mysqli = connect_to_database();
+        $data = $mysqli->real_escape_string();
         $result = $mysqli->query("SELECT $column FROM $table WHERE $column = '$data'");
         $mysqli->close();
         if ($result === FALSE || $result->num_rows == 0)
@@ -206,9 +206,9 @@
         return TRUE;
     }
 
-    function delete_data($table, $column, $data) {
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function delete_data($table, $column, $data) { // (CHECKED)
+        $mysqli = connect_to_database();
+        $data = $mysqli->real_escape_string($data);
         $result = $mysqli->query("DELETE FROM $table WHERE $column = '$data'");
         $mysqli->close();
         if ($result === FALSE) {
@@ -218,9 +218,10 @@
             return TRUE;
     }
 
-    function set_data($table, $unique_column, $unique_data, $column, $data) {
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function set_data($table, $unique_column, $unique_data, $column, $data) { // (CHECKED)
+        $mysqli = connect_to_database();
+        $unique_data = $mysqli->real_escape_string($unique_data);
+        $data = $mysqli->real_escape_string($data);
         $result = $mysqli->query("UPDATE $table SET $column = '$data' WHERE $unique_column = '$unique_data'");
         $mysqli->close();
         if ($result === FALSE)
@@ -228,8 +229,9 @@
         return TRUE;
     }
 
-    function get_data($table, $unique_column, $unique_data) {
+    function get_data($table, $unique_column, $unique_data) { // (CHECKED)
         $mysqli = connect_to_database();
+        $unique_data = $mysqli->real_escape_string($unique_data);
         $result = $mysqli->query("SELECT * FROM `$table` WHERE `$unique_column` = '$unique_data'");
         $mysqli->close();
         if ($result === FALSE || $result->num_rows == 0) return FALSE;
@@ -237,9 +239,11 @@
         return $row;
     }
 
-    function add_comment($blog_id, $user_id, $date, $time, $content) {
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function add_comment($blog_id, $user_id, $date, $time, $content) { // (CHECKED)
+        $mysqli = connect_to_database();
+        $blog_id = (int)$blog_id;
+        $user_id = (int)$user_id;
+        $content = $mysqli->real_escape_string();
         $result = $mysqli->query("INSERT INTO comments (id, blog_id, `user_id`, creation_date, creation_time, content) VALUES (NULL, $blog_id, $user_id, '$date', '$time', '$content')");
         $mysqli->close();
         if ($result === FALSE)
@@ -247,9 +251,9 @@
         return TRUE;
     }
 
-    function get_id_by_username($username, $table = 'users') { // Возвращает ид юзера
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function get_id_by_username($username, $table = 'users') { // (CHECKED) Возвращает ид юзера
+        $mysqli = connect_to_database();
+        $username = $mysqli->real_escape_string($username);
         $result = $mysqli->query("SELECT id FROM $table WHERE username = '$username'");
         $mysqli->close();
         if ($result === FALSE || $result->num_rows == 0)
@@ -258,9 +262,9 @@
         return $row['id'];
     }
 
-    function get_username_by_id($id, $table = 'users') {
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function get_username_by_id($id, $table = 'users') { // (CHECKED)
+        $mysqli = connect_to_database();
+        $id = (int)$id;
         $result = $mysqli->query("SELECT username FROM $table WHERE id = '$id'");
         $mysqli->close();
         if ($result === FALSE || $result->num_rows == 0)
@@ -270,8 +274,8 @@
     }
 
     function get_comment_author($id) {
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+        $mysqli = connect_to_database();
+        $id = int($id);
         $result = $mysqli->query("SELECT users.username FROM comments INNER JOIN users ON users.id = comments.user_id WHERE comments.id = $id");
         $mysqli->close();
         if ($result === FALSE)
@@ -280,9 +284,9 @@
         return $row['username'];
     }
 
-    function get_by_id($id, $table) {
-        include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-        $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+    function get_by_id($id, $table) { // (CHECKED)
+        $mysqli = connect_to_database();
+        $id = (int)$id;
         $result = $mysqli->query("SELECT * FROM `$table` WHERE id = $id");
         if ($result === FALSE || $result->num_rows == 0)
             return FALSE;
@@ -290,7 +294,9 @@
         return $row;
     }
 
-    function is_own_comment($id, $user_id = NULL) { // Проверяет, принадлежит ли коммент юзеру
+    function is_own_comment($id, $user_id = NULL) { // (CHECKED) Проверяет, принадлежит ли коммент юзеру
+        $id = (int)$id;
+        $user_id = (int)$user_id;
         if (!isset($user_id))
             $user_id = get_id_by_username($_SESSION['login']);
         return user_is_set($_SESSION['login'], $_SESSION['password']) && $user_id == get_by_id($id, 'comments')['user_id'];

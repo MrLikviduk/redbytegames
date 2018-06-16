@@ -7,7 +7,7 @@
     if (isset($_SESSION['id_to_edit_vacancy'])) unset($_SESSION['id_to_edit_vacancy']);
     if (can_do('edit_vacancy')) {
         if (isset($_POST['delete_vacancy'])) {
-            $mysqli->query("DELETE FROM vacancy WHERE `id` LIKE ".$_POST['delete_vacancy']);
+            $mysqli->query("DELETE FROM vacancy WHERE `id` = ".((int)$_POST['delete_vacancy']));
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
         if (isset($_POST['edit_vacancy'])) {

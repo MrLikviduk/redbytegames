@@ -26,6 +26,7 @@
             }
             else
                 $box_art_name = 'no_image.jpg';
+            $name = $mysqli->real_escape_string($_POST['name']);
             $mysqli->query("INSERT INTO projects (`name`, box_art_name) VALUES ('".$_POST['name']."', '$box_art_name')");
             header("Location: ".$_SERVER['REQUEST_URI']);
         }

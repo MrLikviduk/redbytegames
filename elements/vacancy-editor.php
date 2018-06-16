@@ -11,15 +11,15 @@
     }
     if (can_do('edit_vacancy')) {
         if (isset($_POST['submit']) && strlen($_POST['name']) != 0 && strlen($_POST['type']) != 0) {
-            $name = $_POST['name'];
-            $type_id = $_POST['type'];
+            $name = $mysqli->real_escape_string($_POST['name']);
+            $type_id = (int)$_POST['type'];
             if (!isset($_SESSION['id_to_edit_vacancy'])) {
                 $date = date('d.m.Y');
                 $mysqli->query("INSERT INTO vacancy (id, `name`, `type_id`, `creation_date`) VALUES (NULL, '$name', '$type_id', '$date')") or die("ERROR");
                 header("Location: ".$_SERVER['REQUEST_URI']);
             }
             else {
-                $mysqli->query("UPDATE vacancy SET `name` = '$name', `type_id` = '$type_id' WHERE `id` LIKE ".$_SESSION['id_to_edit_vacancy']) or die("ERROR");
+                $mysqli->query("UPDATE vacancy SET `name` = '$name', `type_id` = '$type_id' WHERE `id` = ".((int)$_SESSION['id_to_edit_vacancy'])) or die("ERROR");
                 unset($_SESSION['id_to_edit_vacancy']);
                 header("Location: ".$_SERVER['REQUEST_URI']);
             }

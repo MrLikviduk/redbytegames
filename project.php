@@ -14,12 +14,19 @@
                 $content = $_POST['comment_content'];
                 $rating = $_POST['rating'];
                 $project_id = $_GET['id'];
-                $result = $mysqli->query("SELECT * FROM projects_comments WHERE `user_id` LIKE '".get_id_by_username($_SESSION['login'])."' AND `project_id` LIKE '".$_GET['id']."'");
+                $result = $mysqli->query("SELECT * FROM projects_comments WHERE `user_id` = '".get_id_by_username($_SESSION['login'])."' AND `project_id` = '".((int)$_GET['id'])."'");
                 if ($result->num_rows == 0) {
+                    $date = $mysqli->real_escape_string($date);
+                    $time = $mysqli->real_escape_string($time);
+                    $content = $mysqli->real_escape_string($content);
+                    $rating = (int)$rating;
+                    $project_id = (int)$project_id;
                     $mysqli->query("INSERT INTO projects_comments (id, project_id, `user_id`, `creation_date`, `creation_time`, `content`, `rating`) VALUES (NULL, $project_id, ".get_id_by_username($_SESSION['login']).", '$date', '$time', '$content', '$rating')") or die("ERROR");
                 }
                 else {
-                    $mysqli->query("UPDATE projects_comments SET `content` = '$content', `rating` = $rating WHERE `user_id` LIKE '".get_id_by_username($_SESSION['login'])."' AND `project_id` LIKE '".$_GET['id']."'");
+                    $content = $mysqli->real_escape_string($content);
+                    $rating = (int)$rating;
+                    $mysqli->query("UPDATE projects_comments SET `content` = '$content', `rating` = $rating WHERE `user_id` = '".get_id_by_username($_SESSION['login'])."' AND `project_id` = '".((int)$_GET['id'])."'");
                 }
                 header("Location: ".$_SERVER['REQUEST_URI']);
             }
@@ -36,7 +43,7 @@
     <h1 class="project-name">Skater</h1>
     <div class="average-rating">
         <?php
-            $result2 = $mysqli->query("SELECT project_id, avg(rating) FROM `projects_comments` WHERE project_id LIKE '".$_GET['id']."' GROUP BY project_id");
+            $result2 = $mysqli->query("SELECT project_id, avg(rating) FROM `projects_comments` WHERE project_id LIKE '".((int)$_GET['id'])."' GROUP BY project_id");
             $row = $result2->fetch_assoc();
             $rating = $row['avg(rating)'];
             $rating = round($rating, 1);
@@ -142,7 +149,7 @@
     </div>
     <div class="users-count">
         <img src="/img/users.png" style="display: inline-block; width: 16px; height: 16px;"> <?php 
-            $result3 = $mysqli->query("SELECT * FROM projects_comments WHERE `project_id` LIKE ".$_GET['id']);
+            $result3 = $mysqli->query("SELECT * FROM projects_comments WHERE `project_id` LIKE ".((int)$_GET['id']);
             echo number_format($result3->num_rows, 0, ".", " ");
         ?>
     </div>
@@ -170,7 +177,7 @@
     else {
         echo '<p>Чтобы оставить отзыв, вам необходимо <a href="/index">авторизоваться</a></p>';
     }
-    $result = $mysqli->query("SELECT * FROM projects_comments WHERE `project_id` LIKE '".$_GET['id']."' ORDER BY id DESC");
+    $result = $mysqli->query("SELECT * FROM projects_comments WHERE `project_id` LIKE '".((int)$_GET['id'])."' ORDER BY id DESC");
     while ($row = $result->fetch_assoc()) {
         show_comment(get_username_by_id($row['user_id']), $row['creation_date'], $row['creation_time'],  $row['content'], $row['rating'], $row['id']);
     }

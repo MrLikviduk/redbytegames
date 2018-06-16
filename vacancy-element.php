@@ -10,10 +10,10 @@
     // $required = unserialize(base64_decode($result['required']));
     // $desired = unserialize(base64_decode($result['desired']));
     if (isset($_POST['request_submit'])) {
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $resume = $_POST['resume'];
-        $vacancy_id = $_GET['id'];
+        $name = $mysqli->real_escape_string($_POST['name']);
+        $email = $mysqli->real_escape_string($_POST['email']);
+        $resume = $mysqli->real_escape_string($_POST['resume']);
+        $vacancy_id = (int)$_GET['id'];
         $result = $mysqli->query("SELECT * FROM vacancy_requests WHERE `email` LIKE '$email'");
         if (strlen($name) >= NAME_MIN && strlen($name) <= NAME_MAX && strlen($email) >= EMAIL_MIN && strlen($email) <= EMAIL_MAX && strlen($resume) >= LINK_MIN && strlen($resume) <= LINK_MAX) {
             $kol = $result->num_rows;
