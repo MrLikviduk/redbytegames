@@ -347,4 +347,8 @@
         else
             return FALSE;
     }
+
+    function is_legal($s, $min, $max) {
+        return strlen($s) >= $min && strlen($s) <= $max;
+    }
 ?>

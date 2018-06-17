@@ -32,6 +32,18 @@
             }
         }
     }
+    if (can_do('edit_projects')) {
+        if (isset($_POST['p_submit'])) {
+            if (is_legal($_POST['p_content'], 0, 4096) && is_legal($_POST['p_name'], 0, 60)) {
+                $content = $_POST['p_content'];
+                $name = $_POST['p_name'];
+                $lst = unserialize(base64_decode($result['paragraphs']));
+                $lst[$name] = $content;
+                $mysqli->query("UPDATE projects SET paragraphs = '".base64_encode(serialize($lst))."' WHERE id = ".((int)$_GET['id']));
+                header("Location: ".$_SERVER['REQUEST_URI']);
+            }
+        }
+    }
     $page_name = $result['name'];
     $is_project = TRUE;
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
