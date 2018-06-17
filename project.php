@@ -93,11 +93,6 @@
         }
     }
 </script>
-<p class="description"><strong>Skater</strong> - казалось бы что игрушка довольно простенькая и ее хватает на пару вечеров, 
-но когда очередной раз собираешь команду и слышны голоса товарищей: "Давай опять рванем к той базе, на этот раз мы 
-ее разнесем!" хочется снова окунутся в игру. Все это наполнено космической тематикой и напоминает старые приставочные 
-игры, когда ты взяв джойстик сидел и залипал перед экраном телевизора, а сейчас твоя мечта сбылась и ты можешь играть с 
-друзьями.</p>
 <script>
     function resetStars(value) {
         for (var i = 0; i < 5; i++) {
@@ -134,8 +129,19 @@
             show_paragraph($counter, $key, $value);
             $counter++;
         }
-    echo '<h1 style="margin-bottom: 10px;">Отзывы</h1>';
+    if (can_do('edit_projects')) {
 ?>
+        <form action="" method="POST">
+            <input type="text" name="p_name" size="40" placeholder="Введите название параграфа">
+            <p></p>
+            <textarea name="p_content" cols="60" rows="10"></textarea>
+            <p></p>
+            <input type="submit" name="p_submit" value="Добавить">
+        </form>
+<?php
+    }
+?>
+<h1 style="margin-bottom: 10px;">Отзывы</h1>
 <div class="average-rating-stat">
     <div class="average-number">
         <?php echo number_format($rating, 1); ?>
