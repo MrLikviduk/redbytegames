@@ -97,7 +97,7 @@
 
     function create_user($username, $email, $password, $role) { // (CHECKED) Заносит нового пользователя в базу данных
         $mysqli = connect_to_database();
-        $role = $mysqli->real_escape_string();
+        $role = $mysqli->real_escape_string($role);
         $result = $mysqli->query("SELECT * FROM roles WHERE `role` = '$role'") or die("ERROR 1");
         $row = $result->fetch_assoc();
         $role_id = (int)$row['id'];
@@ -125,7 +125,7 @@
     function get_role($username, $table = 'users') { // (CHECKED) Возвращает роль пользователя
         $mysqli = connect_to_database();
         $username = $mysqli->real_escape_string($username);
-        $result = $mysqli->query("SELECT roles.role FROM $table LEFT JOIN roles ON roles.id = $table.role_id WHERE $table.username = '$username' ");
+        $result = $mysqli->query("SELECT roles.role FROM $table LEFT JOIN roles ON roles.id = $table.role_id WHERE $table.username = '$username'") or die("ERROR000");
         $mysqli->close();
         $row = $result->fetch_assoc();
         return $row['role'];
@@ -198,7 +198,7 @@
 
     function data_is_set($table, $column, $data) { // (CHECKED)
         $mysqli = connect_to_database();
-        $data = $mysqli->real_escape_string();
+        $data = $mysqli->real_escape_string($data);
         $result = $mysqli->query("SELECT $column FROM $table WHERE $column = '$data'");
         $mysqli->close();
         if ($result === FALSE || $result->num_rows == 0)
