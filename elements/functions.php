@@ -335,4 +335,16 @@
         echo $error_404_text;
         exit;
     }
+
+    function check_captcha($grr) {
+        if (isset($grr) && $grr) {
+            $secret = '6LfdRl8UAAAAAGCnYDwaedMso7bqgpRa-AzzSPkS';
+            $response = $grr;
+            $rsp = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response");
+            $arr = json_decode($rsp, TRUE);
+            return $arr['success'];
+        }
+        else
+            return FALSE;
+    }
 ?>

@@ -70,7 +70,7 @@
         ';
     }
 
-    if (isset($_POST['submit']) && $_POST['type'] == 'user') {
+    if (isset($_POST['submit']) && $_POST['type'] == 'user' && check_captcha($_POST['g-recaptcha-response'])) {
         $min = [
             [$_POST['user_login'], LOGIN_MIN],
             [$_POST['user_password'], PASSWORD_MIN],
@@ -89,7 +89,7 @@
             }
         }
     }
-    else if (isset($_POST['submit'])) {
+    else if (isset($_POST['submit']) && check_captcha($_POST['g-recaptcha-response'])) {
         $type = $_POST['type'];
         foreach ($_POST as $key => $value) {
             if (explode('_', $key)[0] == $type)
