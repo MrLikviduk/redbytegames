@@ -132,6 +132,8 @@
     if (can_do('edit_projects')) {
 ?>
         <form action="" method="POST">
+            <label>Добавить параграф:</label>
+            <br>
             <input type="text" name="p_name" size="40" placeholder="Введите название параграфа">
             <p></p>
             <textarea name="p_content" cols="60" rows="10"></textarea>
