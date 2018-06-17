@@ -169,14 +169,14 @@
     function send_confirm_letter($email) { // (CHECKED) Отправляет письмо с кодом подтверждения
         $mysqli = connect_to_database();
         $email = $mysqli->real_escape_string($email);
-        $result = $mysqli->query("SELECT * FROM users LEFT JOIN email_keys ON email_keys.user_id = users.id WHERE `email` = '$email' ");
+        $result = $mysqli->query("SELECT * FROM users LEFT JOIN email_keys ON email_keys.user_id = users.id WHERE `email` = '$email'");
         if ($result === FALSE) {
             $mysqli->close();
             return FALSE;
         }
-        $mysqli->close();
         $row = $result->fetch_assoc();
         $key = $mysqli->real_escape_string($row['key']);
+        $mysqli->close();
         $result = mail($email, 'Подтверждение', 'Чтобы подтвердить ваш электронный адрес, перейдите по ссылке: https://redbytegames.ru/index.php?key='.$key, 'From: confirm@redbytegames.ru');
         if ($result === FALSE)
             return FALSE;
