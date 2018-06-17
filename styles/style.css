@@ -16,9 +16,6 @@ main {
 a {
     text-decoration: none;
 }
-.g-recaptcha {
-
-}
 nav {
     width: 100vw;
     height: 60px;
@@ -261,6 +258,7 @@ body > footer {
     left: calc(50vw - 140px);
 }
 .registration-form {
+    width: 320px;
     min-height: 620px;
     height: auto;
     position: static;
