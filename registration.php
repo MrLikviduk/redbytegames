@@ -172,6 +172,7 @@
                 ?>
             </div>
        </div>
+       <div class="g-recaptcha" data-sitekey="6LfdRl8UAAAAAFNp0Aq7VO1Wp7LEm9yaBnXs6-QZ"></div>
         <div class="btn-wrapper">
             <input type="submit" value="Зарегистрироваться" class="submit-btn" name="submit">
         </div>

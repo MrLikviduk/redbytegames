@@ -25,6 +25,7 @@
             echo '<link rel="stylesheet" href="/styles/style-for-vacancy-element.css?v'.time().'">';
     ?>
     <title>Red Byte Games - больше, чем игры</title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <?php
