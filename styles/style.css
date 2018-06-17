@@ -16,6 +16,9 @@ main {
 a {
     text-decoration: none;
 }
+.g-recaptcha {
+    width: auto;
+}
 nav {
     width: 100vw;
     height: 60px;
