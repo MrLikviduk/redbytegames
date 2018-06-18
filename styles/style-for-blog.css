@@ -47,6 +47,7 @@ article h1 {
     padding: 5px;
     cursor: pointer;
     user-select: none;
+    transition: .3s;
 }
 .show-comments-btn:hover {
     background: hsl(0, 60%, 50%);
