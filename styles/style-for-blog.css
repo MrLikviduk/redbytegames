@@ -38,8 +38,8 @@ article h1 {
 }
 .show-comments-btn {
     width: auto;
-    border: hsl(0, 80%, 40%) solid 1px;
-    background: hsl(0, 60%, 50%);
+    border: none;
+    background: transparent;
     color: gray;
     text-align: center;
     letter-spacing: 2px;
@@ -49,8 +49,9 @@ article h1 {
     user-select: none;
 }
 .show-comments-btn:hover {
-    background: transparent;
-    border: none;
+    background: hsl(0, 60%, 50%);
+    border: hsl(0, 80%, 40%) solid 1px;
+    color: white;
 }
 .icon-blog.edit {
     right: 35px;
