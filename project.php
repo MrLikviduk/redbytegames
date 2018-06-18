@@ -157,9 +157,16 @@
 ?>
 <div class="galleria-wrapper">
     <div class="galleria">
-        <img src="/projects_img/1.jpg">
-        <img src="/projects_img/2.jpg">
-        <img src="/projects_img/3.jpg">
+        <?php
+            $dir = $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['name'];
+            $temp_array = scandir($dir);
+            $files = [];
+            foreach ($temp_array as $value) {
+                if ($value != '.' && $value != '..')
+                    array_push($files, $value);
+            foreach ($files as $value)
+                echo '<img src="/projects_img/'.$result['name'].'/'.$value.'">';
+        ?>
     </div>
 </div>
 <script> 
