@@ -161,7 +161,7 @@
             $dir = $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['name'];
             $temp_array = scandir($dir);
             $files = [];
-            foreach ($temp_array as $value) {
+            foreach ($temp_array as $value)
                 if ($value != '.' && $value != '..')
                     array_push($files, $value);
             foreach ($files as $value)
@@ -220,7 +220,6 @@
     while ($row = $result->fetch_assoc()) {
         show_comment(get_username_by_id($row['user_id']), $row['creation_date'], $row['creation_time'],  $row['content'], $row['rating'], $row['id']);
     }
-    
 ?>
 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); ?>
