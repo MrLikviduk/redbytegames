@@ -21,6 +21,9 @@ main {
 .average-rating-stat .average-number {
     font-size: 3rem;
 }
+input.key {
+    width: 120px;
+}
 .comment {
     width: 80vw;
     margin: 20px 10px;

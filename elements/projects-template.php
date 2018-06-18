@@ -15,7 +15,7 @@
         echo '
             <div class="property-key">'.$key.'</div>
             <div class="property-value">'.$value.'</div>
-            <div style="height: 10px;"></div>
+            <br>
         ';
     }
 

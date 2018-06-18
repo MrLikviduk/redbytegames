@@ -34,7 +34,7 @@
     }
     if (can_do('edit_projects')) {
         if (isset($_POST['p_submit'])) {
-            if (is_legal($_POST['p_content'], 0, 4096) && is_legal($_POST['p_name'], 0, 60)) {
+            if (is_legal($_POST['p_content'], 1, 4096) && is_legal($_POST['p_name'], 1, 60)) {
                 $content = $_POST['p_content'];
                 $name = $_POST['p_name'];
                 $lst = unserialize(base64_decode($result['paragraphs']));
@@ -56,6 +56,16 @@
                 }
             }
             make_upload($_FILES['picture_file'], $max_id, 'projects_img/'.$result['name']);
+            header("Location: ".$_SERVER['REQUEST_URI']);
+        }
+        if (isset($_POST['tech_param_submit'])) {
+            $key = $_POST['tech_param_key'];
+            $value = $_POST['tech_param_value'];
+            if (is_legal($key, 1, 32) && is_legal($value, 1, 64)) {
+                $lst = unserialize(base64_decode($result['tech_params']));
+                $lst[$key.': '] = $value;
+                $mysqli->query("UPDATE projects SET tech_params = '".base64_encode(serialize($lst))."' WHERE id = ".((int)$_GET['id'])) or die("ERROR");
+            }
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
@@ -104,6 +114,9 @@
                     show_tech_param($key, $value);
                 }
         ?>
+        <form action="" method="POST">
+            <input type="text" name="tech_param_key" class="key"><b>: </b><input type="text" name="tech_param_value"> <input type="submit" value="Добавить" name="tech_param_submit">
+        </form>
     </div>
 </div>
 <script>
