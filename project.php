@@ -113,10 +113,12 @@
                 foreach ($lst as $key => $value) {
                     show_tech_param($key, $value);
                 }
+            if (can_do('edit_projects')) {
         ?>
         <form action="" method="POST">
             <input type="text" name="tech_param_key" class="key"><b>: </b><input type="text" name="tech_param_value"> <input type="submit" value="Добавить" name="tech_param_submit">
         </form>
+        <?php } ?>
     </div>
 </div>
 <script>
