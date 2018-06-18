@@ -38,7 +38,6 @@ article h1 {
 }
 .show-comments-btn {
     width: auto;
-    height: 18px;
     border: none;
     background: transparent;
     color: gray;
@@ -49,7 +48,7 @@ article h1 {
     padding-top: 3px;
     cursor: pointer;
     user-select: none;
-    transition: .3s;
+    transition: .15s;
     box-sizing: border-box;
 }
 .show-comments-btn:hover {
