@@ -55,7 +55,7 @@
                         $max_id = $tmp[0] + 1;
                 }
             }
-            make_upload($_FILES['picture_file'], $max_id, 'project_img/'.$result['name']);
+            make_upload($_FILES['picture_file'], $max_id, 'projects_img/'.$result['name']);
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
@@ -150,7 +150,7 @@
 </script>
 <?php if (can_do('edit_projects')) { ?>
     <form action="" method="POST" enctype="multipart/form-data">
-        <label for="file">Добавить картинку: </label>
+        <label for="picture_file">Добавить картинку: </label>
         <input type="file" name="picture_file">
         <input type="submit" value="Добавить" name="picture_submit">
     </form>
