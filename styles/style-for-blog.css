@@ -40,13 +40,17 @@ article h1 {
     width: auto;
     border: hsl(0, 80%, 40%) solid 1px;
     background: hsl(0, 60%, 50%);
-    color: white;
+    color: gray;
     text-align: center;
     letter-spacing: 2px;
     border-radius: 5px;
     padding: 5px;
     cursor: pointer;
     user-select: none;
+}
+.show-comments-btn:hover {
+    background: transparent;
+    border: none;
 }
 .icon-blog.edit {
     right: 35px;
