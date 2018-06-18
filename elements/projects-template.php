@@ -12,12 +12,17 @@
     }
     
     function show_tech_param($key, $value) {
-        echo '
-            <div class="property-key">'.$key.'</div>
-            <div class="property-value">'.$value.'</div>
+        require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
+        ?>
+            <div class="property-key"><?=$key?></div>
+            <div class="property-value"><?=$value?></div>
+            <?php if (can_do('edit_projects')) { ?>
+            <form action="" method="POST" style="display: inline-block">
+                <button name="delete_tech_param" value="<?=$key?>" style="margin: 0 5px;" onclick="return confirm('Вы действительно хотите удалить параметр?')">Удалить</button>
+            </form>
+            <?php } ?>
             <br>
-        ';
-    }
+ <?php   }
 
     function show_paragraph($val, $name, $content) {
         echo '

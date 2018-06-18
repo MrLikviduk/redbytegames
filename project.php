@@ -68,6 +68,13 @@
             }
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
+        if (isset($_POST['delete_tech_param'])) {
+            $key = $_POST['delete_tech_param'];
+            $lst = unserialize(base64_decode($result['tech_params']));
+            unset($lst[$key.': ']);
+            $mysqli->query("UPDATE projects SET tech_params = '".base64_encode(serialize($lst))."' WHERE id = ".((int)$_GET['id'])) or die("ERROR");
+            header("Location: ".$_SERVER['REQUEST_URI']);
+        }
     }
     $page_name = $result['name'];
     $is_project = TRUE;
