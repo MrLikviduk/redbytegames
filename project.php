@@ -67,7 +67,7 @@
     <img src="/projects_img/<?=$result['box_art_name']?>" alt="<?=$result['name']?>" class="box-art">
 </div>
 <div class="right-menu">
-    <h1 class="project-name">Skater</h1>
+    <h1 class="project-name"><?=$result['name']?></h1>
     <div class="average-rating">
         <?php
             $result2 = $mysqli->query("SELECT project_id, avg(rating) FROM `projects_comments` WHERE project_id = '".((int)$_GET['id'])."' GROUP BY project_id");
