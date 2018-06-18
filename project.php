@@ -148,15 +148,15 @@
         resetStars(star_id + 1);
     }
 </script>
+<?php if (can_do('edit_projects')) { ?>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <label for="file">Добавить картинку: </label>
+        <input type="file" name="picture_file">
+        <input type="submit" value="Добавить" name="picture_submit">
+    </form>
+<?php } ?>
 <div class="galleria-wrapper">
     <div class="galleria">
-        <?php if (can_do('edit_projects')) { ?>
-            <form action="" method="POST" enctype="multipart/form-data">
-                <label for="file">Добавить картинку: </label>
-                <input type="file" name="picture_file">
-                <input type="submit" value="Добавить" name="picture_submit">
-            </form>
-        <?php } ?>
         <?php
             $dir = $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['name'];
             $temp_array = scandir($dir);
