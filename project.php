@@ -55,7 +55,7 @@
                         $max_id = $tmp[0] + 1;
                 }
             }
-            make_upload($_FILES['picture_file'], $max_id, $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['name']);
+            make_upload($_FILES['picture_file'], $max_id, 'project_img/'.$result['name']);
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
