@@ -43,6 +43,21 @@
                 header("Location: ".$_SERVER['REQUEST_URI']);
             }
         }
+        if (isset($_POST['picture_submit']) && can_upload($_FILES['picture_file'])) {
+            $dir = $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['name'];
+            if (!isset($max_id)) { // Чтобы создать новую картинку с уникальным id
+                $max_id = 1;
+            }
+            foreach (scandir($dir) as $key => $value) {
+                if ($value != '.' && $value != '..') {
+                    $tmp = explode('.', $value);
+                    if (is_numeric($tmp[0]) && $tmp[0] >= $max_id)
+                        $max_id = $tmp[0] + 1;
+                }
+            }
+            make_upload($_SERVER['DOCUMENT_ROOT'].'/project_img', $max_id, $_FILES['name']);
+            header("Location: ".$_SERVER['REQUEST_URI']);
+        }
     }
     $page_name = $result['name'];
     $is_project = TRUE;
@@ -133,6 +148,27 @@
         resetStars(star_id + 1);
     }
 </script>
+<div class="galleria-wrapper">
+    <div class="galleria">
+        <?php if (can_do('edit_projects')) { ?>
+            <form action="" method="POST" enctype="multipart/form-data">
+                <label for="file">Добавить картинку: </label>
+                <input type="file" name="picture_file">
+                <input type="submit" value="Добавить" name="picture_submit">
+            </form>
+        <?php } ?>
+        <?php
+            $dir = $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['name'];
+            $temp_array = scandir($dir);
+            $files = [];
+            foreach ($temp_array as $value)
+                if ($value != '.' && $value != '..')
+                    array_push($files, $value);
+            foreach ($files as $value)
+                echo '<img src="/projects_img/'.$result['name'].'/'.$value.'">';
+        ?>
+    </div>
+</div>
 <?php 
     $counter = 0;
     $lst = unserialize(base64_decode($result['paragraphs']));
@@ -155,20 +191,6 @@
 <?php
     }
 ?>
-<div class="galleria-wrapper">
-    <div class="galleria">
-        <?php
-            $dir = $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['name'];
-            $temp_array = scandir($dir);
-            $files = [];
-            foreach ($temp_array as $value)
-                if ($value != '.' && $value != '..')
-                    array_push($files, $value);
-            foreach ($files as $value)
-                echo '<img src="/projects_img/'.$result['name'].'/'.$value.'">';
-        ?>
-    </div>
-</div>
 <script> 
     Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
     Galleria.run('.galleria');
