@@ -55,7 +55,7 @@
     <h1 class="project-name">Skater</h1>
     <div class="average-rating">
         <?php
-            $result2 = $mysqli->query("SELECT project_id, avg(rating) FROM `projects_comments` WHERE project_id LIKE '".((int)$_GET['id'])."' GROUP BY project_id");
+            $result2 = $mysqli->query("SELECT project_id, avg(rating) FROM `projects_comments` WHERE project_id = '".((int)$_GET['id'])."' GROUP BY project_id");
             $row = $result2->fetch_assoc();
             $rating = $row['avg(rating)'];
             $rating = round($rating, 1);
@@ -155,6 +155,17 @@
 <?php
     }
 ?>
+<div class="galleria-wrapper">
+    <div class="galleria">
+        <img src="/projects_img/1.jpg">
+        <img src="/projects_img/2.jpg">
+        <img src="/projects_img/3.jpg">
+    </div>
+</div>
+<script> 
+    Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
+    Galleria.run('.galleria');
+</script>
 <h1 style="margin-bottom: 10px;">Отзывы</h1>
 <div class="average-rating-stat">
     <div class="average-number">

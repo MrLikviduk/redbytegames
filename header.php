@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/styles/style.css?v<?=time()?>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="/js_scripts/jquery.cookie.js"></script>
+    <script src="galleria/galleria-1.5.7.min.js"></script>
     <?php
         if ($page_name == 'О нас')
             echo '<link rel="stylesheet" href="/styles/style-for-about-us.css?v'.time().'">';

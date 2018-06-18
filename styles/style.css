@@ -207,6 +207,19 @@ main {
 .menu_is-open {
     left: -250px;
 }
+.galleria-wrapper {
+    width: 100%;
+    background: hsla(0, 60%, 42%, 0.9)
+}
+.galleria {
+    max-width: 700px; 
+    height: 400px; 
+    margin: 30px auto;
+}
+.galleria-theme-classic {
+    background: transparent;
+    border-radius: 10px;
+}
 .main-info {
     padding: 10px 20px;
 }
