@@ -14,8 +14,8 @@
                 $content = $_POST['comment_content'];
                 $rating = $_POST['rating'];
                 $project_id = $_GET['id'];
-                $result = $mysqli->query("SELECT * FROM projects_comments WHERE `user_id` = '".get_id_by_username($_SESSION['login'])."' AND `project_id` = '".((int)$_GET['id'])."'");
-                if ($result->num_rows == 0) {
+                $result4 = $mysqli->query("SELECT * FROM projects_comments WHERE `user_id` = '".get_id_by_username($_SESSION['login'])."' AND `project_id` = '".((int)$_GET['id'])."'");
+                if ($result4->num_rows == 0) {
                     $date = $mysqli->real_escape_string($date);
                     $time = $mysqli->real_escape_string($time);
                     $content = $mysqli->real_escape_string($content);
@@ -55,7 +55,7 @@
                         $max_id = $tmp[0] + 1;
                 }
             }
-            make_upload($_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['name'], $max_id, $_FILES['name']);
+            make_upload($_FILES['file'], $max_id, $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['name']);
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
