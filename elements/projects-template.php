@@ -25,11 +25,14 @@
  <?php   }
 
     function show_paragraph($val, $name, $content) {
+        require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
      ?>
             <h2 class="paragraph-name" onclick="show_paragraph(<?=$val?>)"><div class="show-paragraph" id="arrow<?=$val?>"></div><?=$name?></h2>
-            <form action="" method="post" style="display: inline-block;">
-                <button name="delete_p" value="<?=$name?>" style="margin: 0 5px;" onclick="return confirm('Вы действительно хотите удалить параграф?')">Удалить</button>
-            </form>
+            <?php if (can_do('edit_projects')) { ?>
+                <form action="" method="post" style="display: inline-block;">
+                    <button name="delete_p" value="<?=$name?>" style="margin: 0 5px;" onclick="return confirm('Вы действительно хотите удалить параграф?')">Удалить</button>
+                </form>
+            <?php } ?>
             <hr>
             <p class="paragraph" id="par<?=$val?>" style="display: none;">
                 <?=$content?>
