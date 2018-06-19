@@ -24,6 +24,8 @@
             echo '<link rel="stylesheet" href="/styles/style-for-vacancy.css?v'.time().'">';
         else if ($page_name == 'Вакансия')
             echo '<link rel="stylesheet" href="/styles/style-for-vacancy-element.css?v'.time().'">';
+        else if ($page_name == 'Тех. поддержка')
+            echo '<link rel="stylesheet" href="/styles/style-for-support.css?v'.time().'">';
     ?>
     <title>Red Byte Games - больше, чем игры</title>
     <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -36,11 +38,6 @@
         echo '<body>';
 ?>
     <header>
-        <script>
-            $(document).ready(function() {
-                $(".skitter-large").skitter();
-            });
-        </script>
         <nav>
             <div class="menu-button" id="btn">
                 <div class="burger-element el1" id="el1"></div>
@@ -66,7 +63,7 @@
             <a href="/vacancy.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element">Вакансии</div>
             </a>
-            <a href="" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+            <a href="/support.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element">Тех. поддержка</div>
             </a>
             <div style="height: 10px;"></div>
@@ -102,7 +99,7 @@
                 <a href="/vacancy.php">
                     <div class="nav-element">Вакансии</div>
                 </a>
-                <a href="">
+                <a href="/support.php">
                     <div class="nav-element">Тех. поддержка</div>
                 </a>
             </div>
