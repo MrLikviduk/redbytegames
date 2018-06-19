@@ -25,14 +25,16 @@
  <?php   }
 
     function show_paragraph($val, $name, $content) {
-        echo '
-            <h2 class="paragraph-name" onclick="show_paragraph('.$val.')"><div class="show-paragraph" id="arrow'.$val.'"></div>'.$name.'</h2>
+     ?>
+            <h2 class="paragraph-name" onclick="show_paragraph(<?=$val?>)"><div class="show-paragraph" id="arrow<?=$val?>"></div><?=$name?></h2>
+            <form action="" method="post" style="display: inline-block;">
+                <button name="delete_p" value="<?=$name?>" style="margin: 0 5px;" onclick="return confirm('Вы действительно хотите удалить параграф?')">Удалить</button>
+            </form>
             <hr>
-            <p class="paragraph" id="par'.$val.'" style="display: none;">
-                '.$content.'
+            <p class="paragraph" id="par<?=$val?>" style="display: none;">
+                <?=$content?>
             </p>
-        ';
-    }
+    <?php }
 
     function show_comment($name, $date, $time, $content, $rating, $id) {
         echo '

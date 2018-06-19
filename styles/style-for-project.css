@@ -107,6 +107,7 @@ input.key {
     margin-bottom: 5px;
     cursor: pointer;
     user-select: none;
+    display: inline-block;
 }
 .show-paragraph {
     height: 20px;

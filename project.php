@@ -75,6 +75,12 @@
             $mysqli->query("UPDATE projects SET tech_params = '".base64_encode(serialize($lst))."' WHERE id = ".((int)$_GET['id'])) or die("ERROR");
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
+        if (isset($_POST['delete_p'])) {
+            $lst = unserialize(base64_decode($result['paragraphs']));
+            unset($lst[$_POST['delete_p']]);
+            $mysqli->query("UPDATE projects SET paragraphs = '".base64_encode(serialize($lst))."' WHERE id = ".((int)$_GET['id'])) or die("ERROR");
+            header("Location: ".$_SERVER['REQUEST_URI']);
+        }
     }
     $page_name = $result['name'];
     $is_project = TRUE;
