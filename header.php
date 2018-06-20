@@ -10,23 +10,35 @@
     <script src="/js_scripts/jquery.cookie.js"></script>
     <script src="galleria/galleria-1.5.7.min.js"></script>
     <?php
-        if ($page_name == 'О нас')
-            echo '<link rel="stylesheet" href="/styles/style-for-about-us.css?v'.time().'">';
-        else if ($page_name == 'Блог')
-            echo '<link rel="stylesheet" href="/styles/style-for-blog.css?v'.time().'">';
-        else if ($page_name == 'Редактор блога' || $page_name == 'Выбор картинки' || $page_name == 'Редактор вакансий')
-            echo '<link rel="stylesheet" href="/styles/style-for-editor.css?v'.time().'">';
-        else if ($page_name == 'Проекты')
-            echo '<link rel="stylesheet" href="/styles/style-for-projects.css?v'.time().'">';
-        else if (isset($is_project) && $is_project === TRUE)
-            echo '<link rel="stylesheet" href="/styles/style-for-project.css?v'.time().'">';
-        else if ($page_name == 'Вакансии')
-            echo '<link rel="stylesheet" href="/styles/style-for-vacancy.css?v'.time().'">';
-        else if ($page_name == 'Вакансия')
-            echo '<link rel="stylesheet" href="/styles/style-for-vacancy-element.css?v'.time().'">';
-        else if ($page_name == 'Тех. поддержка')
-            echo '<link rel="stylesheet" href="/styles/style-for-support.css?v'.time().'">';
+        switch ($page_name) {
+            case 'О нас':
+                $special_style = 'style-for-about-us.css';
+                break;
+            case 'Блог':
+                $special_style = 'style-for-blog.css';
+                break;
+            case 'Редактор блога':
+            case 'Редактор вакансий':
+                $special_style = 'style-for-editor.css';
+                break;
+            case 'Проекты':
+                $special_style = 'style-for-projects.css';
+                break;
+            case 'Проект':
+                $special_style = 'style-for-project.css';
+                break;
+            case 'Вакансии':
+                $special_style = 'style-for-vacancy.css';
+                break;
+            case 'Вакансия':
+                $special_style = 'style-for-vacancy-element.css';
+                break;
+            case 'Тех. поддержка':
+                $special_style = 'style-for-support.css';
+                break;
+        }
     ?>
+    <link rel="stylesheet" href="/styles/<?=$special_style?>?v<?=time()?>">
     <title>Red Byte Games - больше, чем игры</title>
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>

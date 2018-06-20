@@ -82,8 +82,7 @@
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
-    $page_name = $result['name'];
-    $is_project = TRUE;
+    $page_name = 'Проект';
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
 <div class="box-art-wrapper">
