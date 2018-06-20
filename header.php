@@ -44,7 +44,7 @@
 </head>
 
 <?php
-    if ($page_name == 'Главная' || $page_name == 'Регистрация')
+    if ($page_name == 'Авторизация' || $page_name == 'Регистрация')
         echo '<body style="background: hsl(0, 100%, 30%);">';
     else
         echo '<body>';
@@ -85,6 +85,9 @@
                     info@redbytegames.ru
                 </div>
             </div>
+            <a href="/authorization.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+                <div class="nav-element"><b>Войти</b></div>
+            </a>
         </div>
         <div class="nav-menu-for-computers">
             <div class="contacts">
@@ -113,6 +116,9 @@
                 </a>
                 <a href="/support.php">
                     <div class="nav-element">Тех. поддержка</div>
+                </a>
+                <a href="/authorization.php">
+                    <div class="nav-element"><b>Войти</b></div>
                 </a>
             </div>
         </div>

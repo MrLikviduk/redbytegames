@@ -263,7 +263,7 @@
         ';
     }
     else {
-        echo '<p>Чтобы оставить отзыв, вам необходимо <a href="/index">авторизоваться</a></p>';
+        echo '<p>Чтобы оставить отзыв, вам необходимо <a href="/authorization">авторизоваться</a></p>';
     }
     $result = $mysqli->query("SELECT * FROM projects_comments WHERE `project_id` LIKE '".((int)$_GET['id'])."' ORDER BY id DESC");
     while ($row = $result->fetch_assoc()) {

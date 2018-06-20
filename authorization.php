@@ -1,5 +1,5 @@
 <?php
-    $page_name = 'Главная';
+    $page_name = 'Авторизация';
     session_start();
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
     if (isset($_POST['login']) && isset($_POST['password'])) {

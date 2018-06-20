@@ -177,7 +177,7 @@
         $row = $result->fetch_assoc();
         $key = $mysqli->real_escape_string($row['key']);
         $mysqli->close();
-        $result = mail($email, 'Подтверждение', 'Чтобы подтвердить ваш электронный адрес, перейдите по ссылке: https://redbytegames.ru/index.php?key='.$key, 'From: confirm@redbytegames.ru');
+        $result = mail($email, 'Подтверждение', 'Чтобы подтвердить ваш электронный адрес, перейдите по ссылке: https://redbytegames.ru/authorization.php?key='.$key, 'From: confirm@redbytegames.ru');
         if ($result === FALSE)
             return FALSE;
         return TRUE;
