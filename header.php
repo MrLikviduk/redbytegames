@@ -1,3 +1,10 @@
+<?php
+    if (isset($_POST['exit_from_account'])) {
+        unset($_SESSION['login']);
+        unset($_SESSION['password']);
+        header("Location: ".$_SERVER['REQUEST_URI']);
+    }
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -93,6 +100,8 @@
                 <a href="/authorization.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                     <div class="nav-element"><b>Войти</b></div>
                 </a>
+            <?php } else { ?>
+                <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="exit_from_account"><b>Выйти</b></button></form>
             <?php } ?>
         </div>
         <div class="nav-menu-for-computers">
@@ -127,6 +136,8 @@
                     <a href="/authorization.php">
                         <div class="nav-element"><b>Войти</b></div>
                     </a>
+                <?php } else { ?>
+                    <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="exit_from_account"><b>Выйти</b></button></form>
                 <?php } ?>
             </div>
         </div>
