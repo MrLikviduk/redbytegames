@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
     $mysqli = connect_to_database();
     $page_name="Тех. поддержка";
