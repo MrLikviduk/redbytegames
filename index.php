@@ -1,5 +1,5 @@
 ﻿<?php
     $page_name = 'Главная';
-    include('header.php');
+    include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
-<?php include('footer.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php') ?>
