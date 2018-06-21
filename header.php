@@ -12,6 +12,8 @@
     <script src="responsiveslides.min.js"></script>
     <link rel="stylesheet" href="/ResponsiveSlides/responsiveslides.css">
     <?php
+        if (!function_exists('user_is_set'))
+            require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
         switch ($page_name) {
             case 'О нас':
                 $special_style = 'style-for-about-us.css';
@@ -121,7 +123,7 @@
                 <a href="/support.php">
                     <div class="nav-element">Тех. поддержка</div>
                 </a>
-                <?php if (!user_is_set($_SESSION['login'], $_SESSION['password'])) { ?>
+                <?php if (!isset($_SESSION['login']) || !isset($_SESSION['password']) || !user_is_set($_SESSION['login'], $_SESSION['password'])) { ?>
                     <a href="/authorization.php">
                         <div class="nav-element"><b>Войти</b></div>
                     </a>
