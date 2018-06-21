@@ -19,15 +19,15 @@
                 <span class="date">Теги: </span>    ';
         foreach (explode(' ', $tags) as $value) {
             if (trim($value) != '')
-                echo '<div class="tag">'.trim($value).'</div>';
+                echo '<div class="tag">'.htmlspecialchars(trim($value)).'</div>';
         }
         echo '
             </div>
-            <h1>'.$header.'</h1>
+            <h1>'.htmlspecialchars($header).'</h1>
             <div class="line-after-header"></div>
             <br>
             <p>
-                '.$content.'
+                '.htmlspecialchars($content).'
             </p>
         </article>
         ';
@@ -38,11 +38,11 @@
         echo '
             <div class="comment">
                 <div class="top">
-                    <div class="name">'.$name.'</div>
+                    <div class="name">'.htmlspecialchars($name).'</div>
                     <div class="date-and-time">'.$date.' в '.$time.'</div>
                 </div>
                 <div class="content">
-                    '.$content.'
+                    '.htmlspecialchars($content).'
                 </div>
                 ';
                 if (is_own_comment($id) || can_do('delete_comments'))

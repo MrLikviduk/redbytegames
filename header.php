@@ -16,7 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="/js_scripts/jquery.cookie.js"></script>
     <script src="galleria/galleria-1.5.7.min.js"></script>
-    <script src="responsiveslides.min.js"></script>
+    <script src="/ResponsiveSlides/responsiveslides.min.js"></script>
     <link rel="stylesheet" href="/ResponsiveSlides/responsiveslides.css">
     <?php
         if (!function_exists('user_is_set'))
@@ -96,7 +96,7 @@
                     info@redbytegames.ru
                 </div>
             </div>
-            <?php if (!user_is_set($_SESSION['login'], $_SESSION['password'])) { ?>
+            <?php if (!isset($_SESSION['login']) || !isset($_SESSION['password']) || !user_is_set($_SESSION['login'], $_SESSION['password'])) { ?>
                 <a href="/authorization.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                     <div class="nav-element"><b>Войти</b></div>
                 </a>

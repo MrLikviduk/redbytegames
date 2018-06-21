@@ -3,11 +3,11 @@
         echo '
             <div class="vacancy">
                 <div class="type">
-                    '.$type.'
+                    '.htmlspecialchars($type).'
                 </div>
                 <a href="/vacancy-element.php?id='.$id.'">
                     <div class="name">
-                        '.$name.'
+                        '.htmlspecialchars($name).'
                     </div>
                 </a>
                 <div class="date">
@@ -25,7 +25,7 @@
     function show_vacancy_list($name, $label, $lst) {
         echo '
         <div class="list">
-            <div class="list-header">'.$label.'</div>
+            <div class="list-header">'.htmlspecialchars($label).'</div>
             <ul>';
                 if ($lst !== NULL) foreach ($lst as $key => $value) {
                     echo '<li>'.$value;

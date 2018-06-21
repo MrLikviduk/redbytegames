@@ -4,7 +4,7 @@
             <a href="/project.php?id='.$id.'">
                 <div class="project" style="background-image: url(/projects_img/'.$pct_name.')">
                     <div class="pct-cover">
-                        <h2>'.$name.'</h2>
+                        <h2>'.htmlspecialchars($name).'</h2>
                     </div>
                 </div>
             </a>
@@ -14,8 +14,8 @@
     function show_tech_param($key, $value) {
         require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
         ?>
-            <div class="property-key"><?=$key?></div>
-            <div class="property-value"><?=$value?></div>
+            <div class="property-key"><?=htmlspecialchars($key)?></div>
+            <div class="property-value"><?=htmlspecialchars($value)?></div>
             <?php if (can_do('edit_projects')) { ?>
             <form action="" method="POST" style="display: inline-block">
                 <button name="delete_tech_param" value="<?=$key?>" style="margin: 0 5px;" onclick="return confirm('Вы действительно хотите удалить параметр?')">Удалить</button>
@@ -27,7 +27,7 @@
     function show_paragraph($val, $name, $content) {
         require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
      ?>
-            <h2 class="paragraph-name" onclick="show_paragraph(<?=$val?>)"><div class="show-paragraph" id="arrow<?=$val?>"></div><?=$name?></h2>
+            <h2 class="paragraph-name" onclick="show_paragraph(<?=$val?>)"><div class="show-paragraph" id="arrow<?=$val?>"></div><?=htmlspecialchars($name)?></h2>
             <?php if (can_do('edit_projects')) { ?>
                 <form action="" method="post" style="display: inline-block;">
                     <button name="delete_p" value="<?=$name?>" style="margin: 0 5px;" onclick="return confirm('Вы действительно хотите удалить параграф?')">Удалить</button>
@@ -35,7 +35,7 @@
             <?php } ?>
             <hr>
             <p class="paragraph" id="par<?=$val?>" style="display: none;">
-                <?=$content?>
+                <?=htmlspecialchars($content)?>
             </p>
     <?php }
 
@@ -43,7 +43,7 @@
         echo '
             <div class="comment">
                 <div class="top">
-                    <div class="name">'.$name.'</div>
+                    <div class="name">'.htmlspecialchars($name).'</div>
                     <div class="date-and-time">'.$date.' в '.$time.'</div>
                     <div class="rating">Оценка: <div class="rating-stars">';
                 for ($i = 1; $i <= 5; $i++) {
@@ -54,7 +54,7 @@
                 if ($content != NULL && $content != '')
                 echo '
                     <div class="content">
-                        '.$content.'
+                        '.htmlspecialchars($content).'
                     </div>
                 ';
                 echo '
