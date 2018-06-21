@@ -9,6 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="/js_scripts/jquery.cookie.js"></script>
     <script src="galleria/galleria-1.5.7.min.js"></script>
+    <script src="responsiveslides.min.js"></script>
+    <link rel="stylesheet" href="/ResponsiveSlides/responsiveslides.css">
     <?php
         switch ($page_name) {
             case 'О нас':
@@ -85,9 +87,11 @@
                     info@redbytegames.ru
                 </div>
             </div>
-            <a href="/authorization.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
-                <div class="nav-element"><b>Войти</b></div>
-            </a>
+            <?php if (!user_is_set($_SESSION['login'], $_SESSION['password'])) { ?>
+                <a href="/authorization.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+                    <div class="nav-element"><b>Войти</b></div>
+                </a>
+            <?php } ?>
         </div>
         <div class="nav-menu-for-computers">
             <div class="contacts">
@@ -117,9 +121,11 @@
                 <a href="/support.php">
                     <div class="nav-element">Тех. поддержка</div>
                 </a>
-                <a href="/authorization.php">
-                    <div class="nav-element"><b>Войти</b></div>
-                </a>
+                <?php if (!user_is_set($_SESSION['login'], $_SESSION['password'])) { ?>
+                    <a href="/authorization.php">
+                        <div class="nav-element"><b>Войти</b></div>
+                    </a>
+                <?php } ?>
             </div>
         </div>
     </header>
