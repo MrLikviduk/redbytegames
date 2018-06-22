@@ -30,12 +30,12 @@
                 if ($lst !== NULL) foreach ($lst as $key => $value) {
                     echo '<li>'.$value;
                     if (can_do('edit_vacancy'))
-                        echo '<form action="" method="POST" style="display: inline-block;"><input type="hidden" name="lst_name" value="'.$name.'"><button name="delete_lst_element" value="'.$key.'" style="margin: 0 5px;">Удалить</button></form>';
+                        echo '<form action="" method="POST" style="display: inline-block;"><input type="hidden" name="lst_name" value="'.htmlspecialchars($name, ENT_QUOTES, 'UTF-8').'"><button name="delete_lst_element" value="'.htmlspecialchars($key, ENT_QUOTES, 'UTF-8').'" style="margin: 0 5px;">Удалить</button></form>';
                     echo '</li>';
                 }
                 if (can_do('edit_vacancy')) echo '
                 <form action="" method="POST">
-                    <input type="hidden" name="lst_name" value="'.$name.'">
+                    <input type="hidden" name="lst_name" value="'.htmlspecialchars($name, ENT_QUOTES, 'UTF-8').'">
                     <ul><input type="text" name="input_text" maxlength="1023"> <input type="submit" name="lst_submit" value="Добавить"></ul>
                 </form>';
                 echo '
