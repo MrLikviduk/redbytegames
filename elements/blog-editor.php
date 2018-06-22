@@ -62,9 +62,9 @@
     if ($_SESSION['id_to_edit_blog'] != -1) {
         echo "
             <script>
-                document.getElementById('header_id').value = '".$to_edit['header']."';
-                document.getElementById('content_id').innerHTML = '".$to_edit['content']."';
-                document.getElementById('tags_id').value = '".$to_edit['tags']."';
+                document.getElementById('header_id').value = '".addslashes($to_edit['header'])."';
+                document.getElementById('content_id').innerHTML = '".addslashes($to_edit['content'])."';
+                document.getElementById('tags_id').value = '".addslashes($to_edit['tags'])."';
             </script>
         ";
     }
