@@ -42,7 +42,7 @@
     <input type="text" name="tags" id="tags_id" placeholder="<?=translate('Введите теги (через пробел)')?>" class="text-box">
     <br>
     <label for="content"><?=translate('Контент')?>: </label>
-    <textarea onchange="Update(this)" onkeydown="Update(this)" onkeypress="Update(this)" onkeyup="Update(this)" onmousedown="Update(this)" name="content" id="content_id" placeholder="Введите содержимое блога"></textarea>
+    <textarea onchange="Update(this)" onkeydown="Update(this)" onkeypress="Update(this)" onkeyup="Update(this)" onmousedown="Update(this)" name="content" id="content_id" placeholder="<?=translate('Введите содержимое блога')?>"></textarea>
     <br>
     <!-- <a href="/elements/choose-image-for-blog.php" target="_blank"><div class="insert-image-button">Вставить картинку</div></a>
     <br> -->
