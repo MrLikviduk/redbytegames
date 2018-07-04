@@ -44,9 +44,7 @@
     <label for="content"><?=translate('Контент')?>: </label>
     <textarea onchange="Update(this)" onkeydown="Update(this)" onkeypress="Update(this)" onkeyup="Update(this)" onmousedown="Update(this)" name="content" id="content_id" placeholder="<?=translate('Введите содержимое блога')?>"></textarea>
     <br>
-    <!-- <a href="/elements/choose-image-for-blog.php" target="_blank"><div class="insert-image-button">Вставить картинку</div></a>
-    <br> -->
-    <input type="submit" name="submit" value="Добавить" class="submit-button">
+    <input type="submit" name="submit" value="<?=translate('Добавить')?>" class="submit-button">
 </form>
 <script>
     var element = document.getElementById('content_id');

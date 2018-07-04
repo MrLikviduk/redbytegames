@@ -110,6 +110,8 @@
                 return 'Content';
             case 'Введите содержимое блога':
                 return 'Enter a content of an entry';
+            case 'Добавить':
+                return 'Add';
         }
     }
 
