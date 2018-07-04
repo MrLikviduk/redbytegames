@@ -20,12 +20,13 @@
         $header = $mysqli->real_escape_string($_POST['header']);
         $content = $mysqli->real_escape_string($_POST['content']);
         $tags = $mysqli->real_escape_string($_POST['tags']);
+        $lang = $mysqli->real_escape_string($_POST['lang']);
         if ($_SESSION['id_to_edit_blog'] == -1)
-            $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags) VALUES (NULL, '$header', '$content', '$date', '$tags')") or die("Error");
+            $mysqli->query("INSERT INTO blog (id, header, content, creation_date, tags, lang) VALUES (NULL, '$header', '$content', '$date', '$tags', '$lang')") or die("Error");
         else {
             $t_id = (int)$_SESSION['id_to_edit_blog'];
             $date = $mysqli->real_escape_string($to_edit['creation_date']);
-            $mysqli->query("UPDATE blog SET header = '$header', content = '$content', creation_date = '$date', tags = '$tags' WHERE id = $t_id") or die("Error to edit");
+            $mysqli->query("UPDATE blog SET header = '$header', content = '$content', creation_date = '$date', tags = '$tags', lang = '$lang' WHERE id = $t_id") or die("Error to edit");
         }
         $_SESSION['id_to_edit_blog'] = -1;
         header("Location: ".$_SERVER['REQUEST_URI']);
@@ -35,6 +36,12 @@
 ?>
 <a href="/blogs.php" style="margin: 20px auto; display: block;"><?=translate('Назад')?></a>
 <form action="" method="POST" id="edit_form">
+    <label for="header"><?=translate('Язык')?>: </label>
+    <select name="lang" id="lang_id" class="text-box">
+        <option value="ru"><?=translate('Русский')?></option>
+        <option value="en"><?=translate('Английский')?></option>
+    </select>
+    <br>
     <label for="header"><?=translate('Заголовок')?>: </label>
     <input type="text" name="header" id="header_id" placeholder="<?=translate('Введите заголовок')?>" class="text-box">
     <br>
@@ -57,6 +64,7 @@
         echo "
             <script>
                 document.getElementById('header_id').value = '".htmlspecialchars($to_edit['header'], ENT_QUOTES, 'UTF-8')."';
+                document.getElementById('lang_id').value = '".htmlspecialchars($to_edit['lang'], ENT_QUOTES, 'UTF-8')."';
                 document.getElementById('content_id').innerHTML = '".htmlspecialchars($to_edit['content'], ENT_QUOTES, 'UTF-8')."';
                 document.getElementById('tags_id').value = '".htmlspecialchars($to_edit['tags'], ENT_QUOTES, 'UTF-8')."';
             </script>

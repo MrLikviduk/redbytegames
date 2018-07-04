@@ -112,6 +112,12 @@
                 return 'Enter a content of an entry';
             case 'Добавить':
                 return 'Add';
+            case 'Язык':
+                return 'Language';
+            case 'Русский':
+                return 'Russian';
+            case 'Английский';
+                return 'English';
         }
     }
 
