@@ -7,7 +7,7 @@
         if (can_do('edit_blog')) {
             echo '<form action="" method="post">
                     <button class="icon-blog edit" name="edit_blog" value="'.$id.'"></button>
-                    <button class="icon-blog delete" name="delete_blog" value="'.$id.'" onclick="return confirm(\'Вы уверены, что хотите удалить запись из блога?\')"></button>
+                    <button class="icon-blog delete" name="delete_blog" value="'.$id.'" onclick="return confirm(\''.translate('Вы уверены, что хотите удалить запись из блога?').'\')"></button>
                 </form>
                 ';
             
@@ -16,7 +16,7 @@
             <div class="date-and-tags">
                 <span class="date">'.$date.'</span>
                 <div class="between-date-and-tags"></div>
-                <span class="date">Теги: </span>    ';
+                <span class="date">'.translate('Теги').': </span>    ';
         foreach (explode(' ', $tags) as $value) {
             if (trim($value) != '')
                 echo '<div class="tag">'.htmlspecialchars(trim($value), ENT_QUOTES, 'UTF-8').'</div>';
@@ -39,7 +39,7 @@
             <div class="comment">
                 <div class="top">
                     <div class="name">'.htmlspecialchars($name, ENT_QUOTES, 'UTF-8').'</div>
-                    <div class="date-and-time">'.$date.' в '.$time.'</div>
+                    <div class="date-and-time">'.$date.' '.$time.'</div>
                 </div>
                 <div class="content">
                     '.htmlspecialchars($content, ENT_QUOTES, 'UTF-8').'
@@ -49,17 +49,17 @@
                         echo '<form action="" method="POST" class="panel">';
                 if (is_own_comment($id)) {
                     echo '
-                        <button class="btn" name="edit_comment" value="'.$id.'">Редактировать</button>
+                        <button class="btn" name="edit_comment" value="'.$id.'">'.translate('Редактировать').'</button>
                     ';
                 }
                 if (is_own_comment($id) || can_do('delete_comments')) {
                     echo '
-                        <button class="btn" name="delete_comment" value="'.$id.'" onclick="return confirm(\'Вы действительно хотите удалить комментарий?\')">Удалить</button>
+                        <button class="btn" name="delete_comment" value="'.$id.'" onclick="return confirm(\''.translate('Вы действительно хотите удалить комментарий?').'\')">'.translate('Удалить').'</button>
                     ';
                 }
                 if (can_do('ban_users') && !is_own_comment($id)) {
                     echo '
-                        <button class="btn" name="ban_user" value="'.$id.'" onclick="return confirm(\'Вы действительно хотите заблокировать пользователя?\')">Заблокировать</button> на <input type="number" name="days" style="width: 50px" value="0" min="0" max="10000"> дней <input type="number" name="hours" style="width: 50px" value="0" min="0" max="23"> часов
+                        <button class="btn" name="ban_user" value="'.$id.'" onclick="return confirm(\''.translate('Вы действительно хотите заблокировать пользователя?').'\')">'.translate('Заблокировать').'</button> '.translate('Выберите время блокировки').': <input type="number" name="days" style="width: 50px" value="0" min="0" max="10000"> '.translate('дней').' <input type="number" name="hours" style="width: 50px" value="0" min="0" max="23"> '.translate('часов').'
                     ';
                 }
                 if (is_own_comment($id) || can_do('delete_comments')) {

@@ -93,13 +93,13 @@
     }
     include('header.php');
     if (can_do('edit_blog'))
-        echo '<a href="elements/blog-editor.php" style="margin-top: 20px; display: inline-block;">Добавить запись</a>';
+        echo '<a href="elements/blog-editor.php" style="margin-top: 20px; display: inline-block;">'.translate('Добавить запись').'</a>';
 ?>
 <?php
     echo "
         <script>
             function showOrHideComments(element_id) {
-                document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? 'Скрыть комментарии' : 'Показать комментарии');
+                document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? '".translate('Скрыть комментарии')."' : '".translate('Показать комментарии')."');
                 document.getElementById('comments' + element_id).style.display = (document.getElementById('comments' + element_id).style.display == 'block' ? 'none' : 'block');
             }
         </script>
@@ -108,7 +108,7 @@
         if ($_SESSION['num_of_rows'] > 0) {
             echo '
                 <form method="POST" action="">
-                    <button name="hide_blogs" class="show-blogs-btn" style="margin-bottom: 0;">Вернуться к предыдущим записям</button>
+                    <button name="hide_blogs" class="show-blogs-btn" style="margin-bottom: 0;">'.translate('Вернуться к предыдущим записям').'</button>
                 </form>
             ';
         }
@@ -121,8 +121,8 @@
             if (can_do('add_comments')) {
                 echo '
                     <form action="" method="POST" class="comment-editor">
-                        <label for="comment_content" class="label">Комментарий: </label>
-                        <textarea name="comment_content" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' maxlength="1023" class="content" rows="5" id="comment_content'.$row['id'].'">'.(get_field($_SESSION['login'], 'banned') == '1' ? 'Вы не можете оставлять комментарии, так как были заблокированы модератором.'.PHP_EOL.'Оставшееся время до разблокировки: '.seconds_to_time(intval(get_field($_SESSION['login'], 'unban_time', 'users')) - intval(date('U'))) : '').'</textarea>
+                        <label for="comment_content" class="label">'.translate('Комментарий').': </label>
+                        <textarea name="comment_content" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' maxlength="1023" class="content" rows="5" id="comment_content'.$row['id'].'">'.(get_field($_SESSION['login'], 'banned') == '1' ? translate('Вы не можете оставлять комментарии, так как были заблокированы модератором.').PHP_EOL.translate('Оставшееся время до разблокировки').': '.seconds_to_time(intval(get_field($_SESSION['login'], 'unban_time', 'users')) - intval(date('U'))) : '').'</textarea>
                         <input type="submit" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' name="comment_submit" value="Добавить комментарий" class="submit">
                         <input type="hidden" name="blog_id" value="'.$row['id'].'">
                     </form>
@@ -144,7 +144,7 @@
         if ($_SESSION['num_of_rows'] < count($blog_notices) - 1) {
             echo '
                 <form method="POST" action="">
-                    <button name="show_blogs" class="show-blogs-btn" style="margin-top: 0;">Показать еще записи</button>
+                    <button name="show_blogs" class="show-blogs-btn" style="margin-top: 0;">'.translate('Показать еще записи').'</button>
                 </form>
             ';
         }

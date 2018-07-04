@@ -43,7 +43,7 @@
             case 'Было выслано письмо для подтверждения на почтовый ящик':
                 return 'The confirm letter was sent to the email';
             case 'Если письмо не пришло, проверьте папку "Спам".':
-                return 'Check "Spam" folder, if the letter has not come';
+                return 'Check "Spam" folder, if the letter has not come.';
             case 'Отправить письмо еще раз':
                 return 'Resend the confirm letter';
             case 'Поздравляем! Ваш почтовый ящик прошел проверку!':
@@ -58,6 +58,42 @@
                 return 'h';
             case 'мин':
                 return 'min';
+            case 'Добавить запись':
+                return 'Add a blog entry';
+            case 'Скрыть комментарии':
+                return 'Hide comments';
+            case 'Показать комментарии':
+                return 'Show comments';
+            case 'Вернуться к предыдущим записям':
+                return 'Back to previous entries';
+            case 'Комментарий':
+                return 'Comment';
+            case 'Вы не можете оставлять комментарии, так как были заблокированы модератором.':
+                return 'You can not comment it, because you are banned by a moderator.';
+            case 'Оставшееся время до разблокировки':
+                return 'Remaining time before unlocking';
+            case 'Показать еще записи':
+                return 'Show other entries';
+            case 'Вы уверены, что хотите удалить запись из блога?':
+                return 'Are you sure you want to delete an entry from the blog?';
+            case 'Теги':
+                return 'Tags';
+            case 'Редактировать':
+                return 'Edit';
+            case 'Удалить':
+                return 'Delete';
+            case 'Вы действительно хотите удалить комментарий?':
+                return 'Are you sure you want to delete a comment?';
+            case 'Вы действительно хотите заблокировать пользователя?':
+                return 'Are you sure you want to ban a user?';
+            case 'Заблокировать':
+                return 'Ban';
+            case 'Выберите время блокировки';
+                return 'Choose an unlocking time';
+            case 'дней':
+                return 'days';
+            case 'часов':
+                return 'hours';
         }
     }
 
