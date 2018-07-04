@@ -21,7 +21,7 @@
         header('Location: /elements/blog-editor.php');
     }
     if (!isset($blog_notices)) {
-        $result = $mysqli->query("SELECT * FROM blog ORDER BY id DESC");
+        $result = $mysqli->query("SELECT * FROM blog WHERE lang = '".$mysqli->real_escape_string($_SESSION['lang'])."' ORDER BY id DESC");
         $array_temp = [];
         while ($row = $result->fetch_assoc()) {
             array_push($array_temp, $row);
