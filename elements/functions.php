@@ -1,5 +1,66 @@
 <?php
 
+    function translate($s) {
+        if (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ru')
+            return $s;
+        switch($s) {
+            case 'Главная':
+                return 'Home';
+            case 'О нас':
+                return 'About us';
+            case 'Блог':
+                return 'Blog';
+            case 'Редактор блога':
+                return 'Blog editor';
+            case 'Редактор вакансий':
+                return 'Vacancy editor';
+            case 'Проекты':
+                return 'Projects';
+            case 'Проект':
+                return 'Project';
+            case 'Вакансия':
+            case 'Вакансии':
+                return 'Vacancy';
+            case 'Техподдержка':
+                return 'Support';
+            case 'Выбор языка':
+                return 'Choose language';
+            case 'Регистрация':
+                return 'Registration';
+            case 'Авторизация':
+                return 'Authorization';
+            case 'Войти':
+                return 'Log in';
+            case 'Выйти':
+                return 'Log out';
+            case 'Следите за нами':
+                return 'Follow us';
+            case 'Мы - новоиспеченная компания специализирующаяся на разработке и переиздании мобильных игр. 
+            Наша цель - приносить людям самый драйвовый, уникальный и запоминающийся игровой опыт.':
+                return 'We are a new company specializing in the development and reissue of mobile games. Our goal is to bring people the most driving, unique and memorable game experience.';
+            case 'Нужно подтвердить свой электронный адрес':
+                return 'You need to confirm your email';
+            case 'Было выслано письмо для подтверждения на почтовый ящик':
+                return 'The confirm letter was sent to the email';
+            case 'Если письмо не пришло, проверьте папку "Спам".':
+                return 'Check "Spam" folder, if the letter has not come';
+            case 'Отправить письмо еще раз':
+                return 'Resend the confirm letter';
+            case 'Поздравляем! Ваш почтовый ящик прошел проверку!':
+                return 'Congratulation! Your email has passed the verification!';
+            case 'Теперь вы можете пользоваться вашей учетной записью.':
+                return 'Now you can use your account.';
+            case 'менее 1 мин':
+                return 'less than 1 minute';
+            case 'дн':
+                return 'days';
+            case 'ч':
+                return 'h';
+            case 'мин':
+                return 'min';
+        }
+    }
+
     function can_upload($file){
         // если имя пустое, значит файл не выбран
         if($file['name'] == '')
@@ -177,7 +238,7 @@
         $row = $result->fetch_assoc();
         $key = $mysqli->real_escape_string($row['key']);
         $mysqli->close();
-        $result = mail($email, 'Подтверждение', 'Чтобы подтвердить ваш электронный адрес, перейдите по ссылке: https://redbytegames.ru/authorization.php?key='.$key, 'From: confirm@redbytegames.ru');
+        $result = mail($email, 'Confirm', 'Follow the link to confirm your email: https://redbytegames.ru/authorization.php?key='.$key, 'From: confirm@redbytegames.ru');
         if ($result === FALSE)
             return FALSE;
         return TRUE;
@@ -304,18 +365,18 @@
 
     function seconds_to_time($s) { // Распределяет секунды по большим величинам
         if ($s < 60)
-            return 'менее 1 мин';
+            return translate('менее 1 мин');
         $ans = '';
         if ($s >= 86400) {
-            $ans = $ans.(($s - $s % 86400) / 86400).'дн ';
+            $ans = $ans.(($s - $s % 86400) / 86400).translate('дн').' ';
             $s = $s % 86400;
         }
         if ($s >= 3600) {
-            $ans = $ans.(($s - $s % 3600) / 3600).'ч ';
+            $ans = $ans.(($s - $s % 3600) / 3600).translate('ч').' ';
             $s = $s % 3600;
         }
         if ($s >= 60) {
-            $ans = $ans.(($s - $s % 60) / 60).'мин ';
+            $ans = $ans.(($s - $s % 60) / 60).translate('мин').' ';
             $s = $s % 60;
         }
         return $ans;
@@ -350,46 +411,5 @@
 
     function is_legal($s, $min, $max) {
         return strlen($s) >= $min && strlen($s) <= $max;
-    }
-
-    function translate($s) {
-        if (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ru')
-            return $s;
-        switch($s) {
-            case 'Главная':
-                return 'Home';
-            case 'О нас':
-                return 'About us';
-            case 'Блог':
-                return 'Blog';
-            case 'Редактор блога':
-                return 'Blog editor';
-            case 'Редактор вакансий':
-                return 'Vacancy editor';
-            case 'Проекты':
-                return 'Projects';
-            case 'Проект':
-                return 'Project';
-            case 'Вакансия':
-            case 'Вакансии':
-                return 'Vacancy';
-            case 'Техподдержка':
-                return 'Support';
-            case 'Выбор языка':
-                return 'Choose language';
-            case 'Регистрация':
-                return 'Registration';
-            case 'Авторизация':
-                return 'Authorization';
-            case 'Войти':
-                return 'Log in';
-            case 'Выйти':
-                return 'Log out';
-            case 'Следите за нами':
-                return 'Follow us';
-            case 'Мы - новоиспеченная компания специализирующаяся на разработке и переиздании мобильных игр. 
-            Наша цель - приносить людям самый драйвовый, уникальный и запоминающийся игровой опыт.':
-                return 'We are a new company specializing in the development and reissue of mobile games. Our goal is to bring people the most driving, unique and memorable game experience.';
-        }
     }
 ?>
