@@ -387,6 +387,8 @@
                 return 'Log out';
             case 'Следите за нами':
                 return 'Follow us';
+            case 'Мы - новоиспеченная компания специализирующаяся на разработке и переиздании мобильных игр. Наша цель - приносить людям самый драйвовый, уникальный и запоминающийся игровой опыт.':
+                return 'We are a new company specializing in the development and reissue of mobile games. Our goal is to bring people the most driving, unique and memorable game experience.';
         }
     }
 ?>
