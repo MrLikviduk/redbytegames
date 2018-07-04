@@ -79,22 +79,22 @@
         <div class="nav-menu menu_is-open" id="menu">
             <div style="height: 20px;"></div>
             <a href="/index" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
-                <div class="nav-element">Главная</div>
+                <div class="nav-element"><?=translate('Главная')?></div>
             </a>
             <a href="/about-us" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
-                <div class="nav-element">О нас</div>
+                <div class="nav-element"><?=translate('О нас')?></div>
             </a>
             <a href="/blogs" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
-                <div class="nav-element">Блог</div>
+                <div class="nav-element"><?=translate('Блог')?></div>
             </a>
             <a href="/projects.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
-                <div class="nav-element">Проекты</div>
+                <div class="nav-element"><?=translate('Проекты')?></div>
             </a>
             <a href="/vacancy.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
-                <div class="nav-element">Вакансии</div>
+                <div class="nav-element"><?=translate('Вакансии')?></div>
             </a>
             <a href="/support.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
-                <div class="nav-element">Техподдержка</div>
+                <div class="nav-element"><?=translate('Техподдержка')?></div>
             </a>
             <div style="height: 10px;"></div>
             <div class="contact">
@@ -105,10 +105,10 @@
             </div>
             <?php if (!isset($_SESSION['login']) || !isset($_SESSION['password']) || !user_is_set($_SESSION['login'], $_SESSION['password'])) { ?>
                 <a href="/authorization.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
-                    <div class="nav-element"><b>Войти</b></div>
+                    <div class="nav-element"><b><?=translate('Войти')?></b></div>
                 </a>
             <?php } else { ?>
-                <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="exit_from_account"><b>Выйти</b></button></form>
+                <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="exit_from_account"><b><?=translate('Выйти')?></b></button></form>
             <?php } ?>
         </div>
         <div class="nav-menu-for-computers">
@@ -122,29 +122,29 @@
             </div>
             <div class="nav-elements">
                 <a href="/index">
-                    <div class="nav-element">Главная</div>
+                    <div class="nav-element"><?=translate('Главная')?></div>
                 </a>
                 <a href="/about-us">
-                    <div class="nav-element">О нас</div>
+                    <div class="nav-element"><?=translate('О нас')?></div>
                 </a>
                 <a href="/blogs">
-                    <div class="nav-element">Блог</div>
+                    <div class="nav-element"><?=translate('Блог')?></div>
                 </a>
                 <a href="/projects.php">
-                    <div class="nav-element">Проекты</div>
+                    <div class="nav-element"><?=translate('Проекты')?></div>
                 </a>
                 <a href="/vacancy.php">
-                    <div class="nav-element">Вакансии</div>
+                    <div class="nav-element"><?=translate('Вакансии')?></div>
                 </a>
                 <a href="/support.php">
-                    <div class="nav-element">Техподдержка</div>
+                    <div class="nav-element"><?=translate('Техподдержка')?></div>
                 </a>
                 <?php if (!isset($_SESSION['login']) || !isset($_SESSION['password']) || !user_is_set($_SESSION['login'], $_SESSION['password'])) { ?>
                     <a href="/authorization.php">
-                        <div class="nav-element"><b>Войти</b></div>
+                        <div class="nav-element"><b><?=translate('Войти')?></b></div>
                     </a>
                 <?php } else { ?>
-                    <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="exit_from_account"><b>Выйти</b></button></form>
+                    <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="exit_from_account"><b><?=translate('Выйти')?></b></button></form>
                 <?php } ?>
             </div>
         </div>

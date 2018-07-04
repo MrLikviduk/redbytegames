@@ -377,6 +377,14 @@
                 return 'Support';
             case 'Выбор языка':
                 return 'Choose language';
+            case 'Регистрация':
+                return 'Registration';
+            case 'Авторизация':
+                return 'Authorization';
+            case 'Войти':
+                return 'Log in';
+            case 'Выйти':
+                return 'Log out';
         }
     }
 ?>
