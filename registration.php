@@ -1,5 +1,6 @@
 <?php
     $page_name = 'Регистрация';
+    session_start();
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/constants.php');
     $db['login'] = 'username';
