@@ -10,7 +10,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="<?=(isset($_SESSION['lang']) ? $_SESSION['lang'] : 'ru')?>">
 
 <head>
     <meta charset="UTF-8">
