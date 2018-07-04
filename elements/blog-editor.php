@@ -4,7 +4,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
     if (!can_do('edit_blog')) {
         include($_SERVER['DOCUMENT_ROOT'].'/header.php');
-        echo '<div style="margin: 30px auto;">У вас нет прав для просмотра данной страницы</div>';
+        echo '<div style="margin: 30px auto;">'.translate('У вас нет прав для просмотра данной страницы').'</div>';
         include($_SERVER['DOCUMENT_ROOT'].'/footer.php');
         exit();
     }
@@ -33,25 +33,21 @@
     $mysqli->close();
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
-<a href="/blogs.php" style="margin: 20px auto; display: block;">Назад</a>
+<a href="/blogs.php" style="margin: 20px auto; display: block;"><?=translate('Назад')?></a>
 <form action="" method="POST" id="edit_form">
-    <label for="header">Заголовок: </label>
-    <input type="text" name="header" id="header_id" placeholder="Введите название" class="text-box">
+    <label for="header"><?=translate('Заголовок')?>: </label>
+    <input type="text" name="header" id="header_id" placeholder="<?=translate('Введите заголовок')?>" class="text-box">
     <br>
-    <label for="tags">Теги: </label>
-    <input type="text" name="tags" id="tags_id" placeholder="Введите теги (через пробел)" class="text-box">
+    <label for="tags"><?=translate('Теги')?>: </label>
+    <input type="text" name="tags" id="tags_id" placeholder="<?=translate('Введите теги (через пробел)')?>" class="text-box">
     <br>
-    <label for="content">Контент: </label>
+    <label for="content"><?=translate('Контент')?>: </label>
     <textarea onchange="Update(this)" onkeydown="Update(this)" onkeypress="Update(this)" onkeyup="Update(this)" onmousedown="Update(this)" name="content" id="content_id" placeholder="Введите содержимое блога"></textarea>
     <br>
     <!-- <a href="/elements/choose-image-for-blog.php" target="_blank"><div class="insert-image-button">Вставить картинку</div></a>
     <br> -->
     <input type="submit" name="submit" value="Добавить" class="submit-button">
 </form>
-<!-- <form action="" method="post" enctype="multipart/form-data">
-    <input type="file" name="filename">
-    <button name="insert_image">Добавить картинку</button>
-</form> -->
 <script>
     var element = document.getElementById('content_id');
     function Update(input) {

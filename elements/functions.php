@@ -96,6 +96,20 @@
                 return 'hours';
             case 'Добавить комментарий':
                 return 'Add a comment';
+            case 'У вас нет прав для просмотра данной страницы':
+                return 'You do not have permission to view this page';
+            case 'Назад':
+                return 'Back';
+            case 'Заголовок':
+                return 'Title';
+            case 'Введите заголовок';
+                return 'Enter a title';
+            case 'Введите теги (через пробел)':
+                return 'Enter tags (separated by spaces)';
+            case 'Контент':
+                return 'Content';
+            case 'Введите содержимое блога':
+                return 'Enter a content of an entry';
         }
     }
 
