@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $page_name = 'О нас';
     include('header.php');
 ?>
