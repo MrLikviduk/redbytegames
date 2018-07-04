@@ -57,7 +57,7 @@
         }
     ?>
     <link rel="stylesheet" href="/styles/<?=$special_style?>?v<?=time()?>">
-    <title>Red Byte Games - больше, чем игры</title>
+    <title>Red Byte Games - more, than games</title>
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
@@ -74,7 +74,7 @@
                 <div class="burger-element el2" id="el2"></div>
                 <div class="burger-element el3" id="el3"></div>
             </div>
-            <div class="nav-label"><?php echo $page_name ?></div>
+            <div class="nav-label"><?php echo translate($page_name) ?></div>
         </nav>
         <div class="nav-menu menu_is-open" id="menu">
             <div style="height: 20px;"></div>

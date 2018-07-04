@@ -351,4 +351,32 @@
     function is_legal($s, $min, $max) {
         return strlen($s) >= $min && strlen($s) <= $max;
     }
+
+    function translate($s) {
+        if (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ru')
+            return $s;
+        switch($s) {
+            case 'Главная':
+                return 'Home';
+            case 'О нас':
+                return 'About us';
+            case 'Блог':
+                return 'Blog';
+            case 'Редактор блога':
+                return 'Blog editor';
+            case 'Редактор вакансий':
+                return 'Vacancy editor';
+            case 'Проекты':
+                return 'Projects';
+            case 'Проект':
+                return 'Project';
+            case 'Вакансия':
+            case 'Вакансии':
+                return 'Vacancy';
+            case 'Техподдержка':
+                return 'Support';
+            case 'Выбор языка':
+                return 'Choose language';
+        }
+    }
 ?>
