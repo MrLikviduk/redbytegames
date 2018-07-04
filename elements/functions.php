@@ -94,6 +94,8 @@
                 return 'days';
             case 'часов':
                 return 'hours';
+            case 'Добавить комментарий':
+                return 'Add a comment';
         }
     }
 
