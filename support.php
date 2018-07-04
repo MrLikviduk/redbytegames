@@ -2,7 +2,7 @@
     session_start();
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
     $mysqli = connect_to_database();
-    $page_name="Тех. поддержка";
+    $page_name="Техподдержка";
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
 <form action="javascript:void(null);" method="POST" id="support_form" onsubmit="call()" class="application-form">

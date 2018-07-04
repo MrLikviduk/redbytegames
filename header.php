@@ -4,6 +4,10 @@
         unset($_SESSION['password']);
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
+    $explode_array = explode('/', $_SERVER['SCRIPT_FILENAME']);
+    if (!isset($_SESSION['lang']) && end($explode_array) !== 'choose-language.php') {
+        header('Location: /choose-language.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -44,8 +48,11 @@
             case 'Вакансия':
                 $special_style = 'style-for-vacancy-element.css';
                 break;
-            case 'Тех. поддержка':
+            case 'Техподдержка':
                 $special_style = 'style-for-support.css';
+                break;
+            case 'Выбор языка':
+                $special_style = 'style-for-choose-language.css';
                 break;
         }
     ?>
@@ -55,7 +62,7 @@
 </head>
 
 <?php
-    if ($page_name == 'Авторизация' || $page_name == 'Регистрация')
+    if ($page_name == 'Авторизация' || $page_name == 'Регистрация' || $page_name == 'Выбор языка')
         echo '<body style="background: hsl(0, 100%, 30%);">';
     else
         echo '<body>';
@@ -87,7 +94,7 @@
                 <div class="nav-element">Вакансии</div>
             </a>
             <a href="/support.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
-                <div class="nav-element">Тех. поддержка</div>
+                <div class="nav-element">Техподдержка</div>
             </a>
             <div style="height: 10px;"></div>
             <div class="contact">
@@ -130,7 +137,7 @@
                     <div class="nav-element">Вакансии</div>
                 </a>
                 <a href="/support.php">
-                    <div class="nav-element">Тех. поддержка</div>
+                    <div class="nav-element">Техподдержка</div>
                 </a>
                 <?php if (!isset($_SESSION['login']) || !isset($_SESSION['password']) || !user_is_set($_SESSION['login'], $_SESSION['password'])) { ?>
                     <a href="/authorization.php">
