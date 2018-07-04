@@ -2,7 +2,7 @@
     <footer>
         © RedByteGames 2018
         <div class="socnet-wrapper">
-            Следите за нами: 
+            <?=translate('Следите за нами')?>: 
             <a href="https://vk.com" target="_blank">
                 <img src="/img/soc_icons/vkontakte.png" alt="VK" class="socnet">
             </a>

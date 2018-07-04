@@ -385,6 +385,8 @@
                 return 'Log in';
             case 'Выйти':
                 return 'Log out';
+            case 'Следите за нами':
+                return 'Follow us';
         }
     }
 ?>
