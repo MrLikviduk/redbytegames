@@ -160,7 +160,49 @@
                 return 'First time with us?';
             case 'Зарегистрируйтесь':
                 return 'Sign Up';
+            case 'Количество символов не должно быть меньше':
+                return 'The number of characters must not be less than';
+            case 'Пароли не совпадают':
+                return 'Passwords do not match';
+            case 'Поле не должно быть пустым':
+                return 'The field should not be empty';
+            case 'Выберите тип учетной записи':
+                return 'Select account type';
+            case 'Пользователь':
+                return 'User';
+            case 'Пресса':
+                return 'Media';
+            case 'Модератор':
+                return 'Moderator';
+            case 'Владелец':
+                return 'Owner';
+            case 'Электронный адрес':
+                return 'Email';
+            case 'Подтвердите пароль':
+                return 'Confirm password';
+            case 'ФИО':
+                return 'Fullname';
+            case 'Блог/издание/канал':
+                return 'Blog/edition/channel';
+            case 'Утвержденная должность':
+                return 'Approved position';
+            case 'Ссылка на ресурс':
+                return 'Link to resource';
+            case 'Связь в социальных сетях':
+                return 'Social network communication';
+            case 'Номер телефона':
+                return 'Phone number';
+            case 'Адрес':
+                return 'Address';
+            case 'Я согласен(на) на хранение и обработку личных данных':
+                return 'I agree to the storage and processing of personal data';
+            case 'Я прошел(ла) собеседование':
+                return 'I passed interview';
+            case 'Доля акций':
+                return 'Share fraction';
+            
         }
+        return $s;
     }
 
     function can_upload($file){
