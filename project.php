@@ -184,7 +184,7 @@
 <div class="galleria-wrapper">
     <div class="galleria">
         <?php
-            $dir = $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['name'];
+            $dir = $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['id'];
             $temp_array = scandir($dir);
             $files = [];
             foreach ($temp_array as $value)
