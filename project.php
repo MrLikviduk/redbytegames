@@ -191,7 +191,7 @@
                 if ($value != '.' && $value != '..')
                     array_push($files, $value);
             foreach ($files as $value)
-                echo '<img src="/projects_img/'.$result['name'].'/'.$value.'">';
+                echo '<img src="/projects_img/'.$result['id'].'/'.$value.'">';
         ?>
     </div>
 </div>

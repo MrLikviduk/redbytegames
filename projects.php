@@ -28,8 +28,11 @@
                 $box_art_name = 'no_image.jpg';
             $name = $mysqli->real_escape_string($_POST['name']);
             $lang = $mysqli->real_escape_string($_POST['lang']);
-            mkdir($_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$name);
             $mysqli->query("INSERT INTO projects (`name`, box_art_name, lang) VALUES ('$name', '$box_art_name', '$lang')");
+            $result = $mysqli->query("SELECT * FROM projects WHERE `name` = '$name' AND `lang` = '$lang'");
+            $temp_array = $result->fetch_assoc();
+            $id = $temp_array['id'];
+            mkdir($_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$id);
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
