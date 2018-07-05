@@ -1,6 +1,6 @@
 <?php
     function show_vacancy($name, $type, $date, $id) {
-        require_once($_SERVER['DOCUMENT_ROOT'],'/elements/functions.php');
+        require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
         echo '
             <div class="vacancy">
                 <div class="type">
