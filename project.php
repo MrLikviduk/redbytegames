@@ -105,7 +105,6 @@
                 $ost = 0;
                 $kol++;
             }
-
         ?>
         <div class="rating-stars">
             <?php
@@ -128,7 +127,7 @@
             if (can_do('edit_projects')) {
         ?>
         <form action="" method="POST">
-            <input type="text" name="tech_param_key" class="key"><b>: </b><input type="text" name="tech_param_value"> <input type="submit" value="Добавить" name="tech_param_submit">
+            <input type="text" name="tech_param_key" class="key"><b>: </b><input type="text" name="tech_param_value"> <input type="submit" value="<?=translate('Добавить')?>" name="tech_param_submit">
         </form>
         <?php } ?>
     </div>
@@ -177,9 +176,9 @@
 </script>
 <?php if (can_do('edit_projects')) { ?>
     <form action="" method="POST" enctype="multipart/form-data">
-        <label for="picture_file">Добавить картинку: </label>
+        <label for="picture_file"><?=translate('Добавить картинку')?>: </label>
         <input type="file" name="picture_file">
-        <input type="submit" value="Добавить" name="picture_submit">
+        <input type="submit" value="<?=translate('Добавить')?>" name="picture_submit">
     </form>
 <?php } ?>
 <div class="galleria-wrapper">
@@ -207,13 +206,13 @@
     if (can_do('edit_projects')) {
 ?>
         <form action="" method="POST">
-            <label>Добавить параграф:</label>
+            <label><?=translate('Добавить параграф')?>:</label>
             <br>
-            <input type="text" name="p_name" size="40" placeholder="Введите название параграфа">
+            <input type="text" name="p_name" size="40" placeholder="<?=translate('Введите название параграфа')?>">
             <p></p>
             <textarea name="p_content" cols="60" rows="10"></textarea>
             <p></p>
-            <input type="submit" name="p_submit" value="Добавить">
+            <input type="submit" name="p_submit" value="<?=translate('Добавить')?>">
         </form>
 <?php
     }
@@ -222,7 +221,7 @@
     Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
     Galleria.run('.galleria');
 </script>
-<h1 style="margin-bottom: 10px;">Отзывы</h1>
+<h1 style="margin-bottom: 10px;"><?=translate('Отзывы')?></h1>
 <div class="average-rating-stat">
     <div class="average-number">
         <?php echo number_format($rating, 1); ?>
@@ -246,7 +245,7 @@
     if (can_do('add_comments')) {
         echo '
             <form action="" method="POST" class="comment-editor">
-                <label for="rating">Ваша оценка: </label>
+                <label for="rating">'.translate('Ваша оценка').': </label>
                 <input type="hidden" name="rating" value="0" id="rating_input">
                 <div class="rating-stars">
                 ';
@@ -255,15 +254,15 @@
                 }
                 echo '
                 </div>
-                <label for="comment_content" class="label">Комментарий: </label>
+                <label for="comment_content" class="label">'.translate('Комментарий').': </label>
                 <textarea name="comment_content" maxlength="1023" class="content" rows="5" id="comment_content'.$result['id'].'"></textarea>
-                <input type="submit" name="comment_submit" value="Добавить отзыв" class="submit">
+                <input type="submit" name="comment_submit" value="'.translate('Добавить отзыв').'" class="submit">
                 <input type="hidden" name="project_id" value="'.$result['id'].'">
             </form>
         ';
     }
     else {
-        echo '<p>Чтобы оставить отзыв, вам необходимо <a href="/authorization">авторизоваться</a></p>';
+        echo '<p>'.translate('Чтобы оставить отзыв, вам необходимо').' <a href="/authorization">'.translate('авторизироваться').'</a></p>';
     }
     $result = $mysqli->query("SELECT * FROM projects_comments WHERE `project_id` LIKE '".((int)$_GET['id'])."' ORDER BY id DESC");
     while ($row = $result->fetch_assoc()) {

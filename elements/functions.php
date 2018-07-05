@@ -128,6 +128,22 @@
                 return 'Add a project';
             case 'Выберите язык':
                 return 'Select a language';
+            case 'Добавить картинку':
+                return 'Add a picture';
+            case 'Добавить параграф':
+                return 'Add a paragraph';
+            case 'Введите название параграфа':
+                return 'Enter the name of the paragraph';
+            case 'Отзывы':
+                return 'Feedback';
+            case 'Ваша оценка':
+                return 'Your assessment';
+            case 'Добавить отзыв':
+                return 'Leave a feedback';
+            case 'Чтобы оставить отзыв, вам необходимо':
+                return 'If you want to leave a feedback, you need to';
+            case 'авторизироваться':
+                return 'authorizate';
         }
     }
 
