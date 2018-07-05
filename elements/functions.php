@@ -225,6 +225,8 @@
                 return 'Enter a link to your resume';
             case 'Отправить':
                 return 'Send';
+            case 'Направление':
+                return 'Section';
         }
         return $s;
     }

@@ -35,15 +35,19 @@
         <option value="ru"><?=translate('Русский')?></option>
         <option value="en"><?=translate('Английский')?></option>
     </select>
-    <label for="name">Название: </label>
-    <input type="text" name="name" id="name_id" placeholder="Введите название" class="text-box">
+    <label for="name"><?=translate('Название')?>: </label>
+    <input type="text" name="name" id="name_id" class="text-box">
     <br>
-    <label for="type">Направление: </label>
+    <label for="type"><?=translate('Направление')?>: </label>
     <select name="type" class="text-box" id="type_id">
         <?php
             $result = $mysqli->query("SELECT * FROM vacancy_types ORDER BY `id`");
             while ($row = $result->fetch_assoc()) {
-                echo '<option '.(isset($_SESSION['id_to_edit_vacancy']) && get_data('vacancy', 'id', $_SESSION['id_to_edit_vacancy'])['type_id'] == $row['id'] ? 'selected' : '').' value="'.$row['id'].'">'.$row['name'].'</option>';
+                if ($_SESSION['lang'] == 'ru')
+                    $type = $row['russian_name'];
+                else if ($_SESSION['lang'] == 'en')
+                    $type = $row['english_name'];
+                echo '<option '.(isset($_SESSION['id_to_edit_vacancy']) && get_data('vacancy', 'id', $_SESSION['id_to_edit_vacancy'])['type_id'] == $row['id'] ? 'selected' : '').' value="'.$row['id'].'">'.$type.'</option>';
             }
         ?>
     </select>
