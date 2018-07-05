@@ -1,20 +1,20 @@
 <form action="" method="post" class="authorization-form">
-    <label for="login">Логин: </label>
-    <input type="text" placeholder="Введите логин" name="login" class="text">
+    <label for="login"><?=translate('Логин')?>: </label>
+    <input type="text" name="login" class="text">
     <br>
-    <label for="password">Пароль: </label>
-    <input type="password" placeholder="Введите пароль" name="password" class="text">
+    <label for="password"><?=translate('Пароль')?>: </label>
+    <input type="password" name="password" class="text">
     <br>
     <?php 
         if (isset($_POST['login']) && isset($_POST['password'])) {
             if (user_is_set($_POST['login'], $_POST['password']) == FALSE) {
                 echo '
-                    <p class="error-text">Неверное имя пользователя или<br> пароль</p>
+                    <p class="error-text">'.translate('Неверное имя пользователя или пароль').'</p>
                 ';
             }
         }
     ?>
-    <input type="submit" value="Войти" class="login-btn">
+    <input type="submit" value="<?=translate('Войти')?>" class="login-btn">
     <br>
-    <p class="to-registrate">Впервые на нашем сайте? <a href="/registration.php">Зарегистрируйтесь!</a></p>
+    <p class="to-registrate"><?=translate('Впервые на нашем сайте?')?> <a href="/registration.php"><?=translate('Зарегистрируйтесь')?>!</a></p>
 </form>

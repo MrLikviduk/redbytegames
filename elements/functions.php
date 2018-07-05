@@ -150,6 +150,16 @@
                 return 'Are you sure you want to delete a paragraph?';
             case 'Оценка':
                 return 'Evaluation';
+            case 'Логин':
+                return 'Login';
+            case 'Пароль':
+                return 'Password';
+            case 'Неверное имя пользователя или пароль':
+                return 'Invalid username or password';
+            case 'Впервые на нашем сайте?':
+                return 'First time with us?';
+            case 'Зарегистрируйтесь':
+                return 'Sign Up';
         }
     }
 

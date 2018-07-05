@@ -116,9 +116,12 @@ body > header {
 }
 .error-text {
     color: #800; 
-    font-size: .8rem; 
-    position: absolute; 
-    bottom: 18px;
+    font-size: .8rem;
+}
+.authorization-form .error-text {
+    display: inline-block;
+    width: calc(100% - 80px);
+    margin-bottom: 0;
 }
 .registration-form .error-text {
     position: static;
@@ -169,6 +172,12 @@ body > header {
     padding: 5px;
     border-radius: 2px;
     background: hsl(0, 100%, 70%);
+}
+.login-btn {
+    position: static;
+    float: right;
+    margin: 10px;
+    width: 60px;
 }
 .btn-wrapper {
     width: 100%;
@@ -277,7 +286,7 @@ footer .socnet {
 }
 .authorization-form, .registration-form {
     width: 280px;
-    height: 130px;
+    min-height: 130px;
     padding: 10px;
     background: hsl(0, 70%, 50%);
     margin: 30px auto;
@@ -328,8 +337,8 @@ footer .socnet {
 }
 .to-registrate {
     font-size: 0.8rem;
-    line-height: 40px;
     color: white;
+    margin-top: 35px;
 }
 .to-registrate a, .registration-form a {
     color: rgb(99, 197, 230);
