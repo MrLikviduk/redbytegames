@@ -94,7 +94,8 @@
                             $max_id = $tmp[0] + 1;
                     }
                 }
-                unlink($_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['box_art_name']);
+                if ($result['box_art_name'] != 'no_image.jpg')
+                    unlink($_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['box_art_name']);
                 make_upload($_FILES['box_art'], $max_id, 'projects_img');
                 $mysqli->query("UPDATE projects SET box_art_name = '$max_id.jpg' WHERE id = ".$result['id']);
                 header("Location: ".$_SERVER['REQUEST_URI']);
