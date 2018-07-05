@@ -112,12 +112,12 @@
 ?>
 <div class="reg-wrapper">
     <form action="" method="POST" class="registration-form">
-        <label for="type"><?=translated('Выберите тип учетной записи')?>: </label>
+        <label for="type"><?=translate('Выберите тип учетной записи')?>: </label>
         <select name="type" onchange="Changed()" id="select-form">
-            <option value="user"><?=translated('Пользователь')?></option>
-            <option value="media"><?=translated('Пресса')?></option>
-            <option value="moderator"><?=translated('Модератор')?></option>
-            <option value="owner"><?=translated('Владелец')?></option>
+            <option value="user"><?=translate('Пользователь')?></option>
+            <option value="media"><?=translate('Пресса')?></option>
+            <option value="moderator"><?=translate('Модератор')?></option>
+            <option value="owner"><?=translate('Владелец')?></option>
         </select>
         <div id="form0" style="display: block;">
             <div class="data-wrapper">
