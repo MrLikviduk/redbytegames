@@ -179,7 +179,7 @@
     }
 </script>
 <?php if (can_do('edit_projects')) { ?>
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
         <label for="picture_file"><?=translate('Добавить картинку')?>: </label>
         <input type="file" name="picture_file">
         <input type="submit" value="<?=translate('Добавить')?>" name="picture_submit">
