@@ -275,7 +275,7 @@
     function make_upload($file, $id, $dir_name){	
         $name = $file['name'];
         $tmp = explode('.', $name);
-        $name = $id.'.'.$tmp[count($tmp) - 1];
+        $name = $id.'.jpg';
         copy($file['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/'.$dir_name.'/'.$name);
     }
 
