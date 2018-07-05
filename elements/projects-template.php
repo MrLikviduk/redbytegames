@@ -18,7 +18,7 @@
             <div class="property-value"><?=htmlspecialchars($value, ENT_QUOTES, 'UTF-8')?></div>
             <?php if (can_do('edit_projects')) { ?>
             <form action="" method="POST" style="display: inline-block">
-                <button name="delete_tech_param" value="<?=$key?>" style="margin: 0 5px;" onclick="return confirm('Вы действительно хотите удалить параметр?')">Удалить</button>
+                <button name="delete_tech_param" value="<?=$key?>" style="margin: 0 5px;" onclick="return confirm('<?=translate('Вы действительно хотите удалить параметр?')?>')"><?=translate('Удалить')?></button>
             </form>
             <?php } ?>
             <br>
@@ -30,7 +30,7 @@
             <h2 class="paragraph-name" onclick="show_paragraph(<?=$val?>)"><div class="show-paragraph" id="arrow<?=$val?>"></div><?=htmlspecialchars($name, ENT_QUOTES, 'UTF-8')?></h2>
             <?php if (can_do('edit_projects')) { ?>
                 <form action="" method="post" style="display: inline-block;">
-                    <button name="delete_p" value="<?=$name?>" style="margin: 0 5px;" onclick="return confirm('Вы действительно хотите удалить параграф?')">Удалить</button>
+                    <button name="delete_p" value="<?=$name?>" style="margin: 0 5px;" onclick="return confirm('<?=translate('Вы действительно хотите удалить параграф?')?>')"><?=translate('Удалить')?></button>
                 </form>
             <?php } ?>
             <hr>
@@ -44,8 +44,8 @@
             <div class="comment">
                 <div class="top">
                     <div class="name">'.htmlspecialchars($name, ENT_QUOTES, 'UTF-8').'</div>
-                    <div class="date-and-time">'.$date.' в '.$time.'</div>
-                    <div class="rating">Оценка: <div class="rating-stars">';
+                    <div class="date-and-time">'.$date.' '.$time.'</div>
+                    <div class="rating">'.translate('Оценка').': <div class="rating-stars">';
                 for ($i = 1; $i <= 5; $i++) {
                     echo '<img src="/img/'.($rating >= $i ? 'starfull.png' : 'starempty.png').'" class="rating-star">';
                 }    

@@ -137,13 +137,19 @@
             case 'Отзывы':
                 return 'Feedback';
             case 'Ваша оценка':
-                return 'Your assessment';
+                return 'Your evaluation';
             case 'Добавить отзыв':
                 return 'Leave a feedback';
             case 'Чтобы оставить отзыв, вам необходимо':
                 return 'If you want to leave a feedback, you need to';
             case 'авторизироваться':
                 return 'authorizate';
+            case 'Вы действительно хотите удалить параметр?':
+                return 'Are you sure you want to delete a parameter?';
+            case 'Вы действительно хотите удалить параграф?':
+                return 'Are you sure you want to delete a paragraph?';
+            case 'Оценка':
+                return 'Evaluation';
         }
     }
 
