@@ -180,6 +180,7 @@
             case 'Владелец':
                 return 'Owner';
             case 'Электронный адрес':
+            case 'Почта':
                 return 'Email';
             case 'Подтвердите пароль':
                 return 'Confirm password';
@@ -229,6 +230,12 @@
                 return 'Send';
             case 'Направление':
                 return 'Section';
+            case 'Ваше сообщение успешно отправлено':
+                return 'Your message was sent successfully';
+            case 'Сообщение':
+                return 'Message';
+            case 'Сообщить о проблеме':
+                return 'Report a problem';
         }
         return $s;
     }

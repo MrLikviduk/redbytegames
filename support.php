@@ -6,19 +6,19 @@
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
 <form action="javascript:void(null);" method="POST" id="support_form" onsubmit="call()" class="application-form">
-<div class="success-text" id="success_text_id">Ваше сообщение успешно отправлено!</div>
-    <label for="fullname">ФИО: </label>
+<div class="success-text" id="success_text_id"><?=translate('Ваше сообщение успешно отправлено')?>!</div>
+    <label for="fullname"><?=translate('ФИО')?>: </label>
     <input type="text" name="fullname" id="fullname_id" class="text">
     <p></p>
-    <label for="email">Почта: </label>
+    <label for="email"><?=translate('Почта')?>: </label>
     <input type="email" name="email" id="email_id" class="text">
     <p></p>
-    <label for="message">Сообщение: </label>
+    <label for="message"><?=translate('Сообщение')?>: </label>
     <textarea name="message" id="message_id" cols="30" rows="10" class="text"></textarea>
     <p></p>
     <div class="submit-btn-wrapper">
         <div class="g-recaptcha" data-sitekey="6LfdRl8UAAAAAFNp0Aq7VO1Wp7LEm9yaBnXs6-QZ"></div>
-        <input type="submit" value="Сообщить о проблеме" class="submit-btn" name="support_submit">
+        <input type="submit" value="<?=translate('Сообщить о проблеме')?>" class="submit-btn" name="support_submit">
     </div>
 </form>
 <script type="text/javascript" language="javascript">
