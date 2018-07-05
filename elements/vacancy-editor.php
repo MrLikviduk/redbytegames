@@ -35,6 +35,7 @@
         <option value="ru"><?=translate('Русский')?></option>
         <option value="en"><?=translate('Английский')?></option>
     </select>
+    <br>
     <label for="name"><?=translate('Название')?>: </label>
     <input type="text" name="name" id="name_id" class="text-box">
     <br>

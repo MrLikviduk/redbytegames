@@ -120,6 +120,8 @@
                 return 'English';
             case 'Введите название':
                 return 'Enter a name';
+            case 'Название':
+                return 'Name';
             case 'Введите название проекта':
                 return 'Enter the name of the project';
             case 'Выберите бокс-арт':
