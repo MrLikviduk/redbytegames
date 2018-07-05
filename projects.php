@@ -41,7 +41,7 @@
             rmdir($_SERVER['DOCUMENT_ROOT']."/projects_img/$id");
             $project = get_by_id($id, 'projects');
             if ($project['box_art_name'] != 'no_image.jpg') {
-                unlink($_SERVER['DOCUMENT_ROOT']."/projects_img/$id.jpg");
+                unlink($_SERVER['DOCUMENT_ROOT']."/projects_img/".$project['box_art_name']);
             }
             $mysqli->query("DELETE FROM projects WHERE id = $id");
             header("Location: ".$_SERVER['REQUEST_URI']);
