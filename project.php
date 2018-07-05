@@ -87,6 +87,13 @@
 ?>
 <div class="box-art-wrapper">
     <img src="/projects_img/<?=$result['box_art_name']?>" alt="<?=$result['name']?>" class="box-art">
+    <?php if (can_do('edit_projects')) { ?>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <label for="box_art"><?=translate('Сменить бокс-арт')?></label>
+            <input type="file" name="box_art">
+            <input type="submit" value="<?=translate('Сменить')?>" name="change_box_art">
+        </form>
+    <?php } ?>
 </div>
 <div class="right-menu">
     <h1 class="project-name"><?=$result['name']?></h1>
@@ -113,9 +120,6 @@
                 }
             ?>
         </div>
-        <?php
-            // echo '('.number_format($rating, 1).')';
-        ?>
     </div>
     <div class="tech-params">
         <?php

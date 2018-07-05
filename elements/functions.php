@@ -238,6 +238,10 @@
                 return 'Report a problem';
             case 'Вы действительно хотите удалить проект?':
                 return 'Are you sure you want to delete a project?';
+            case 'Сменить бокс-арт':
+                return 'Change the box-art';
+            case 'Сменить':
+                return 'Change';
         }
         return $s;
     }
