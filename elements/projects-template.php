@@ -6,11 +6,11 @@
                     <div class="pct-cover">
                         <h2>'.htmlspecialchars($name, ENT_QUOTES, 'UTF-8').'</h2>
                     </div>';
-        if (can_do('edit_projects')) { ?>
-            <form action="" method="POST" style="display: inline-block;">
-                <button name="delete_project" value="<?=$id?>" style="margin: 0 5px;" onclick="return confirm('<?=translate('Вы действительно хотите удалить проект?')?>')"><?=translate('Удалить')?></button>
-            </form>
-        <?php }
+            if (can_do('edit_projects')) { ?>
+                <form action="" method="POST" style="display: inline-block;">
+                    <button name="delete_project" value="<?=$id?>" style="margin: 0 5px;" onclick="return confirm('<?=translate('Вы действительно хотите удалить проект?')?>')"><?=translate('Удалить')?></button>
+                </form>
+            <?php }
         echo '</div>
         </a>
     ';
