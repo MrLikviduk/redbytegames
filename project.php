@@ -83,9 +83,20 @@
         }
         if (isset($_POST['change_box_art'])) {
             if (can_upload($_FILES['box_art'])) {
-                $array_temp = explode('.', $result['box_art_name']);
-                $file_id = $array_temp[0];
-                make_upload($_FILES['box_art'], $file_id, 'projects_img');
+                $dir = $_SERVER['DOCUMENT_ROOT'].'/projects_img';
+                if (!isset($max_id)) {
+                    $max_id = 1;
+                }
+                foreach (scandir($dir) as $key => $value) {
+                    if ($value != '.' && $value != '..') {
+                        $tmp = explode('.', $value);
+                        if (is_numeric($tmp[0]) && $tmp[0] >= $max_id)
+                            $max_id = $tmp[0] + 1;
+                    }
+                }
+                unlink($_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['box_art_name']);
+                make_upload($_FILES['box_art'], $max_id, 'projects_img');
+                $mysqli->query("UPDATE projects SET box_art_name = '$max_id.jpg' WHERE id = ".$result['id']);
                 header("Location: ".$_SERVER['REQUEST_URI']);
             }
         }
