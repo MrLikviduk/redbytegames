@@ -50,21 +50,21 @@
 ?>
 <div class="vacancy-name"><?=$result['name']?></div>
 <?php
-    show_vacancy_list('responsibilities', 'Обязанности:', $lists['responsibilities']);
-    show_vacancy_list('required', 'Квалификация:', $lists['required']);
-    show_vacancy_list('desired', 'Желательные навыки:', $lists['desired']);
+    show_vacancy_list('responsibilities', translate('Обязанности'), $lists['responsibilities']);
+    show_vacancy_list('required', translate('Квалификация'), $lists['required']);
+    show_vacancy_list('desired', translate('Желательные навыки'), $lists['desired']);
 ?>
-<h3 style="max-width: 400px; margin: 40px 0;">Заинтересованы? Заполните анкету ниже, наши менеджеры вам ответят в ближайшее время!</h3>
+<h3 style="max-width: 400px; margin: 40px 0;"><?=translate('Заинтересованы? Заполните анкету ниже, наши менеджеры вам ответят в ближайшее время!')?></h3>
 <form action="" method="POST" class="application-form">
-    <label for="name">Введите имя: </label>
+    <label for="name"><?=translate('Введите имя')?>: </label>
     <input type="text" name="name" class="text" maxlength="<?=NAME_MAX?>">
     <p></p>
-    <label for="email">Введите электронный адрес: </label>
+    <label for="email"><?=translate('Введите электронный адрес')?>: </label>
     <input type="email" name="email" class="text" maxlength="<?=EMAIL_MAX?>">
     <p></p>
-    <label for="resume">Введите ссылку на резюме: </label>
+    <label for="resume"><?=translate('Введите ссылку на резюме')?>: </label>
     <input type="url" name="resume" class="text" maxlength="<?=LINK_MAX?>">
     <p></p>
-    <div style="text-align: right;"><input type="submit" value="Отправить" class="submit-btn" name="request_submit"></div>
+    <div style="text-align: right;"><input type="submit" value="<?=translate('Отправить')?>" class="submit-btn" name="request_submit"></div>
 </form>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); $mysqli->close(); ?>

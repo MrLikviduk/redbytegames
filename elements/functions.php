@@ -201,7 +201,30 @@
                 return 'I passed interview';
             case 'Доля акций':
                 return 'Share fraction';
-            
+            case 'Добавить вакансию':
+                return 'Add a vacancy';
+            case 'К сожалению, сейчас нет доступных вакансий. Попробуйте зайти позже...':
+                return 'Unfortunately, there are no vacancies available now. Try again later...';
+            case 'Опубликовано':
+                return 'Published';
+            case 'Вы действительно хотите удалить вакансию?':
+                return 'Are you sure you want to delete a vacancy?';
+            case 'Обязанности':
+                return 'Responsibilities';
+            case 'Квалификация':
+                return 'Required';
+            case 'Желательные навыки':
+                return 'Desired';
+            case 'Заинтересованы? Заполните анкету ниже, наши менеджеры вам ответят в ближайшее время!':
+                return 'Interested? Fill out the form below, our managers will answer you soon!';
+            case 'Введите имя':
+                return 'Enter your name';
+            case 'Введите электронный адрес':
+                return 'Enter your email';
+            case 'Введите ссылку на резюме':
+                return 'Enter a link to your resume';
+            case 'Отправить':
+                return 'Send';
         }
         return $s;
     }
