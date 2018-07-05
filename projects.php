@@ -37,8 +37,7 @@
         }
         if (isset($_POST['delete_project'])) {
             $id = ((int)$_POST['delete_project']);
-            exec("rm -rf ".$_SERVER['DOCUMENT_ROOT']."/projects_img/$id/*");
-            rmdir($_SERVER['DOCUMENT_ROOT']."/projects_img/$id");
+            exec("rm -rf ".$_SERVER['DOCUMENT_ROOT']."/projects_img/$id");
             $project = get_by_id($id, 'projects');
             if ($project['box_art_name'] != 'no_image.jpg') {
                 unlink($_SERVER['DOCUMENT_ROOT']."/projects_img/".$project['box_art_name']);
