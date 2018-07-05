@@ -236,6 +236,8 @@
                 return 'Message';
             case 'Сообщить о проблеме':
                 return 'Report a problem';
+            case 'Вы действительно хотите удалить проект?':
+                return 'Are you sure you want to delete a project?';
         }
         return $s;
     }
