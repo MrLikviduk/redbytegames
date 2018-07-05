@@ -135,7 +135,7 @@
                 <?php 
                     input_text('media', 'login', 'Логин', LOGIN_MIN, LOGIN_MAX);
                     input_text('media', 'password', 'Пароль', PASSWORD_MIN, PASSWORD_MAX, 1, 'password');
-                    input_text('media', 'email', 'Электронная почта', EMAIL_MIN, EMAIL_MAX, 1, 'email');
+                    input_text('media', 'email', 'Электронный адрес', EMAIL_MIN, EMAIL_MAX, 1, 'email');
                     input_text('media', 'fullname', 'ФИО', FULLNAME_MIN, FULLNAME_MAX);
                     input_text('media', 'channel', 'Блог/издание/канал', CHANNEL_MIN, CHANNEL_MAX);
                     input_text('media', 'position', 'Утвержденная должность', POSITION_MIN, POSITION_MAX);
@@ -152,7 +152,7 @@
                 <?php 
                     input_text('moderator', 'login', 'Логин', LOGIN_MIN, LOGIN_MAX, 1);
                     input_text('moderator', 'password', 'Пароль', PASSWORD_MIN, PASSWORD_MAX, 1, 'password');
-                    input_text('moderator', 'email', 'Электронная почта', EMAIL_MIN, EMAIL_MAX, 1);
+                    input_text('moderator', 'email', 'Электронный адрес', EMAIL_MIN, EMAIL_MAX, 1);
                     input_text('moderator', 'fullname', 'ФИО', FULLNAME_MIN, FULLNAME_MAX);
                     input_text('moderator', 'position', 'Утвержденная должность', POSITION_MIN, POSITION_MAX);
                     input_checkbox('moderator', 'passedinterview', 'Я прошел(ла) собеседование');
@@ -165,7 +165,7 @@
                 <?php 
                     input_text('owner', 'login', 'Логин', LOGIN_MIN, LOGIN_MAX, 1);
                     input_text('owner', 'password', 'Пароль', PASSWORD_MIN, PASSWORD_MAX, 1, 'password');
-                    input_text('owner', 'email', 'Электронная почта', EMAIL_MIN, EMAIL_MAX, 1);
+                    input_text('owner', 'email', 'Электронный адрес', EMAIL_MIN, EMAIL_MAX, 1);
                     input_text('owner', 'fullname', 'ФИО', FULLNAME_MIN, FULLNAME_MAX);
                     input_text('owner', 'position', 'Утвержденная должность', POSITION_MIN, POSITION_MAX);
                     input_text('owner', 'fraction', 'Доля акций', FRACTION_MIN, FRACTION_MAX);
