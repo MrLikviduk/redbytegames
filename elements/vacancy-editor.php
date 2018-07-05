@@ -58,8 +58,8 @@
 <script>
     <?php
         if (isset($_SESSION['id_to_edit_vacancy'])) {
-            echo "document.getElementById('name_id').value = '".htmlspecialchars(get_data('vacancy', 'id', $_SESSION['id_to_edit_vacancy'])['name'], ENT_QUOTES, 'UTF-8')."'";
-            echo "document.getElementById('lang_id').value = '".htmlspecialchars(get_data('vacancy', 'id', $_SESSION['id_to_edit_vacancy'])['lang'], ENT_QUOTES, 'UTF-8')."'";
+            echo "document.getElementById('name_id').value = '".htmlspecialchars(get_data('vacancy', 'id', $_SESSION['id_to_edit_vacancy'])['name'], ENT_QUOTES, 'UTF-8')."';";
+            echo "document.getElementById('lang_id').value = '".htmlspecialchars(get_data('vacancy', 'id', $_SESSION['id_to_edit_vacancy'])['lang'], ENT_QUOTES, 'UTF-8')."';";
         }
     ?>
 </script>
