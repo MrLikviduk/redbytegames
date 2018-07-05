@@ -118,6 +118,16 @@
                 return 'Russian';
             case 'Английский';
                 return 'English';
+            case 'Введите название':
+                return 'Enter a name';
+            case 'Введите название проекта':
+                return 'Enter the name of the project';
+            case 'Выберите бокс-арт':
+                return 'Select the box-art';
+            case 'Добавить проект':
+                return 'Add a project';
+            case 'Выберите язык':
+                return 'Select a language';
         }
     }
 

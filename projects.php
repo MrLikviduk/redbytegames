@@ -27,8 +27,9 @@
             else
                 $box_art_name = 'no_image.jpg';
             $name = $mysqli->real_escape_string($_POST['name']);
+            $lang = $mysqli->real_escape_string($_POST['lang']);
             mkdir($_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$name);
-            $mysqli->query("INSERT INTO projects (`name`, box_art_name) VALUES ('".$_POST['name']."', '$box_art_name')");
+            $mysqli->query("INSERT INTO projects (`name`, box_art_name, lang) VALUES ('$name', '$box_art_name', '$lang')");
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
@@ -36,17 +37,23 @@
     if (can_do('edit_projects')) {
         echo '
             <form action="" method="POST" class="add-project" enctype="multipart/form-data">
-                <label for="name">Введите название: </label>
-                <input type="text" name="name" placeholder="Введите название проекта" class="text">
+                <label for="lang">'.translate('Выберите язык').': </label>
+                <select name="lang" class="text">
+                    <option value="ru">'.translate('Русский').'</option>
+                    <option value="en">'.translate('Английский').'</option>
+                </select>
                 <br>
-                <label for="box_art">Выберите бокс-арт: </label>
+                <label for="name">'.translate('Введите название').': </label>
+                <input type="text" name="name" placeholder="'.translate('Введите название проекта').'" class="text">
+                <br>
+                <label for="box_art">'.translate('Выберите бокс-арт').': </label>
                 <input type="file" name="box_art">
                 <p></p>
-                <input type="submit" value="Добавить проект" name="submit">
+                <input type="submit" value="'.translate('Добавить проект').'" name="submit">
             </form>
         ';
     }
-    $result = $mysqli->query("SELECT * FROM projects ORDER BY id DESC");
+    $result = $mysqli->query("SELECT * FROM projects WHERE lang = '".$mysqli->real_escape_string($_SESSION['lang'])."' ORDER BY id DESC");
     while ($row = $result->fetch_assoc()) {
         show_project($row['name'], $row['box_art_name'], $row['id']);
     }
