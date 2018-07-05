@@ -24,7 +24,7 @@
             echo '</div>';
     }
     function show_vacancy_list($name, $label, $lst) {
-        require_once($_SERVER['DOCUMENT_ROOT'],'/elements/functions.php');
+        require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
         echo '
         <div class="list">
             <div class="list-header">'.htmlspecialchars($label, ENT_QUOTES, 'UTF-8').':</div>

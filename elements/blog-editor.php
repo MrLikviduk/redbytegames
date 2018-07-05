@@ -36,7 +36,7 @@
 ?>
 <a href="/blogs.php" style="margin: 20px auto; display: block;"><?=translate('Назад')?></a>
 <form action="" method="POST" id="edit_form">
-    <label for="header"><?=translate('Язык')?>: </label>
+    <label for="lang"><?=translate('Язык')?>: </label>
     <select name="lang" id="lang_id" class="text-box">
         <option value="ru"><?=translate('Русский')?></option>
         <option value="en"><?=translate('Английский')?></option>
