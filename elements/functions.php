@@ -159,6 +159,7 @@
             case 'Впервые на нашем сайте?':
                 return 'First time with us?';
             case 'Зарегистрируйтесь':
+            case 'Зарегистрироваться':
                 return 'Sign Up';
             case 'Количество символов не должно быть меньше':
                 return 'The number of characters must not be less than';
