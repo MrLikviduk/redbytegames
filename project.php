@@ -81,12 +81,20 @@
             $mysqli->query("UPDATE projects SET paragraphs = '".base64_encode(serialize($lst))."' WHERE id = ".((int)$_GET['id'])) or die("ERROR");
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
+        if (isset($_POST['change_box_art'])) {
+            if (can_upload($_FILES['box_art'])) {
+                $array_temp = explode('.', $result['box_art_name']);
+                $file_id = $array_temp[0];
+                make_upload($_FILES['box_art'], $file_id, 'projects_img');
+                header("Location: ".$_SERVER['REQUEST_URI']);
+            }
+        }
     }
     $page_name = 'Проект';
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
 <div class="box-art-wrapper">
-    <img src="/projects_img/<?=$result['box_art_name']?>" alt="<?=$result['name']?>" class="box-art">
+    <img src="/projects_img/<?=$result['box_art_name']?>?v<?=time()?>" alt="<?=$result['name']?>" class="box-art">
     <?php if (can_do('edit_projects')) { ?>
         <form action="" method="POST" enctype="multipart/form-data">
             <label for="box_art"><?=translate('Сменить бокс-арт')?></label>
