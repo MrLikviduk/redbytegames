@@ -44,7 +44,7 @@
             }
         }
         if (isset($_POST['picture_submit']) && can_upload($_FILES['picture_file'])) {
-            $dir = $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['name'];
+            $dir = $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['id'];
             if (!isset($max_id)) { // Чтобы создать новую картинку с уникальным id
                 $max_id = 1;
             }
