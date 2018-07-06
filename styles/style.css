@@ -427,7 +427,7 @@ footer .socnet {
         position: absolute;
         left: 0;
         width: calc(100vw - 700px);
-        padding-left: 6vw;
+        padding-left: 4vw;
     }
     .nav-elements {
         width: 850px;
