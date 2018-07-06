@@ -16,6 +16,8 @@
                 return 'Vacancy editor';
             case 'Проекты':
                 return 'Projects';
+            case 'Для прессы':
+                return 'For media';
             case 'Проект':
                 return 'Project';
             case 'Вакансия':
@@ -307,8 +309,7 @@
             $result = $mysqli->query("SELECT activated FROM users WHERE `username` = '".$username."'");
             $row = $result->fetch_assoc();
             if ($row['activated'] == 0) {
-                $mysqli->close();
-                return FALSE;
+                $role = 'guest';
             }
         }
         $result = $mysqli->query("SELECT * FROM roles WHERE `role` = '$role'");
