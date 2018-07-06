@@ -91,7 +91,7 @@
                 <div class="nav-element"><?=translate('Проекты')?></div>
             </a>
             <?php if (can_do('see_info_for_media')) { ?>
-                <a href="#" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+                <a href="/for_media/media-choose.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                     <div class="nav-element"><?=translate('Для прессы')?></div>
                 </a>
             <?php } ?>
@@ -139,7 +139,7 @@
                     <div class="nav-element"><?=translate('Проекты')?></div>
                 </a>
                 <?php if (can_do('see_info_for_media')) { ?>
-                    <a href="#">
+                    <a href="/for_media/media-choose.php">
                         <div class="nav-element"><?=translate('Для прессы')?></div>
                     </a>
                 <?php } ?>
