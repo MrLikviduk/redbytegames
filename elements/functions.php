@@ -264,6 +264,8 @@
                 return 'File';
             case 'Добавить файл':
                 return 'Add a file';
+            case 'Вы действительно хотите удалить файл?':
+                return 'Are you sure you want to delete a file?';
         }
         return $s;
     }

@@ -9,6 +9,15 @@
         include($_SERVER['DOCUMENT_ROOT'].'/footer.php');
         exit();
     }
+    if (can_do('edit_for_media')) {
+        if (isset($_POST['delete_file'])) {
+            $id = (int)$_POST['delete_file'];
+            $kit = get_by_id($id, 'kits');
+            unlink($_SERVER['DOCUMENT_ROOT'].'/for_media/kits/'.$kit['filename']);
+            $mysqli->query("DELETE FROM kits WHERE id = $id");
+            header("Location: ".$_SERVER['REQUEST_URI']);
+        }
+    }
     $mysqli = connect_to_database();
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
@@ -28,7 +37,7 @@
         $filename = $row['filename'];
         $temp_array = explode('.', $filename);
         $extension = end($temp_array);
-        show_kit($row['name'], $extension, $row['creation_date']);
+        show_kit($row['name'], $extension, $row['creation_date'], $row['id']);
     }
 
 ?>
