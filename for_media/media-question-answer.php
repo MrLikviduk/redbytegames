@@ -42,7 +42,7 @@
           type: 'POST',
           url: '/for_media/media-question-answer-result.php',
           data: msg,
-          success: resetForm(),
+          success: resetForm,
           error:  function(xhr, str){
 	    alert('Возникла ошибка: ' + xhr.responseCode);
           }
