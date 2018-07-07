@@ -28,7 +28,7 @@
         $filename = $row['filename'];
         $temp_array = explode('.', $filename);
         $extension = end($temp_array);
-        show_kit($row['name'], $extension, row['creation_date']);
+        show_kit($row['name'], $extension, $row['creation_date']);
     }
 
 ?>
