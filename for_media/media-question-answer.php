@@ -22,6 +22,33 @@
         main.css('padding', '0 25vw');
     }
 </script>
+<form action="javascript:void(null);" method="POST" id="question_form" onsubmit="call()">
+    <label for="question"><?=translate('Задать вопрос')?>: </label>
+    <br>
+    <textarea name="question" id="question_id" rows="10"></textarea>
+    <br>
+    <span id="success_text_id">Ваш вопрос успешно отправлен на рассмотрение!</span>
+    <br>
+    <input type="submit" value="<?=translate('Отправить')?>">
+</form>
+<script type="text/javascript" language="javascript">
+    function resetForm() {
+        $("#question_id").val('');
+        $("#success_text_id").css('display', 'block');
+    }
+    function call() {
+ 	  var msg = $('#question_form').serialize();
+        $.ajax({
+          type: 'POST',
+          url: '/for_media/media-question-answer-result.php',
+          data: msg,
+          success: resetForm,
+          error:  function(xhr, str){
+	    alert('Возникла ошибка: ' + xhr.responseCode);
+          }
+        });
+    }
+</script>
 <?php
     $result = $mysqli->query("SELECT * FROM questions_answers ORDER BY id DESC");
     while ($row = $result->fetch_assoc()) {

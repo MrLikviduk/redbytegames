@@ -270,6 +270,8 @@
                 return 'Question-Answer for media';
             case 'Вопрос-Ответ':
                 return 'Question-Answer';
+            case 'Задать вопрос':
+                return 'Ask a question';
         }
         return $s;
     }
