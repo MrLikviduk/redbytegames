@@ -9,6 +9,7 @@
         include($_SERVER['DOCUMENT_ROOT'].'/footer.php');
         exit();
     }
+    $mysqli = connect_to_database();
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
 <script>
@@ -31,4 +32,4 @@
     }
 
 ?>
-<?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); $myslqi->close(); ?>
