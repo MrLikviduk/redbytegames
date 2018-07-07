@@ -9,6 +9,7 @@
         include($_SERVER['DOCUMENT_ROOT'].'/footer.php');
         exit();
     }
+    $mysqli = connect_to_database();
     if (can_do('edit_for_media')) {
         if (isset($_POST['delete_file'])) {
             $id = (int)$_POST['delete_file'];
@@ -18,7 +19,6 @@
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
-    $mysqli = connect_to_database();
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
 <script>
