@@ -9,5 +9,5 @@
             $mysqli->query("INSERT INTO questions_answers (id, question, creation_date) VALUES (NULL, '$question', '$date')");
         }
     }
-    $myqli->close();
+    $mysqli->close();
 ?>
