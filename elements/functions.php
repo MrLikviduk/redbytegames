@@ -518,6 +518,8 @@
         $blog_id = (int)$blog_id;
         $user_id = (int)$user_id;
         $content = $mysqli->real_escape_string($content);
+        if (get_by_id($blog_id, 'blog')['for_media'] == '1' && !can_do('see_info_for_media'))
+            return FALSE;
         $result = $mysqli->query("INSERT INTO comments (id, blog_id, `user_id`, creation_date, creation_time, content) VALUES (NULL, $blog_id, $user_id, '$date', '$time', '$content')");
         $mysqli->close();
         if ($result === FALSE)
