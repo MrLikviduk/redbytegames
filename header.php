@@ -30,9 +30,11 @@
                 $special_style = 'style-for-about-us.css';
                 break;
             case 'Блог':
+            case 'Блог для прессы':
                 $special_style = 'style-for-blog.css';
                 break;
             case 'Редактор блога':
+            case 'Редактор блога для прессы':
             case 'Редактор вакансий':
                 $special_style = 'style-for-editor.css';
                 break;
@@ -53,6 +55,9 @@
                 break;
             case 'Выбор языка':
                 $special_style = 'style-for-choose-language.css';
+                break;
+            case 'Для прессы':
+                $special_style = 'style-for-for-media.css';
                 break;
         }
     ?>

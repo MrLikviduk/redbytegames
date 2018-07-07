@@ -1,0 +1,16 @@
+.choose-element {
+    height: calc(34vh - 20px);
+    margin: 1px 0;
+    margin-top: 0;
+    background: #CCC;
+    line-height: calc(33.33333333333333vh - 20px);
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    transition: .3s;
+    color: black;
+}
+.choose-element:hover {
+    background: hsl(0, 60%, 50%);
+    color: white;
+}

@@ -1,27 +1,33 @@
 <?php
-    $page_name = 'Блог';
+    $page_name = 'Блог для прессы';
     session_start();
-    include('elements/functions.php');
+    include($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
+    if (!can_do('see_info_for_media')) {
+        include($_SERVER['DOCUMENT_ROOT'].'/header.php');
+        echo '<div style="margin: 30px auto;">'.translate('У вас нет прав для просмотра данной страницы').'</div>';
+        include($_SERVER['DOCUMENT_ROOT'].'/footer.php');
+        exit();
+    }
     include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
     $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name) or die("Error to connect to db");
-    include('elements/blog-template.php');
-    if (isset($_SESSION['id_to_edit_blog'])) unset($_SESSION['id_to_edit_blog']);
-    if (!isset($_SESSION['num_of_rows'])) {
-        $_SESSION['num_of_rows'] = 0;
+    include($_SERVER['DOCUMENT_ROOT'].'/elements/blog-template.php');
+    if (isset($_SESSION['id_to_edit_media_blog'])) unset($_SESSION['id_to_edit_media_blog']);
+    if (!isset($_SESSION['num_of_media_rows'])) {
+        $_SESSION['num_of_media_rows'] = 0;
     }
-    if (!isset($_SESSION['id_to_edit_blog']))
-        $_SESSION['id_to_edit_blog'] = -1;
+    if (!isset($_SESSION['id_to_edit_media_blog']))
+        $_SESSION['id_to_edit_media_blog'] = -1;
     if (isset($_POST['delete_blog']) && can_do('edit_blog')) {
         $id = (int)$_POST['delete_blog'];
         $to_delete = $mysqli->query("DELETE FROM blog WHERE id = $id") or die("Error");
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
     if (isset($_POST['edit_blog']) && can_do('edit_blog')) {
-        $_SESSION['id_to_edit_blog'] = $_POST['edit_blog'];
-        header('Location: /elements/blog-editor.php');
+        $_SESSION['id_to_edit_media_blog'] = $_POST['edit_blog'];
+        header('Location: /for_media/media-blog-editor.php');
     }
     if (!isset($blog_notices)) {
-        $result = $mysqli->query("SELECT * FROM blog WHERE lang = '".$mysqli->real_escape_string($_SESSION['lang'])."' AND for_media = 0 ORDER BY id DESC");
+        $result = $mysqli->query("SELECT * FROM blog WHERE lang = '".$mysqli->real_escape_string($_SESSION['lang'])."' AND for_media = 1 ORDER BY id DESC");
         $array_temp = [];
         while ($row = $result->fetch_assoc()) {
             array_push($array_temp, $row);
@@ -31,12 +37,12 @@
         }
     }
     if (isset($blog_notices)) {
-        if (isset($_POST['show_blogs']) && $_SESSION['num_of_rows'] < count($blog_notices) - 1) {
-            $_SESSION['num_of_rows'] += 1;
+        if (isset($_POST['show_blogs']) && $_SESSION['num_of_media_rows'] < count($blog_notices) - 1) {
+            $_SESSION['num_of_media_rows'] += 1;
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
-        else if (isset($_POST['hide_blogs']) && $_SESSION['num_of_rows'] > 0) {
-            $_SESSION['num_of_rows'] -= 1;
+        else if (isset($_POST['hide_blogs']) && $_SESSION['num_of_media_rows'] > 0) {
+            $_SESSION['num_of_media_rows'] -= 1;
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
@@ -45,14 +51,14 @@
             $comment = get_by_id($_POST['delete_comment'], 'comments');
             $blog_id = $comment['blog_id'];
             $comment_id = (int)$_POST['delete_comment'];
-            $mysqli->query("DELETE FROM comments WHERE id = ".$comment_id);
+            $mysqli->query("DELETE FROM comments WHERE id = $comment_id");
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
         }
     }
     if (isset($_POST['edit_comment'])) {
         if (is_own_comment($_POST['edit_comment'])) {
             $comment = get_by_id($_POST['edit_comment'], 'comments');
-            $_SESSION['id_to_edit_comment'] = $comment['id'];
+            $_SESSION['id_to_edit_media_comment'] = $comment['id'];
             $blog_id = $comment['blog_id'];
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
         }
@@ -79,11 +85,11 @@
     if (isset($_POST['comment_submit']) && strlen($_POST['comment_content']) > 0 && strlen($_POST['comment_content']) < 1024 && can_do('add_comments') && get_field($_SESSION['login'], 'banned') == '0') {
         $user_id = get_id_by_username($_SESSION['login']);
         $blog_id = $_POST['blog_id'];
-        if (isset($_SESSION['id_to_edit_comment']) && get_by_id($_SESSION['id_to_edit_comment'], 'comments')['blog_id'] == $_POST['blog_id'] && user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_SESSION['id_to_edit_comment'], 'comments')['user_id']) {
+        if (isset($_SESSION['id_to_edit_media_comment']) && get_by_id($_SESSION['id_to_edit_media_comment'], 'comments')['blog_id'] == $_POST['blog_id'] && user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_SESSION['id_to_edit_media_comment'], 'comments')['user_id']) {
             $comment_content = $mysqli->real_escape_string($_POST['comment_content']);
-            $id_to_edit_comment = (int) $_SESSION['id_to_edit_comment'];
-            $mysqli->query("UPDATE comments SET content = '".$comment_content."' WHERE id = ".$id_to_edit_comment);
-            unset($_SESSION['id_to_edit_comment']);
+            $id_to_edit_media_comment = (int) $_SESSION['id_to_edit_media_comment'];
+            $mysqli->query("UPDATE comments SET content = '".$comment_content."' WHERE id = $id_to_edit_media_comment");
+            unset($_SESSION['id_to_edit_media_comment']);
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$_POST['blog_id']);
         }
         else {
@@ -91,9 +97,9 @@
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$_POST['blog_id']);
         }
     }
-    include('header.php');
+    include($_SERVER['DOCUMENT_ROOT'].'/header.php');
     if (can_do('edit_blog'))
-        echo '<a href="elements/blog-editor.php" style="margin-top: 20px; display: inline-block;">'.translate('Добавить запись').'</a>';
+        echo '<a href="/for_media/media-blog-editor.php" style="margin-top: 20px; display: inline-block;">'.translate('Добавить запись').'</a>';
 ?>
 <?php
     echo "
@@ -105,15 +111,15 @@
         </script>
     ";
     if (isset($blog_notices)) {
-        if ($_SESSION['num_of_rows'] > 0) {
+        if ($_SESSION['num_of_media_rows'] > 0) {
             echo '
                 <form method="POST" action="">
                     <button name="hide_blogs" class="show-blogs-btn" style="margin-bottom: 0;">'.translate('Вернуться к предыдущим записям').'</button>
                 </form>
             ';
         }
-        for ($j = 0; $j < count($blog_notices[$_SESSION['num_of_rows']]); $j++) {
-            $row = $blog_notices[$_SESSION['num_of_rows']][$j];
+        for ($j = 0; $j < count($blog_notices[$_SESSION['num_of_media_rows']]); $j++) {
+            $row = $blog_notices[$_SESSION['num_of_media_rows']][$j];
             $date = explode('-' ,$row['creation_date']);
             $date = $date[2].'.'.$date[1].'.'.$date[0];
             echo show_blog($row['header'], $row['content'], $date, $row['tags'], $row['id']);
@@ -141,7 +147,7 @@
                 echo '</div>';
             }
         }
-        if ($_SESSION['num_of_rows'] < count($blog_notices) - 1) {
+        if ($_SESSION['num_of_media_rows'] < count($blog_notices) - 1) {
             echo '
                 <form method="POST" action="">
                     <button name="show_blogs" class="show-blogs-btn" style="margin-top: 0;">'.translate('Показать еще записи').'</button>
@@ -151,4 +157,4 @@
     }
 ?>
 
-<?php include('footer.php'); $mysqli->close(); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); $mysqli->close(); ?>

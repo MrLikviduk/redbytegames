@@ -244,6 +244,18 @@
                 return 'Change the box-art';
             case 'Сменить':
                 return 'Change';
+            case 'Новости':
+                return 'News';
+            case 'Киты':
+                return 'Kits';
+            case 'Блог для прессы':
+                return 'Blog for media';
+            case 'Новости для прессы':
+                return 'News for media';
+            case 'Киты для прессы':
+                return 'Kits for media';
+            case 'Редактор блога для прессы':
+                return 'Blog editor for media';
         }
         return $s;
     }
