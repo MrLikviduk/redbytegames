@@ -31,10 +31,10 @@
     <input type="submit" value="<?=translate('Отправить')?>" style="padding: 10px;" name="submit">
 </form>
 <script type="text/javascript" language="javascript">
-    function resetForm() {
+    function resetForm(response) {
         $("#question_id").val('');
         $("#success_text_id").css('display', 'block');
-        $("#success_text_id").html()
+        $("#success_text_id").html(response);
     }
     function call() {
  	  var msg = $('#question_form').serialize();
@@ -42,7 +42,7 @@
           type: 'POST',
           url: '/for_media/media-question-answer-result.php',
           data: msg,
-          success: resetForm,
+          success: resetForm(response),
           error:  function(xhr, str){
 	    alert('Возникла ошибка: ' + xhr.responseCode);
           }
