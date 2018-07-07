@@ -22,7 +22,7 @@
 </script>
 <?php
     if (can_do('edit_for_media'))
-        echo '<a href="/for_media/media-kits-editor.php" style="margin-top: 20px; display: inline-block;">'.translate('Добавить файл').'</a>';
+        echo '<a href="/for_media/media-kits-editor.php" style="margin-top: 20px; display: block; text-align: left;">'.translate('Добавить файл').'</a>';
     $result = $mysqli->query("SELECT * FROM kits ORDER BY id DESC");
     while($row = $result->fetch_assoc()) {
         $filename = $row['filename'];
