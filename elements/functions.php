@@ -266,6 +266,10 @@
                 return 'Add a file';
             case 'Вы действительно хотите удалить файл?':
                 return 'Are you sure you want to delete a file?';
+            case 'Вопрос-Ответ для прессы':
+                return 'Question-Answer for media';
+            case 'Вопрос-Ответ':
+                return 'Question-Answer';
         }
         return $s;
     }

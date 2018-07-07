@@ -16,9 +16,9 @@
             <?=translate('Блог')?>
         </div>
     </a>
-    <a href="/for_media/media-news.php">
+    <a href="/for_media/media-question-answer.php">
         <div class="choose-element">
-            <?=translate('Новости')?>
+            <?=translate('Вопрос-Ответ')?>
         </div>
     </a>
     <a href="/for_media/media-kits.php">

@@ -59,6 +59,7 @@
                 break;
             case 'Для прессы':
             case 'Киты для прессы':
+            case 'Вопрос-Ответ для прессы':
                 $special_style = 'style-for-for-media.css';
                 break;
         }
