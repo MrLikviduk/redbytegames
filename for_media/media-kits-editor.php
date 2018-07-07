@@ -14,12 +14,12 @@
             if (can_upload($_FILES['file'], 'document')) {
                 $date = date('d.m.Y');
                 $name = $mysqli->real_escape_string($_POST['name']);
-                $temp_array = explode($_FILES['name'], '.');
+                $temp_array = explode('.', $_FILES['name']);
                 $extension = end($temp_array);
                 $filename = $name.'.'.$extension;
                 make_upload($_FILES['file'], $_POST['name'], 'for_media/kits', $extension);
                 $filename = $mysqli->real_escape_string($filename);
-                $mysqli->query("INSERT INTO kits (id, `name`, `filename`, creation_date) VALUES (NULL, '$name', '$filename', '$date')");
+                $mysqli->query("INSERT INTO kits (id, `name`, `filename`, creation_date) VALUES (NULL, '$name', '$filename', '$date')") or die("ERROR");
                 header("Location: ".$_SERVER['REQUEST_URI']);
             }
         }
