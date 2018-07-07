@@ -101,15 +101,14 @@
     if (can_do('edit_for_media'))
         echo '<a href="/for_media/media-blog-editor.php" style="margin-top: 20px; display: inline-block;">'.translate('Добавить запись').'</a>';
 ?>
+<script>
+    function showOrHideComments(element_id, count) {
+        var s = count > 1000 ? '1000+' : count;
+        document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? '<?=translate('Скрыть комментарии')?>' : ('<?=translate('Показать комментарии')?>' + ' (' + s + ')'));
+        document.getElementById('comments' + element_id).style.display = (document.getElementById('comments' + element_id).style.display == 'block' ? 'none' : 'block');
+    }
+</script>
 <?php
-    echo "
-        <script>
-            function showOrHideComments(element_id) {
-                document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? '".translate('Скрыть комментарии')."' : '".translate('Показать комментарии')."');
-                document.getElementById('comments' + element_id).style.display = (document.getElementById('comments' + element_id).style.display == 'block' ? 'none' : 'block');
-            }
-        </script>
-    ";
     if (isset($blog_notices)) {
         if ($_SESSION['num_of_media_rows'] > 0) {
             echo '
@@ -135,10 +134,10 @@
                 ';
             }
             $comments_result = $mysqli->query("SELECT * FROM comments WHERE blog_id = ".((int)$row['id'])." ORDER BY id DESC");
-            $comments_are_set = $comments_result->num_rows > 0;
-            if ($comments_are_set) {
+            $comments_count = $comments_result->num_rows;
+            if ($comments_count > 0) {
                 echo '
-                    <div id="show_or_hide_comments'.$row['id'].'" class="show-comments-btn" onclick="showOrHideComments('.$row['id'].')">'.translate('Показать комментарии').'</div>
+                    <div id="show_or_hide_comments'.$row['id'].'" class="show-comments-btn" onclick="showOrHideComments('.$row['id'].', '.$comments_count.')">'.translate('Показать комментарии').' ('.($comments_count > 1000 ? '1000+' : $comments_count).')</div>
                 ';
                 echo '<div style="display: none;" id="comments'.$row['id'].'">';
                 while ($comments = $comments_result->fetch_assoc()) {
