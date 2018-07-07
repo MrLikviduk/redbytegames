@@ -97,8 +97,8 @@
 ?>
 <script>
     function showOrHideComments(element_id, count) {
-        var s = count > 1000 ? count : '1000+'
-        document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? '<?=translate('Скрыть комментарии')?>' : ('<?=translate('Показать комментарии')?>' + s));
+        var s = count > 1000 ? '1000+' : count;
+        document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? '<?=translate('Скрыть комментарии')?>' : ('<?=translate('Показать комментарии')?>' + ' (' + s + ')'));
         document.getElementById('comments' + element_id).style.display = (document.getElementById('comments' + element_id).style.display == 'block' ? 'none' : 'block');
     }
 </script>
@@ -131,7 +131,7 @@
             $comments_count = $comments_result->num_rows;
             if ($comments_count > 0) {
                 echo '
-                    <div id="show_or_hide_comments'.$row['id'].'" class="show-comments-btn" onclick="showOrHideComments('.$row['id'].', '.$comments_count.')">'.translate('Показать комментарии').'</div>
+                    <div id="show_or_hide_comments'.$row['id'].'" class="show-comments-btn" onclick="showOrHideComments('.$row['id'].', '.$comments_count.')">'.translate('Показать комментарии').' ('.($comments_count > 1000 ? '1000+' : $comments_count).')</div>
                 ';
                 echo '<div style="display: none;" id="comments'.$row['id'].'">';
                 while ($comments = $comments_result->fetch_assoc()) {
