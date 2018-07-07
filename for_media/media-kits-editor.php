@@ -16,10 +16,11 @@
                 $name = $mysqli->real_escape_string($_POST['name']);
                 $temp_array = explode('.', $_FILES['file']['name']);
                 $extension = end($temp_array);
+                $lang = $mysqli->real_escape_string($_POST['lang']);
                 $filename = $name.'.'.$extension;
                 make_upload($_FILES['file'], $_POST['name'], 'for_media/kits', $extension);
                 $filename = $mysqli->real_escape_string($filename);
-                $mysqli->query("INSERT INTO kits (id, `name`, `filename`, creation_date) VALUES (NULL, '$name', '$filename', '$date')") or die("ERROR");
+                $mysqli->query("INSERT INTO kits (id, `name`, `filename`, creation_date, lang) VALUES (NULL, '$name', '$filename', '$date', '$lang')") or die("ERROR");
                 header("Location: ".$_SERVER['REQUEST_URI']);
             }
         }
