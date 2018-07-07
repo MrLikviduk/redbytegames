@@ -11,7 +11,7 @@
     $mysqli = connect_to_database();
     if (can_do('edit_for_media')) {
         if (isset($_POST['submit']) && is_legal($_POST['name'], 1, 60) && is_uploaded_file($_FILES['file']['tmp_name'])) {
-            if (can_upload($_FILES['file']), 'document') {
+            if (can_upload($_FILES['file'], 'document')) {
                 $date = date('d.m.Y');
                 $name = $mysqli->real_escape_string($_POST['name']);
                 $temp_array = explode($_FILES['name'], '.');
