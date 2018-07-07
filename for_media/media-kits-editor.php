@@ -14,7 +14,7 @@
             if (can_upload($_FILES['file'], 'document')) {
                 $date = date('d.m.Y');
                 $name = $mysqli->real_escape_string($_POST['name']);
-                $temp_array = explode('.', $_FILES['name']);
+                $temp_array = explode('.', $_FILES['tmp_name']);
                 $extension = end($temp_array);
                 $filename = $name.'.'.$extension;
                 make_upload($_FILES['file'], $_POST['name'], 'for_media/kits', $extension);
