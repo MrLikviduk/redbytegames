@@ -44,3 +44,16 @@
     box-sizing: border-box;
     color: black;
 }
+.qa-block {
+    padding: 25px 30px;
+    box-shadow: 1px 1px 4px gray;
+    margin: 10px 0;
+}
+.qa-block .question {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.qa-block .date {
+    color: gray;
+    margin: 10px 0;
+}

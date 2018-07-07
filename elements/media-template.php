@@ -12,4 +12,11 @@
             <?php } ?>
         </div>
     <?php }
+    function show_qa($question, $answer, $date) { // QA - Question Answer ?>
+        <div class="qa-block">
+            <div class="question"><?=htmlspecialchars($question, ENT_QUOTES, 'UTF-8')?></div>
+            <div class="date"><?=htmlspecialchars($date, ENT_QUOTES, 'UTF-8')?></div>
+            <div class="answer"><?=htmlspecialchars($answer, ENT_QUOTES, 'UTF-8')?></div>
+        </div>
+    <?php }
 ?>
