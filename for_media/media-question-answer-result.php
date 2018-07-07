@@ -8,11 +8,12 @@
             $date = date('d.m.Y');
             $mysqli->query("INSERT INTO questions_answers (id, question, creation_date) VALUES (NULL, '$question', '$date')") or die("Ошибка при запросе в базу данных!");
             $mysqli->close();
-            die("Ваше сообщение успешно отправлено!")
+            echo "Ваше сообщение успешно отправлено!"; exit();
         }
         else
-            die("Ошибка: введены неверные данные!");
+            echo "Ошибка: введены неверные данные!"; exit();
     }
     else
-        die("Ошибка: недостаточно прав!")
+        echo "Ошибка: недостаточно прав!"; exit();
+    echo "Просто сообщение";
 ?>
