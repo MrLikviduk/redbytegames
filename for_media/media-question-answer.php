@@ -25,11 +25,10 @@
 <form action="javascript:void(null);" method="POST" id="question_form" onsubmit="call()" style="margin-top: 20px;">
     <label for="question"><?=translate('Задать вопрос')?>: </label>
     <br>
-    <textarea name="question" id="question_id" rows="10" style="width: 100%;"></textarea>
+    <textarea name="question" id="question_id" rows="10" style="width: 100%;" maxlength="300"></textarea>
     <br>
     <span id="success_text_id" style="display: none;">Ваш вопрос успешно отправлен на рассмотрение!</span>
-    <br>
-    <input type="submit" value="<?=translate('Отправить')?>" style="padding: 10px;">
+    <input type="submit" value="<?=translate('Отправить')?>" style="padding: 10px;" name="submit">
 </form>
 <script type="text/javascript" language="javascript">
     function resetForm() {
