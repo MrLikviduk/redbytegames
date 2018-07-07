@@ -22,11 +22,12 @@
     </div>
 </form>
 <script type="text/javascript" language="javascript">
-    function resetForm() {
+    function resetForm(response) {
         $("#fullname_id").val('');
         $("#email_id").val('');
         $("#message_id").val('');
         $("#success_text_id").css('display', 'block');
+        $("#success_text_id").html(response);
     }
     function call() {
  	  var msg = $('#support_form').serialize();
@@ -34,7 +35,7 @@
           type: 'POST',
           url: '/elements/support-result.php',
           data: msg,
-          success: resetForm,
+          success: resetForm(response),
           error:  function(xhr, str){
 	    alert('Возникла ошибка: ' + xhr.responseCode);
           }

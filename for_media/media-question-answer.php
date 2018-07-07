@@ -27,13 +27,14 @@
     <br>
     <textarea name="question" id="question_id" rows="10" style="width: 100%;" maxlength="300"></textarea>
     <br>
-    <span id="success_text_id" style="display: none;">Ваш вопрос успешно отправлен на рассмотрение!</span>
+    <span id="success_text_id" style="display: none;"></span>
     <input type="submit" value="<?=translate('Отправить')?>" style="padding: 10px;" name="submit">
 </form>
 <script type="text/javascript" language="javascript">
     function resetForm() {
         $("#question_id").val('');
         $("#success_text_id").css('display', 'block');
+        $("#success_text_id").html()
     }
     function call() {
  	  var msg = $('#question_form').serialize();
