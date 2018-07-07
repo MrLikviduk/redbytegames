@@ -98,7 +98,7 @@
         }
     }
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
-    if (can_do('edit_blog'))
+    if (can_do('edit_for_media'))
         echo '<a href="/for_media/media-blog-editor.php" style="margin-top: 20px; display: inline-block;">'.translate('Добавить запись').'</a>';
 ?>
 <?php

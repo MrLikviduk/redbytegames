@@ -1,6 +1,7 @@
 <?php
     session_start();
     $page_name = 'Киты для прессы';
+    require_once($_SERVER['DOCUMENT_ROOT'].'/elements/media-template.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
     if (!can_do('see_info_for_media')) {
         include($_SERVER['DOCUMENT_ROOT'].'/header.php');
@@ -9,5 +10,17 @@
         exit();
     }
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
+?>
+<script>
+    var main = $('main');
+    main.css('text-align', 'center');
+    main.css('padding', '0 15vw');
+    if (window.matchMedia('(max-width: 1212px)').matches) {
+        main.css('padding', '0 10vw');
+    }
+</script>
+<?php
+    if (can_do('edit_for_media'))
+        echo '<a href="/for_media/media-kits-editor.php" style="margin-top: 20px; display: inline-block;">'.translate('Добавить файл').'</a>';
 ?>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); ?>

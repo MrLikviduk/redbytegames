@@ -256,11 +256,19 @@
                 return 'Kits for media';
             case 'Редактор блога для прессы':
                 return 'Blog editor for media';
+            case 'Редактор китов для прессы':
+                return 'Kits editor for media';
+            case 'доступные форматы':
+                return 'available extensions';
+            case 'Файл':
+                return 'File';
+            case 'Добавить файл':
+                return 'Add a file';
         }
         return $s;
     }
 
-    function can_upload($file){
+    function can_upload($file, $type='image'){
         // если имя пустое, значит файл не выбран
         if($file['name'] == '')
             return 'Вы не выбрали файл.';
@@ -275,7 +283,10 @@
         // нас интересует последний элемент массива - расширение
         $mime = strtolower(end($getMime));
         // объявим массив допустимых расширений
-        $types = array('jpg', 'png', 'gif', 'bmp', 'jpeg');
+        if ($type == 'image')
+            $types = array('jpg', 'png', 'gif', 'bmp', 'jpeg');
+        else
+            $types = array('doc', 'docx', 'jpg', 'pdf', 'png', 'rar', 'zip');
         
         // если расширение не входит в список допустимых - return
         if(!in_array($mime, $types))
@@ -290,10 +301,10 @@
         return $mysqli;
     }
 
-    function make_upload($file, $id, $dir_name){	
+    function make_upload($file, $id, $dir_name, $extension='jpg'){	
         $name = $file['name'];
         $tmp = explode('.', $name);
-        $name = $id.'.jpg';
+        $name = $id.'.'.$extension;
         copy($file['tmp_name'], $_SERVER['DOCUMENT_ROOT'].'/'.$dir_name.'/'.$name);
     }
 

@@ -2,7 +2,7 @@
     $page_name = 'Редактор блога для прессы';
     session_start();
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
-    if (!can_do('edit_blog')) {
+    if (!can_do('edit_for_media')) {
         include($_SERVER['DOCUMENT_ROOT'].'/header.php');
         echo '<div style="margin: 30px auto;">'.translate('У вас нет прав для просмотра данной страницы').'</div>';
         include($_SERVER['DOCUMENT_ROOT'].'/footer.php');

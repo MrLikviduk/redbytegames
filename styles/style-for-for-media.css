@@ -14,3 +14,31 @@
     background: hsl(0, 60%, 50%);
     color: white;
 }
+.kit {
+    margin: 30px;
+    width: 200px;
+    padding: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+.kit img {
+    width: 100px;
+    margin: 5px auto;
+    display: block;
+}
+.kit .date {
+    color: gray;
+    text-align: left;
+}
+.kit .name {
+    font-size: 1.1rem;
+    text-align: center;
+}
+.kit .download {
+    display: block;
+    margin: 8px auto;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+}

@@ -36,6 +36,7 @@
             case 'Редактор блога':
             case 'Редактор блога для прессы':
             case 'Редактор вакансий':
+            case 'Редактор китов для прессы':
                 $special_style = 'style-for-editor.css';
                 break;
             case 'Проекты':
@@ -57,6 +58,7 @@
                 $special_style = 'style-for-choose-language.css';
                 break;
             case 'Для прессы':
+            case 'Киты для прессы':
                 $special_style = 'style-for-for-media.css';
                 break;
         }

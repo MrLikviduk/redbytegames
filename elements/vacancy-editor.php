@@ -53,7 +53,7 @@
         ?>
     </select>
     <br>
-    <input type="submit" name="submit" value="Добавить" class="submit-button">
+    <input type="submit" name="submit" value="<?=translate('Добавить')?>" class="submit-button">
 </form>
 <script>
     <?php
