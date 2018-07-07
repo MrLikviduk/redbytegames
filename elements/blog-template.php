@@ -33,7 +33,7 @@
         ';
     }
 
-    function show_comment($name, $date, $time, $content, $id) {
+    function show_comment($name, $date, $time, $content, $id, $for_media = FALSE) {
         require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
         echo '
             <div class="comment">
@@ -66,9 +66,9 @@
                     echo '</form>';
                 }
             echo '</div>';
-            if ($_SESSION['id_to_edit_comment'] == $id)
+            if (($for_media ? $_SESSION['id_to_edit_media_comment'] : $_SESSION['id_to_edit_comment']) == $id)
                 echo "<script>
-                    document.getElementById('comment_content".get_by_id($_SESSION['id_to_edit_comment'], 'comments')['blog_id']."').innerHTML = '".htmlspecialchars(get_by_id($_SESSION['id_to_edit_comment'], 'comments')['content'], ENT_QUOTES, 'UTF-8')."';
+                    document.getElementById('comment_content".get_by_id(($for_media ? $_SESSION['id_to_edit_media_comment'] : $_SESSION['id_to_edit_comment']), 'comments')['blog_id']."').innerHTML = '".htmlspecialchars(get_by_id($_SESSION['id_to_edit_comment'], 'comments')['content'], ENT_QUOTES, 'UTF-8')."';
                 </script>";
     }
 ?>
