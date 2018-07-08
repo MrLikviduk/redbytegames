@@ -284,6 +284,14 @@
                 return 'Error: not enough rights!';
             case 'Вы действительно хотите удалить вопрос?':
                 return 'Are you sure you want to delete a question?';
+            case 'Проверить':
+                return 'Check';
+            case 'Идет проверка логина...':
+                return 'Login verification in progress...';
+            case 'Логин свободен':
+                return 'Login is free';
+            case 'Логин занят':
+                return 'Login is taken';
         }
         return $s;
     }

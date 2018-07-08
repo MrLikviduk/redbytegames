@@ -20,55 +20,82 @@
         $type_name = $type.'_'.$name;
         if ($num_of_rows < 1)
             return FALSE;
-        echo '<label for="'.$type_name.'">'.translate($label).': </label>';
+        ?> <label for="<?=$type_name?>"><?=translate($label)?>: </label> <?php
         if ($num_of_rows > 1) {
-            echo '
-                <textarea class="text" maxlength="'.$max.'" rows="'.$num_of_rows.'" name="'.$type_name.'" id="'.$type_name.'"></textarea>
-            ';
+                ?> <textarea class="text" maxlength="'<?=$max?>" rows="<?=$num_of_rows?>" name="<?=$type_name?>" id="<?=$type_name?>"></textarea> <?php
         }
         else {
-            echo '
-                <input type="'.$type_of_input.'" maxlength="'.$max.'" class="text" name="'.$type_name.'" id="'.$type_name.'">
-            ';
+                ?> <input type="<?=$type_of_input?>" maxlength="<?=$max?>" class="text" name="<?=$type_name?>" id="<?=$type_name?>"> <?php
         }
-        echo '<p class="error-text" style="display: none;" id="'.$type_name.'_error_text">'.translate('Количество символов не должно быть меньше').' '.$min.'</p>';
-        echo "
+        if ($name == 'login') { ?> // 235
             <script>
-                $('#".$type_name."').keyup(changed_input);
-                $('#".$type_name."').change(changed_input);
+                $('#<?=$type_name?>').css('width', '170px');
+            </script>
+            <input type="button" id="check_<?=$type?>_login_button" value="<?=translate('Проверить')?>" style="vertical-align: center; padding: 3px 6px;">
+        <?php }
+        ?>
+            <p class="error-text" style="display: none;" id="<?=$type_name?>_error_text"><?=translate('Количество символов не должно быть меньше')?> <?=$min?></p>
+            <script>
+                $('#<?=$type_name?>').keyup(changed_input);
+                $('#<?=$type_name?>').change(changed_input);
                 function changed_input () {
-                    var value = $('#".$type_name."').val();
-                    var error = $('#".$type_name."_error_text');
-                    if ('".$name."' == 'confirm_password') {
-                        if ($('#".$type.'_'.'password'."').val() != value) {
-                            error.html('".translate('Пароли не совпадают')."');
+                    var value = $('#<?=$type_name?>').val();
+                    var error = $('#<?=$type_name?>_error_text');
+                    if ('<?=$name?>' == 'confirm_password') {
+                        if ($('#<?=$type.'_'.'password'?>').val() != value) {
+                            error.html('<?=translate('Пароли не совпадают')?>');
                             error.css('display', 'block');
                         }
                         else {
                             error.css('display', 'none');
                         }
                     }
-                    else if (value.length == 0 && ".$min." > 0) {
-                        error.html('".translate('Поле не должно быть пустым')."');
+                    else if (value.length == 0 && <?=$min?> > 0) {
+                        error.html('<?=translate('Поле не должно быть пустым')?>');
                         error.css('display', 'block');
                     }
                     else if (value.length < ".$min.") {
-                        error.html('".translate('Количество символов не должно быть меньше')." ".$min."');
+                        error.html('<?=translate('Количество символов не должно быть меньше')?> <?=$min?>');
                         error.css('display', 'block');
                     }
                     else
                         error.css('display', 'none');
                 }
             </script>
-        ";
+        <?php
+        if ($name == 'login') { ?>
+            <script>
+                $('#check_<?=$type?>_login_button').bind("click", function () {
+                    var error_text = $('#<?=$type_name?>_error_text');
+                    $.ajax({
+                        type: 'POST',
+                        url: '/elements/registration-result.php',
+                        data: {login: $('#<?=$type_name?>').html()},
+                        beforeSend: function () {
+                            error_text.html('<?=translate('Идет проверка логина...')?>');
+                        },
+                        success: function (response) {
+                            if (response == 'success') {
+                                error_text.html('<?=translate('Логин свободен')?>');
+                            }
+                            else {
+                                error_text.html('<?=translate('Логин занят')?>');
+                            }
+                        },
+                        error:  function(xhr, str){
+                            alert('Возникла ошибка: ' + xhr.responseCode);
+                        }
+                    });
+                });
+            </script>
+        <?php }
     }
-    function input_checkbox($type, $name, $label) {
-        echo '
+    function input_checkbox($type, $name, $label) { ?>
             <div style="margin: 8px auto; margin-left: 11px;">
-                <input type="checkbox" name="'.$type.'_'.$name.'" value="1">
-                <label for="'.$type.'_'.$name.'" style="display: inline;">'.translate($label).'</label>
+                <input type="checkbox" name="<?=$type.'_'.$name?>" value="1">
+                <label for="<?=$type.'_'.$name?>" style="display: inline;"><?=translate($label)?></label>
             </div>
-        ';
+        <?php
     }
 
     if (isset($_POST['submit']) && $_POST['type'] == 'user' && check_captcha($_POST['g-recaptcha-response'])) {
@@ -121,7 +148,7 @@
         </select>
         <div id="form0" style="display: block;">
             <div class="data-wrapper">
-                <?php 
+                <?php
                     input_text('user', 'login', 'Логин', LOGIN_MIN, LOGIN_MAX);
                     input_text('user', 'email', 'Электронный адрес', EMAIL_MIN, EMAIL_MAX, 1, 'email');
                     input_text('user', 'password', 'Пароль', PASSWORD_MIN, PASSWORD_MAX, 1, 'password');
@@ -132,7 +159,7 @@
         </div>
         <div id="form1" style="display: none;">
             <div class="data-wrapper">
-                <?php 
+                <?php
                     input_text('media', 'login', 'Логин', LOGIN_MIN, LOGIN_MAX);
                     input_text('media', 'password', 'Пароль', PASSWORD_MIN, PASSWORD_MAX, 1, 'password');
                     input_text('media', 'email', 'Электронный адрес', EMAIL_MIN, EMAIL_MAX, 1, 'email');
@@ -149,7 +176,7 @@
        </div>
        <div id="form2" style="display: none;">
             <div class="data-wrapper">
-                <?php 
+                <?php
                     input_text('moderator', 'login', 'Логин', LOGIN_MIN, LOGIN_MAX, 1);
                     input_text('moderator', 'password', 'Пароль', PASSWORD_MIN, PASSWORD_MAX, 1, 'password');
                     input_text('moderator', 'email', 'Электронный адрес', EMAIL_MIN, EMAIL_MAX, 1);
