@@ -27,7 +27,7 @@
         else {
                 ?> <input type="<?=$type_of_input?>" maxlength="<?=$max?>" class="text" name="<?=$type_name?>" id="<?=$type_name?>"> <?php
         }
-        if ($name == 'login') { ?> // 235
+        if ($name == 'login') { ?>\
             <script>
                 $('#<?=$type_name?>').css('width', '170px');
             </script>
