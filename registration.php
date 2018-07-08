@@ -27,7 +27,7 @@
         else {
                 ?> <input type="<?=$type_of_input?>" maxlength="<?=$max?>" class="text" name="<?=$type_name?>" id="<?=$type_name?>"> <?php
         }
-        if ($name == 'login') { ?>
+        if ($type_name == 'user_login') { ?>
             <script>
                 $('#<?=$type_name?>').css('width', '170px');
             </script>
@@ -63,7 +63,7 @@
                 }
             </script>
         <?php
-        if ($name == 'login') { ?>
+        if ($type_name == 'user_login') { ?>
             <script>
                 $('#check_<?=$type?>_login_button').bind("click", function () {
                     var error_text = $('#<?=$type_name?>_error_text');
