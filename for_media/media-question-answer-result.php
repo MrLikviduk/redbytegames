@@ -28,8 +28,8 @@
             }
         }
         if (can_do('delete_questions_for_media')) {
-            if (isset($_POST['delete_q'])) {
-                $id = (int)$_POST['delete_q'];
+            if (isset($_POST['id_to_delete_q'])) {
+                $id = (int)$_POST['id_to_delete_q'];
                 $mysqli->query("DELETE FROM questions_answers WHERE id = $id") or die("Не получилось :(");
                 $mysqli->close();
                 die("Все ок :)");

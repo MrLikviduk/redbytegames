@@ -16,6 +16,7 @@
         <div class="qa-block" id="qa<?=$id?>">
             <?php if (can_do('delete_questions_for_media')) { ?>
                 <form action="javascript:void(null);" id="delete_form<?=$id?>" onsubmit="call_delete(<?=$id?>)" method="POST" style="position: absolute; top: 5px; right: 5px;">
+                    <input type="hidden" name="id_to_delete_q" value="<?=$id?>">
                     <input type="image" name="delete_q" value="<?=$id?>" onclick="return confirm('<?=translate('Вы действительно хотите удалить вопрос?')?>')" src="/img/del_blog.png" alt="delete" style="width: 20px; height: 20px;">
                 </form>
             <? } ?>
