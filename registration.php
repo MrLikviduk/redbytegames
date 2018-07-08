@@ -77,7 +77,7 @@
                         success: function (response) {
                             error_text.css('display', 'block');
                             if (response == 'success') {
-                                error_text.html('<?=translate('Логин свободен')?>');
+                                error_text.html('<span style="color: white"><?=translate('Логин свободен')?></span>');
                             }
                             else {
                                 error_text.html('<?=translate('Логин занят')?>');
