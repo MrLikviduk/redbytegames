@@ -30,6 +30,15 @@
     <span id="success_text_id" style="display: none;"></span>
     <input type="submit" value="<?=translate('Отправить')?>" style="padding: 10px;" name="submit">
 </form>
+<?php
+    if (can_do('answer_questions_for_media'))
+        $result = $mysqli->query("SELECT * FROM questions_answers ORDER BY id DESC");
+    else
+        $result = $mysqli->query("SELECT * FROM questions_answers WHERE answer IS NOT NULL ORDER BY id DESC");
+    while ($row = $result->fetch_assoc()) {
+        show_qa($row['question'], $row['answer'], $row['creation_date'], $row['id']);
+    }
+?>
 <script type="text/javascript" language="javascript">
     function resetForm(response) {
         $("#question_id").val('');
@@ -64,13 +73,4 @@
         });
     }
 </script>
-<?php
-    if (can_do('answer_questions_for_media'))
-        $result = $mysqli->query("SELECT * FROM questions_answers ORDER BY id DESC");
-    else
-        $result = $mysqli->query("SELECT * FROM questions_answers WHERE answer IS NOT NULL ORDER BY id DESC");
-    while ($row = $result->fetch_assoc()) {
-        show_qa($row['question'], $row['answer'], $row['creation_date'], $row['id']);
-    }
-?>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); $mysqli->close(); ?>
