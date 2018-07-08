@@ -50,7 +50,10 @@
     }
 </script>
 <?php
-    $result = $mysqli->query("SELECT * FROM questions_answers ORDER BY id DESC");
+    if (can_do('answer_questions_for_media'))
+        $result = $mysqli->query("SELECT * FROM questions_answers ORDER BY id DESC");
+    else
+        $result = $mysqli->query("SELECT * FROM questions_answers WHERE answer IS NOT NULL ORDER BY id DESC");
     while ($row = $result->fetch_assoc()) {
         show_qa($row['question'], $row['answer'], $row['date']);
     }
