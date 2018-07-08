@@ -32,9 +32,9 @@
 </form>
 <?php
     if (can_do('answer_questions_for_media'))
-        $result = $mysqli->query("SELECT * FROM questions_answers ORDER BY id DESC");
+        $result = $mysqli->query("SELECT * FROM questions_answers WHERE lang = '".$mysqli->real_escape_string($_SESSION['lang'])."' ORDER BY id DESC");
     else
-        $result = $mysqli->query("SELECT * FROM questions_answers WHERE answer IS NOT NULL ORDER BY id DESC");
+        $result = $mysqli->query("SELECT * FROM questions_answers WHERE answer IS NOT NULL AND lang = '".$mysqli->real_escape_string($_SESSION['lang'])."' ORDER BY id DESC");
     while ($row = $result->fetch_assoc()) {
         show_qa($row['question'], $row['answer'], $row['creation_date'], $row['id']);
     }
