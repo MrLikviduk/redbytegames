@@ -74,5 +74,19 @@
           }
         });
     }
+    function call_delete(id) {
+        var msg = $("#delete_form" + id).serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/for_media/media-question-answer-result.php',
+            data: msg,
+            success: function() {
+                $("#qa" + id).remove();
+            },
+            error:  function(xhr, str){
+	    alert('Возникла ошибка: ' + xhr.responseCode);
+          }
+        });
+    }
 </script>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); $mysqli->close(); ?>

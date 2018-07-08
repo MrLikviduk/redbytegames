@@ -13,10 +13,10 @@
         </div>
     <?php }
     function show_qa($question, $answer, $date, $id) { // QA - Question Answer ?>
-        <div class="qa-block">
+        <div class="qa-block" id="qa<?=$id?>">
             <?php if (can_do('delete_questions_for_media')) { ?>
-                <form action="javascript:void(null);" id="delete_form<?=$id?>" onsubmit="call_delete(<?=$id?>)" method="POST" style="position: absolute; top: 5px; left: 5px;">
-                    <input type="image" name="delete_q" value="<?=$id?>" src="/img/del_blog.png" alt="delete" style="width: 20px; height: 20px;">
+                <form action="javascript:void(null);" id="delete_form<?=$id?>" onsubmit="call_delete(<?=$id?>)" method="POST" style="position: absolute; top: 5px; right: 5px;">
+                    <input type="image" name="delete_q" value="<?=$id?>" onclick="return confirm('<?=translate('Вы действительно хотите удалить вопрос?')?>')" src="/img/del_blog.png" alt="delete" style="width: 20px; height: 20px;">
                 </form>
             <? } ?>
             <div class="question"><?=htmlspecialchars($question, ENT_QUOTES, 'UTF-8')?></div>

@@ -282,6 +282,8 @@
                 return 'Error: incorrect data entered!';
             case 'Ошибка: недостаточно прав!':
                 return 'Error: not enough rights!';
+            case 'Вы действительно хотите удалить вопрос?':
+                return 'Are you sure you want to delete a question?';
         }
         return $s;
     }
