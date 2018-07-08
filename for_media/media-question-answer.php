@@ -67,6 +67,7 @@
                 var answer = $('#answer' + id);
                 answer.html(response);
                 $('#answer_id' + id).html('');
+                $('#answer_id' + id).val('');
             },
             error:  function(xhr, str){
 	    alert('Возникла ошибка: ' + xhr.responseCode);
