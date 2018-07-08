@@ -75,6 +75,7 @@
                             error_text.html('<?=translate('Идет проверка логина...')?>');
                         },
                         success: function (response) {
+                            error_text.css('display', 'block');
                             if (response == 'success') {
                                 error_text.html('<?=translate('Логин свободен')?>');
                             }
