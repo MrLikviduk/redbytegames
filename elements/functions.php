@@ -276,7 +276,7 @@
                 return 'Answer a question';
             case 'Ответить':
                 return 'Answer';
-            case 'Ваш вопрос успешно отправленн!':
+            case 'Ваш вопрос успешно отправлен!':
                 return 'Your question was successfully sent!';
             case 'Ошибка: введены неверные данные!':
                 return 'Error: incorrect data entered!';
