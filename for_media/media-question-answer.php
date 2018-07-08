@@ -37,13 +37,28 @@
         $("#success_text_id").html(response);
     }
     function call() {
- 	  var msg = $('#question_form').serialize();
+ 	  var msg = $("#question_form").serialize();
         $.ajax({
           type: 'POST',
           url: '/for_media/media-question-answer-result.php',
           data: msg,
           success: resetForm,
           error:  function(xhr, str){
+	    alert('Возникла ошибка: ' + xhr.responseCode);
+          }
+        });
+    }
+    function call_answer(id) {
+        var msg = $("#answer_form" + id).serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/for_media/media-question-answer-result.php',
+            data: msg,
+            success: function(response) {
+                var answer = $('#answer' + id);
+                answer.html(response);
+            }
+            error:  function(xhr, str){
 	    alert('Возникла ошибка: ' + xhr.responseCode);
           }
         });
@@ -55,7 +70,7 @@
     else
         $result = $mysqli->query("SELECT * FROM questions_answers WHERE answer IS NOT NULL ORDER BY id DESC");
     while ($row = $result->fetch_assoc()) {
-        show_qa($row['question'], $row['answer'], $row['date']);
+        show_qa($row['question'], $row['answer'], $row['creation_date'], $row['id']);
     }
 ?>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); $mysqli->close(); ?>

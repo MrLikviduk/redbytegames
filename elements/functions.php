@@ -272,6 +272,16 @@
                 return 'Question-Answer';
             case 'Задать вопрос':
                 return 'Ask a question';
+            case 'Ответить на вопрос':
+                return 'Answer a question';
+            case 'Ответить':
+                return 'Answer';
+            case 'Ваш вопрос успешно отправленн!':
+                return 'Your question was successfully sent!';
+            case 'Ошибка: введены неверные данные!':
+                return 'Error: incorrect data entered!';
+            case 'Ошибка: недостаточно прав!':
+                return 'Error: not enough rights!';
         }
         return $s;
     }
