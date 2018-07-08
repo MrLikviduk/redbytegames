@@ -14,6 +14,11 @@
     <?php }
     function show_qa($question, $answer, $date, $id) { // QA - Question Answer ?>
         <div class="qa-block">
+            <?php if (can_do('delete_questions_for_media')) { ?>
+                <form action="javascript:void(null);" id="delete_form<?=$id?>" onsubmit="call_delete(<?=$id?>)" method="POST" style="position: absolute; top: 5px; left: 5px;">
+                    <input type="image" name="delete_q" value="<?=$id?>" src="/img/del_blog.png" alt="delete" style="width: 20px; height: 20px;">
+                </form>
+            <? } ?>
             <div class="question"><?=htmlspecialchars($question, ENT_QUOTES, 'UTF-8')?></div>
             <div class="date"><?=htmlspecialchars($date, ENT_QUOTES, 'UTF-8')?></div>
             <div class="answer" id="answer<?=$id?>"><?=htmlspecialchars($answer, ENT_QUOTES, 'UTF-8')?></div>
