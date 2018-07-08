@@ -70,7 +70,7 @@
                     $.ajax({
                         type: 'POST',
                         url: '/elements/registration-result.php',
-                        data: {login: $('#<?=$type_name?>').html()},
+                        data: {login: $('#<?=$type_name?>').val()},
                         beforeSend: function () {
                             error_text.html('<?=translate('Идет проверка логина...')?>');
                         },
