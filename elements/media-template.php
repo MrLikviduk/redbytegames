@@ -17,7 +17,7 @@
             <div class="question"><?=htmlspecialchars($question, ENT_QUOTES, 'UTF-8')?></div>
             <div class="date"><?=htmlspecialchars($date, ENT_QUOTES, 'UTF-8')?></div>
             <div class="answer" id="answer<?=$id?>"><?=htmlspecialchars($answer, ENT_QUOTES, 'UTF-8')?></div>
-            <?php if (can_do('answer_questions_for_media')) ?>
+            <?php if (can_do('answer_questions_for_media')) { ?>
                 <form action="javascript:void(null);" method="POST" id="answer_form<?=$id?>" onsubmit="call_answer(<?=$id?>)">
                     <label for="answer"><?=translate('Ответить на вопрос')?>: </label>
                     <br>
