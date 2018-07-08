@@ -19,7 +19,7 @@
                 if (is_legal($_POST['answer'], 1, 300)) {
                     $answer = $mysqli->real_escape_string($_POST['answer']);
                     $id = (int)$_POST['qa_id'];
-                    $mysqli->query("UPDATE questions_answers SET answer = '$answer' WHERE id = $id");
+                    $mysqli->query("UPDATE questions_answers SET answer = '$answer' WHERE id = $id") or die("DATABASESSEESES");
                     $mysqli->close();
                     echo htmlspecialchars($_POST['answer'], ENT_QUOTES, 'UTF-8'); exit();
                 }
