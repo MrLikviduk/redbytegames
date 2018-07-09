@@ -75,6 +75,11 @@
     else
         echo '<body>';
 ?>
+    <script type="text/javascript">
+        var RecaptchaOptions = {
+        lang : 'en',
+        };
+    </script>
     <header>
         <nav>
             <div class="menu-button" id="btn">
