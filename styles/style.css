@@ -127,7 +127,7 @@ body > header {
 .registration-form .error-text {
     position: static;
     font-size: .7rem;
-    margin: 3px auto;
+    margin: 3px inherit;
     margin-top: 0;
 }
 .contact-icon {
