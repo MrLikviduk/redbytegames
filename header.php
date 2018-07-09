@@ -65,7 +65,7 @@
         }
     ?>
     <link rel="stylesheet" href="/styles/<?=$special_style?>?v<?=time()?>">
-    <title>Red Byte Games - more, than games</title>
+    <title>Red Byte Games | <?=translate($page_name)?></title>
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
