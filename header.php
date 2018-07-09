@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
     <meta name="description" content="We are a new company specializing in the development and reissue of mobile games. Our goal is to bring people the most driving, unique and memorable game experience.">
     <link rel="stylesheet" href="/styles/style.css?v<?=time()?>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -126,6 +126,7 @@
             <?php } else { ?>
                 <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="exit_from_account"><b><?=translate('Выйти')?></b></button></form>
             <?php } ?>
+            <div class="nav-element"><b><?=($_SESSION['lang'] == 'ru') ? 'ENG' : 'RUS')?></b></div>
         </div>
         <div class="nav-menu-for-computers">
             <div class="contacts">
@@ -167,6 +168,7 @@
                 <?php } else { ?>
                     <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="exit_from_account"><b><?=translate('Выйти')?></b></button></form>
                 <?php } ?>
+                <div class="nav-element"><b><?=($_SESSION['lang'] == 'ru') ? 'ENG' : 'RUS')?></b></div>
             </div>
         </div>
     </header>
