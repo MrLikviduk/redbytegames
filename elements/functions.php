@@ -292,6 +292,8 @@
                 return 'Login is free';
             case 'Логин занят':
                 return 'Login is taken';
+            case 'Показать еще вопросы':
+                return 'Show other questions';
         }
         return $s;
     }
