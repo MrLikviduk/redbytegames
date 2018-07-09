@@ -11,7 +11,7 @@
     $valid_lang = ['ru', 'en'];
 ?>
 <!DOCTYPE html>
-<html lang="<?=(isset($_SESSION['lang']) ? $_SESSION['lang'] : 'ru')?>">
+<html lang="<?=(isset($_SESSION['lang']) ? $_SESSION['lang'] : 'en')?>">
 
 <head>
     <meta charset="UTF-8">

@@ -1,300 +1,301 @@
 <?php
 
     function translate($s) {
-        if (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'ru')
+        if (!isset($_SESSION['lang']) || $_SESSION['lang'] == 'en')
+            switch($s) {
+                case 'Главная':
+                    return 'Home';
+                case 'О нас':
+                    return 'About us';
+                case 'Блог':
+                    return 'Blog';
+                case 'Редактор блога':
+                    return 'Blog editor';
+                case 'Редактор вакансий':
+                    return 'Vacancy editor';
+                case 'Проекты':
+                    return 'Projects';
+                case 'Для прессы':
+                    return 'For media';
+                case 'Проект':
+                    return 'Project';
+                case 'Вакансия':
+                case 'Вакансии':
+                    return 'Vacancy';
+                case 'Техподдержка':
+                    return 'Support';
+                case 'Выбор языка':
+                    return 'Choose language';
+                case 'Регистрация':
+                    return 'Registration';
+                case 'Авторизация':
+                    return 'Authorization';
+                case 'Войти':
+                    return 'Log in';
+                case 'Выйти':
+                    return 'Log out';
+                case 'Следите за нами':
+                    return 'Follow us';
+                case 'Мы - новоиспеченная компания специализирующаяся на разработке и переиздании мобильных игр. 
+                Наша цель - приносить людям самый драйвовый, уникальный и запоминающийся игровой опыт.':
+                    return 'We are a new company specializing in the development and reissue of mobile games. Our goal is to bring people the most driving, unique and memorable game experience.';
+                case 'Нужно подтвердить свой электронный адрес':
+                    return 'You need to confirm your email';
+                case 'Было выслано письмо для подтверждения на почтовый ящик':
+                    return 'The confirm letter was sent to the email';
+                case 'Если письмо не пришло, проверьте папку "Спам".':
+                    return 'Check "Spam" folder, if the letter has not come.';
+                case 'Отправить письмо еще раз':
+                    return 'Resend the confirm letter';
+                case 'Поздравляем! Ваш почтовый ящик прошел проверку!':
+                    return 'Congratulation! Your email has passed the verification!';
+                case 'Теперь вы можете пользоваться вашей учетной записью.':
+                    return 'Now you can use your account.';
+                case 'менее 1 мин':
+                    return 'less than 1 minute';
+                case 'дн':
+                    return 'days';
+                case 'ч':
+                    return 'h';
+                case 'мин':
+                    return 'min';
+                case 'Добавить запись':
+                    return 'Add a blog entry';
+                case 'Скрыть комментарии':
+                    return 'Hide comments';
+                case 'Показать комментарии':
+                    return 'Show comments';
+                case 'Вернуться к предыдущим записям':
+                    return 'Back to previous entries';
+                case 'Комментарий':
+                    return 'Comment';
+                case 'Вы не можете оставлять комментарии, так как были заблокированы модератором.':
+                    return 'You can not comment it, because you are banned by a moderator.';
+                case 'Оставшееся время до разблокировки':
+                    return 'Remaining time before unlocking';
+                case 'Показать еще записи':
+                    return 'Show other entries';
+                case 'Вы уверены, что хотите удалить запись из блога?':
+                    return 'Are you sure you want to delete an entry from the blog?';
+                case 'Теги':
+                    return 'Tags';
+                case 'Редактировать':
+                    return 'Edit';
+                case 'Удалить':
+                    return 'Delete';
+                case 'Вы действительно хотите удалить комментарий?':
+                    return 'Are you sure you want to delete a comment?';
+                case 'Вы действительно хотите заблокировать пользователя?':
+                    return 'Are you sure you want to ban a user?';
+                case 'Заблокировать':
+                    return 'Ban';
+                case 'Выберите время блокировки';
+                    return 'Choose an unlocking time';
+                case 'дней':
+                    return 'days';
+                case 'часов':
+                    return 'hours';
+                case 'Добавить комментарий':
+                    return 'Add a comment';
+                case 'У вас нет прав для просмотра данной страницы':
+                    return 'You do not have permission to view this page';
+                case 'Назад':
+                    return 'Back';
+                case 'Заголовок':
+                    return 'Title';
+                case 'Введите заголовок';
+                    return 'Enter a title';
+                case 'Введите теги (через пробел)':
+                    return 'Enter tags (separated by spaces)';
+                case 'Контент':
+                    return 'Content';
+                case 'Введите содержимое блога':
+                    return 'Enter a content of an entry';
+                case 'Добавить':
+                    return 'Add';
+                case 'Язык':
+                    return 'Language';
+                case 'Русский':
+                    return 'Russian';
+                case 'Английский';
+                    return 'English';
+                case 'Введите название':
+                    return 'Enter a name';
+                case 'Название':
+                    return 'Name';
+                case 'Введите название проекта':
+                    return 'Enter the name of the project';
+                case 'Выберите бокс-арт':
+                    return 'Select the box-art';
+                case 'Добавить проект':
+                    return 'Add a project';
+                case 'Выберите язык':
+                    return 'Select a language';
+                case 'Добавить картинку':
+                    return 'Add a picture';
+                case 'Добавить параграф':
+                    return 'Add a paragraph';
+                case 'Введите название параграфа':
+                    return 'Enter the name of the paragraph';
+                case 'Отзывы':
+                    return 'Feedback';
+                case 'Ваша оценка':
+                    return 'Your evaluation';
+                case 'Добавить отзыв':
+                    return 'Leave a feedback';
+                case 'Чтобы оставить отзыв, вам необходимо':
+                    return 'If you want to leave a feedback, you need to';
+                case 'авторизироваться':
+                    return 'authorizate';
+                case 'Вы действительно хотите удалить параметр?':
+                    return 'Are you sure you want to delete a parameter?';
+                case 'Вы действительно хотите удалить параграф?':
+                    return 'Are you sure you want to delete a paragraph?';
+                case 'Оценка':
+                    return 'Evaluation';
+                case 'Логин':
+                    return 'Login';
+                case 'Пароль':
+                    return 'Password';
+                case 'Неверное имя пользователя или пароль':
+                    return 'Invalid username or password';
+                case 'Впервые на нашем сайте?':
+                    return 'First time with us?';
+                case 'Зарегистрируйтесь':
+                case 'Зарегистрироваться':
+                    return 'Sign Up';
+                case 'Количество символов не должно быть меньше':
+                    return 'The number of characters must not be less than';
+                case 'Пароли не совпадают':
+                    return 'Passwords do not match';
+                case 'Поле не должно быть пустым':
+                    return 'The field should not be empty';
+                case 'Выберите тип учетной записи':
+                    return 'Select account type';
+                case 'Пользователь':
+                    return 'User';
+                case 'Пресса':
+                    return 'Media';
+                case 'Модератор':
+                    return 'Moderator';
+                case 'Владелец':
+                    return 'Owner';
+                case 'Электронный адрес':
+                case 'Почта':
+                    return 'Email';
+                case 'Подтвердите пароль':
+                    return 'Confirm password';
+                case 'ФИО':
+                    return 'Fullname';
+                case 'Блог/издание/канал':
+                    return 'Blog/edition/channel';
+                case 'Утвержденная должность':
+                    return 'Approved position';
+                case 'Ссылка на ресурс':
+                    return 'Link to resource';
+                case 'Связь в социальных сетях':
+                    return 'Social network communication';
+                case 'Номер телефона':
+                    return 'Phone number';
+                case 'Адрес':
+                    return 'Address';
+                case 'Я согласен(на) на хранение и обработку личных данных':
+                    return 'I agree to the storage and processing of personal data';
+                case 'Я прошел(ла) собеседование':
+                    return 'I passed interview';
+                case 'Доля акций':
+                    return 'Share fraction';
+                case 'Добавить вакансию':
+                    return 'Add a vacancy';
+                case 'К сожалению, сейчас нет доступных вакансий. Попробуйте зайти позже...':
+                    return 'Unfortunately, there are no vacancies available now. Try again later...';
+                case 'Опубликовано':
+                    return 'Published';
+                case 'Вы действительно хотите удалить вакансию?':
+                    return 'Are you sure you want to delete a vacancy?';
+                case 'Обязанности':
+                    return 'Responsibilities';
+                case 'Квалификация':
+                    return 'Required';
+                case 'Желательные навыки':
+                    return 'Desired';
+                case 'Заинтересованы? Заполните анкету ниже, наши менеджеры вам ответят в ближайшее время!':
+                    return 'Interested? Fill out the form below, our managers will answer you soon!';
+                case 'Введите имя':
+                    return 'Enter your name';
+                case 'Введите электронный адрес':
+                    return 'Enter your email';
+                case 'Введите ссылку на резюме':
+                    return 'Enter a link to your resume';
+                case 'Отправить':
+                    return 'Send';
+                case 'Направление':
+                    return 'Section';
+                case 'Ваше сообщение успешно отправлено':
+                    return 'Your message was sent successfully';
+                case 'Сообщение':
+                    return 'Message';
+                case 'Сообщить о проблеме':
+                    return 'Report a problem';
+                case 'Вы действительно хотите удалить проект?':
+                    return 'Are you sure you want to delete a project?';
+                case 'Сменить бокс-арт':
+                    return 'Change the box-art';
+                case 'Сменить':
+                    return 'Change';
+                case 'Новости':
+                    return 'News';
+                case 'Киты':
+                    return 'Kits';
+                case 'Блог для прессы':
+                    return 'Blog for media';
+                case 'Новости для прессы':
+                    return 'News for media';
+                case 'Киты для прессы':
+                    return 'Kits for media';
+                case 'Редактор блога для прессы':
+                    return 'Blog editor for media';
+                case 'Редактор китов для прессы':
+                    return 'Kits editor for media';
+                case 'доступные форматы':
+                    return 'available extensions';
+                case 'Файл':
+                    return 'File';
+                case 'Добавить файл':
+                    return 'Add a file';
+                case 'Вы действительно хотите удалить файл?':
+                    return 'Are you sure you want to delete a file?';
+                case 'Вопрос-Ответ для прессы':
+                    return 'Question-Answer for media';
+                case 'Вопрос-Ответ':
+                    return 'Question-Answer';
+                case 'Задать вопрос':
+                    return 'Ask a question';
+                case 'Ответить на вопрос':
+                    return 'Answer a question';
+                case 'Ответить':
+                    return 'Answer';
+                case 'Ваш вопрос успешно отправлен!':
+                    return 'Your question was successfully sent!';
+                case 'Ошибка: введены неверные данные!':
+                    return 'Error: incorrect data entered!';
+                case 'Ошибка: недостаточно прав!':
+                    return 'Error: not enough rights!';
+                case 'Вы действительно хотите удалить вопрос?':
+                    return 'Are you sure you want to delete a question?';
+                case 'Проверить':
+                    return 'Check';
+                case 'Идет проверка логина...':
+                    return 'Login verification in progress...';
+                case 'Логин свободен':
+                    return 'Login is free';
+                case 'Логин занят':
+                    return 'Login is taken';
+                case 'Показать еще вопросы':
+                    return 'Show other questions';
+            }
+        if ($_SESSION['lang'] == 'ru')
             return $s;
-        switch($s) {
-            case 'Главная':
-                return 'Home';
-            case 'О нас':
-                return 'About us';
-            case 'Блог':
-                return 'Blog';
-            case 'Редактор блога':
-                return 'Blog editor';
-            case 'Редактор вакансий':
-                return 'Vacancy editor';
-            case 'Проекты':
-                return 'Projects';
-            case 'Для прессы':
-                return 'For media';
-            case 'Проект':
-                return 'Project';
-            case 'Вакансия':
-            case 'Вакансии':
-                return 'Vacancy';
-            case 'Техподдержка':
-                return 'Support';
-            case 'Выбор языка':
-                return 'Choose language';
-            case 'Регистрация':
-                return 'Registration';
-            case 'Авторизация':
-                return 'Authorization';
-            case 'Войти':
-                return 'Log in';
-            case 'Выйти':
-                return 'Log out';
-            case 'Следите за нами':
-                return 'Follow us';
-            case 'Мы - новоиспеченная компания специализирующаяся на разработке и переиздании мобильных игр. 
-            Наша цель - приносить людям самый драйвовый, уникальный и запоминающийся игровой опыт.':
-                return 'We are a new company specializing in the development and reissue of mobile games. Our goal is to bring people the most driving, unique and memorable game experience.';
-            case 'Нужно подтвердить свой электронный адрес':
-                return 'You need to confirm your email';
-            case 'Было выслано письмо для подтверждения на почтовый ящик':
-                return 'The confirm letter was sent to the email';
-            case 'Если письмо не пришло, проверьте папку "Спам".':
-                return 'Check "Spam" folder, if the letter has not come.';
-            case 'Отправить письмо еще раз':
-                return 'Resend the confirm letter';
-            case 'Поздравляем! Ваш почтовый ящик прошел проверку!':
-                return 'Congratulation! Your email has passed the verification!';
-            case 'Теперь вы можете пользоваться вашей учетной записью.':
-                return 'Now you can use your account.';
-            case 'менее 1 мин':
-                return 'less than 1 minute';
-            case 'дн':
-                return 'days';
-            case 'ч':
-                return 'h';
-            case 'мин':
-                return 'min';
-            case 'Добавить запись':
-                return 'Add a blog entry';
-            case 'Скрыть комментарии':
-                return 'Hide comments';
-            case 'Показать комментарии':
-                return 'Show comments';
-            case 'Вернуться к предыдущим записям':
-                return 'Back to previous entries';
-            case 'Комментарий':
-                return 'Comment';
-            case 'Вы не можете оставлять комментарии, так как были заблокированы модератором.':
-                return 'You can not comment it, because you are banned by a moderator.';
-            case 'Оставшееся время до разблокировки':
-                return 'Remaining time before unlocking';
-            case 'Показать еще записи':
-                return 'Show other entries';
-            case 'Вы уверены, что хотите удалить запись из блога?':
-                return 'Are you sure you want to delete an entry from the blog?';
-            case 'Теги':
-                return 'Tags';
-            case 'Редактировать':
-                return 'Edit';
-            case 'Удалить':
-                return 'Delete';
-            case 'Вы действительно хотите удалить комментарий?':
-                return 'Are you sure you want to delete a comment?';
-            case 'Вы действительно хотите заблокировать пользователя?':
-                return 'Are you sure you want to ban a user?';
-            case 'Заблокировать':
-                return 'Ban';
-            case 'Выберите время блокировки';
-                return 'Choose an unlocking time';
-            case 'дней':
-                return 'days';
-            case 'часов':
-                return 'hours';
-            case 'Добавить комментарий':
-                return 'Add a comment';
-            case 'У вас нет прав для просмотра данной страницы':
-                return 'You do not have permission to view this page';
-            case 'Назад':
-                return 'Back';
-            case 'Заголовок':
-                return 'Title';
-            case 'Введите заголовок';
-                return 'Enter a title';
-            case 'Введите теги (через пробел)':
-                return 'Enter tags (separated by spaces)';
-            case 'Контент':
-                return 'Content';
-            case 'Введите содержимое блога':
-                return 'Enter a content of an entry';
-            case 'Добавить':
-                return 'Add';
-            case 'Язык':
-                return 'Language';
-            case 'Русский':
-                return 'Russian';
-            case 'Английский';
-                return 'English';
-            case 'Введите название':
-                return 'Enter a name';
-            case 'Название':
-                return 'Name';
-            case 'Введите название проекта':
-                return 'Enter the name of the project';
-            case 'Выберите бокс-арт':
-                return 'Select the box-art';
-            case 'Добавить проект':
-                return 'Add a project';
-            case 'Выберите язык':
-                return 'Select a language';
-            case 'Добавить картинку':
-                return 'Add a picture';
-            case 'Добавить параграф':
-                return 'Add a paragraph';
-            case 'Введите название параграфа':
-                return 'Enter the name of the paragraph';
-            case 'Отзывы':
-                return 'Feedback';
-            case 'Ваша оценка':
-                return 'Your evaluation';
-            case 'Добавить отзыв':
-                return 'Leave a feedback';
-            case 'Чтобы оставить отзыв, вам необходимо':
-                return 'If you want to leave a feedback, you need to';
-            case 'авторизироваться':
-                return 'authorizate';
-            case 'Вы действительно хотите удалить параметр?':
-                return 'Are you sure you want to delete a parameter?';
-            case 'Вы действительно хотите удалить параграф?':
-                return 'Are you sure you want to delete a paragraph?';
-            case 'Оценка':
-                return 'Evaluation';
-            case 'Логин':
-                return 'Login';
-            case 'Пароль':
-                return 'Password';
-            case 'Неверное имя пользователя или пароль':
-                return 'Invalid username or password';
-            case 'Впервые на нашем сайте?':
-                return 'First time with us?';
-            case 'Зарегистрируйтесь':
-            case 'Зарегистрироваться':
-                return 'Sign Up';
-            case 'Количество символов не должно быть меньше':
-                return 'The number of characters must not be less than';
-            case 'Пароли не совпадают':
-                return 'Passwords do not match';
-            case 'Поле не должно быть пустым':
-                return 'The field should not be empty';
-            case 'Выберите тип учетной записи':
-                return 'Select account type';
-            case 'Пользователь':
-                return 'User';
-            case 'Пресса':
-                return 'Media';
-            case 'Модератор':
-                return 'Moderator';
-            case 'Владелец':
-                return 'Owner';
-            case 'Электронный адрес':
-            case 'Почта':
-                return 'Email';
-            case 'Подтвердите пароль':
-                return 'Confirm password';
-            case 'ФИО':
-                return 'Fullname';
-            case 'Блог/издание/канал':
-                return 'Blog/edition/channel';
-            case 'Утвержденная должность':
-                return 'Approved position';
-            case 'Ссылка на ресурс':
-                return 'Link to resource';
-            case 'Связь в социальных сетях':
-                return 'Social network communication';
-            case 'Номер телефона':
-                return 'Phone number';
-            case 'Адрес':
-                return 'Address';
-            case 'Я согласен(на) на хранение и обработку личных данных':
-                return 'I agree to the storage and processing of personal data';
-            case 'Я прошел(ла) собеседование':
-                return 'I passed interview';
-            case 'Доля акций':
-                return 'Share fraction';
-            case 'Добавить вакансию':
-                return 'Add a vacancy';
-            case 'К сожалению, сейчас нет доступных вакансий. Попробуйте зайти позже...':
-                return 'Unfortunately, there are no vacancies available now. Try again later...';
-            case 'Опубликовано':
-                return 'Published';
-            case 'Вы действительно хотите удалить вакансию?':
-                return 'Are you sure you want to delete a vacancy?';
-            case 'Обязанности':
-                return 'Responsibilities';
-            case 'Квалификация':
-                return 'Required';
-            case 'Желательные навыки':
-                return 'Desired';
-            case 'Заинтересованы? Заполните анкету ниже, наши менеджеры вам ответят в ближайшее время!':
-                return 'Interested? Fill out the form below, our managers will answer you soon!';
-            case 'Введите имя':
-                return 'Enter your name';
-            case 'Введите электронный адрес':
-                return 'Enter your email';
-            case 'Введите ссылку на резюме':
-                return 'Enter a link to your resume';
-            case 'Отправить':
-                return 'Send';
-            case 'Направление':
-                return 'Section';
-            case 'Ваше сообщение успешно отправлено':
-                return 'Your message was sent successfully';
-            case 'Сообщение':
-                return 'Message';
-            case 'Сообщить о проблеме':
-                return 'Report a problem';
-            case 'Вы действительно хотите удалить проект?':
-                return 'Are you sure you want to delete a project?';
-            case 'Сменить бокс-арт':
-                return 'Change the box-art';
-            case 'Сменить':
-                return 'Change';
-            case 'Новости':
-                return 'News';
-            case 'Киты':
-                return 'Kits';
-            case 'Блог для прессы':
-                return 'Blog for media';
-            case 'Новости для прессы':
-                return 'News for media';
-            case 'Киты для прессы':
-                return 'Kits for media';
-            case 'Редактор блога для прессы':
-                return 'Blog editor for media';
-            case 'Редактор китов для прессы':
-                return 'Kits editor for media';
-            case 'доступные форматы':
-                return 'available extensions';
-            case 'Файл':
-                return 'File';
-            case 'Добавить файл':
-                return 'Add a file';
-            case 'Вы действительно хотите удалить файл?':
-                return 'Are you sure you want to delete a file?';
-            case 'Вопрос-Ответ для прессы':
-                return 'Question-Answer for media';
-            case 'Вопрос-Ответ':
-                return 'Question-Answer';
-            case 'Задать вопрос':
-                return 'Ask a question';
-            case 'Ответить на вопрос':
-                return 'Answer a question';
-            case 'Ответить':
-                return 'Answer';
-            case 'Ваш вопрос успешно отправлен!':
-                return 'Your question was successfully sent!';
-            case 'Ошибка: введены неверные данные!':
-                return 'Error: incorrect data entered!';
-            case 'Ошибка: недостаточно прав!':
-                return 'Error: not enough rights!';
-            case 'Вы действительно хотите удалить вопрос?':
-                return 'Are you sure you want to delete a question?';
-            case 'Проверить':
-                return 'Check';
-            case 'Идет проверка логина...':
-                return 'Login verification in progress...';
-            case 'Логин свободен':
-                return 'Login is free';
-            case 'Логин занят':
-                return 'Login is taken';
-            case 'Показать еще вопросы':
-                return 'Show other questions';
-        }
         return $s;
     }
 
