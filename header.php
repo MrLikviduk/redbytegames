@@ -8,6 +8,13 @@
     if (!isset($_SESSION['lang']) && end($explode_array) !== 'choose-language.php') {
         header('Location: /choose-language.php');
     }
+    if (isset($_POST['change_lang'])) {
+        if ($_SESSION['lang'] == 'ru')
+            $_SESSION['lang'] = 'en';
+        else
+            $_SESSION['lang'] = 'ru';
+        header("Location: ".$_SERVER['REQUEST_URI']);
+    }
     $valid_lang = ['ru', 'en'];
 ?>
 <!DOCTYPE html>
@@ -126,7 +133,7 @@
             <?php } else { ?>
                 <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="exit_from_account"><b><?=translate('Выйти')?></b></button></form>
             <?php } ?>
-            <div class="nav-element"><b><?=($_SESSION['lang'] == 'ru' ? 'ENG' : 'RUS')?></b></div>
+            <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="change_lang" style="display: background: none; border: none;" value="1"><b><?=($_SESSION['lang'] == 'ru' ? 'ENG' : 'RUS')?></b></button></form>
         </div>
         <div class="nav-menu-for-computers">
             <div class="contacts">
@@ -168,7 +175,7 @@
                 <?php } else { ?>
                     <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="exit_from_account"><b><?=translate('Выйти')?></b></button></form>
                 <?php } ?>
-                <div class="nav-element"><b><?=($_SESSION['lang'] == 'ru' ? 'ENG' : 'RUS')?></b></div>
+                <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="change_lang" style="display: background: none; border: none;" value="1"><b><?=($_SESSION['lang'] == 'ru' ? 'ENG' : 'RUS')?></b></button></form>
             </div>
         </div>
     </header>
@@ -178,6 +185,6 @@
             el1.classList.toggle('el1-open');
             el2.classList.toggle('el2-open');
             el3.classList.toggle('el3-open');
-        })
+        });
     </script>
     <main>
