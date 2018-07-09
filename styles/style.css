@@ -95,11 +95,12 @@ body > header {
 .nav-element, .contact {
     color: white;
     margin: 20px 30px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     letter-spacing: 1px;
     font-family: SFUIRegular, sans-serif;
     background: none;
     border: none;
+    cursor: pointer;
 }
 .contact {
     color: #DDD;
