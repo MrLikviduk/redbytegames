@@ -8,6 +8,7 @@
     if (!isset($_SESSION['lang']) && end($explode_array) !== 'choose-language.php') {
         header('Location: /choose-language.php');
     }
+    $valid_lang = ['ru', 'en'];
 ?>
 <!DOCTYPE html>
 <html lang="<?=(isset($_SESSION['lang']) ? $_SESSION['lang'] : 'ru')?>">
@@ -66,7 +67,7 @@
     ?>
     <link rel="stylesheet" href="/styles/<?=$special_style?>?v<?=time()?>">
     <title>Red Byte Games | <?=translate($page_name)?></title>
-    <script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
+    <script src='https://www.google.com/recaptcha/api.js?hl=<?=(isset($_SESSION['lang']) && in_array($_SESSION['lang'], $valid_lang) ? $_SESSION['lang'] : 'en')?>'></script>
 </head>
 
 <?php
