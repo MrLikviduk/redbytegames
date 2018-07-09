@@ -126,7 +126,7 @@
             <?php } else { ?>
                 <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="exit_from_account"><b><?=translate('Выйти')?></b></button></form>
             <?php } ?>
-            <div class="nav-element"><b><?=($_SESSION['lang'] == 'ru') ? 'ENG' : 'RUS')?></b></div>
+            <div class="nav-element"><b><?=($_SESSION['lang'] == 'ru' ? 'ENG' : 'RUS')?></b></div>
         </div>
         <div class="nav-menu-for-computers">
             <div class="contacts">
@@ -168,7 +168,7 @@
                 <?php } else { ?>
                     <form action="" method="POST" style="display: inline-block;"><button class="nav-element" name="exit_from_account"><b><?=translate('Выйти')?></b></button></form>
                 <?php } ?>
-                <div class="nav-element"><b><?=($_SESSION['lang'] == 'ru') ? 'ENG' : 'RUS')?></b></div>
+                <div class="nav-element"><b><?=($_SESSION['lang'] == 'ru' ? 'ENG' : 'RUS')?></b></div>
             </div>
         </div>
     </header>
