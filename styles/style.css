@@ -117,6 +117,7 @@ body > header {
 .error-text {
     color: #800; 
     font-size: .8rem;
+    margin-left: 11px;
 }
 .authorization-form .error-text {
     display: inline-block;
