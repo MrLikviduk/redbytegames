@@ -114,6 +114,12 @@ body > header {
     top: -4px;
     left: 5px;
 }
+.preloader {
+    display: block;
+    margin: 30px auto;
+    width: 50px;
+    height: 50px;
+}
 .error-text {
     color: #800; 
     font-size: .8rem;

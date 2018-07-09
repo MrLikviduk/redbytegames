@@ -89,4 +89,5 @@
         });
     }
 </script>
+<img src="/img/preloader.svg" alt="preloader" class="preloader">
 <?php include($_SERVER['DOCUMENT_ROOT'].'/footer.php'); $mysqli->close(); ?>
