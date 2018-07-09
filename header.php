@@ -66,7 +66,7 @@
     ?>
     <link rel="stylesheet" href="/styles/<?=$special_style?>?v<?=time()?>">
     <title>Red Byte Games | <?=translate($page_name)?></title>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
 </head>
 
 <?php
@@ -75,11 +75,6 @@
     else
         echo '<body>';
 ?>
-    <script type="text/javascript">
-        var RecaptchaOptions = {
-        lang : 'en',
-        };
-    </script>
     <header>
         <nav>
             <div class="menu-button" id="btn">
