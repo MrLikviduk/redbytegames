@@ -57,13 +57,13 @@
                         <button class="btn" name="delete_comment" value="'.$id.'" onclick="return confirm(\''.translate('Вы действительно хотите удалить комментарий?').'\')">'.translate('Удалить').'</button>
                     ';
                 }
+                if (is_own_comment($id) || can_do('delete_comments')) {
+                    echo '</form>';
+                }
                 if (can_do('ban_users') && !is_own_comment($id)) {
                     echo '
                         <button class="btn" value="'.$id.'" onclick="show_block_form('.$id.')" id="ban_user_btn'.$id.'">'.translate('Заблокировать').'</button>
                     ';
-                }
-                if (is_own_comment($id) || can_do('delete_comments')) {
-                    echo '</form>';
                 }
             echo '</div>';
             if (($for_media ? $_SESSION['id_to_edit_media_comment'] : $_SESSION['id_to_edit_comment']) == $id)
