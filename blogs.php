@@ -168,7 +168,7 @@
         console.log('check');
     });
 </script>
-<div class="block-form-wrapper" style="display: none;" id="block_form_wrapper" onclick="hide_block_form()">
+<div class="block-form-wrapper" style="display: none;" id="block_form_wrapper">
     <form action="javascript:void(null);" method="post" class="block-form" id="block_form">
         <input type="hidden" name="user_id" id="block_form_user_id">
         <label for="ban_days"><?=translate('Выберите время блокировки')?>:</label><br>
