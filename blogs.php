@@ -158,7 +158,7 @@
         $("#block_form_wrapper").css('display', 'none');
     }
     $("#block_form_submit").bind("click", function () {
-        hide_block_form()
+        hide_block_form();
         // $.ajax({
         //     type: 'POST',
         //     url: '/elements/blog-result.php',
