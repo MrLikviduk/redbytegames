@@ -46,7 +46,7 @@
                 </div>
                 ';
                 if (is_own_comment($id) || can_do('delete_comments'))
-                        echo '<form action="" method="POST" class="panel">';
+                        echo '<form action="javascript:void(null);" method="POST" class="panel">';
                 if (is_own_comment($id)) {
                     echo '
                         <button class="btn" name="edit_comment" value="'.$id.'">'.translate('Редактировать').'</button>
@@ -59,7 +59,7 @@
                 }
                 if (can_do('ban_users') && !is_own_comment($id)) {
                     echo '
-                        <div class="btn" value="'.$id.'" onclick="show_block_form('.$id.')" id="ban_user_btn'.$id.'">'.translate('Заблокировать').'</div>
+                        <button class="btn" value="'.$id.'" onclick="show_block_form('.$id.')" id="ban_user_btn'.$id.'">'.translate('Заблокировать').'</button>
                     ';
                 }
                 if (is_own_comment($id) || can_do('delete_comments')) {
