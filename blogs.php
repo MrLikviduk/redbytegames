@@ -149,5 +149,13 @@
         }
     }
 ?>
-
+<div class="block-form-wrapper">
+    <form action="" method="post" class="block-form">
+        <label for="ban_days">translate('Выберите время блокировки'):</label><br>
+        <input type="number" name="ban_days" id="" class="text" style="width: 50px"> дней <input type="number" name="ban_hours" id="" class="text" style="width: 50px"> часов <br>
+        <label for="ban_comment">Введите коментарий:</label><br>
+        <textarea name="ban_comment" id=""rows="10" class="text" class="text" style="width: 250px;"></textarea>
+        <input type="submit" value="Заблокировать" class="submit-btn" style="margin-left: 10px">
+    </form>
+</div>
 <?php include('footer.php'); $mysqli->close(); ?>

@@ -115,6 +115,15 @@ body > header {
     top: -4px;
     left: 5px;
 }
+.block-form-wrapper {
+    z-index: 101;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2)
+}
 .preloader {
     display: block;
     margin: 30px auto;
@@ -300,7 +309,7 @@ footer .socnet {
     vertical-align: middle;
     margin: 0 3px;
 }
-.authorization-form, .registration-form {
+.authorization-form, .registration-form, .block-form {
     width: 280px;
     min-height: 130px;
     padding: 10px;
@@ -310,6 +319,7 @@ footer .socnet {
     position: absolute;
     top: calc(50vh - 150px);
     left: calc(50vw - 140px);
+    color: white;
 }
 .registration-form {
     width: 320px;
@@ -333,20 +343,20 @@ footer .socnet {
     width: 200px;
     margin-bottom: 10px;
 }
-.authorization-form label, .registration-form label {
+.authorization-form label, .registration-form label, .block-form label {
     display: inline-block;
     margin: 8px 10px;
     margin-bottom: 0;
     min-width: 80px;
     color: white;
 }
-.authorization-form input.text, .registration-form input.text, .registration-form textarea.text {
+.authorization-form input.text, .registration-form input.text, .registration-form textarea.text, .block-form input.text, .block-form textarea.text {
     border: none;
     padding: 5px;
     border-radius: 2px;
     background: hsl(0, 50%, 70%)
 }
-.registration-form input.text, .registration-form textarea.text {
+.registration-form input.text, .registration-form textarea.text, .block-form input.text, .block-form textarea.text {
     background: white;
     margin: 5px 11px;
     width: 270px;
