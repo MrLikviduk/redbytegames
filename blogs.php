@@ -180,4 +180,17 @@
         <button class="submit-btn" style="margin-left: 10px" onclick="hide_block_form()"><?=translate('Отмена')?></button>
     </form>
 </div>
+<script>
+    $("#block_form_submit").bind("click", function () {
+        hide_block_form();
+        // $.ajax({
+        //     type: 'POST',
+        //     url: '/elements/blog-result.php',
+        //     data: {
+        //         act: 'ban_user'
+        //     }
+        // });
+        console.log('check');
+    });
+</script>
 <?php include('footer.php'); $mysqli->close(); ?>
