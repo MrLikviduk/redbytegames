@@ -158,6 +158,7 @@
         $("#block_form_wrapper").css('display', 'none');
     }
     $("#block_form_submit").bind('click', function () {
+        hide_block_form()
         // $.ajax({
         //     type: 'POST',
         //     url: '/elements/blog-result.php',
@@ -175,7 +176,7 @@
         <input type="number" name="days" id="block_form_days" class="text" style="width: 50px"> дней <input type="number" name="hours" id="block_form_hours" class="text" style="width: 50px"> часов <br>
         <label for="ban_comment">Введите коментарий:</label><br>
         <textarea name="comment" id="block_form_comment"rows="10" class="text" class="text" style="width: 250px;"></textarea>
-        <button id="block_form_submit" class="submit-btn" style="margin-left: 10px" onclick="hide_block_form()"><?=translate('Заблокировать')?></button>
+        <button id="block_form_submit" class="submit-btn" style="margin-left: 10px"><?=translate('Заблокировать')?></button>
         <button class="submit-btn" style="margin-left: 10px" onclick="hide_block_form()"><?=translate('Отмена')?></button>
     </form>
 </div>
