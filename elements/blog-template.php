@@ -59,7 +59,7 @@
                 }
                 if (can_do('ban_users') && !is_own_comment($id)) {
                     echo '
-                        <button class="btn" value="'.$id.'" onclick="show_block_form('.$id.')" id="ban_user_btn'.$id.'">'.translate('Заблокировать').'</button>
+                        <div class="btn" value="'.$id.'" onclick="show_block_form('.$id.')" id="ban_user_btn'.$id.'">'.translate('Заблокировать').'</div>
                     ';
                 }
                 if (is_own_comment($id) || can_do('delete_comments')) {
