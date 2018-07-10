@@ -168,7 +168,7 @@
     });
 </script>
 <div class="block-form-wrapper" style="display: none;" id="block_form_wrapper">
-    <form action="" method="post" class="block-form" id="block_form">
+    <form action="javascript:void(null);" method="post" class="block-form" id="block_form">
         <input type="hidden" name="user_id" id="block_form_user_id">
         <label for="ban_days"><?=translate('Выберите время блокировки')?>:</label><br>
         <input type="number" name="days" id="block_form_days" class="text" style="width: 50px"> дней <input type="number" name="hours" id="block_form_hours" class="text" style="width: 50px"> часов <br>
