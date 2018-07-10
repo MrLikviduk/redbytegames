@@ -158,16 +158,17 @@
         $("#block_form_wrapper").css('display', 'none');
     }
     $("#block_form_submit").bind('click', function () {
-        $.ajax({
-            type: 'POST',
-            url: '/elements/blog-result.php',
-            data: {
-                act: 'ban_user'
-            }
-        });
+        // $.ajax({
+        //     type: 'POST',
+        //     url: '/elements/blog-result.php',
+        //     data: {
+        //         act: 'ban_user'
+        //     }
+        // });
+        console.log('check');
     });
 </script>
-<div class="block-form-wrapper" style="display: none;" id="block_form_wrapper">
+<div class="block-form-wrapper" style="display: none;" id="block_form_wrapper" onclick="hide_block_form()">
     <form action="javascript:void(null);" method="post" class="block-form" id="block_form">
         <input type="hidden" name="user_id" id="block_form_user_id">
         <label for="ban_days"><?=translate('Выберите время блокировки')?>:</label><br>
@@ -175,6 +176,7 @@
         <label for="ban_comment">Введите коментарий:</label><br>
         <textarea name="comment" id="block_form_comment"rows="10" class="text" class="text" style="width: 250px;"></textarea>
         <button id="block_form_submit" class="submit-btn" style="margin-left: 10px" onclick="hide_block_form()"><?=translate('Заблокировать')?></button>
+        <button class="submit-btn" style="margin-left: 10px" onclick="hide_block_form()"><?=translate('Отмена')?></button>
     </form>
 </div>
 <?php include('footer.php'); $mysqli->close(); ?>

@@ -292,6 +292,8 @@
                     return 'Login is taken';
                 case 'Показать еще вопросы':
                     return 'Show other questions';
+                case 'Отмена':
+                    return 'Cancel';
             }
         if ($_SESSION['lang'] == 'ru')
             return $s;
