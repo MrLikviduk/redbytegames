@@ -59,7 +59,7 @@
                 }
                 if (can_do('ban_users') && !is_own_comment($id)) {
                     echo '
-                        <button class="btn" name="ban_user" value="'.$id.'" onclick="return confirm(\''.translate('Вы действительно хотите заблокировать пользователя?').'\')">'.translate('Заблокировать').'</button> '.translate('Выберите время блокировки').': <input type="number" name="days" style="width: 50px" value="0" min="0" max="10000"> '.translate('дней').' <input type="number" name="hours" style="width: 50px" value="0" min="0" max="23"> '.translate('часов').'
+                        <button class="btn" value="'.$id.'" onclick="show_block_form('.$id.')" id="ban_user_btn'.$id.'">'.translate('Заблокировать').'</button>
                     ';
                 }
                 if (is_own_comment($id) || can_do('delete_comments')) {

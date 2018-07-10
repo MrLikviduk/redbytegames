@@ -149,13 +149,32 @@
         }
     }
 ?>
-<div class="block-form-wrapper">
-    <form action="" method="post" class="block-form">
-        <label for="ban_days">translate('Выберите время блокировки'):</label><br>
-        <input type="number" name="ban_days" id="" class="text" style="width: 50px"> дней <input type="number" name="ban_hours" id="" class="text" style="width: 50px"> часов <br>
+<script>
+    function show_block_form(id) {
+        $("#block_form_wrapper").css('display', 'block');
+        $("#block_form_user_id").val($("ban_user_btn" + id).val());
+    }
+    function hide_block_form() {
+        $("#block_form_wrapper").css('display', 'none');
+    }
+    $("#block_form_submit").bind('click', function () {
+        $.ajax({
+            type: 'POST',
+            url: '/elements/blog-result.php',
+            data: {
+                act: 'ban_user'
+            }
+        });
+    });
+</script>
+<div class="block-form-wrapper" style="display: none;" id="block_form_wrapper">
+    <form action="" method="post" class="block-form" id="block_form">
+        <input type="hidden" name="user_id" id="block_form_user_id">
+        <label for="ban_days"><?=translate('Выберите время блокировки')?>:</label><br>
+        <input type="number" name="days" id="block_form_days" class="text" style="width: 50px"> дней <input type="number" name="hours" id="block_form_hours" class="text" style="width: 50px"> часов <br>
         <label for="ban_comment">Введите коментарий:</label><br>
-        <textarea name="ban_comment" id=""rows="10" class="text" class="text" style="width: 250px;"></textarea>
-        <input type="submit" value="Заблокировать" class="submit-btn" style="margin-left: 10px">
+        <textarea name="comment" id="block_form_comment"rows="10" class="text" class="text" style="width: 250px;"></textarea>
+        <button id="block_form_submit" class="submit-btn" style="margin-left: 10px" onclick="hide_block_form()"><?=translate('Заблокировать')?></button>
     </form>
 </div>
 <?php include('footer.php'); $mysqli->close(); ?>
