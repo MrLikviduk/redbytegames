@@ -67,9 +67,8 @@
                 $ban_time = $days * 86400 + $hours * 3600;
             else
                 $ban_time = 0;
-            if (is_legal($_POST['block_form_comment'], 0, 300)) {
+            if (is_legal($_POST['block_form_comment'], 0, 300))
                 $ban_comment = $_POST['block_form_comment'];
-            }
             else
                 $ban_comment = '';
             $user_id = (int)$_POST['block_form_user_id'];
