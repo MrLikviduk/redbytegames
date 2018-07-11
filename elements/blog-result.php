@@ -2,6 +2,7 @@
     session_start();
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/blog-template.php');
+    $mysqli = connect_to_database();
     if (isset($_POST['comment_content']) && is_legal($_POST['comment_content'], 1, 1023) && can_do('add_comments') && get_field($_SESSION['login'], 'banned') == '0') {
         $user_id = get_id_by_username($_SESSION['login']);
         $blog_id = $_POST['blog_id'];
