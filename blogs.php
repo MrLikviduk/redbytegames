@@ -83,21 +83,6 @@
         set_data('users', 'username', $_SESSION['login'], 'banned', 0);
         set_data('users', 'username', $_SESSION['login'], 'unban_time', NULL);
     }
-    if (isset($_POST['comment_submit']) && strlen($_POST['comment_content']) > 0 && strlen($_POST['comment_content']) < 1024 && can_do('add_comments') && get_field($_SESSION['login'], 'banned') == '0') {
-        $user_id = get_id_by_username($_SESSION['login']);
-        $blog_id = $_POST['blog_id'];
-        if (isset($_SESSION['id_to_edit_comment']) && get_by_id($_SESSION['id_to_edit_comment'], 'comments')['blog_id'] == $_POST['blog_id'] && user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_SESSION['id_to_edit_comment'], 'comments')['user_id']) {
-            $comment_content = $mysqli->real_escape_string($_POST['comment_content']);
-            $id_to_edit_comment = (int) $_SESSION['id_to_edit_comment'];
-            $mysqli->query("UPDATE comments SET content = '".$comment_content."' WHERE id = ".$id_to_edit_comment);
-            unset($_SESSION['id_to_edit_comment']);
-            header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$_POST['blog_id']);
-        }
-        else {
-            add_comment($blog_id, $user_id, date('d.m.Y'), date('H:i'), $_POST['comment_content']);
-            header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$_POST['blog_id']);
-        }
-    }
     include('header.php');
     if (can_do('edit_blog'))
         echo '<a href="elements/blog-editor.php" style="margin-top: 20px; display: inline-block;">'.translate('Добавить запись').'</a>';
@@ -107,6 +92,17 @@
         var s = count > 1000 ? '1000+' : count;
         document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? '<?=translate('Скрыть комментарии')?>' : ('<?=translate('Показать комментарии')?>' + ' (' + s + ')'));
         document.getElementById('comments' + element_id).style.display = (document.getElementById('comments' + element_id).style.display == 'block' ? 'none' : 'block');
+    }
+    function add_comment(id) {
+        var msg = $("#comment_form" + id).serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/elements/blog-result.php',
+            data: msg,
+            success: function (response) {
+                $("comments" + id).html(response + $("comments" + id));
+            }
+        });
     }
 </script>
 <?php
@@ -126,7 +122,7 @@
             echo '<div id="fcn'.$row['id'].'" style="position: relative; top: -70px;"></div>';
             if (can_do('add_comments')) {
                 echo '
-                    <form action="" method="POST" class="comment-editor">
+                    <form action="javascript:void(null);" method="POST" class="comment-editor" id="comment_form'.$row['id'].'" onsubmit="add_comment('.$row['id'].')">
                         <label for="comment_content" class="label">'.translate('Комментарий').': </label>
                         <textarea name="comment_content" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' maxlength="1023" class="content" rows="5" id="comment_content'.$row['id'].'">'.(get_field($_SESSION['login'], 'banned') == '1' ? translate('Вы не можете оставлять комментарии, так как были заблокированы модератором.').PHP_EOL.translate('Оставшееся время до разблокировки').': '.seconds_to_time(intval(get_field($_SESSION['login'], 'unban_time', 'users')) - intval(date('U'))).(get_field($_SESSION['login'], 'ban_comment') != '' ? PHP_EOL.translate('Комментарий модератора').': '.htmlspecialchars(get_field($_SESSION['login'], 'ban_comment'), ENT_QUOTES, 'UTF-8') : '') : '').'</textarea>
                         <input type="submit" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' name="comment_submit" value="'.translate('Добавить комментарий').'" class="submit">

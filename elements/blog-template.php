@@ -36,7 +36,7 @@
     function show_comment($name, $date, $time, $content, $id, $for_media = FALSE) {
         require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
         echo '
-            <div class="comment">
+            <div class="comment" id="comment'.$id.'">
                 <div class="top">
                     <div class="name">'.htmlspecialchars($name, ENT_QUOTES, 'UTF-8').'</div>
                     <div class="date-and-time">'.$date.' '.$time.'</div>
