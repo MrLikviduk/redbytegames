@@ -59,7 +59,7 @@
     }
     if (isset($_POST['block_form_submit'])) {
         if (can_do('ban_users')) {
-            $comment = get_by_id($_POST['block_form_user_id'], 'comments');
+            $comment = get_by_id($_POST['block_form_user_id'], 'comments') or die("ERROR0");
             $blog_id = $comment['blog_id'];
             if ($_POST['block_form_days'] >= 0 && $_POST['block_form_hours'] >= 0)
                 $ban_time = $_POST['block_form_days'] * 86400 + $_POST['block_form_hours'] * 3600;
@@ -72,9 +72,9 @@
                 $ban_comment = '';
             $user_id = (int)$_POST['block_form_user_id'];
             $mysqli->query("DELETE FROM comments WHERE `user_id` = $user_id");
-            set_data('users', 'id', $user_id, 'banned', 1);
-            set_data('users', 'id', $user_id, 'unban_time', intval(date('U')) + $ban_time);
-            set_data('users', 'id', $user_id, 'ban_comment', $ban_comment);
+            set_data('users', 'id', $user_id, 'banned', 1) or die("ERROR1");
+            set_data('users', 'id', $user_id, 'unban_time', intval(date('U')) + $ban_time) or die("ERROR1");
+            set_data('users', 'id', $user_id, 'ban_comment', $ban_comment) or die("ERROR1");
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
         }
     }
