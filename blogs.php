@@ -101,7 +101,7 @@
             data: msg,
             success: function (response) {
                 $("#comments" + id).html(response + $("#comments" + id).html());
-                $("#comment_form" + id).reset();
+                $("#comment_content" + id).val('');
             }
         });
     }
