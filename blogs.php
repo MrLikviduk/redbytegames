@@ -165,7 +165,7 @@
         <input type="number" name="days" id="block_form_days" class="text" style="width: 50px" value="0" min="0"> <?=translate('дней')?> <input type="number" name="hours" id="block_form_hours" class="text" style="width: 50px" value="0" min="0"> <?=translate('часов')?> <br>
         <label for="ban_comment"><?=translate('Введите коментарий')?>:</label><br>
         <textarea name="comment" id="block_form_comment" rows="10" class="text" class="text" style="width: 250px;" maxlength="300"></textarea>
-        <input type="submit" id="block_form_submit" class="submit-btn" style="margin-left: 10px"><?=translate('Заблокировать')?>
+        <input type="submit" id="block_form_submit" class="submit-btn" style="margin-left: 10px" value="<?=translate('Заблокировать')?>">
         <button class="submit-btn" style="margin-left: 10px" onclick="hide_block_form()"><?=translate('Отмена')?></button>
     </form>
 </div>
