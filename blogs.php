@@ -152,7 +152,7 @@
 <script>
     function show_block_form(id) {
         $("#block_form_wrapper").css('display', 'block');
-        $("#block_form_user_id").val($("ban_user_btn" + id).val());
+        $("#block_form_user_id").val($("#ban_user_btn" + id).val());
     }
     function hide_block_form() {
         $("#block_form_wrapper").css('display', 'none');
@@ -173,9 +173,9 @@
     <form action="javascript:void(null);" method="post" class="block-form" id="block_form">
         <input type="hidden" name="user_id" id="block_form_user_id">
         <label for="ban_days"><?=translate('Выберите время блокировки')?>:</label><br>
-        <input type="number" name="days" id="block_form_days" class="text" style="width: 50px"> дней <input type="number" name="hours" id="block_form_hours" class="text" style="width: 50px"> часов <br>
-        <label for="ban_comment">Введите коментарий:</label><br>
-        <textarea name="comment" id="block_form_comment"rows="10" class="text" class="text" style="width: 250px;"></textarea>
+        <input type="number" name="days" id="block_form_days" class="text" style="width: 50px" value="0" min="0"> <?=translate('дней')?> <input type="number" name="hours" id="block_form_hours" class="text" style="width: 50px" value="0" min="0"> <?=translate('часов')?> <br>
+        <label for="ban_comment"><?=translate('Введите коментарий')?>:</label><br>
+        <textarea name="comment" id="block_form_comment" rows="10" class="text" class="text" style="width: 250px;" maxlength="300"></textarea>
         <button id="block_form_submit" class="submit-btn" style="margin-left: 10px"><?=translate('Заблокировать')?></button>
         <button class="submit-btn" style="margin-left: 10px" onclick="hide_block_form()"><?=translate('Отмена')?></button>
     </form>

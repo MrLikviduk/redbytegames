@@ -294,6 +294,8 @@
                     return 'Show other questions';
                 case 'Отмена':
                     return 'Cancel';
+                case 'Введите комментарий':
+                    return 'Enter a comment';
             }
         if ($_SESSION['lang'] == 'ru')
             return $s;
