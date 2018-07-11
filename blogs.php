@@ -158,7 +158,7 @@
 <script>
     function show_block_form(id) {
         $("#block_form_wrapper").css('display', 'block');
-        $("#block_form_user_id").val($("#ban_user_btn" + id).val());
+        $("#block_form_user_id").val($("#ban_user_btn" + id).attr('value'));
     }
     function hide_block_form() {
         $("#block_form_wrapper").css('display', 'none');
