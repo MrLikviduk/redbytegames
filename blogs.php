@@ -100,7 +100,7 @@
             url: '/elements/blog-result.php',
             data: msg,
             success: function (response) {
-                $("comments" + id).html(response + $("comments" + id));
+                $("#comments" + id).html(response + $("#comments" + id));
             }
         });
     }
