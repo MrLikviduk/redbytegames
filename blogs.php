@@ -128,7 +128,7 @@
                 echo '
                     <form action="" method="POST" class="comment-editor">
                         <label for="comment_content" class="label">'.translate('Комментарий').': </label>
-                        <textarea name="comment_content" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' maxlength="1023" class="content" rows="5" id="comment_content'.$row['id'].'">'.(get_field($_SESSION['login'], 'banned') == '1' ? translate('Вы не можете оставлять комментарии, так как были заблокированы модератором.').PHP_EOL.translate('Оставшееся время до разблокировки').': '.seconds_to_time(intval(get_field($_SESSION['login'], 'unban_time', 'users')) - intval(date('U'))) : '').'</textarea>
+                        <textarea name="comment_content" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' maxlength="1023" class="content" rows="5" id="comment_content'.$row['id'].'">'.(get_field($_SESSION['login'], 'banned') == '1' ? translate('Вы не можете оставлять комментарии, так как были заблокированы модератором.').PHP_EOL.translate('Оставшееся время до разблокировки').': '.seconds_to_time(intval(get_field($_SESSION['login'], 'unban_time', 'users')) - intval(date('U'))).PHP_EOL.translate('Комментарий модератора').': '.htmlspecialchars(get_field($_SESSION['login'], 'ban_comment'), ENT_QUOTES, 'UTF-8') : '').'</textarea>
                         <input type="submit" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' name="comment_submit" value="'.translate('Добавить комментарий').'" class="submit">
                         <input type="hidden" name="blog_id" value="'.$row['id'].'">
                     </form>
