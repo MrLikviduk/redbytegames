@@ -70,7 +70,7 @@
             }
             else
                 $comment = '';
-            $user_id = (int)get_by_id($_POST['block_form_user_id'], 'comments')['user_id'];
+            $user_id = (int)$_POST['block_form_user_id'];
             $mysqli->query("DELETE FROM comments WHERE `user_id` = $user_id");
             set_data('users', 'id', $user_id, 'banned', 1);
             set_data('users', 'id', $user_id, 'unban_time', intval(date('U')) + $ban_time);
