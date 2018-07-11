@@ -57,18 +57,24 @@
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
         }
     }
-    if (isset($_POST['ban_user'])) {
+    if (isset($_POST['block_form_submit'])) {
         if (can_do('ban_users')) {
-            $comment = get_by_id($_POST['ban_user'], 'comments');
+            $comment = get_by_id($_POST['block_form_user_id'], 'comments');
             $blog_id = $comment['blog_id'];
-            if ($_POST['days'] >= 0 && $_POST['hours'] >= 0)
-                $ban_time = $_POST['days'] * 86400 + $_POST['hours'] * 3600;
+            if ($_POST['block_form_days'] >= 0 && $_POST['block_form_hours'] >= 0)
+                $ban_time = $_POST['block_form_days'] * 86400 + $_POST['block_form_hours'] * 3600;
             else
                 $ban_time = 0;
-            $user_id = (int)get_by_id($_POST['ban_user'], 'comments')['user_id'];
+            if (is_legal($_POST['block_form_comment'], 0, 300)) {
+                $comment = $_POST['block_form_comment'];
+            }
+            else
+                $comment = '';
+            $user_id = (int)get_by_id($_POST['block_form_user_id'], 'comments')['user_id'];
             $mysqli->query("DELETE FROM comments WHERE `user_id` = $user_id");
             set_data('users', 'id', $user_id, 'banned', 1);
             set_data('users', 'id', $user_id, 'unban_time', intval(date('U')) + $ban_time);
+            set_data('users', 'id', $user_id, 'ban_comment', $comment);
             header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
         }
     }
@@ -165,7 +171,7 @@
         <input type="number" name="days" id="block_form_days" class="text" style="width: 50px" value="0" min="0"> <?=translate('дней')?> <input type="number" name="hours" id="block_form_hours" class="text" style="width: 50px" value="0" min="0"> <?=translate('часов')?> <br>
         <label for="ban_comment"><?=translate('Введите коментарий')?>:</label><br>
         <textarea name="comment" id="block_form_comment" rows="10" class="text" class="text" style="width: 250px;" maxlength="300"></textarea>
-        <input type="submit" id="block_form_submit" class="submit-btn" style="margin-left: 10px" value="<?=translate('Заблокировать')?>">
+        <input type="submit" name="block_form_submit" id="block_form_submit" class="submit-btn" style="margin-left: 10px" value="<?=translate('Заблокировать')?>">
         <button type="button" class="submit-btn" style="margin-left: 10px" onclick="hide_block_form()"><?=translate('Отмена')?></button>
     </form>
 </div>
