@@ -71,7 +71,7 @@
             else
                 $ban_comment = '';
             $user_id = (int)$_POST['block_form_user_id'];
-            $mysqli->query("DELETE FROM comments WHERE `user_id` = $user_id");
+            $mysqli->query("DELETE FROM comments WHERE `user_id` = $user_id") or die("ERROR111");
             set_data('users', 'id', $user_id, 'banned', 1) or die("ERROR1");
             set_data('users', 'id', $user_id, 'unban_time', intval(date('U')) + $ban_time) or die("ERROR1");
             set_data('users', 'id', $user_id, 'ban_comment', $ban_comment) or die("ERROR1");
