@@ -166,7 +166,7 @@
 </script>
 <div class="block-form-wrapper" style="display: none;" id="block_form_wrapper">
     <form action="" method="post" class="block-form" id="block_form">
-        <input type="hidden" name="user_id" id="block_form_user_id">
+        <input type="hidden" name="user_id" id="block_form_user_id" name="block_form_user_id">
         <label for="ban_days"><?=translate('Выберите время блокировки')?>:</label><br>
         <input type="number" name="days" id="block_form_days" class="text" style="width: 50px" value="0" min="0"> <?=translate('дней')?> <input type="number" name="hours" id="block_form_hours" class="text" style="width: 50px" value="0" min="0"> <?=translate('часов')?> <br>
         <label for="ban_comment"><?=translate('Введите коментарий')?>:</label><br>
