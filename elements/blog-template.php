@@ -45,24 +45,25 @@
                     '.htmlspecialchars($content, ENT_QUOTES, 'UTF-8').'
                 </div>
                 ';
-                if (is_own_comment($id) || can_do('delete_comments'))
+                $role = get_role($name);
+                if (is_own_comment($id) || ((can_do('delete_comments') || can_do('ban_users')) && $role != 'owner'))
                         echo '<form action="" method="POST" class="panel">';
                 if (is_own_comment($id)) {
                     echo '
                         <button class="btn" name="edit_comment" value="'.$id.'">'.translate('Редактировать').'</button>
                     ';
-                }
-                if (is_own_comment($id) || can_do('delete_comments')) {
+                } 
+                if (is_own_comment($id) || (can_do('delete_comments') && $role != 'owner')) {
                     echo '
                         <div class="btn" name="delete_comment" onclick="delete_comment('.$id.')">'.translate('Удалить').'</div>
                     ';
                 }
-                if (can_do('ban_users') && !is_own_comment($id)) {
+                if ((can_do('ban_users') && $role != 'owner') && !is_own_comment($id)) {
                     echo '
                         <div class="btn" value="'.$id.'" onclick="show_block_form('.$id.')" id="ban_user_btn'.$id.'">'.translate('Заблокировать').'</div>
                     ';
                 }
-                if (is_own_comment($id) || can_do('delete_comments')) {
+                if (is_own_comment($id) || ((can_do('delete_comments') || can_do('ban_users')) && $role != 'owner')) {
                     echo '</form>';
                 }
             echo '</div>';

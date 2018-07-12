@@ -49,8 +49,11 @@
         }
     }
     if (isset($_POST['block_form_submit'])) {
-        if (can_do('ban_users')) {
-            $comment = get_by_id($_POST['block_form_comment_id'], 'comments') or die("ERROR0");
+        $comment = get_by_id($_POST['block_form_comment_id'], 'comments') or die("ERROR0");
+        $user_id = $comment['user_id'];
+        $username = get_username_by_id($user_id);
+        $role = get_role($username);
+        if (can_do('ban_users') && $role != 'owner') {
             $blog_id = $comment['blog_id'];
             $days = (int)$_POST['block_form_days'];
             $hours = (int)$_POST['block_form_hours'];

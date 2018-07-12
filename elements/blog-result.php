@@ -26,8 +26,11 @@
         show_comment(get_by_id($comment['user_id'], 'users')['username'], $comment['creation_date'], $comment['creation_time'], $comment['content'], $id);
     }
     if (isset($_POST['delete_comment'])) {
-        if ((user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_POST['delete_comment'], 'comments')['user_id']) || can_do('delete_comments')) {
-            $comment = get_by_id($_POST['delete_comment'], 'comments');
+        $comment = get_by_id($_POST['delete_comment'], 'comments');
+        $user_id = $comment['user_id'];
+        $username = get_username_by_id($username);
+        $role = get_role($username);
+        if (((user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_POST['delete_comment'], 'comments')['user_id']) && $role != 'owner') || can_do('delete_comments')) {
             $blog_id = $comment['blog_id'];
             $comment_id = (int)$_POST['delete_comment'];
             $mysqli->query("DELETE FROM comments WHERE id = $comment_id");
