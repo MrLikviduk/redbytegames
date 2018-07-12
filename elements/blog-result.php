@@ -30,7 +30,7 @@
         $user_id = $comment['user_id'];
         $username = get_username_by_id($username);
         $role = get_role($username);
-        if (((user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_POST['delete_comment'], 'comments')['user_id']) && $role != 'owner') || can_do('delete_comments')) {
+        if (((user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_POST['delete_comment'], 'comments')['user_id'])) || (can_do('delete_comments') && $role != 'owner')) {
             $blog_id = $comment['blog_id'];
             $comment_id = (int)$_POST['delete_comment'];
             $mysqli->query("DELETE FROM comments WHERE id = $comment_id");
