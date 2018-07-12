@@ -3,7 +3,7 @@
     session_start();
     require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
     if (isset($_POST['login']) && isset($_POST['password'])) {
-        if (user_is_set($_POST['login'], $_POST['password']) == TRUE) {
+        if (user_is_set($_POST['login'], $_POST['password'])) {
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['password'] = $_POST['password'];
             header("Location: ".$_SERVER['REQUEST_URI']);
@@ -11,16 +11,11 @@
     }
     if (isset($_GET['key'])) {
         activate_user($_GET['key']);
-        header("Location: ".explode('?', $_SERVER['REQUEST_URI'])[0]);
+        header("Location: ".explode('?', $_SERVER['REQUEST_URI']."?type=email")[0]);
     }
     if (isset($_POST['resend']) && isset($_SESSION['login']) && username_is_set($_SESSION['login']) && get_field($_SESSION['login'], 'activated') === '0') {
         $s = get_email($_SESSION['login']);
         send_confirm_letter($s) or die("ERROR TO RESEND");
-        header("Location: ".$_SERVER['REQUEST_URI']);
-    }
-    if (isset($_POST['quit_btn'])) {
-        unset($_SESSION['login']);
-        unset($_SESSION['password']);
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
     include('header.php');
@@ -44,8 +39,12 @@
             }
             else
                 echo '
-                    <div class="confirm-email">
-                        <h1>'.translate('Поздравляем! Ваш почтовый ящик прошел проверку!').'</h1>
+                    <div class="confirm-email">';
+                    if (isset($_GET['type']) && $_GET['type'] = 'email')
+                        echo '<h1>'.translate('Поздравляем! Ваш почтовый ящик прошел проверку!').'</h1>';
+                    else
+                        echo '<h1>'.translate('Поздравляем! Вы успешно вошли под своей учетной записью!');
+                    echo '
                         <p>
                             '.translate('Теперь вы можете пользоваться вашей учетной записью.').'
                         </p>
