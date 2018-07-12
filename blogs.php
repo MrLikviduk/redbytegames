@@ -188,7 +188,7 @@
         <input type="hidden" id="block_form_comment_id" name="block_form_comment_id">
         <label for="ban_days"><?=translate('Выберите время блокировки')?>:</label><br>
         <input type="number" name="block_form_days" id="block_form_days" class="text" style="width: 50px" value="0" min="0"> <?=translate('дней')?> <input type="number" name="block_form_hours" id="block_form_hours" class="text" style="width: 50px" value="0" min="0"> <?=translate('часов')?> <br>
-        <label for="ban_comment"><?=translate('Введите коментарий')?>:</label><br>
+        <label for="ban_comment"><?=translate('Введите комментарий')?>:</label><br>
         <textarea id="block_form_comment" name="block_form_comment" rows="10" class="text" style="width: 250px;" maxlength="300"></textarea>
         <input type="submit" name="block_form_submit" id="block_form_submit" class="submit-btn" style="margin-left: 10px" value="<?=translate('Заблокировать')?>">
         <button type="button" class="submit-btn" style="margin-left: 10px" onclick="hide_block_form()"><?=translate('Отмена')?></button>
