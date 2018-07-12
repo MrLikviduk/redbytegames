@@ -300,8 +300,6 @@
                     return 'Moderator\'s comment';
                 case 'Поздравляем! Вы успешно вошли под своей учетной записью!':
                     return 'Congratulation! You have successfully logged in to your account!';
-                case 'Введите комментарий':
-                    return 'Enter a comment';
             }
         if ($_SESSION['lang'] == 'ru')
             return $s;
