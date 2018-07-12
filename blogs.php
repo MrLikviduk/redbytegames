@@ -94,8 +94,12 @@
             url: '/elements/blog-result.php',
             data: msg,
             success: function (response) {
-                if (comment_id == -1)
-                    $("#comments" + id).html(response + $("#comments" + id).html());
+                if (comment_id == -1) {
+                    if (response != 'comments_limit')
+                        $("#comments" + id).html(response + $("#comments" + id).html());
+                    else
+                        $("#comments_limit_text" + id).css('display', 'block');
+                }
                 else
                     $("#comment" + comment_id).replaceWith(response);
                 $("#comment_content" + id).val('');  
@@ -139,6 +143,7 @@
                     <form action="javascript:void(null);" method="POST" class="comment-editor" id="comment_form'.$row['id'].'" onsubmit="add_comment('.$row['id'].', '.(isset($_SESSION['id_to_edit_comment']) && get_by_id($_SESSION['id_to_edit_comment'], 'comments')['blog_id'] == $row['id'] ? $_SESSION['id_to_edit_comment'] : -1).')">
                         <label for="comment_content" class="label">'.translate('Комментарий').': </label>
                         <textarea name="comment_content" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' maxlength="1023" class="content" rows="5" id="comment_content'.$row['id'].'">'.(get_field($_SESSION['login'], 'banned') == '1' ? translate('Вы не можете оставлять комментарии, так как были заблокированы модератором.').PHP_EOL.translate('Оставшееся время до разблокировки').': '.seconds_to_time(intval(get_field($_SESSION['login'], 'unban_time', 'users')) - intval(date('U'))).(get_field($_SESSION['login'], 'ban_comment') != '' ? PHP_EOL.translate('Комментарий модератора').': '.htmlspecialchars(get_field($_SESSION['login'], 'ban_comment'), ENT_QUOTES, 'UTF-8') : '') : '').'</textarea>
+                        <p id="comments_limit_text'.$row['id'].'" style="margin: 0; color: red; font-size: 0.9rem; display: none">Превышен лимит комментариев в минуту. Повторите попытку позже...</p>
                         <input type="submit" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' name="comment_submit" value="'.translate('Добавить комментарий').'" class="submit">
                         <input type="hidden" name="blog_id" value="'.$row['id'].'">
                     </form>

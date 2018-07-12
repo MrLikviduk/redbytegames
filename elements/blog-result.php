@@ -5,7 +5,7 @@
     $mysqli = connect_to_database();
     if (isset($_POST['comment_content']) && is_legal($_POST['comment_content'], 1, 1023) && can_do('add_comments') && get_field($_SESSION['login'], 'banned') == '0') {
         $user_id = get_id_by_username($_SESSION['login']);
-        $blog_id = $_POST['blog_id'];
+        $blog_id = (int) $_POST['blog_id'];
         if (isset($_SESSION['id_to_edit_comment']) && get_by_id($_SESSION['id_to_edit_comment'], 'comments')['blog_id'] == $_POST['blog_id'] && user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_SESSION['id_to_edit_comment'], 'comments')['user_id']) {
             $comment_content = $mysqli->real_escape_string($_POST['comment_content']);
             $id_to_edit_comment = (int) $_SESSION['id_to_edit_comment'];
@@ -14,7 +14,12 @@
             unset($_SESSION['id_to_edit_comment']);
         }
         else {
-            add_comment($blog_id, $user_id, date('d.m.Y'), date('H:i'), $_POST['comment_content']);
+            $time = date('H:i');
+            $date = date('d.m.Y');
+            $result = $mysqli->query("SELECT * FROM comments WHERE user_id = $user_id AND creation_date = '$date' AND creation_time = '$time'");
+            if ($result->num_rows >= 5)
+                die('comments_limit');
+            add_comment($blog_id, $user_id, $date, $time, $_POST['comment_content']);
         }
         $result = $mysqli->query("SELECT * FROM comments WHERE user_id = $user_id and blog_id = $blog_id ORDER BY id DESC");
         $comment = $result->fetch_assoc();
