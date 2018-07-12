@@ -97,8 +97,10 @@
                 if (comment_id == -1) {
                     if (response != 'comments_limit')
                         $("#comments" + id).html(response + $("#comments" + id).html());
-                    else
+                    else {
                         $("#comments_limit_text" + id).css('display', 'block');
+                        return;
+                    }
                 }
                 else
                     $("#comment" + comment_id).replaceWith(response);
