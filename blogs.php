@@ -93,15 +93,18 @@
         document.getElementById('show_or_hide_comments' + element_id).innerHTML = (document.getElementById('comments' + element_id).style.display == 'none' ? '<?=translate('Скрыть комментарии')?>' : ('<?=translate('Показать комментарии')?>' + ' (' + s + ')'));
         document.getElementById('comments' + element_id).style.display = (document.getElementById('comments' + element_id).style.display == 'block' ? 'none' : 'block');
     }
-    function add_comment(id) {
+    function add_comment(id, comment_id = -1) {
         var msg = $("#comment_form" + id).serialize();
         $.ajax({
             type: 'POST',
             url: '/elements/blog-result.php',
             data: msg,
             success: function (response) {
-                $("#comments" + id).html(response + $("#comments" + id).html());
-                $("#comment_content" + id).val('');
+                if (comment_id == -1) {
+                    $("#comments" + id).html(response + $("#comments" + id).html());
+                else
+                    $("#comment" + comment_id).replaceWith(response);
+                $("#comment_content" + id).val('');  
             }
         });
     }
@@ -123,7 +126,7 @@
             echo '<div id="fcn'.$row['id'].'" style="position: relative; top: -70px;"></div>';
             if (can_do('add_comments')) {
                 echo '
-                    <form action="javascript:void(null);" method="POST" class="comment-editor" id="comment_form'.$row['id'].'" onsubmit="add_comment('.$row['id'].')">
+                    <form action="javascript:void(null);" method="POST" class="comment-editor" id="comment_form'.$row['id'].'" onsubmit="add_comment('.$row['id'].', "'.(isset($_SESSION['id_to_edit_comment']) && get_by_id($_SESSION['id_to_edit_comment'], 'comments')['blog_id'] == $row['id'] ? $_SESSION['id_to_edit_comment'] : -1).'")">
                         <label for="comment_content" class="label">'.translate('Комментарий').': </label>
                         <textarea name="comment_content" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' maxlength="1023" class="content" rows="5" id="comment_content'.$row['id'].'">'.(get_field($_SESSION['login'], 'banned') == '1' ? translate('Вы не можете оставлять комментарии, так как были заблокированы модератором.').PHP_EOL.translate('Оставшееся время до разблокировки').': '.seconds_to_time(intval(get_field($_SESSION['login'], 'unban_time', 'users')) - intval(date('U'))).(get_field($_SESSION['login'], 'ban_comment') != '' ? PHP_EOL.translate('Комментарий модератора').': '.htmlspecialchars(get_field($_SESSION['login'], 'ban_comment'), ENT_QUOTES, 'UTF-8') : '') : '').'</textarea>
                         <input type="submit" '.(get_field($_SESSION['login'], 'banned') == '1' ? 'disabled' : '').' name="comment_submit" value="'.translate('Добавить комментарий').'" class="submit">
