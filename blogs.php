@@ -104,7 +104,8 @@
                 }
                 else
                     $("#comment" + comment_id).replaceWith(response);
-                $("#comment_content" + id).val('');  
+                $("#comment_content" + id).val('');
+                $("#comments_limit_text" + id).css('display', 'none');
             }
         });
     }
