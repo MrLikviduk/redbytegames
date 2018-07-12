@@ -23,6 +23,17 @@
             $result = $mysqli->query("SELECT * FROM comments WHERE id = $id");
             $comment = $result->fetch_assoc();
         }
+        show_comment(get_by_id($comment['user_id'], 'users')['username'], $comment['creation_date'], $comment['creation_time'], $comment['content'], $id);
     }
-    show_comment(get_by_id($comment['user_id'], 'users')['username'], $comment['creation_date'], $comment['creation_time'], $comment['content'], $id);
+    if (isset($_POST['delete_comment'])) {
+        if ((user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_POST['delete_comment'], 'comments')['user_id']) || can_do('delete_comments')) {
+            $comment = get_by_id($_POST['delete_comment'], 'comments');
+            $blog_id = $comment['blog_id'];
+            $comment_id = (int)$_POST['delete_comment'];
+            $mysqli->query("DELETE FROM comments WHERE id = $comment_id");
+            echo 'success';
+            exit();
+        }
+        else die("fail");
+    }
 ?>

@@ -24,8 +24,8 @@
         echo '
             </div>
             <h1>'.htmlspecialchars($header, ENT_QUOTES, 'UTF-8').'</h1>
-            <div class="line-after-header"></div>
-            <br>
+            <div class="line-after-header"></div>';
+            echo '<br>
             <p>
                 '.htmlspecialchars($content, ENT_QUOTES, 'UTF-8').'
             </p>
@@ -54,7 +54,7 @@
                 }
                 if (is_own_comment($id) || can_do('delete_comments')) {
                     echo '
-                        <button class="btn" name="delete_comment" value="'.$id.'" onclick="return confirm(\''.translate('Вы действительно хотите удалить комментарий?').'\')">'.translate('Удалить').'</button>
+                        <div class="btn" name="delete_comment" onclick="delete_comment('.$id.')">'.translate('Удалить').'</div>
                     ';
                 }
                 if (can_do('ban_users') && !is_own_comment($id)) {

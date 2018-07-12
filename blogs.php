@@ -40,15 +40,6 @@
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
     }
-    if (isset($_POST['delete_comment'])) {
-        if ((user_is_set($_SESSION['login'], $_SESSION['password']) && get_id_by_username($_SESSION['login']) == get_by_id($_POST['delete_comment'], 'comments')['user_id']) || can_do('delete_comments')) {
-            $comment = get_by_id($_POST['delete_comment'], 'comments');
-            $blog_id = $comment['blog_id'];
-            $comment_id = (int)$_POST['delete_comment'];
-            $mysqli->query("DELETE FROM comments WHERE id = ".$comment_id);
-            header("Location: ".(explode('#', $_SERVER['REQUEST_URI'])[0]).'#fcn'.$blog_id);
-        }
-    }
     if (isset($_POST['edit_comment'])) {
         if (is_own_comment($_POST['edit_comment'])) {
             $comment = get_by_id($_POST['edit_comment'], 'comments');
@@ -108,6 +99,22 @@
             }
         });
     }
+    function delete_comment(id) {
+        if (!confirm('<?=translate('Вы действительно хотите удалить комментарий?')?>')) return; 
+        $.ajax({
+            type: 'POST',
+            url: '/elements/blog-result.php',
+            data: {
+                delete_comment: id
+            },
+            success: function (response) {
+                if (response == 'success') {
+                    $("#comment" + id).remove();
+                }
+            }
+        });
+    }
+    
 </script>
 <?php
     if (isset($blog_notices)) {
