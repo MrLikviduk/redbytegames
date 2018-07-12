@@ -37,19 +37,20 @@
                     </div>
                 ';
             }
-            else
+            else {
                 echo '
                     <div class="confirm-email">';
                     if (isset($_GET['type']) && $_GET['type'] = 'email')
                         echo '<h1>'.translate('Поздравляем! Ваш почтовый ящик прошел проверку!').'</h1>';
                     else
-                        echo '<h1>'.translate('Поздравляем! Вы успешно вошли под своей учетной записью!');
+                        echo '<h1>'.translate('Поздравляем! Вы успешно вошли под своей учетной записью!').'</h1>';
                     echo '
                         <p>
                             '.translate('Теперь вы можете пользоваться вашей учетной записью.').'
                         </p>
                     </div>
                 ';
+            }
         }
         else
             include($_SERVER['DOCUMENT_ROOT'].'/elements/to-authorizate.php');
