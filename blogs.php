@@ -100,7 +100,7 @@
             url: '/elements/blog-result.php',
             data: msg,
             success: function (response) {
-                if (comment_id == -1) {
+                if (comment_id == -1)
                     $("#comments" + id).html(response + $("#comments" + id).html());
                 else
                     $("#comment" + comment_id).replaceWith(response);
