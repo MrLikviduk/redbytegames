@@ -11,7 +11,7 @@
     }
     if (isset($_GET['key'])) {
         activate_user($_GET['key']);
-        header("Location: ".explode('?', $_SERVER['REQUEST_URI']."?type=email")[0]);
+        header("Location: ".explode('?', $_SERVER['REQUEST_URI'])[0]."?type=email");
     }
     if (isset($_POST['resend']) && isset($_SESSION['login']) && username_is_set($_SESSION['login']) && get_field($_SESSION['login'], 'activated') === '0') {
         $s = get_email($_SESSION['login']);
