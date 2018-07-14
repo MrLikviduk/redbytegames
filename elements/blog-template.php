@@ -67,9 +67,9 @@
                     echo '</form>';
                 }
             echo '</div>';
-            if (($for_media ? $_SESSION['id_to_edit_media_comment'] : $_SESSION['id_to_edit_comment']) == $id)
+            if (($for_media ? $_SESSION['id_to_edit_comment'] : $_SESSION['id_to_edit_comment']) == $id)
                 echo "<script>
-                    document.getElementById('comment_content".get_by_id(($for_media ? $_SESSION['id_to_edit_media_comment'] : $_SESSION['id_to_edit_comment']), 'comments')['blog_id']."').innerHTML = '".htmlspecialchars(get_by_id(($for_media ? $_SESSION['id_to_edit_media_comment'] : $_SESSION['id_to_edit_comment']), 'comments')['content'], ENT_QUOTES, 'UTF-8')."';
+                    document.getElementById('comment_content".get_by_id(($for_media ? $_SESSION['id_to_edit_comment'] : $_SESSION['id_to_edit_comment']), 'comments')['blog_id']."').innerHTML = '".htmlspecialchars(get_by_id(($for_media ? $_SESSION['id_to_edit_comment'] : $_SESSION['id_to_edit_comment']), 'comments')['content'], ENT_QUOTES, 'UTF-8')."';
                 </script>";
     }
 ?>

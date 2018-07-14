@@ -1,10 +1,9 @@
 <?php
     $page_name = 'Блог';
     session_start();
-    include('elements/functions.php');
-    include($_SERVER['DOCUMENT_ROOT'].'/elements/connection-info.php');
-    $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name) or die("Error to connect to db");
-    include('elements/blog-template.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/elements/functions.php');
+    require_once($_SERVER['DOCUMENT_ROOT'].'/elements/blog-template.php');
+    $mysqli = connect_to_database();
     if (isset($_SESSION['id_to_edit_blog'])) unset($_SESSION['id_to_edit_blog']);
     if (!isset($_SESSION['num_of_rows'])) {
         $_SESSION['num_of_rows'] = 0;
@@ -129,7 +128,6 @@
             }
         });
     }
-    
 </script>
 <?php
     if (isset($blog_notices)) {
