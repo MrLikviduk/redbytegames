@@ -95,8 +95,13 @@
             data: msg,
             success: function (response) {
                 if (comment_id == -1) {
-                    if (response != 'comments_limit')
+                    if (response != 'comments_limit') {
                         $("#comments" + id).html(response + $("#comments" + id).html());
+                        var count = $("#comments" + id + " .comment").length;
+                        if ($("#comments" + id).css('display') == 'none') {
+                            showOrHideComments(id, count);
+                        }
+                    }
                     else {
                         $("#comments_limit_text" + id).css('display', 'block');
                         return;
@@ -158,12 +163,12 @@
                 echo '
                     <div id="show_or_hide_comments'.$row['id'].'" class="show-comments-btn" onclick="showOrHideComments('.$row['id'].', '.$comments_count.')">'.translate('Показать комментарии').' ('.($comments_count > 1000 ? '1000+' : $comments_count).')</div>
                 ';
-                echo '<div style="display: none;" id="comments'.$row['id'].'">';
-                while ($comments = $comments_result->fetch_assoc()) {
-                    show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content'], $comments['id']);
-                }
-                echo '</div>';
             }
+            echo '<div style="display: '.($comments_count > 0 ? 'none' : 'block').';" id="comments'.$row['id'].'">';
+            while ($comments = $comments_result->fetch_assoc()) {
+                show_comment(get_username_by_id($comments['user_id']), $comments['creation_date'], $comments['creation_time'], $comments['content'], $comments['id']);
+            }
+            echo '</div>';
         }
         if ($_SESSION['num_of_rows'] < count($blog_notices) - 1) {
             echo '
