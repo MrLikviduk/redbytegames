@@ -370,6 +370,12 @@ footer .socnet {
 .to-registrate a, .registration-form a {
     color: rgb(99, 197, 230);
 }
+.btn-preloader {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin: 0 3px;
+}
 @media (max-width: 870px) {
     footer .socnet-wrapper {
         display: block;
