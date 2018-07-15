@@ -27,7 +27,14 @@
         $("#email_id").val('');
         $("#message_id").val('');
         $("#success_text_id").css('display', 'block');
-        $("#success_text_id").html(response);
+        if (response == 'success') {
+            $("#success_text_id").html('<?=translate('Ваше сообщение успешно отправлено')?>');
+            $("#success_text_id").css('background', 'hsl(120, 80%, 63%)');
+        }
+        else {
+            $("#success_text_id").html('<?=translate('Ошибка: введены неверные данные!')?>');
+            $("#success_text_id").css('background', 'hsl(0, 80%, 63%)')
+        }
     }
     function call() {
  	  var msg = $('#support_form').serialize();
@@ -35,10 +42,7 @@
           type: 'POST',
           url: '/elements/support-result.php',
           data: msg,
-          success: resetForm(response),
-          error:  function(xhr, str){
-	    alert('Возникла ошибка: ' + xhr.responseCode);
-          }
+          success: resetForm(response)
         });
     }
 </script>

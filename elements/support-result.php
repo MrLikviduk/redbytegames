@@ -7,7 +7,9 @@
         $email = $mysqli->real_escape_string($_POST['email']);
         $message = $mysqli->real_escape_string($_POST['message']);
         mail('support@redbytegames.ru', 'Новый вопрос', 'ФИО: '.$_POST['fullname']."\r\nПочта: ".$_POST['email']."\r\nСообщение: ".$_POST['message'], "From: support@redbytegames.ru");
-        $mysqli->query("INSERT INTO support_requests (id, fullname, `email`, `message`) VALUES (NULL, '$fullname', '$email', '$message')") or die("ERROR");
+        $mysqli->query("INSERT INTO support_requests (id, fullname, `email`, `message`) VALUES (NULL, '$fullname', '$email', '$message')") or die("database error");
+        die('success');
     }
+    die(translate('incorrect data'));
     $mysqli->close();
 ?>
