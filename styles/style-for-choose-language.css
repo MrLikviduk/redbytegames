@@ -6,8 +6,11 @@
 .wrapper h1 {
     color: white;
 }
-.wrapper input {
+.wrapper button {
     margin: 20px;
+    padding: 0;
+    background: none;
+    border: none;
     width: 280px;
     height: 150px;
 }
