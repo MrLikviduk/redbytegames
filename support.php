@@ -18,7 +18,7 @@
     <p></p>
     <div class="submit-btn-wrapper">
         <div class="g-recaptcha" data-sitekey="6LfdRl8UAAAAAFNp0Aq7VO1Wp7LEm9yaBnXs6-QZ"></div>
-        <input type="submit" value="<?=translate('Сообщить о проблеме')?>" class="submit-btn" name="support_submit" id="support_submit">
+        <button type="submit" value="<?=translate('Сообщить о проблеме')?>" class="submit-btn" name="support_submit" id="support_submit"><?=translate('Сообщить о проблеме')?></button>
     </div>
 </form>
 <script type="text/javascript" language="javascript">
