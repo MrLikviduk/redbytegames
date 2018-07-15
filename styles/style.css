@@ -375,6 +375,7 @@ footer .socnet {
     height: 16px;
     display: inline-block;
     margin: 0 3px;
+    vertical-align: middle;
 }
 @media (max-width: 870px) {
     footer .socnet-wrapper {
