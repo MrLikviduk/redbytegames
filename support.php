@@ -42,7 +42,9 @@
           type: 'POST',
           url: '/elements/support-result.php',
           data: msg,
-          success: resetForm(response)
+          success: function (response) {
+              resetForm(response);
+          }
         });
     }
 </script>
