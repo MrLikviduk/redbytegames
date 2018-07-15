@@ -10,8 +10,8 @@
 <div class="wrapper">
     <h1>Choose The Language:</h1>
     <form action="" method="post">
-        <input type="image" src="/img/en.png" name="lang" value="en">
-        <input type="image" src="/img/ru.png" name="lang" value="ru">
+        <button type="submit" name="lang" value="en"><img src="/img/en.png" alt="en"></button>
+        <button type="submit" name="lang" value="ru"><img src="/img/ru.png" alt="ru"></button>
     </form>
 </div>
 <script>
