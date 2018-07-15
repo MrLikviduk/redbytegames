@@ -23,6 +23,7 @@
 </form>
 <script type="text/javascript" language="javascript">
     function resetForm(response) {
+        $("#support_submit .btn-preloader").remove();
         $("#fullname_id").val('');
         $("#email_id").val('');
         $("#message_id").val('');
