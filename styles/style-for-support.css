@@ -9,7 +9,6 @@
 .success-text {
     display: none;
     background: hsl(120, 80%, 63%);
-    color: hsl(0, 80%, 63%);
     text-align: center;
     padding: 10px;
     position: absolute;
