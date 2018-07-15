@@ -11,6 +11,8 @@
     padding: 0;
     background: none;
     border: none;
+}
+.wrapper button img {
     width: 280px;
     height: 150px;
 }
