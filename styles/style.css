@@ -16,6 +16,7 @@ main {
     -webkit-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
+    word-break: break-all;
 }
 a {
     text-decoration: none;
