@@ -114,7 +114,7 @@
                 create_user($_POST['user_login'], $_POST['user_email'], $_POST['user_password'], 'user');
                 add_email_key($_POST['user_login']);
                 send_confirm_letter($_POST['user_email']);
-                header("Location: /authorization.php");
+                header("Location: /authorization");
             }
         }
     }
@@ -133,7 +133,7 @@
             }
             add_email_key($lst[$type.'_login']);
             send_confirm_letter($lst[$type.'_email']);
-            header("Location: /authorization.php");
+            header("Location: /authorization");
         }
     }
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');

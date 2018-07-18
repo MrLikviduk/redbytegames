@@ -12,12 +12,12 @@
         }
         if (isset($_POST['edit_vacancy'])) {
             $_SESSION['id_to_edit_vacancy'] = $_POST['edit_vacancy'];
-            header("Location: /elements/vacancy-editor.php");
+            header("Location: /elements/vacancy-editor");
         }
     }
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
     if (can_do('edit_vacancy'))
-        echo '<a href="elements/vacancy-editor.php" style="margin-top: 20px; display: block; text-align: left;">'.translate('Добавить вакансию').'</a>';
+        echo '<a href="elements/vacancy-editor" style="margin-top: 20px; display: block; text-align: left;">'.translate('Добавить вакансию').'</a>';
     $result = $mysqli->query("SELECT * FROM vacancy WHERE `lang` = '".$mysqli->real_escape_string($_SESSION['lang'])."' ORDER BY id DESC");
     if (($result->num_rows) == 0) {
         echo '<h2 style="text-align: center; margin-top: 50px">'.translate('К сожалению, сейчас нет доступных вакансий. Попробуйте зайти позже...').'</h2>';

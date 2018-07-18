@@ -11,17 +11,17 @@
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
 <div class="choose-menu">
-    <a href="/for_media/media-blog.php">
+    <a href="/for_media/media-blog">
         <div class="choose-element">
             <?=translate('Блог')?>
         </div>
     </a>
-    <a href="/for_media/media-question-answer.php">
+    <a href="/for_media/media-question-answer">
         <div class="choose-element">
             <?=translate('Вопрос-Ответ')?>
         </div>
     </a>
-    <a href="/for_media/media-kits.php">
+    <a href="/for_media/media-kits">
         <div class="choose-element">
             <?=translate('Киты')?>
         </div>

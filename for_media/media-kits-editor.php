@@ -27,7 +27,7 @@
     }
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
-<a href="/for_media/media-kits.php" style="margin: 20px auto; display: block;"><?=translate('Назад')?></a>
+<a href="/for_media/media-kits" style="margin: 20px auto; display: block;"><?=translate('Назад')?></a>
 <form action="" method="POST" id="edit_form" enctype="multipart/form-data">
     <label for="lang"><?=translate('Язык')?>: </label>
     <select name="lang" id="lang_id" class="text-box">

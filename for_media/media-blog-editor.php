@@ -33,7 +33,7 @@
     $mysqli->close();
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');
 ?>
-<a href="/for_media/media-blog.php" style="margin: 20px auto; display: block;"><?=translate('Назад')?></a>
+<a href="/for_media/media-blog" style="margin: 20px auto; display: block;"><?=translate('Назад')?></a>
 <form action="" method="POST" id="edit_form">
     <label for="lang"><?=translate('Язык')?>: </label>
     <select name="lang" id="lang_id" class="text-box">

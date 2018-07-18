@@ -2,7 +2,7 @@
     session_start();
     if (isset($_POST['lang'])) {
         $_SESSION['lang'] = $_POST['lang'];
-        header('Location: /index.php');
+        header('Location: /index');
     }
     $page_name = 'Выбор языка';
     include($_SERVER['DOCUMENT_ROOT'].'/header.php');

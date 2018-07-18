@@ -5,8 +5,8 @@
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
     $explode_array = explode('/', $_SERVER['SCRIPT_FILENAME']);
-    if (!isset($_SESSION['lang']) && end($explode_array) !== 'choose-language.php') {
-        header('Location: /choose-language.php');
+    if (!isset($_SESSION['lang']) && end($explode_array) !== 'choose-language.php' && end($explode_array) !== 'choose-language') {
+        header('Location: /choose-language');
     }
     if (isset($_POST['change_lang'])) {
         if ($_SESSION['lang'] == 'ru')
@@ -105,18 +105,18 @@
             <a href="/blogs" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element"><?=translate('Блог')?></div>
             </a>
-            <a href="/projects.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+            <a href="/projects" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element"><?=translate('Проекты')?></div>
             </a>
             <?php if (can_do('see_info_for_media')) { ?>
-                <a href="/for_media/media-choose.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+                <a href="/for_media/media-choose" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                     <div class="nav-element"><?=translate('Для прессы')?></div>
                 </a>
             <?php } ?>
-            <a href="/vacancy.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+            <a href="/vacancy" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element"><?=translate('Вакансии')?></div>
             </a>
-            <a href="/support.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+            <a href="/support" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                 <div class="nav-element"><?=translate('Техподдержка')?></div>
             </a>
             <div style="height: 10px;"></div>
@@ -127,7 +127,7 @@
                 </div>
             </div>
             <?php if (!isset($_SESSION['login']) || !isset($_SESSION['password']) || !user_is_set($_SESSION['login'], $_SESSION['password'])) { ?>
-                <a href="/authorization.php" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
+                <a href="/authorization" onclick="menu.classList.toggle('menu_is-open'); el1.classList.toggle('el1-open'); el2.classList.toggle('el2-open'); el3.classList.toggle('el3-open');">
                     <div class="nav-element"><b><?=translate('Войти')?></b></div>
                 </a>
             <?php } else { ?>
@@ -154,22 +154,22 @@
                 <a href="/blogs">
                     <div class="nav-element"><?=translate('Блог')?></div>
                 </a>
-                <a href="/projects.php">
+                <a href="/projects">
                     <div class="nav-element"><?=translate('Проекты')?></div>
                 </a>
                 <?php if (can_do('see_info_for_media')) { ?>
-                    <a href="/for_media/media-choose.php">
+                    <a href="/for_media/media-choose">
                         <div class="nav-element"><?=translate('Для прессы')?></div>
                     </a>
                 <?php } ?>
-                <a href="/vacancy.php">
+                <a href="/vacancy">
                     <div class="nav-element"><?=translate('Вакансии')?></div>
                 </a>
-                <a href="/support.php">
+                <a href="/support">
                     <div class="nav-element"><?=translate('Техподдержка')?></div>
                 </a>
                 <?php if (!isset($_SESSION['login']) || !isset($_SESSION['password']) || !user_is_set($_SESSION['login'], $_SESSION['password'])) { ?>
-                    <a href="/authorization.php">
+                    <a href="/authorization">
                         <div class="nav-element"><b><?=translate('Войти')?></b></div>
                     </a>
                 <?php } else { ?>

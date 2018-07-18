@@ -6,7 +6,7 @@
                 <div class="type">
                     '.htmlspecialchars($type, ENT_QUOTES, 'UTF-8').'
                 </div>
-                <a href="/vacancy-element.php?id='.$id.'">
+                <a href="/vacancy-element?id='.$id.'">
                     <div class="name">
                         '.htmlspecialchars($name, ENT_QUOTES, 'UTF-8').'
                     </div>

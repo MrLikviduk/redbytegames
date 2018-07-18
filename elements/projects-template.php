@@ -1,7 +1,7 @@
 <?php
     function show_project($name, $pct_name, $id) {
         echo '
-            <a href="/project.php?id='.$id.'">
+            <a href="/project?id='.$id.'">
                 <div class="project" style="background-image: url(/projects_img/'.$pct_name.'?v'.time().')">
                     <div class="pct-cover">
                         <h2>'.htmlspecialchars($name, ENT_QUOTES, 'UTF-8').'</h2>

@@ -17,7 +17,7 @@
     }
     if (isset($_POST['edit_blog']) && can_do('edit_blog')) {
         $_SESSION['id_to_edit_blog'] = $_POST['edit_blog'];
-        header('Location: /elements/blog-editor.php');
+        header('Location: /elements/blog-editor');
     }
     if (!isset($blog_notices)) {
         $result = $mysqli->query("SELECT * FROM blog WHERE lang = '".$mysqli->real_escape_string($_SESSION['lang'])."' AND for_media = 0 ORDER BY id DESC");
@@ -78,7 +78,7 @@
     }
     include('header.php');
     if (can_do('edit_blog'))
-        echo '<a href="elements/blog-editor.php" style="margin-top: 20px; display: inline-block;">'.translate('Добавить запись').'</a>';
+        echo '<a href="elements/blog-editor" style="margin-top: 20px; display: inline-block;">'.translate('Добавить запись').'</a>';
 ?>
 <script>
     function showOrHideComments(element_id, count) {

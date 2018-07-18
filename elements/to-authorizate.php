@@ -16,5 +16,5 @@
     ?>
     <input type="submit" value="<?=translate('Войти')?>" class="login-btn">
     <br>
-    <p class="to-registrate"><?=translate('Впервые на нашем сайте?')?> <a href="/registration.php"><?=translate('Зарегистрируйтесь')?>!</a></p>
+    <p class="to-registrate"><?=translate('Впервые на нашем сайте?')?> <a href="/registration"><?=translate('Зарегистрируйтесь')?>!</a></p>
 </form>
