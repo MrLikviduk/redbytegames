@@ -205,20 +205,6 @@
         <input type="submit" value="<?=translate('Добавить')?>" name="picture_submit">
     </form>
 <?php } ?>
-<div class="galleria-wrapper">
-    <div class="galleria">
-        <?php
-            $dir = $_SERVER['DOCUMENT_ROOT'].'/projects_img/'.$result['id'];
-            $temp_array = scandir($dir);
-            $files = [];
-            foreach ($temp_array as $value)
-                if ($value != '.' && $value != '..')
-                    array_push($files, $value);
-            foreach ($files as $value)
-                echo '<img src="/projects_img/'.$result['id'].'/'.$value.'">';
-        ?>
-    </div>
-</div>
 <?php 
     $counter = 0;
     $lst = unserialize(base64_decode($result['paragraphs']));
